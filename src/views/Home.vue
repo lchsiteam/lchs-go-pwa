@@ -32,17 +32,12 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
-import HelloWorld from '@/components/HelloWorld.vue'; // @ is an alias to /src
 
 import { printTime, getScheduleFromDay, getPeriod } from '@/schedule'
 import { Day, Schedule, Period, getPeriodName } from '@/schedule/enums'
 import { RegularSchedule, BlockEvenSchedule, BlockOddSchedule } from '@/schedule/schedules'
 
-@Component({
-  components: {
-    HelloWorld,
-  },
-})
+@Component({})
 export default class Home extends Vue {
   private minutes: number = 0
   private schedule: Schedule = Schedule.NONE

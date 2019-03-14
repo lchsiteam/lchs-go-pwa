@@ -6,12 +6,22 @@
     <h4>Or head directly to:</h4>
     <h2>go.lciteam.club</h2>
     <h5>This web app was produced by iTeam, a technology service club at LCHS.</h5>
+    <h5>Version {{appVersion}}</h5>
     <div>
       <div class="credit-item">Original Script - Kai Bredemann (kbredemann22)</div>
       <div class="credit-item">Refactor, Web App - Kevin Mo (kmo19)</div>
     </div>
   </div>
 </template>
+
+<script lang="ts">
+import { Component, Vue } from 'vue-property-decorator';
+
+@Component({})
+export default class Home extends Vue {
+  public appVersion = `v${process.env.VUE_APP_VERSION} (b${process.env.VUE_APP_COMMIT_COUNT.trim()}#${process.env.VUE_APP_COMMIT_SHASH.trim()})`
+}
+</script>
 
 <style lang="scss">
 .about {
