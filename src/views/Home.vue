@@ -71,7 +71,7 @@ export default class Home extends Vue {
   }
 
   getFormattedTimeUntilNext() {
-    return this.getTimeUntilNext() >= 60 ? Math.ceil(this.getTimeUntilNext() / 60) : this.getTimeUntilNext()
+    return this.getTimeUntilNext() >= 120 ? Math.ceil(this.getTimeUntilNext() / 60) : this.getTimeUntilNext()
   }
 
   getCurrentScheduleName() {
@@ -87,7 +87,7 @@ export default class Home extends Vue {
   }
 
   getUnitUntilNext() {
-    return this.currentPeriod.end - this.minutes >= 60 ? "hr." : "min."
+    return this.currentPeriod.end - this.minutes >= 120 ? "hr." : "min."
   }
 
   getUntilNextName() {
