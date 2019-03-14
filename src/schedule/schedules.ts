@@ -53,7 +53,7 @@ export const BlockEvenSchedule: any[] = [
   { start: toTime(10, 24), end: toTime(10, 29), period: Period.BREAK_PASSING },
   { start: toTime(10, 29), end: toTime(12, 13), period: Period.PERIOD_4 },
   { start: toTime(12, 13), end: toTime(12, 19), period: Period.PERIOD_4_PASSING },
-  { start: toTime(12, 19), end: toTime(12, 54), period: Period.STEP_ODD },
+  { start: toTime(12, 19), end: toTime(12, 54), period: Period.STEP_EVEN },
   { start: toTime(12, 54), end: toTime(13, 24), period: Period.LUNCH },
   { start: toTime(13, 24), end: toTime(13, 29), period: Period.LUNCH_PASSING },
   { start: toTime(13, 29), end: toTime(15, 13), period: Period.PERIOD_6 },
