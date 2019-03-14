@@ -1,16 +1,10 @@
 <template>
   <div class="about">
-    <h1>Share this app with your friends!</h1>
-    <h4>Scan this QR code below with the Camera app:</h4>
-    <img src="../assets/qrcode.png"/>
-    <h4>Or head directly to:</h4>
-    <h2>go.lciteam.club</h2>
-    <h5>This web app was produced by iTeam, a technology service club at LCHS.</h5>
-    <h5>Version {{appVersion}}</h5>
-    <div>
-      <div class="credit-item">Original Script - Kai Bredemann (kbredemann22)</div>
-      <div class="credit-item">Refactor, Web App - Kevin Mo (kmo19)</div>
+    <div class="sub-nav">
+      <router-link class="sub-nav-item" to="/about/credits">Credits</router-link>
+      <router-link class="sub-nav-item" to="/about/settings">Settings</router-link>
     </div>
+    <router-view></router-view>
   </div>
 </template>
 
@@ -38,8 +32,32 @@ export default class Home extends Vue {
   margin-right: 10px;
   vertical-align: middle;
 }
+
 .credit-item:after {
   margin-left: 10px;
   margin-right: 0;
+}
+
+.sub-nav-item {
+  background-color: transparent;
+  border-radius: 2px;
+  font-size: 14px;
+  display: inline-block;
+  text-decoration: none;
+  color: #fff;
+  text-transform: uppercase;
+  font-weight: 700;
+  margin: 0 5px;
+  padding: 6px 16px;
+  transition: 150ms ease;
+
+  &:hover {
+    background-color: rgba(#2f9768, .4);
+  }
+
+  &.router-link-exact-active {
+    background-color: #2f9768;
+    box-shadow: 0 0 8px 4px rgba(100, 100, 100, .1);
+  }
 }
 </style>

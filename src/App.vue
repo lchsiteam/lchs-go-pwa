@@ -1,9 +1,9 @@
 <template>
   <div id="app">
     <div id="nav">
-      <router-link to="/">Now</router-link>
+      <router-link to="/home">Now</router-link>
       <!-- <router-link to="/today">Today</router-link> -->
-      <router-link to="/about" class=".hideable">About</router-link>
+      <router-link to="/about">About</router-link>
     </div>
     <keep-alive>
       <router-view/>
@@ -62,7 +62,7 @@ html, body {
       transition: 150ms ease;
     }
 
-    &.router-link-exact-active {
+    &.router-link-active {
       color: #fff;
 
       &:before { background-color: #95c3f0; }
