@@ -2,8 +2,8 @@
 // Editor: Kevin Mo
 // Copyright (c) iTeam 2019
 
-import { Day, Schedule, Period } from './enums'
-import { RegularSchedule, BlockEvenSchedule, BlockOddSchedule } from './schedules'
+import { Day, Schedule, Period } from './enums';
+import { RegularSchedule, BlockEvenSchedule, BlockOddSchedule } from './schedules';
 
 // Native Javascript
 export function getCurrentDate(): any {
@@ -12,8 +12,8 @@ export function getCurrentDate(): any {
     hrs: now.getHours(),
     mins: now.getMinutes(),
     total_mins: now.getMinutes() + (now.getHours() * 60),
-    day: now.getDay()
-  }
+    day: now.getDay(),
+  };
 }
 
 // Chad moment.js
@@ -63,16 +63,16 @@ export function toTime(hr: number, min: number) {
 
 export function getPeriod(time: number, schedule: Schedule): any {
   if (schedule == Schedule.NONE) {
-    return { start: 0, end: 1440, period: Period.DONE }
+    return { start: 0, end: 1440, period: Period.DONE };
   } else if (schedule == Schedule.REGULAR) {
-    return RegularSchedule.find(p => (p.start <= time && p.end > time))
+    return RegularSchedule.find((p) => (p.start <= time && p.end > time));
   } else if (schedule == Schedule.BLOCK_ODD) {
-    return BlockOddSchedule.find(p => (p.start <= time && p.end > time))
+    return BlockOddSchedule.find((p) => (p.start <= time && p.end > time));
   } else if (schedule == Schedule.BLOCK_EVEN) {
-    return BlockEvenSchedule.find(p => (p.start <= time && p.end > time))
+    return BlockEvenSchedule.find((p) => (p.start <= time && p.end > time));
   } // TODO: Add more schedules
-  
-  return { start: 0, end: 1440, period: Period.DONE }
+
+  return { start: 0, end: 1440, period: Period.DONE };
 }
 
 // const { period, end } = getPeriod(getCurrentDate().mins, getScheduleFromDay(getCurrentDate().day))
@@ -80,30 +80,36 @@ export function getPeriod(time: number, schedule: Schedule): any {
 // This works so far, not touching.
 export function printTime(time: number) {
   let shortMins, hours, finalString;
-  
-  if(time > 59) {
-    hours = Math.floor(time/60);
-    shortMins = time-hours*60;
+
+  if (time > 59) {
+    hours = Math.floor(time / 60);
+    shortMins = time - hours * 60;
   } else {
     hours = 0;
     shortMins = time;
   }
 
-  if(hours == 0) {
-    if(shortMins == 1)
-      finalString = shortMins + " minute";
-    else
-      finalString = shortMins + " minutes";
-  } else if(hours == 1) {
-    if(shortMins == 1)
-      finalString = hours + " hour and ", shortMins + " minute";
-    else
-      finalString = hours + " hour and " + shortMins + " minutes";
+  if (hours == 0) {
+    if (shortMins == 1) {
+      finalString = shortMins + ' minute';
+    }
+    else {
+      finalString = shortMins + ' minutes';
+    }
+  } else if (hours == 1) {
+    if (shortMins == 1) {
+      finalString = hours + ' hour and ', shortMins + ' minute';
+    }
+    else {
+      finalString = hours + ' hour and ' + shortMins + ' minutes';
+    }
   } else {
-    if(shortMins == 1)
-      finalString = hours + " hours and " + shortMins + " minute";
-    else
-      finalString = hours + " hours and " + shortMins + " minutes";
+    if (shortMins == 1) {
+      finalString = hours + ' hours and ' + shortMins + ' minute';
+    }
+    else {
+      finalString = hours + ' hours and ' + shortMins + ' minutes';
+    }
   }
 
   return finalString;

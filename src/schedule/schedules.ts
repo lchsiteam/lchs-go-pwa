@@ -1,4 +1,4 @@
-import { Period } from './enums'
+import { Period } from './enums';
 
 function toTime(hr: number, min: number) {
   return (hr * 60) + min;
@@ -6,7 +6,7 @@ function toTime(hr: number, min: number) {
 
 // Note: the script will only consider
 // the `end` paramater for now. (when each period ends).
-// When the program reads this fake ".csv", it will 
+// When the program reads this fake ".csv", it will
 // give precedence to the period that is listed first.
 export const RegularSchedule: any[] = [
   { start: toTime(0, 0), end: toTime(7, 28), period: Period.NONE },
@@ -26,7 +26,7 @@ export const RegularSchedule: any[] = [
   { start: toTime(14, 12), end: toTime(14, 18), period: Period.PERIOD_5_PASSING },
   { start: toTime(14, 18), end: toTime(15, 14), period: Period.PERIOD_6 },
   { start: toTime(15, 14), end: toTime(24, 0), period: Period.DONE },
-]
+];
 
 export const BlockOddSchedule: any[] = [
   { start: toTime(0, 0), end: toTime(7, 28), period: Period.NONE },
@@ -42,7 +42,7 @@ export const BlockOddSchedule: any[] = [
   { start: toTime(13, 24), end: toTime(13, 29), period: Period.LUNCH_PASSING },
   { start: toTime(13, 29), end: toTime(15, 13), period: Period.PERIOD_5 },
   { start: toTime(15, 14), end: toTime(24, 0), period: Period.DONE },
-]
+];
 
 export const BlockEvenSchedule: any[] = [
   { start: toTime(0, 0), end: toTime(7, 28), period: Period.NONE },
@@ -58,4 +58,4 @@ export const BlockEvenSchedule: any[] = [
   { start: toTime(13, 24), end: toTime(13, 29), period: Period.LUNCH_PASSING },
   { start: toTime(13, 29), end: toTime(15, 13), period: Period.PERIOD_6 },
   { start: toTime(15, 14), end: toTime(24, 0), period: Period.DONE },
-]
+];
