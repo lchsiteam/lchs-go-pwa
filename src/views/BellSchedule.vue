@@ -1,6 +1,7 @@
 <template>
   <div class="bell-schedule">
-    <h2>Coming soon!</h2>
+    <h2>Coming (really really) soon!</h2>
+    <p>This feature will be rolled out at the beginning of next week. For now, head over to <a target="_blank" href="https://www.lchsspartans.net/apps/bell_schedules/">bell schedule here</a>.</p>
   </div>
 </template>
 
