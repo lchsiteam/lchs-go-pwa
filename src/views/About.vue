@@ -37,27 +37,4 @@ export default class Home extends Vue {
   margin-left: 10px;
   margin-right: 0;
 }
-
-.sub-nav-item {
-  background-color: transparent;
-  border-radius: 2px;
-  font-size: 14px;
-  display: inline-block;
-  text-decoration: none;
-  color: #fff;
-  text-transform: uppercase;
-  font-weight: 700;
-  margin: 0 5px;
-  padding: 6px 16px;
-  transition: 150ms ease;
-
-  &:hover {
-    background-color: rgba(#2f9768, .4);
-  }
-
-  &.router-link-exact-active {
-    background-color: #2f9768;
-    box-shadow: 0 0 8px 4px rgba(100, 100, 100, .1);
-  }
-}
 </style>

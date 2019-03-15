@@ -11,7 +11,10 @@ export default new Router({
       path: '/home',
       name: 'home',
       component: Home,
-      children: []
+      children: [
+        { path: 'schedule', component: () => import('./views/BellSchedule.vue') },
+        { path: '', component: () => import('./views/Now.vue') },
+      ]
     },
     {
       path: '/about',
