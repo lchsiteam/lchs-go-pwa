@@ -1,7 +1,7 @@
 <template>
   <div class="bell-schedule">
     <h2>Coming (really really) soon!</h2>
-    <p>This feature will be rolled out at the beginning of next week. For now, head over to <a target="_blank" href="https://www.lchsspartans.net/apps/bell_schedules/">bell schedule here</a>.</p>
+    <p>This feature will be rolled out at the beginning of next week. For now, head over to <a target="_blank" href="https://www.lchsspartans.net/apps/bell_schedules/printerfriendly.jsp">bell schedule here</a>.</p>
   </div>
 </template>
 
