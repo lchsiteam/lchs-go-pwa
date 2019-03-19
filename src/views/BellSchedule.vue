@@ -10,7 +10,7 @@
         <div class="blsch-period-end">End</div>
       </div>
       <div class="blsch-period-container" v-for="period of getFullSchedule()" :key="period.period">
-        <div class="blsch-period">
+        <div class="blsch-period" :class="{ selected: currentPeriod.period === period.period }">
           <div class="blsch-period-title">{{getPeriodName(period.period)}}</div>
           <div class="blsch-period-start">{{getCertainTime(period.start)}}</div>
           <div class="blsch-period-end">{{getCertainTime(period.end)}}</div>
@@ -51,7 +51,7 @@
   }
 
   .blsch-period.selected {
-    background: rgba(0, 0, 0, .4);
+    background: rgba(0, 0, 0, .4) !important;
     transform: scale(1.05);
   }
 }
