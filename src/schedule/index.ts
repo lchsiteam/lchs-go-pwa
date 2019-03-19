@@ -61,6 +61,20 @@ export function toTime(hr: number, min: number) {
   return (hr * 60) + min;
 }
 
+export function getFullSchedule(schedule: Schedule): any {
+  if (schedule == Schedule.NONE) {
+    return []
+  } else if (schedule == Schedule.REGULAR) {
+    return RegularSchedule
+  } else if (schedule == Schedule.BLOCK_ODD) {
+    return BlockOddSchedule
+  } else if (schedule == Schedule.BLOCK_EVEN) {
+    return BlockEvenSchedule
+  } // TODO: Add more schedules
+
+  return { start: 0, end: 1440, period: Period.DONE };
+}
+
 export function getPeriod(time: number, schedule: Schedule): any {
   if (schedule == Schedule.NONE) {
     return { start: 0, end: 1440, period: Period.DONE };
