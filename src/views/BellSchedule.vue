@@ -133,7 +133,10 @@ export default class Home extends Vue {
         Period.LUNCH,
         Period.BREAK,
         Period.STEP_ODD,
-        Period.STEP_EVEN
+        Period.STEP_EVEN,
+        Period.HOMEROOM,
+        Period.HOMEROOM_PASSING,
+        Period.ASSEMBLY,
       ].indexOf(period) !== -1 || this.isShowingAllPeriods
     })
   }
