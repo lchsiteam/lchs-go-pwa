@@ -9,7 +9,6 @@ export default new Router({
   routes: [
     {
       path: '/home',
-      name: 'home',
       component: Home,
       children: [
         { path: 'schedule', component: () => import('./views/BellSchedule.vue') },
@@ -18,14 +17,14 @@ export default new Router({
     },
     {
       path: '/about',
-      name: 'about',
       component: () => import(/* webpackChunkName: "about" */ './views/About.vue'),
       children: [
-        { name: 'credits', path: 'credits', component: () => import('./views/Credits.vue') },
-        { name: 'settings', path: 'settings', component: () => import('./views/Settings.vue') },
+        { path: 'credits', component: () => import('./views/Credits.vue') },
+        { path: 'settings', component: () => import('./views/Settings.vue') },
         { path: '', redirect: 'credits' },
       ]
     },
-    { path: '/', redirect: 'home' }
+    { path: '/', redirect: 'home' },
+    { path: '*', redirect: 'home' },
   ],
 });

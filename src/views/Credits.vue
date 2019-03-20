@@ -7,8 +7,9 @@
     <h2>go.lciteam.club</h2>
     <h5>This web app was produced by iTeam, a technology service club at LCHS.</h5>
     <div>
-        <div class="credit-item">Original Script - Kai Bredemann (kbredemann22)</div>
-        <div class="credit-item">Refactor, Web App - Kevin Mo (kmo19)</div>
+      <div class="credit-item">Kai Bredemann (kbredemann22) - Original Script</div>
+      <div class="credit-item">Kevin Mo (kmo19) - Refactor, Web App</div>
+      <div class="credit-item">Devyn Oh (doh22) - Core Contributor</div>
     </div>
   </div>
 </template>
