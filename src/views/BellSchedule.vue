@@ -60,6 +60,7 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
+import { DateTime } from 'luxon';
 
 import { printTime, getScheduleFromDay, getPeriod, getFullSchedule } from '@/schedule'
 import { Day, Schedule, Period, getPeriodName } from '@/schedule/enums'
@@ -73,8 +74,9 @@ export default class Home extends Vue {
   public isShowingAllPeriods = false
 
   updateStats() {
-    this.minutes = (new Date()).getMinutes() + ((new Date()).getHours() * 60)
-    this.schedule = getScheduleFromDay((new Date()).getDay())
+    const currentDate = DateTime.local().setZone("America/Los_Angeles")
+    this.minutes = currentDate.minute + (currentDate.hour * 60)
+    this.schedule = getScheduleFromDay(currentDate.weekday)
     this.currentPeriod = getPeriod(this.minutes, this.schedule)
   }
 
