@@ -140,7 +140,7 @@ export default class Home extends Vue {
   }
  
 getCurrentTimeParts() {
-  //to do: replace "12hourplaceholder" with object/variable that determines if 12-hour mode is turned on.
+  //to do: replace "12hourplaceholder" with object/variable that determines if 12-hour mode is turned on
   if (12hourplaceholder === true) {
     return getCurrentTimeParts12()
   }
