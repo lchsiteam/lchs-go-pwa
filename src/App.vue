@@ -23,7 +23,7 @@ html, body {
 }
 
 #app {
-  font-family: 'Niramit', sans-serif;
+  font-family: 'Niramit', Avenir, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;

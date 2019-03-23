@@ -71,7 +71,6 @@ export default class Home extends Vue {
   private minutes: number = 0
   private schedule: Schedule = Schedule.NONE
   private currentPeriod = { start: 0, end: 1440, period: Period.NONE }
-  public isShowingAllPeriods = false
 
   updateStats() {
     const currentDate = DateTime.local().setZone("America/Los_Angeles")
@@ -139,7 +138,7 @@ export default class Home extends Vue {
         Period.HOMEROOM,
         Period.HOMEROOM_PASSING,
         Period.ASSEMBLY,
-      ].indexOf(period) !== -1 || this.isShowingAllPeriods
+      ].indexOf(period) !== -1 || this.$store.state.settings.showExtraPeriods
     })
   }
 
