@@ -59,7 +59,7 @@
           <b class="sr-title">App Version</b>
           <span class="sr-desc">Please include the full version in bug reports</span>
         </div>
-        <div class="sr-option">{{appVersion}}</div>
+        <div class="sr-option" style="cursor: text;">{{appVersion}}</div>
       </div>
     </div>
     

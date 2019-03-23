@@ -59,8 +59,8 @@
 
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
-import { DateTime } from 'luxon';
+import { Component, Vue } from 'vue-property-decorator'
+import { DateTime } from 'luxon'
 
 import { printTime, getScheduleFromDay, getPeriod, getFullSchedule } from '@/schedule'
 import { Day, Schedule, Period, getPeriodName } from '@/schedule/enums'
@@ -142,23 +142,26 @@ export default class Home extends Vue {
     })
   }
 
-  getUntilNextName() {
-    return this.currentPeriod.period == Period.DONE ? "next day" : "next period"
-  }
-
   getCurrentTime() {
     return ("0000" + Math.floor(this.minutes / 60)).substr(-2) + ":" + ("0000" + (this.minutes % 60)).substr(-2)
   }
 
-  getCertainTime(time: number) {
+  getCertainTime12(time: number) {
+    let end_string = "AM"
+    let hours = Math.floor(time / 60)
+    let new_hours = (hours % 12 === 0 ? 12 : hours % 12)     // Show 12:00 AM instead of 00:00 AM
+    if (hours >= 12 && hours <= 23) {
+      end_string = "PM"
+    }
+    return `${new_hours + ":" + ("0000" + (time % 60)).substr(-2)} ${end_string}`
+  }
+
+  getCertainTime24(time: number) {
     return ("0000" + Math.floor(time / 60)).substr(-2) + ":" + ("0000" + (time % 60)).substr(-2)
   }
 
-  getCurrentTimeParts() {
-    return {
-      hr: ("0000" + Math.floor(this.minutes / 60)).substr(-2),
-      min: ("0000" + (this.minutes % 60)).substr(-2)
-    }
+  getCertainTime(time: number) {
+    return this.$store.state.settings.useMilitaryTime ? this.getCertainTime24(time) : this.getCertainTime12(time)
   }
 
   mounted() {

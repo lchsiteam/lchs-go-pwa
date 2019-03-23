@@ -21,7 +21,7 @@
     <div class="grid-fmr">
       <div class="grid-fmr-helper">CURRENT TIME / LAST UPDATED</div>
       <div class="grid-fmr-value">
-        <div>{{getCurrentTimeParts().hr}}<span class="cd-blink">:</span>{{getCurrentTimeParts().min}}</div>
+        <div>{{getCurrentTimeParts().hr}}<span class="cd-blink" :class="{disabled: !this.$store.state.settings.enableAnimations}">:</span>{{getCurrentTimeParts().min}}</div>
         <div class="cd-txt-h">(This page updates time automatically)</div>
       </div>
     </div>
@@ -94,27 +94,40 @@ export default class Home extends Vue {
   }
  
   getCurrentTime12() {
-    let end_string = "am"
-    hours = Math.floor(this.minutes / 60)
-    let new_hours = hours % 12
-    if (hours > 12) {
-      let end_string = "pm"
+    let end_string = "AM"
+    let hours = Math.floor(this.minutes / 60)
+    let new_hours = (hours % 12 === 0 ? 12 : hours % 12)     // Show 12:00 AM instead of 00:00 AM
+    if (hours >= 12) {
+      end_string = "PM"
     }
-    return (hours + ":" + ("0000" + (this.minutes % 60)).substr(-2) + end_string
+    return `${new_hours + ":" + ("0000" + (this.minutes % 60)).substr(-2)} ${end_string}`
   }
    
   getCurrentTime() {
-    //to do: replace "12hourplaceholder" with object/variable that determines if 12-hour mode is turned on.
-    if (12hourplaceholder === true) {
-      return getCurrentTime12()
+    if (this.$store.state.settings.useMilitaryTime === false) {
+      return this.getCurrentTime12()
     }
     else {
-      return getCurrentTime24()
+      return this.getCurrentTime24()
     }
   }
 
-  getCertainTime(time: number) {
+  getCertainTime12(time: number) {
+    let end_string = "AM"
+    let hours = Math.floor(time / 60)
+    let new_hours = (hours % 12 === 0 ? 12 : hours % 12)     // Show 12:00 AM instead of 00:00 AM
+    if (hours >= 12 && hours <= 23) {
+      end_string = "PM"
+    }
+    return `${new_hours + ":" + ("0000" + (time % 60)).substr(-2)} ${end_string}`
+  }
+
+  getCertainTime24(time: number) {
     return ("0000" + Math.floor(time / 60)).substr(-2) + ":" + ("0000" + (time % 60)).substr(-2)
+  }
+
+  getCertainTime(time: number) {
+    return this.$store.state.settings.useMilitaryTime ? this.getCertainTime24(time) : this.getCertainTime12(time)
   }
 
   getCurrentPercentage() {
@@ -129,27 +142,27 @@ export default class Home extends Vue {
   }
  
   getCurrentTimeParts12() {
-    let end_string = "am"
-    hours = Math.floor(this.minutes / 60)
-    let new_hours = hours % 12
-    if (hours > 12) {
-      let end_string = "pm"
+    let end_string = "AM"
+    let hours = Math.floor(this.minutes / 60)
+    let new_hours = (hours === 0 ? 12 : hours % 12)     // Show 12:00 AM instead of 00:00 AM
+    if (hours >= 12) {
+      end_string = "PM"
     }
     return {
-      hr: hours,
-      min: ("0000" + (this.minutes % 60)).substr(-2) + end_string
+      hr: new_hours,
+      min: `${("0000" + (this.minutes % 60)).substr(-2)} ${end_string}`
     }
   }
  
-getCurrentTimeParts() {
-  //to do: replace "12hourplaceholder" with object/variable that determines if 12-hour mode is turned on
-  if (12hourplaceholder === true) {
-    return getCurrentTimeParts12()
+  getCurrentTimeParts() {
+    //to do: replace "12hourplaceholder" with object/variable that determines if 12-hour mode is turned on
+    if (this.$store.state.settings.useMilitaryTime === false) {
+      return this.getCurrentTimeParts12()
+    }
+    else {
+      return this.getCurrentTimeParts24()
+    }
   }
-  else {
-    return getCurrentTimeParts24()
-  }
-}
 
   mounted() {
     setInterval(this.updateStats, 5000)
@@ -202,6 +215,8 @@ getCurrentTimeParts() {
 
 .cd-blink {
   animation: blinking 1s ease-in-out infinite;
+
+  &.disabled { animation: none; }
 }
 
 a {
