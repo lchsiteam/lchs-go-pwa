@@ -87,8 +87,28 @@ export default class Home extends Vue {
     return this.currentPeriod.period == Period.DONE ? "next day" : "next period"
   }
 
-  getCurrentTime() {
+  getCurrentTime24() {
     return ("0000" + Math.floor(this.minutes / 60)).substr(-2) + ":" + ("0000" + (this.minutes % 60)).substr(-2)
+  }
+ 
+  getCurrentTime12() {
+    let end_string = "am"
+    hours = Math.floor(this.minutes / 60)
+    let new_hours = hours % 12
+    if (hours > 12) {
+      let end_string = "pm"
+    }
+    return (hours + ":" + ("0000" + (this.minutes % 60)).substr(-2) + end_string
+  }
+   
+  getCurrentTime() {
+    //to do: replace "12hourplaceholder" with object/variable that determines if 12-hour mode is turned on.
+    if (12hourplaceholder === true) {
+      return getCurrentTime12()
+    }
+    else {
+      return getCurrentTime24()
+    }
   }
 
   getCertainTime(time: number) {
@@ -99,12 +119,35 @@ export default class Home extends Vue {
     return 1 - (this.getTimeUntilNext() / (this.currentPeriod.end - this.currentPeriod.start))
   }
 
-  getCurrentTimeParts() {
+  getCurrentTimeParts24() {
     return {
       hr: ("0000" + Math.floor(this.minutes / 60)).substr(-2),
       min: ("0000" + (this.minutes % 60)).substr(-2)
     }
   }
+ 
+  getCurrentTimeParts12() {
+    let end_string = "am"
+    hours = Math.floor(this.minutes / 60)
+    let new_hours = hours % 12
+    if (hours > 12) {
+      let end_string = "pm"
+    }
+    return {
+      hr: hours,
+      min: ("0000" + (this.minutes % 60)).substr(-2) + end_string
+    }
+  }
+ 
+getCurrentTimeParts() {
+  //to do: replace "12hourplaceholder" with object/variable that determines if 12-hour mode is turned on
+  if (12hourplaceholder === true) {
+    return getCurrentTimeParts12()
+  }
+  else {
+    return getCurrentTimeParts24()
+  }
+}
 
   mounted() {
     setInterval(this.updateStats, 5000)
