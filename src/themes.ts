@@ -28,7 +28,7 @@ export class LCHSGoTheme {
 export const Themes = [
   new LCHSGoTheme(
     "default", "Developer Green", "The original color theme.",
-    "#42b983", "#2f9768", "#2c3e50", "#2f9768", "rgba(#2f9768, .4)",
+    "#42b983", "#2f9768", "#2c3e50", "#2f9768", "rgba(47, 151, 104, .4)",
   ),
   new LCHSGoTheme(
     "theme1", "Theme A", "(none)",
