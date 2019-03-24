@@ -49,10 +49,15 @@
       </div>
       <div class="settings-row">
         <div class="sr-head">
-          <b class="sr-title">Color Theme</b>
-          <span class="sr-desc">Change app color scheme</span>
+          <span class="sr-badge-new">NEW</span>
+          <b class="sr-title">Color Theme (beta)</b>
+          <span class="sr-desc">Change app color scheme. Send an email to team@lciteam.club for suggestions.</span>
         </div>
-        <div class="sr-option">Coming soon in v0.2.0!</div>
+        <div class="sr-option">
+          <select v-model="colorThemeId" @change="updateTheme()">
+            <option v-for="theme in allThemes" :key="theme.id" :value="theme.id">{{theme.name}}</option>
+          </select>
+        </div>
       </div>
       <div class="settings-row">
         <div class="sr-head">
@@ -66,6 +71,30 @@
     <h5>This web app was produced by iTeam, a technology service club at LCHS.</h5>
   </div>
 </template>
+
+<script lang="ts">
+import { Component, Vue } from 'vue-property-decorator';
+import { Themes } from '../themes';
+
+@Component({})
+export default class Home extends Vue {
+  public appVersion = `v${process.env.VUE_APP_VERSION} (b${process.env.VUE_APP_COMMIT_COUNT.trim()}#${process.env.VUE_APP_COMMIT_SHASH.trim()})`
+  colorThemeId = this.$store.state.settings.colorTheme
+  allThemes: any[] = []
+
+  updateOptionBL(name: string, value: boolean): void {
+    this.$store.commit('UPDATE_SETTING', { name, value })
+  }
+
+  updateTheme() {
+    this.updateOptionBL('colorTheme', this.colorThemeId)
+  }
+
+  mounted() {
+    this.allThemes = Themes
+  }
+}
+</script>
 
 <style lang="scss">
 .settings-rows {
@@ -147,17 +176,3 @@
   }
 }
 </style>
-
-
-<script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
-
-@Component({})
-export default class Home extends Vue {
-  public appVersion = `v${process.env.VUE_APP_VERSION} (b${process.env.VUE_APP_COMMIT_COUNT.trim()}#${process.env.VUE_APP_COMMIT_SHASH.trim()})`
-
-  updateOptionBL(name: string, value: boolean): void {
-    this.$store.commit('UPDATE_SETTING', { name, value })
-  }
-}
-</script>

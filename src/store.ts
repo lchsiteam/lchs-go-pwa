@@ -9,6 +9,7 @@ const defaultConfig = {
     useMilitaryTime: false,
     enableAnimations: true,
     showExtraPeriods: false,
+    colorTheme: "default",
   },
 }
 

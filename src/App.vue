@@ -1,19 +1,48 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/home">Now</router-link>
-      <!-- <router-link to="/today">Today</router-link> -->
-      <router-link to="/about">About</router-link>
+  <div id="app-container" :style="getCSSColorScheme()">
+    <div id="app">
+      <div id="nav">
+        <router-link to="/home">Now</router-link>
+        <!-- <router-link to="/today">Today</router-link> -->
+        <router-link to="/about">About</router-link>
+      </div>
+      <keep-alive>
+        <router-view/>
+      </keep-alive>
     </div>
-    <keep-alive>
-      <router-view/>
-    </keep-alive>
   </div>
 </template>
 
+<script lang="ts">
+import { Component, Vue } from 'vue-property-decorator';
+import { Themes } from './themes';
+
+@Component({})
+export default class App extends Vue {
+  getCurrentColorScheme() {
+    return this.getColorSchemeFromId(this.$store.state.settings.colorTheme)
+  }
+
+  getColorSchemeFromId(themeId: string) {
+    return Themes.filter(t => t.id === themeId)[0] || Themes[0]
+  }
+
+  getCSSColorScheme() {
+    return {
+      '--gradient-top-color': this.getCurrentColorScheme().gradientTopColor,
+      '--gradient-bottom-color': this.getCurrentColorScheme().gradientBottomColor,
+      '--button-menu-color': this.getCurrentColorScheme().btnMenuColor,
+      '--button-submenu-color': this.getCurrentColorScheme().btnSubmenuColor,
+      '--button-hover-color': this.getCurrentColorScheme().btnHoverColor,
+    }
+  }
+}
+</script>
+
+
 <style lang="scss">
-html, body {
-  background: linear-gradient(to bottom, #42b983, #2f9768);
+
+html, body, #app-container {
   height: auto;
   min-height: 100vh;
   width: 100%;
@@ -22,12 +51,15 @@ html, body {
   box-sizing: border-box;
 }
 
+#app-container {
+  background: linear-gradient(to bottom, var(--gradient-top-color, #42b983), var(--gradient-bottom-color, #2f9768));
+}
+
 #app {
   font-family: 'Niramit', Avenir, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  // color: #2c3e50;
   color: #fff;
   max-width: 600px;
   margin: 0 auto;
@@ -37,11 +69,11 @@ html, body {
 #nav {
   padding: 30px;
   a {
-    background-color: #2c3e50;
+    background-color: var(--button-menu-color, #2c3e50);
     display: inline-block;
     padding: 16px 30px;
     font-weight: bold;
-    color: rgb(155, 179, 202);
+    color: rgba(255, 255, 255, 0.6);
     border-radius: 4px;
     text-decoration: none;
     vertical-align: middle;
@@ -57,7 +89,7 @@ html, body {
       height: 24px;
       width: 8px;
       border-radius: 4px;
-      background-color: #162636;
+      background-color: #1c1e20;
       vertical-align: middle;
       transition: 150ms ease;
     }
@@ -65,7 +97,7 @@ html, body {
     &.router-link-active {
       color: #fff;
 
-      &:before { background-color: #95c3f0; }
+      &:before { background-color: #d5dee7; }
     }
   }
 }
@@ -85,11 +117,11 @@ html, body {
   transition: 150ms ease;
 
   &:hover {
-    background-color: rgba(#2f9768, .4);
+    background-color: var(--button-hover-color, rgba(#2f9768, .4));
   }
 
   &.router-link-exact-active {
-    background-color: #2f9768;
+    background-color: var(--button-submenu-color, #2f9768);
     box-shadow: 0 0 8px 4px rgba(100, 100, 100, .1);
   }
 }
