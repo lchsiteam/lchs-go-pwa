@@ -2,6 +2,21 @@ export default {
   title: "v0.1.3",
   entries: [
     {
+      id: 3,
+      isNew: true,
+      isPublic: true,
+      title: "CRITICAL: Web Apps Won't Update On iOS",
+      author: "Kevin Mo",
+      tagline: "Issue: LCHS Go does not update versions of LCHS Go that have been added as home screen apps.",
+      content: [
+        { type: "text", text: "Issue: LCHS Go does not update when installed as a home screen app." },
+        { type: "text", text: "Affected Devices: iOS (iPhone, iPad, etc.). Android devices are unaffected by this bug." },
+        { type: "text", text: "Workaround A (recommended): Visit the go.lciteam.club website on the Safari application for the time being." },
+        { type: "text", text: "Workaround B: Remove the old home screen app and add it to the home screen again by going to go.lciteam.club on Safari. This must be done for every update until a patch is released." },
+        { type: "text", text: "Status: The development team is currently working on a hotfix to patch this issue on affected devices. Please stay tuned for an announcement." },
+      ]
+    },
+    {
       id: 2,
       isNew: true,
       isPublic: true,
