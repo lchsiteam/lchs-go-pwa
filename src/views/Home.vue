@@ -9,6 +9,20 @@
   </div>
 </template>
 
+<script lang="ts">
+import Vue from 'vue'
+export default Vue.extend({
+  beforeRouteEnter(to, from, next) {
+    next(vm => {
+      if (to.query.utm_source === 'extension') {
+        vm.$store.commit('UPDATE_EXTENSION_STATUS', true)
+      }
+    })
+  },
+})
+</script>
+
+
 <style lang="scss" scoped>
 .home {
   padding: 0 20px;

@@ -77,7 +77,7 @@ html, body, #app-container {
     border-radius: 4px;
     text-decoration: none;
     vertical-align: middle;
-    margin: 10px;
+    margin: 8px;
     box-shadow: 0 4px 16px 8px rgba(0, 0, 0, .15);
     transition: 150ms ease;
 

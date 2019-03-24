@@ -25,6 +25,10 @@
         <div class="cd-txt-h">(This page updates time automatically)</div>
       </div>
     </div>
+    <div class="grid-fmr grid-fmr-mini-click" @click="goToChangelog()" v-if="shouldShowUpdateLog()">
+      <div class="grid-fmr-helper">UNREAD UPDATES</div>
+      <div class="grid-fmr-value">LCHS Go has a new settings page + Chrome extension! Tap/click here to read more.</div>
+    </div>
   </div>
 </template>
 
@@ -32,21 +36,32 @@
 import { Component, Vue } from 'vue-property-decorator';
 import { DateTime } from 'luxon';
 
-import { printTime, getScheduleFromDay, getPeriod } from '@/schedule'
-import { Day, Schedule, Period, getPeriodName } from '@/schedule/enums'
-import { RegularSchedule, BlockEvenSchedule, BlockOddSchedule } from '@/schedule/schedules'
+import { printTime, getScheduleFromDay, getPeriod } from '@/schedule';
+import { Day, Schedule, Period, getPeriodName } from '@/schedule/enums';
+import { RegularSchedule, BlockEvenSchedule, BlockOddSchedule } from '@/schedule/schedules';
+import { Changelog } from '../changelog'
 
 @Component({})
 export default class Home extends Vue {
   private minutes: number = 0
   private schedule: Schedule = Schedule.NONE
   private currentPeriod = { start: 0, end: 1440, period: Period.NONE }
+  private allLogs: any[] = []
 
   updateStats() {
     const currentDate = DateTime.local().setZone("America/Los_Angeles")
     this.minutes = currentDate.minute + (currentDate.hour * 60)
     this.schedule = getScheduleFromDay(currentDate.weekday)
     this.currentPeriod = getPeriod(this.minutes, this.schedule)
+  }
+
+  goToChangelog() {
+    this.$router.push('/about/changelog')
+  }
+
+  shouldShowUpdateLog() {
+    return !this.$store.state.isExtension && 
+      this.allLogs.map(l => l.id).filter(id => this.$store.state.changelog.readUpdates.indexOf(id) === -1).length > 0
   }
 
   getGreeting() {
@@ -167,6 +182,11 @@ export default class Home extends Vue {
   mounted() {
     setInterval(this.updateStats, 5000)
     this.updateStats()
+
+    Changelog.forEach(version => {
+      this.allLogs = this.allLogs.concat(version.entries)
+    })
+    this.allLogs = this.allLogs.filter(log => log.isPublic) 
   }
 }
 </script>
@@ -199,6 +219,21 @@ export default class Home extends Vue {
   font-size: 12px;
   font-weight: 600;
   opacity: 0.6;
+}
+
+.grid-fmr-mini-click {
+  background-color: rgba(0, 0, 0, .3);
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  transition: 100ms ease;
+
+  &:hover { background-color: rgba(0, 0, 0, .4); }
+
+  .grid-fmr-value {
+    text-align: left;
+    font-size: 14px;
+  }
 }
 
 .grid-fmr-value {
