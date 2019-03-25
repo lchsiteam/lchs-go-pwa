@@ -159,7 +159,7 @@ export default class Home extends Vue {
   getCurrentTimeParts12() {
     let end_string = "AM"
     let hours = Math.floor(this.minutes / 60)
-    let new_hours = (hours === 0 ? 12 : hours % 12)     // Show 12:00 AM instead of 00:00 AM
+    let new_hours = (hours % 12 === 0 ? 12 : hours % 12)     // Show 12:00 AM instead of 00:00 AM
     if (hours >= 12) {
       end_string = "PM"
     }

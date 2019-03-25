@@ -4,7 +4,7 @@ export default {
     {
       id: 3,
       isNew: true,
-      isPublic: true,
+      isPublic: false,
       title: "CRITICAL: Web Apps Won't Update On iOS",
       author: "Kevin Mo",
       tagline: "Issue: LCHS Go does not update versions of LCHS Go that have been added as home screen apps.",
