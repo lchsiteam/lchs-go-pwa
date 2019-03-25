@@ -7,9 +7,26 @@
     <h2>go.lciteam.club</h2>
     <h5>This web app was produced by iTeam, a technology service club at LCHS.</h5>
     <div>
-      <div class="credit-item">Kai Bredemann (kbredemann22) - Original Script</div>
-      <div class="credit-item">Kevin Mo (kmo19) - Refactor, Web App</div>
-      <div class="credit-item">Devyn Oh (doh22) - Core Contributor</div>
+      <div class="credit-item-container">
+        <div class="credit-item">Kai Bredemann (kbredemann22)</div>
+        <div class="credit-item-role">Original Script, Chrome Extension</div>
+      </div>
+      <div class="credit-item-container">
+        <div class="credit-item">Kevin Mo (kmo19)</div>
+        <div class="credit-item-role">Refactor, Web App</div>
+      </div>
+      <div class="credit-item-container">
+        <div class="credit-item">Devyn Oh (doh22)</div>
+        <div class="credit-item-role">Core Contributor</div>
+      </div>
+      <div class="credit-item-container">
+        <div class="credit-item">Cassie Eisen (ceisen22)</div>
+        <div class="credit-item-role">Core Contributor, Theme Artist</div>
+      </div>
+      <div class="credit-item-container">
+        <div class="credit-item">Ryan King (rking21)</div>
+        <div class="credit-item-role">Core Contributor</div>
+      </div>
     </div>
   </div>
 </template>
@@ -28,6 +45,14 @@ export default class Home extends Vue {
   padding: 0 20px;
 }
 
+.credit-item-container {
+  margin: 8px 0;
+}
+
+.credit-item {
+  font-weight: 600;
+}
+
 .credit-item:before, .credit-item:after {
   content: '';
   display: inline-block;
@@ -41,5 +66,10 @@ export default class Home extends Vue {
 .credit-item:after {
   margin-left: 10px;
   margin-right: 0;
+}
+
+.credit-item-role {
+  font-size: 12px;
+  opacity: 0.8;
 }
 </style>

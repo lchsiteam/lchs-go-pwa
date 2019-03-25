@@ -21,30 +21,47 @@
     <div class="grid-fmr">
       <div class="grid-fmr-helper">CURRENT TIME / LAST UPDATED</div>
       <div class="grid-fmr-value">
-        <div>{{getCurrentTimeParts().hr}}<span class="cd-blink">:</span>{{getCurrentTimeParts().min}}</div>
+        <div>{{getCurrentTimeParts().hr}}<span class="cd-blink" :class="{disabled: !this.$store.state.settings.enableAnimations}">:</span>{{getCurrentTimeParts().min}}</div>
         <div class="cd-txt-h">(This page updates time automatically)</div>
       </div>
+    </div>
+    <div class="grid-fmr grid-fmr-mini-click" @click="goToChangelog()" v-if="shouldShowUpdateLog()">
+      <div class="grid-fmr-helper">UNREAD UPDATES</div>
+      <div class="grid-fmr-value">LCHS Go has a new settings page + Chrome extension! Tap/click here to read more.</div>
     </div>
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
+import { DateTime } from 'luxon';
 
-import { printTime, getScheduleFromDay, getPeriod } from '@/schedule'
-import { Day, Schedule, Period, getPeriodName } from '@/schedule/enums'
-import { RegularSchedule, BlockEvenSchedule, BlockOddSchedule } from '@/schedule/schedules'
+import { printTime, getScheduleFromDay, getPeriod } from '@/schedule';
+import { Day, Schedule, Period, getPeriodName } from '@/schedule/enums';
+import { RegularSchedule, BlockEvenSchedule, BlockOddSchedule } from '@/schedule/schedules';
+import { Changelog } from '../changelog'
 
 @Component({})
 export default class Home extends Vue {
   private minutes: number = 0
   private schedule: Schedule = Schedule.NONE
   private currentPeriod = { start: 0, end: 1440, period: Period.NONE }
+  private allLogs: any[] = []
 
   updateStats() {
-    this.minutes = (new Date()).getMinutes() + ((new Date()).getHours() * 60)
-    this.schedule = getScheduleFromDay((new Date()).getDay())
+    const currentDate = DateTime.local().setZone("America/Los_Angeles")
+    this.minutes = currentDate.minute + (currentDate.hour * 60)
+    this.schedule = getScheduleFromDay(currentDate.weekday)
     this.currentPeriod = getPeriod(this.minutes, this.schedule)
+  }
+
+  goToChangelog() {
+    this.$router.push('/about/changelog')
+  }
+
+  shouldShowUpdateLog() {
+    return !this.$store.state.isExtension && 
+      this.allLogs.map(l => l.id).filter(id => this.$store.state.changelog.readUpdates.indexOf(id) === -1).length > 0
   }
 
   getGreeting() {
@@ -92,27 +109,40 @@ export default class Home extends Vue {
   }
  
   getCurrentTime12() {
-    let end_string = "am"
-    hours = Math.floor(this.minutes / 60)
-    let new_hours = hours % 12
-    if (hours > 12) {
-      let end_string = "pm"
+    let end_string = "AM"
+    let hours = Math.floor(this.minutes / 60)
+    let new_hours = (hours % 12 === 0 ? 12 : hours % 12)     // Show 12:00 AM instead of 00:00 AM
+    if (hours >= 12) {
+      end_string = "PM"
     }
-    return (hours + ":" + ("0000" + (this.minutes % 60)).substr(-2) + end_string
+    return `${new_hours + ":" + ("0000" + (this.minutes % 60)).substr(-2)} ${end_string}`
   }
    
   getCurrentTime() {
-    //to do: replace "12hourplaceholder" with object/variable that determines if 12-hour mode is turned on.
-    if (12hourplaceholder === true) {
-      return getCurrentTime12()
+    if (this.$store.state.settings.useMilitaryTime === false) {
+      return this.getCurrentTime12()
     }
     else {
-      return getCurrentTime24()
+      return this.getCurrentTime24()
     }
   }
 
-  getCertainTime(time: number) {
+  getCertainTime12(time: number) {
+    let end_string = "AM"
+    let hours = Math.floor(time / 60)
+    let new_hours = (hours % 12 === 0 ? 12 : hours % 12)     // Show 12:00 AM instead of 00:00 AM
+    if (hours >= 12 && hours <= 23) {
+      end_string = "PM"
+    }
+    return `${new_hours + ":" + ("0000" + (time % 60)).substr(-2)} ${end_string}`
+  }
+
+  getCertainTime24(time: number) {
     return ("0000" + Math.floor(time / 60)).substr(-2) + ":" + ("0000" + (time % 60)).substr(-2)
+  }
+
+  getCertainTime(time: number) {
+    return this.$store.state.settings.useMilitaryTime ? this.getCertainTime24(time) : this.getCertainTime12(time)
   }
 
   getCurrentPercentage() {
@@ -127,31 +157,36 @@ export default class Home extends Vue {
   }
  
   getCurrentTimeParts12() {
-    let end_string = "am"
-    hours = Math.floor(this.minutes / 60)
-    let new_hours = hours % 12
-    if (hours > 12) {
-      let end_string = "pm"
+    let end_string = "AM"
+    let hours = Math.floor(this.minutes / 60)
+    let new_hours = (hours % 12 === 0 ? 12 : hours % 12)     // Show 12:00 AM instead of 00:00 AM
+    if (hours >= 12) {
+      end_string = "PM"
     }
     return {
-      hr: hours,
-      min: ("0000" + (this.minutes % 60)).substr(-2) + end_string
+      hr: new_hours,
+      min: `${("0000" + (this.minutes % 60)).substr(-2)} ${end_string}`
     }
   }
  
-getCurrentTimeParts() {
-  //to do: replace "12hourplaceholder" with object/variable that determines if 12-hour mode is turned on
-  if (12hourplaceholder === true) {
-    return getCurrentTimeParts12()
+  getCurrentTimeParts() {
+    //to do: replace "12hourplaceholder" with object/variable that determines if 12-hour mode is turned on
+    if (this.$store.state.settings.useMilitaryTime === false) {
+      return this.getCurrentTimeParts12()
+    }
+    else {
+      return this.getCurrentTimeParts24()
+    }
   }
-  else {
-    return getCurrentTimeParts24()
-  }
-}
 
   mounted() {
     setInterval(this.updateStats, 5000)
     this.updateStats()
+
+    Changelog.forEach(version => {
+      this.allLogs = this.allLogs.concat(version.entries)
+    })
+    this.allLogs = this.allLogs.filter(log => log.isPublic) 
   }
 }
 </script>
@@ -186,6 +221,21 @@ getCurrentTimeParts() {
   opacity: 0.6;
 }
 
+.grid-fmr-mini-click {
+  background-color: rgba(0, 0, 0, .3);
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  transition: 100ms ease;
+
+  &:hover { background-color: rgba(0, 0, 0, .4); }
+
+  .grid-fmr-value {
+    text-align: left;
+    font-size: 14px;
+  }
+}
+
 .grid-fmr-value {
   font-size: 36px;
   font-weight: bold;
@@ -200,6 +250,8 @@ getCurrentTimeParts() {
 
 .cd-blink {
   animation: blinking 1s ease-in-out infinite;
+
+  &.disabled { animation: none; }
 }
 
 a {

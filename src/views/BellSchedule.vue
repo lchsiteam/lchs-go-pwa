@@ -59,7 +59,8 @@
 
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
+import { Component, Vue } from 'vue-property-decorator'
+import { DateTime } from 'luxon'
 
 import { printTime, getScheduleFromDay, getPeriod, getFullSchedule } from '@/schedule'
 import { Day, Schedule, Period, getPeriodName } from '@/schedule/enums'
@@ -70,11 +71,11 @@ export default class Home extends Vue {
   private minutes: number = 0
   private schedule: Schedule = Schedule.NONE
   private currentPeriod = { start: 0, end: 1440, period: Period.NONE }
-  public isShowingAllPeriods = false
 
   updateStats() {
-    this.minutes = (new Date()).getMinutes() + ((new Date()).getHours() * 60)
-    this.schedule = getScheduleFromDay((new Date()).getDay())
+    const currentDate = DateTime.local().setZone("America/Los_Angeles")
+    this.minutes = currentDate.minute + (currentDate.hour * 60)
+    this.schedule = getScheduleFromDay(currentDate.weekday)
     this.currentPeriod = getPeriod(this.minutes, this.schedule)
   }
 
@@ -137,27 +138,30 @@ export default class Home extends Vue {
         Period.HOMEROOM,
         Period.HOMEROOM_PASSING,
         Period.ASSEMBLY,
-      ].indexOf(period) !== -1 || this.isShowingAllPeriods
+      ].indexOf(period) !== -1 || this.$store.state.settings.showExtraPeriods
     })
-  }
-
-  getUntilNextName() {
-    return this.currentPeriod.period == Period.DONE ? "next day" : "next period"
   }
 
   getCurrentTime() {
     return ("0000" + Math.floor(this.minutes / 60)).substr(-2) + ":" + ("0000" + (this.minutes % 60)).substr(-2)
   }
 
-  getCertainTime(time: number) {
+  getCertainTime12(time: number) {
+    let end_string = "AM"
+    let hours = Math.floor(time / 60)
+    let new_hours = (hours % 12 === 0 ? 12 : hours % 12)     // Show 12:00 AM instead of 00:00 AM
+    if (hours >= 12 && hours <= 23) {
+      end_string = "PM"
+    }
+    return `${new_hours + ":" + ("0000" + (time % 60)).substr(-2)} ${end_string}`
+  }
+
+  getCertainTime24(time: number) {
     return ("0000" + Math.floor(time / 60)).substr(-2) + ":" + ("0000" + (time % 60)).substr(-2)
   }
 
-  getCurrentTimeParts() {
-    return {
-      hr: ("0000" + Math.floor(this.minutes / 60)).substr(-2),
-      min: ("0000" + (this.minutes % 60)).substr(-2)
-    }
+  getCertainTime(time: number) {
+    return this.$store.state.settings.useMilitaryTime ? this.getCertainTime24(time) : this.getCertainTime12(time)
   }
 
   mounted() {

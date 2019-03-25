@@ -13,10 +13,10 @@
       "type": "image/png"
     }
   ],
-  "start_url": "/home",
+  "start_url": "/home/?utm_source=pwa",
   "display": "standalone",
   "scope": "/",
   "background_color": "#000000",
-  ​​"orientation": "portrait-primary",
+  "orientation": "portrait-primary",
   "theme_color": "#4DBA87"
 }
