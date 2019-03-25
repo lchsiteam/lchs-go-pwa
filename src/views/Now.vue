@@ -95,10 +95,13 @@ export default class Home extends Vue {
     let end_string = "am"
     hours = Math.floor(this.minutes / 60)
     let new_hours = hours % 12
+    if (new_hours === 0) {
+      let new_hours = 12
+    }
     if (hours > 12) {
       let end_string = "pm"
     }
-    return (hours + ":" + ("0000" + (this.minutes % 60)).substr(-2) + end_string
+    return (new_hours + ":" + ("0000" + (this.minutes % 60)).substr(-2) + end_string
   }
    
   getCurrentTime() {
@@ -130,11 +133,14 @@ export default class Home extends Vue {
     let end_string = "am"
     hours = Math.floor(this.minutes / 60)
     let new_hours = hours % 12
+    if (new_hours === 0) {
+      let new_hours = 12
+    }
     if (hours > 12) {
       let end_string = "pm"
     }
     return {
-      hr: hours,
+      hr: new_hours,
       min: ("0000" + (this.minutes % 60)).substr(-2) + end_string
     }
   }
