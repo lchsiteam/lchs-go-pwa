@@ -60,7 +60,27 @@ export const BlockEvenSchedule: any[] = [
   { start: toTime(15, 14), end: toTime(24, 0), period: Period.DONE },
 ];
 
-export const RegularSchedule7/8: any[] = [
+export const AssemblySchedule: any[] = [
+  { start: toTime(0, 0), end: toTime(7, 28), period: Period.NONE },
+  { start: toTime(7, 28), end: toTime(8, 15), period: Period.PERIOD_0 },
+  { start: toTime(8, 15), end: toTime(8, 30), period: Period.PERIOD_0_PASSING },
+  { start: toTime(8, 30), end: toTime(9, 18), period: Period.PERIOD_1 },
+  { start: toTime(9, 18), end: toTime(9, 24), period: Period.PERIOD_1_PASSING },
+  { start: toTime(9, 24), end: toTime(10, 12), period: Period.PERIOD_2 },
+  { start: toTime(10, 12), end: toTime(11, 00), period: Period.ASSEMBLY },
+  { start: toTime(11, 00), end: toTime(11, 09), period: Period.BREAK },
+  { start: toTime(11, 09), end: toTime(11, 15), period: Period.BREAK_PASSING },
+  { start: toTime(11, 15), end: toTime(12, 03), period: Period.PERIOD_3 },
+  { start: toTime(12, 03), end: toTime(12, 33), period: Period.LUNCH },
+  { start: toTime(12, 33), end: toTime(12, 39), period: Period.LUNCH_PASSING },
+  { start: toTime(12, 39), end: toTime(13, 27), period: Period.PERIOD_4 },
+  { start: toTime(13, 27), end: toTime(13, 33), period: Period.PERIOD_4_PASSING },
+  { start: toTime(13, 33), end: toTime(14, 21), period: Period.PERIOD_5 },
+  { start: toTime(14, 21), end: toTime(14, 27), period: Period.PERIOD_5_PASSING },
+  { start: toTime(14, 27), end: toTime(15, 15), period: Period.PERIOD_6 },
+  { start: toTime(15, 14), end: toTime(24, 0), period: Period.DONE },
+
+export const RegularSchedule78: any[] = [
   { start: toTime(0, 0), end: toTime(7, 28), period: Period.NONE },
   { start: toTime(7, 28), end: toTime(8, 24), period: Period.PERIOD_0 },
   { start: toTime(8, 24), end: toTime(8, 30), period: Period.PERIOD_0_PASSING },
@@ -80,7 +100,7 @@ export const RegularSchedule7/8: any[] = [
   { start: toTime(15, 14), end: toTime(24, 0), period: Period.DONE },
 ];
 
-export const BlockOddSchedule7/8: any[] = [
+export const BlockOddSchedule78: any[] = [
    { start: toTime(0, 0), end: toTime(7, 28), period: Period.NONE },
   { start: toTime(7, 28), end: toTime(8, 24), period: Period.PERIOD_0 },
   { start: toTime(8, 24), end: toTime(8, 30), period: Period.PERIOD_0_PASSING },
@@ -96,8 +116,8 @@ export const BlockOddSchedule7/8: any[] = [
   { start: toTime(15, 14), end: toTime(24, 0), period: Period.DONE },
 ];
 
-export const BlockEvenSchedule7/8: any[] = [
-   { start: toTime(0, 0), end: toTime(7, 28), period: Period.NONE },
+export const BlockEvenSchedule78: any[] = [
+  { start: toTime(0, 0), end: toTime(7, 28), period: Period.NONE },
   { start: toTime(7, 28), end: toTime(8, 24), period: Period.PERIOD_0 },
   { start: toTime(8, 24), end: toTime(8, 30), period: Period.PERIOD_0_PASSING },
   { start: toTime(8, 30), end: toTime(10, 14), period: Period.PERIOD_2 },
@@ -111,3 +131,44 @@ export const BlockEvenSchedule7/8: any[] = [
   { start: toTime(13, 29), end: toTime(15, 13), period: Period.PERIOD_6 },
   { start: toTime(15, 14), end: toTime(24, 0), period: Period.DONE },
 ];
+
+export const AssemblySchedule7: any[] = [
+  { start: toTime(0, 0), end: toTime(7, 27), period: Period.NONE },
+  { start: toTime(7, 27), end:toTime(8, 15), period: Period.PERIOD_0 },
+  { start: toTime(8, 15), end: toTime(8, 30), period: Period.PERIOD_0_PASSING },
+  { start: toTime(8, 30), end: toTime(9, 18), period: Period.PERIOD_1 },
+  { start: toTime(9, 18), end: toTime(9, 24), period: Period.PERIOD_1_PASSING },
+  { start: toTime(9, 24), end: toTime(10, 12), period: Period.PERIOD_2 },
+  { start: toTime(10, 12), end: toTime(11, 00), period: Period.ASSEMBLY_7TH },
+  { start: toTime(11, 00), end: toTime(11, 09), period: Period.BREAK },
+  { start: toTime(11, 09), end: toTime(11, 15), period: Period.BREAK_PASSING },
+  { start: toTime(11, 15), end: toTime(12, 03), period: Period.PERIOD_3 },
+  { start: toTime(12, 03), end: toTime(12, 09), period: Period.PERIOD_3_PASSING },
+  { start: toTime(12, 09), end: toTime(12, 57), period: Period.PERIOD_4 },
+  { start: toTime(12, 57), end: toTime(13, 27), period: Period.LUNCH },
+  { start: toTime(13, 27), end: toTime(13, 33), period: Period.LUNCH_PASSING },
+  { start: toTime(13, 33), end: toTime(14, 21), period: Period.PERIOD_5 },
+  { start: toTime(14, 21), end: toTime(14, 27), period: Period.PERIOD_5_PASSING },
+  { start: toTime(14, 27), end: toTime(15, 15), period: Period.PERIOD_6 },
+  { start: toTime(15, 14), end: toTime(24, 0), period: Period.DONE },
+];
+
+export const AssemblySchedule8: any[] = [
+  { start: toTime(0, 0), end: toTime(7, 27), period: Period.NONE },
+  { start: toTime(7, 27), end: toTime(8, 15), period: Period.PERIOD_0 },
+  { start: toTime(8, 15), end: toTime(8, 30), period: Period.PERIOD_0_PASSING },
+  { start: toTime(8, 30), end: toTime(9, 18), period: Period.PERIOD_1 },
+  { start: toTime(9, 18), end: toTime(9, 24), period: Period.PERIOD_1_PASSING },
+  { start: toTime(9, 24), end: toTime(10, 12), period: Period.ASSEMBLY_8TH },
+  { start: toTime(10, 12), end: toTime(11, 00), period: Period.PERIOD_2 },
+  { start: toTime(11, 00), end: toTime(11, 09), period: Period.BREAK },
+  { start: toTime(11, 09), end: toTime(11, 15), period: Period.BREAK_PASSING },
+  { start: toTime(11, 15), end: toTime(12, 03), period: Period.PERIOD_3 },
+  { start: toTime(12, 03), end: toTime(12, 09), period: Period.PERIOD_3_PASSING },
+  { start: toTime(12, 09), end: toTime(12, 57), period: Period.PERIOD_4 },
+  { start: toTime(12, 57), end: toTime(13, 27), period: Period.LUNCH },
+  { start: toTime(13, 27), end: toTime(13, 33), period: Period.LUNCH_PASSING },
+  { start: toTime(13, 33), end: toTime(14, 21), period: Period.PERIOD_5 },
+  { start: toTime(14, 21), end: toTime(14, 27), period: Period.PERIOD_5_PASSING },
+  { start: toTime(14, 27), end: toTime(15, 15), period: Period.PERIOD_6 },
+  { start: toTime(15, 14), end: toTime(24, 0), period: Period.DONE },
