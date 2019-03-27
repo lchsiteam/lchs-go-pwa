@@ -9,6 +9,10 @@ enum Schedule {
   BLOCK_ODD,
   BLOCK_EVEN,
   ASSEMBLY,
+  ASSEMBLY7,
+  ASSEMBLY8,
+  MINIMUM,
+  MINIMUM78,
   NONE,
 }
 
