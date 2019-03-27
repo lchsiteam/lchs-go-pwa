@@ -12,7 +12,6 @@ enum Schedule {
   ASSEMBLY7,
   ASSEMBLY8,
   MINIMUM,
-  MINIMUM78,
   NONE,
 }
 
