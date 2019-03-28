@@ -178,6 +178,45 @@ export default class Home extends Vue {
       return this.getCurrentTimeParts24()
     }
   }
+  
+  //The following section will need yearly updates, if schedule changes, and an update when minimum day and finals scuedule are implemented
+
+getDaysUntil() {
+
+  var break_dates = { // first element in string is month 0-11, and second is day 1-31
+    // replace w/ break days when implmented (the below is temporary)
+    Summer_Break: "5,5",
+    Spring_Break: "2,30",
+    Assembly: "3,12",
+    Memorial_Day: "4,27"
+  };
+  let closest = "13,1";
+  for (var key in break_dates) {
+      if ((parseInt(break_dates[key]).substring(0,1) < (new Date().getMonth())) || ((parseInt(break_dates[key]).substring(0,1) === (new Date().getMonth())) && (parseInt(break_dates[key]).substring(2,1) <= (new Date().getDate())))) {
+          if((parseInt(break_dates[key]).substring(0,1) < parseInt(closest).substring(0,1)) || ((parseInt(break_dates[key]).substring(0,1) === parseInt(closest).substring(0,1)) && (parseInt(break_dates[key]).substring(2,1) < parseInt(closest).substring(2,1)))) {
+              let closest = break_dates[key];
+              let closest_name = key
+          }
+      }
+  }
+
+  const currentSchedule = getFullSchedule(getScheduleFromDay(new Date(new Date((new Date()).getFullYear(), parseInt(closest.substring(0,1)), parseInt(closest.substring(2,1)), 0, 0, 0, 0)).getDay()+1))
+  let endTime = 0
+  for (let period of currentSchedule) {
+    if (period.period === Period.DONE) {
+      endTime = period.start
+    }
+  }
+
+  var winter_break = new Date(((new Date()).getFullYear()), 5, 5, Math.floor(endTime/60), (endTime % 60), 0, 0);
+  //note: the above section of code will need to be changed for finals and minimum days when they are implemented
+  let seconds_remaining = (Math.floor((winter_break - (new Date()))/1000)%60);
+  let minutes_remaining = (Math.floor(seconds_remaining/60)%60)
+  let hours_remaining = (Math.floor(minutes_remaining/60)%24)
+  let days_remaining = Math.floor(hours_remaining/24)
+  
+  return days_remaining + " days, " + hours_remaining + " hours, and" + minutes_remaining + "minutes seconds of school remaining until " + closest_name.replace("_", " ") + "!"
+}
 
   mounted() {
     setInterval(this.updateStats, 5000)
