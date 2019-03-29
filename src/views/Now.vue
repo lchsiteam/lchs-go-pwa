@@ -178,6 +178,51 @@ export default class Home extends Vue {
       return this.getCurrentTimeParts24()
     }
   }
+  
+  //The following section will need yearly updates, if schedule changes, and an update when minimum day and finals scuedule are implemented
+
+getDaysUntil() {
+
+  const currentDate = DateTime.local().setZone("America/Los_Angeles")
+
+  let currentMinutes = this.minutes % 60
+  let currentHours = Math.floor(this.minutes/60)
+  let day = currentDate.day
+  let month = currentDate.month
+  let year = currentDate.year
+
+  var break_dates = { // first element in string is month 0-11, and second is day 1-31
+    // replace w/ break days when implmented (the below is temporary)
+    Summer_Break: "6,5",
+    Spring_Break: "3,30",
+    Assembly: "4,12",
+    Memorial_Day: "5,27"
+  };
+  let closest = "13,1";
+  for (var key in break_dates) {
+      if ((parseInt(break_dates[key]).substring(0,1) < month) || ((parseInt(break_dates[key]).substring(0,1) === month) && (parseInt(break_dates[key]).substring(2,1) <= day))) {
+          if((parseInt(break_dates[key]).substring(0,1) < parseInt(closest).substring(0,1)) || ((parseInt(break_dates[key]).substring(0,1) === parseInt(closest).substring(0,1)) && (parseInt(break_dates[key]).substring(2,1) < parseInt(closest).substring(2,1)))) {
+              let closest = break_dates[key];
+              let closest_name = key
+          }
+      }
+  }
+
+  const currentSchedule = getFullSchedule(getScheduleFromDay(DateTime.local(year, parseInt(closest.substring(0,1)), parseInt(closest.substring(2,1)), 0, 0).weekday()))
+  let endTime = 0
+  for (let period of currentSchedule) {
+    if (period.period === Period.DONE) {
+      let endTime = period.start
+    }
+  }
+
+  //note: the above section of code will need to be changed for finals and minimum days when they are implemented
+  // when creating custom date, is timezone adjustment needed?
+  let closest_date_object = DateTime.local(year, parseInt(closest.substring(0,1)), parseInt(closest.substring(2,1))) //hour, //minute)
+  let difference = closest_date_object.diff(currentDate, ["days", "hours", "minutes"])
+  
+  return difference[days] + " days, " + difference[hours] + " hours, and" + difference[minutes] + "minutes seconds of school remaining until " + closest_name.replace("_", " ") + "!"
+}
 
   mounted() {
     setInterval(this.updateStats, 5000)
