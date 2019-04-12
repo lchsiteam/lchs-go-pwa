@@ -9,17 +9,20 @@ enum Schedule {
   BLOCK_ODD,
   BLOCK_EVEN,
   ASSEMBLY,
+  ASSEMBLY7,
+  ASSEMBLY8,
+  MINIMUM,
   NONE,
 }
 
 enum Day {
-  SUNDAY = 0,
   MONDAY = 1,
   TUESDAY = 2,
   WEDNESDAY = 3,
   THURSDAY = 4,
   FRIDAY = 5,
   SATURDAY = 6,
+  SUNDAY = 7,
 }
 
 // Passing break is defined here as the
@@ -30,6 +33,7 @@ enum Period {
   PERIOD_1,
   PERIOD_1_PASSING,
   PERIOD_2,
+  PERIOD_2_PASSING,
   BREAK,
   BREAK_PASSING,
   PERIOD_3,
@@ -39,7 +43,11 @@ enum Period {
   STEP_ODD,
   STEP_EVEN,
   STEP_PASSING,
+  HOMEROOM,
+  HOMEROOM_PASSING,
   ASSEMBLY,
+  ASSEMBLY_7TH,
+  ASSEMBLY_8TH,
   PERIOD_4,
   PERIOD_4_PASSING,
   PERIOD_5,
@@ -63,6 +71,8 @@ export function getPeriodName(period: Period) {
   else if (period == Period.LUNCH_PASSING) { return 'Passing After Lunch'; }
   else if (period == Period.STEP_ODD) { return 'STEP (1-3-5)'; }
   else if (period == Period.STEP_EVEN) { return 'STEP (2-4-6)'; }
+  else if (period == Period.HOMEROOM) { return 'Homeroom'; }
+  else if (period == Period.HOMEROOM_PASSING) { return 'Passing after Homeroom'; }
   else if (period == Period.STEP_PASSING) { return 'Passing After STEP'; }
   else if (period == Period.ASSEMBLY) { return 'Assembly Period'; }
   else if (period == Period.PERIOD_4) { return 'Period 4'; }

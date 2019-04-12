@@ -3,7 +3,7 @@
 // Copyright (c) iTeam 2019
 
 import { Day, Schedule, Period } from './enums';
-import { RegularSchedule, BlockEvenSchedule, BlockOddSchedule } from './schedules';
+import { RegularSchedule, BlockEvenSchedule, BlockOddSchedule, AssemblySchedule } from './schedules';
 
 // Native Javascript
 export function getCurrentDate(): any {
@@ -47,7 +47,7 @@ export function getScheduleFromDay(day: number): Schedule {
       shed = Schedule.BLOCK_EVEN;
       break;
     case Day.FRIDAY:
-      shed = Schedule.REGULAR;
+      shed = Schedule.ASSEMBLY;
       break;
     case Day.SATURDAY:
       shed = Schedule.NONE;
@@ -59,6 +59,22 @@ export function getScheduleFromDay(day: number): Schedule {
 
 export function toTime(hr: number, min: number) {
   return (hr * 60) + min;
+}
+
+export function getFullSchedule(schedule: Schedule): any {
+  if (schedule == Schedule.NONE) {
+    return []
+  } else if (schedule == Schedule.REGULAR) {
+    return RegularSchedule
+  } else if (schedule == Schedule.BLOCK_ODD) {
+    return BlockOddSchedule
+  } else if (schedule == Schedule.BLOCK_EVEN) {
+    return BlockEvenSchedule
+  } else if (schedule == Schedule.ASSEMBLY) {
+    return AssemblySchedule
+  } // TODO: Add more schedules
+
+  return { start: 0, end: 1440, period: Period.DONE };
 }
 
 export function getPeriod(time: number, schedule: Schedule): any {
@@ -114,64 +130,3 @@ export function printTime(time: number) {
 
   return finalString;
 }
-
-/*
-switch(period)
-{
-  case Period.NONE:
-  console.log("School has not yet started. School will start in");
-  break;
-  case Period.PERIOD_0:
-  console.log("It is zero period. Zero period ends in");
-  break;
-  case Period.PERIOD_0_PASSING:
-  console.log("It is the passing period before first period. First period starts in");
-  break;
-  case Period.PERIOD_1:
-  console.log("It is first period. First period ends in");
-  break;
-  case Period.PERIOD_1_PASSING:
-  console.log("It is the passing period before second period. Second period starts in");
-  break;
-  case Period.PERIOD_2:
-  console.log("It is second period. Second period ends in");
-  break;
-  case Period.BREAK:
-  console.log("It is break. Break period ends in");
-  break;
-  case Period.BREAK_PASSING:
-  console.log("It is the passing period before third period. Third period starts in");
-  break;
-  case Period.PERIOD_3:
-  console.log("It is third period. Third period ends in");
-  break;
-  case Period.LUNCH:
-  console.log("It is lunch. Lunch ends in");
-  break;
-  case Period.LUNCH_PASSING:
-  console.log("It is the passing period before fourth period. Fourth period starts in");
-  break;
-  case Period.PERIOD_4:
-  console.log("It is fourth period. Fourth period ends in");
-  break;
-  case Period.PERIOD_4_PASSING:
-  console.log("It is the passing period before fifth period. Fifth period starts in");
-  break;
-  case Period.PERIOD_5:
-  console.log("It is fifth period. Fifth period ends in");
-  break;
-  case Period.PERIOD_5_PASSING:
-  console.log("It is the passing period before sixth period. Sixth period starts in");
-  break;
-  case Period.PERIOD_6:
-  console.log("It is sixth period. Sixth period ends in");
-  break;
-  case Period.DONE:
-  console.log("The school day is over. The next day begins in");
-  break;
-  default:
-  console.log("Unknown period.")
-}
-
-printTime(end - getCurrentDate().mins)
-*/
