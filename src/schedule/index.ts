@@ -31,8 +31,9 @@ export function getScheduleFromDay(day: number): Schedule {
   let shed = Schedule.NONE;
 
   switch (day) {
-    case Day.SUNDAY:
-      shed = Schedule.NONE;
+    case Day.SUNDAY: 
+    case Day.SATURDAY: 
+      shed = Schedule.NONE; 
       break;
     case Day.MONDAY:
       shed = Schedule.REGULAR;
@@ -48,10 +49,7 @@ export function getScheduleFromDay(day: number): Schedule {
       break;
     case Day.FRIDAY:
       shed = Schedule.ASSEMBLY;
-      break;
-    case Day.SATURDAY:
-      shed = Schedule.NONE;
-      break;
+      break; 
   }
 
   return shed;
