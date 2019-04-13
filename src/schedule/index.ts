@@ -24,8 +24,12 @@ export function getCurrentDate(): any {
     mins: now.minutes(),
     total_mins: now.minutes() + (now.hours() * 60),
     day: now.day()
-  }
-} */
+  } 
+} */ 
+
+special_dates = {
+  //month - day - year: schedule (something from the Schedule enum) 
+} 
 
 export function getScheduleFromDay(day: number): Schedule {
   let shed = Schedule.NONE;
