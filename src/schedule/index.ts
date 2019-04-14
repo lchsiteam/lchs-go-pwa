@@ -3,7 +3,7 @@
 // Copyright (c) iTeam 2019
 
 import { Day, Schedule, Period } from './enums';
-import { RegularSchedule, BlockEvenSchedule, BlockOddSchedule, AssemblySchedule } from './schedules';
+import { RegularSchedule, BlockEvenSchedule, BlockOddSchedule, SpecialBlockOddSchedule, SpecialBlockEvenSchedule, AssemblySchedule, } from './schedules';
 
 // Native Javascript
 export function getCurrentDate(): any {
