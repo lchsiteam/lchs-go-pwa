@@ -72,6 +72,10 @@ export function getFullSchedule(schedule: Schedule): any {
     return BlockOddSchedule
   } else if (schedule == Schedule.BLOCK_EVEN) {
     return BlockEvenSchedule
+  } else if (schedule == Schedule.SPECIAL_BLOCK_ODD) {
+    return SpecialBlockOddSchedule
+  } else if (schedule == Schedule.SPECIAL_BLOCK_EVEN) {
+    return SpecialBlockEvenSchedule
   } else if (schedule == Schedule.ASSEMBLY) {
     return AssemblySchedule
   } // TODO: Add more schedules
