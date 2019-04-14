@@ -7,7 +7,12 @@ function toTime(hr: number, min: number) {
 // Note: the script will only consider
 // the `end` paramater for now. (when each period ends).
 // When the program reads this fake ".csv", it will
-// give precedence to the period that is listed first.
+// give precedence to the period that is listed first
+
+export const NoSchoolSchedule: any[] [
+  { start: toTime(0, 0), end: toTime(24, 0), period: Period.DONE }, 
+]; 
+
 export const RegularSchedule: any[] = [
   { start: toTime(0, 0), end: toTime(7, 28), period: Period.NONE },
   { start: toTime(7, 28), end: toTime(8, 24), period: Period.PERIOD_0 },
