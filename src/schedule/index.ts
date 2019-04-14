@@ -2,8 +2,8 @@
 // Editor: Kevin Mo
 // Copyright (c) iTeam 2019
 
-import { Day, Schedule, Period } from './enums';
-import { RegularSchedule, BlockEvenSchedule, BlockOddSchedule, SpecialBlockOddSchedule, SpecialBlockEvenSchedule, AssemblySchedule, } from './schedules';
+import { Day, Schedule, Period } from './enums'; 
+import { NoSchoolSchedule, RegularSchedule, BlockEvenSchedule, BlockOddSchedule, SpecialBlockOddSchedule, SpecialBlockEvenSchedule, AssemblySchedule, } from './schedules';
 
 // Native Javascript
 export function getCurrentDate(): any {
@@ -65,7 +65,7 @@ export function toTime(hr: number, min: number) {
 
 export function getFullSchedule(schedule: Schedule): any {
   if (schedule == Schedule.NONE) {
-    return []
+    return NoSchoolSchedule
   } else if (schedule == Schedule.REGULAR) {
     return RegularSchedule
   } else if (schedule == Schedule.BLOCK_ODD) {
@@ -84,6 +84,11 @@ export function getFullSchedule(schedule: Schedule): any {
 }
 
 export function getPeriod(time: number, schedule: Schedule): any {
+  fullSchedule = getFullSchedule(schedule) 
+  
+  return fullSchedule.find((p) => (p.start <= time && p.end > time)); 
+  
+  /* 
   if (schedule == Schedule.NONE) {
     return { start: 0, end: 1440, period: Period.DONE };
   } else if (schedule == Schedule.REGULAR) {
@@ -96,7 +101,8 @@ export function getPeriod(time: number, schedule: Schedule): any {
     return AssemblySchedule.find((p) => (p.start <= time && p.end > time));
   } // TODO: Add more schedules
 
-  return { start: 0, end: 1440, period: Period.DONE };
+  return { start: 0, end: 1440, period: Period.DONE }; 
+  */ 
 }
 
 // const { period, end } = getPeriod(getCurrentDate().mins, getScheduleFromDay(getCurrentDate().day))
