@@ -9,7 +9,7 @@ function toTime(hr: number, min: number) {
 // When the program reads this fake ".csv", it will
 // give precedence to the period that is listed first
 
-export const NoSchoolSchedule: any[] [
+export const NoSchoolSchedule: any[] = [
   { start: toTime(0, 0), end: toTime(24, 0), period: Period.DONE }, 
 ]; 
 
@@ -66,7 +66,7 @@ export const BlockEvenSchedule: any[] = [
 ]; 
 
 //special sbac 3, 1, 5 block
-export const SpecialBlockOddSchedule: any[] [
+export const SpecialBlockOddSchedule: any[] = [
   { start: toTime(0, 0), end: toTime(7, 28), period: Period.NONE },
   { start: toTime(7, 28), end: toTime(8, 24), period: Period.PERIOD_0 },
   { start: toTime(8, 24), end: toTime(8, 30), period: Period.PERIOD_0_PASSING },
@@ -83,7 +83,7 @@ export const SpecialBlockOddSchedule: any[] [
 ]; 
 
 //special sbac 4, 2, 6 block
-export const SpecialBlockEvenSchedule: any[] [
+export const SpecialBlockEvenSchedule: any[] = [
   { start: toTime(0, 0), end: toTime(7, 28), period: Period.NONE },
   { start: toTime(7, 28), end: toTime(8, 24), period: Period.PERIOD_0 },
   { start: toTime(8, 24), end: toTime(8, 30), period: Period.PERIOD_0_PASSING },
