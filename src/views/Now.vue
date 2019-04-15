@@ -89,7 +89,7 @@ export default class Home extends Vue {
       case Schedule.REGULAR: 
         return 'regular schedule'; 
         break; 
-      case schedule.BLOCK_ODD: 
+      case Schedule.BLOCK_ODD: 
         return 'block schedule (1, 3, 5) '; 
         break; 
       case Schedule.BLOCK_EVEN: 
