@@ -85,6 +85,8 @@ export default class Home extends Vue {
   }
 
   getCurrentScheduleName() {
+    console.log(this.schedule); 
+    
     switch(this.schedule) {
       case Schedule.REGULAR: 
         return 'regular schedule'; 
