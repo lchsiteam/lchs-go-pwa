@@ -9,7 +9,7 @@
         </div> 
         <div class='sr-option'>
           <select v-model='grade' @change='updateGrade()'>
-            <option v-for='grade in allGrades'>grade</option> 
+            <option v-for='grade in allGrades'>{{grade}}</option> 
           </select> 
         </div> 
       </div> 
