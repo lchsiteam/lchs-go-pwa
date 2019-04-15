@@ -130,6 +130,9 @@ export default class Home extends Vue {
       case Schedule.NONE: 
         return 'No schedule'; 
         break; 
+      default: 
+        return 'error'; 
+        break; 
     } 
   } 
 
