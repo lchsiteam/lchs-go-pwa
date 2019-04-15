@@ -51,7 +51,7 @@ export default class Home extends Vue {
   updateStats() {
     const currentDate = DateTime.local().setZone("America/Los_Angeles")
     this.minutes = currentDate.minute + (currentDate.hour * 60)
-    this.schedule = getScheduleFromDay(currentDate.weekday)
+    this.schedule = getScheduleFromDay(currentDate.month, currentDate.day, currentDate.year, currentDate.weekday)
     this.currentPeriod = getPeriod(this.minutes, this.schedule)
   }
 
@@ -85,11 +85,35 @@ export default class Home extends Vue {
   }
 
   getCurrentScheduleName() {
-    if (this.schedule == Schedule.REGULAR) return "regular schedule."
-    else if (this.schedule == Schedule.BLOCK_ODD) return "block schedule (1-3-5)."
-    else if (this.schedule == Schedule.BLOCK_EVEN) return "block schedule (2-4-6)."
-    else if (this.schedule == Schedule.ASSEMBLY) return "assembly schedule."
-    else return "free."
+    switch(this.schedule) {
+      case Schedule.REGULAR: 
+        return 'regular schedule'; 
+        break; 
+      case Schedule.BLOCK_ODD: 
+        return 'block schedule (1, 3, 5) '; 
+        break; 
+      case Schedule.BLOCK_EVEN: 
+        return 'block schedule (2, 4, 6) '; 
+        break; 
+      case Schedule.SPECIAL_BLOCK_ODD: 
+        return 'block schedule (3, 1, 5) '; 
+        break; 
+      case Schedule.SPECIAL_BLOCK_EVEN: 
+        return 'block schedule (4, 2, 6) '; 
+        break; 
+      case Schedule.ASSEMBLY: 
+        return 'assembly schedule'; 
+        break; 
+      case Schedule.MINIMUM: 
+        return 'minimum schedule'; 
+        break; 
+      case Schedule.NONE: 
+        return 'free'; 
+        break; 
+      default: 
+        return 'error'; 
+        break; 
+    } 
   }
 
   getTimeUntilNext() {
