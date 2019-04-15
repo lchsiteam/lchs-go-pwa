@@ -28,8 +28,9 @@ export function getCurrentDate(): any {
   } 
 } */ 
 
-special_dates = {
+export const special_dates = {
   //month - day - year: schedule (something from the Schedule enum) 
+  '4 - 14 - 2019': Schedule.SPECIAL_BLOCK_EVEN, 
   '4 - 15 - 2019': Schedule.BLOCK_ODD, 
   '4 - 16 - 2019': Schedule.BLOCK_EVEN, 
   '4 - 17 - 2019': Schedule.SPECIAL_BLOCK_ODD, 
@@ -39,28 +40,33 @@ special_dates = {
   '4 - 25 - 2019': Schedule.REGULAR, 
   '5 - 27 - 2019': Schedule.NONE, 
   //no finals schedules yet
-} 
+}; 
 
-export function getScheduleFromDay(day: number): Schedule {
-  let shed = Schedule.NONE;
-
-  switch (day) {
-    case Day.SUNDAY: 
-    case Day.SATURDAY: 
-      shed = Schedule.NONE; 
-      break;
-    case Day.MONDAY: 
-    case Day.TUESDAY: 
-    case Day.FRIDAY: 
-      shed = Schedule.REGULAR;
-      break;
-    case Day.WEDNESDAY:
-      shed = Schedule.BLOCK_ODD;
-      break;
-    case Day.THURSDAY:
-      shed = Schedule.BLOCK_EVEN;
-      break; 
-  }
+export function getScheduleFromDay(month: number, day: number, year: number, week_day: number): Schedule {
+  let shed = Schedule.NONE; 
+  let date = `${month} - ${day} - ${year}`; 
+  
+  if(date in special_dates) {
+    shed = special_dates[date] 
+  } else {
+    switch(week_day) {
+      case Day.SUNDAY: 
+      case Day.SATURDAY: 
+        shed = Schedule.NONE; 
+        break;
+      case Day.MONDAY: 
+      case Day.TUESDAY: 
+      case Day.FRIDAY: 
+        shed = Schedule.REGULAR;
+        break;
+      case Day.WEDNESDAY:
+        shed = Schedule.BLOCK_ODD;
+        break;
+      case Day.THURSDAY:
+        shed = Schedule.BLOCK_EVEN;
+        break; 
+    } 
+  } 
 
   return shed;
 }
