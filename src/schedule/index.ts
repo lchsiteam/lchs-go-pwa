@@ -39,10 +39,9 @@ export function getScheduleFromDay(day: number): Schedule {
     case Day.SATURDAY: 
       shed = Schedule.NONE; 
       break;
-    case Day.MONDAY:
-      shed = Schedule.REGULAR;
-      break;
-    case Day.TUESDAY:
+    case Day.MONDAY: 
+    case Day.TUESDAY: 
+    case Day.FRIDAY: 
       shed = Schedule.REGULAR;
       break;
     case Day.WEDNESDAY:
@@ -50,9 +49,6 @@ export function getScheduleFromDay(day: number): Schedule {
       break;
     case Day.THURSDAY:
       shed = Schedule.BLOCK_EVEN;
-      break;
-    case Day.FRIDAY:
-      shed = Schedule.ASSEMBLY;
       break; 
   }
 
