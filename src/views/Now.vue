@@ -143,7 +143,7 @@ export default class Home extends Vue {
   }
    
   getCurrentTime() {
-    if (this.$store.state.settings.useMilitaryTime === false) {
+    if(!this.$store.state.settings.useMilitaryTime) {
       return this.getCurrentTime12()
     }
     else {
@@ -195,7 +195,7 @@ export default class Home extends Vue {
  
   getCurrentTimeParts() {
     //to do: replace "12hourplaceholder" with object/variable that determines if 12-hour mode is turned on
-    if (this.$store.state.settings.useMilitaryTime === false) {
+    if(!this.$store.state.settings.useMilitaryTime) {
       return this.getCurrentTimeParts12()
     }
     else {
