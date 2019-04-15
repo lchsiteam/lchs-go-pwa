@@ -86,6 +86,8 @@ export function getPeriod(time: number, schedule: Schedule): any {
     return BlockOddSchedule.find((p) => (p.start <= time && p.end > time));
   } else if (schedule == Schedule.BLOCK_EVEN) {
     return BlockEvenSchedule.find((p) => (p.start <= time && p.end > time));
+  } else if (schedule == Schedule.ASSEMBLY) {
+    return AssemblySchedule.find((p) => (p.start <= time && p.end > time));
   } // TODO: Add more schedules
 
   return { start: 0, end: 1440, period: Period.DONE };
