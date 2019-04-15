@@ -128,7 +128,7 @@ export default class Home extends Vue {
         return 'minimum schedule'; 
         break; 
       case Schedule.NONE: 
-        return 'free'; 
+        return 'No schedule'; 
         break; 
     } 
   } 
