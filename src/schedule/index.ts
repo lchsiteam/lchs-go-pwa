@@ -47,6 +47,7 @@ export function getScheduleFromDay(month: number, day: number, year: number, wee
   let date = `${month} - ${day} - ${year}`; 
   
   console.log(date); 
+  console.log(date in special_dates); 
   
   if(date in special_dates) {
     shed = special_dates[date] 
