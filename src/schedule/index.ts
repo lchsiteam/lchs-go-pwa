@@ -75,25 +75,36 @@ export function toTime(hr: number, min: number) {
 }
 
 export function getFullSchedule(schedule: Schedule): any {
-  if (schedule == Schedule.NONE) {
-    return NoSchoolSchedule
-  } else if (schedule == Schedule.REGULAR) {
-    return RegularSchedule
-  } else if (schedule == Schedule.BLOCK_ODD) {
-    return BlockOddSchedule
-  } else if (schedule == Schedule.BLOCK_EVEN) {
-    return BlockEvenSchedule
-  } else if (schedule == Schedule.SPECIAL_BLOCK_ODD) {
-    return SpecialBlockOddSchedule
-  } else if (schedule == Schedule.SPECIAL_BLOCK_EVEN) {
-    return SpecialBlockEvenSchedule
-  } else if (schedule == Schedule.ASSEMBLY) {
-    return AssemblySchedule
-  } else if (schedule == Schedule.MINIMUM) {
-    return MinimumSchedule
-  } else {
-    return NoSchoolSchedule
-  } // TODO: Add more schedules
+  // TODO: Add more schedules
+  switch(schedule) {
+    case Schedule.NONE: 
+      return NoSchoolSchedule; 
+      break; 
+    case Schedule.REGULAR: 
+      return RegularSchedule; 
+      break; 
+    case Schedule.BLOCK_ODD: 
+      return BlockOddSchedule; 
+      break; 
+    case Schedule.BLOCK_EVEN: 
+      return BlockEvenSchedule; 
+      break; 
+    case Schedule.SPECIAL_BLOCK_ODD: 
+      return SpecialBlockOddSchedule; 
+      break; 
+    case Schedule.SPECIAL_BLOCK_EVEN: 
+      return SpecialBlockEvenSchedule; 
+      break; 
+    case Schedule.ASSEMBLY: 
+      return AssemblySchedule; 
+      break; 
+    case Schedule.MINIMUM: 
+      return MinimumSchedule; 
+      break; 
+    default: 
+      return NoSchoolSchedule; 
+      break; 
+  } 
 }
 
 export function getPeriod(time: number, schedule: Schedule): any {
