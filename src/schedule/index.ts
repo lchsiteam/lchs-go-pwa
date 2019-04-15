@@ -28,7 +28,7 @@ export function getCurrentDate(): any {
   } 
 } */ 
 
-export const special_dates = {
+export const special_dates: any = {
   //month - day - year: schedule (something from the Schedule enum) 
   '4 - 14 - 2019': Schedule.SPECIAL_BLOCK_EVEN, 
   '4 - 15 - 2019': Schedule.BLOCK_ODD, 
@@ -100,7 +100,7 @@ export function getFullSchedule(schedule: Schedule): any {
 export function getPeriod(time: number, schedule: Schedule): any {
   let fullSchedule = getFullSchedule(schedule) 
   
-  return fullSchedule.find((p) => (p.start <= time && p.end > time)); 
+  return fullSchedule.find((p: any) => (p.start <= time && p.end > time)); 
   
   /* 
   if (schedule == Schedule.NONE) {
