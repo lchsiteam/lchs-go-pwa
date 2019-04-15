@@ -91,9 +91,9 @@ export function getFullSchedule(schedule: Schedule): any {
     return AssemblySchedule
   } else if (schedule == Schedule.MINIMUM) {
     return MinimumSchedule
+  } else {
+    return NoSchoolSchedule
   } // TODO: Add more schedules
-
-  return { start: 0, end: 1440, period: Period.DONE };
 }
 
 export function getPeriod(time: number, schedule: Schedule): any {
