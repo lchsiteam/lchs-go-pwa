@@ -74,8 +74,8 @@ export default class Home extends Vue {
 
   updateStats() {
     const currentDate = DateTime.local().setZone("America/Los_Angeles")
-    this.minutes = currentDate.minute + (currentDate.hour * 60)
-    this.schedule = getScheduleFromDay(currentDate.weekday)
+    this.minutes = currentDate.minute + (currentDate.hour * 60) 
+    this.schedule = getScheduleFromDay(currentDate.month, currentDate.day, currentDate.year, currentDate.weekday) 
     this.currentPeriod = getPeriod(this.minutes, this.schedule)
   }
 
