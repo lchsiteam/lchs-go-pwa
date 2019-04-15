@@ -3,7 +3,8 @@
 // Copyright (c) iTeam 2019
 
 import { Day, Schedule, Period } from './enums'; 
-import { NoSchoolSchedule, RegularSchedule, BlockEvenSchedule, BlockOddSchedule, SpecialBlockOddSchedule, SpecialBlockEvenSchedule, AssemblySchedule, } from './schedules';
+import { NoSchoolSchedule, RegularSchedule, BlockEvenSchedule, BlockOddSchedule, SpecialBlockOddSchedule, SpecialBlockEvenSchedule, 
+        AssemblySchedule, MinimumSchedule} from './schedules';
 
 // Native Javascript
 export function getCurrentDate(): any {
@@ -34,6 +35,10 @@ special_dates = {
   '4 - 17 - 2019': Schedule.SPECIAL_BLOCK_ODD, 
   '4 - 18 - 2019': Schedule.SPECIAL_BLOCK_EVEN, 
   '4 - 19 - 2019': Schedule.MINIMUM, 
+  '4 - 23 - 2019': Schedule.BLOCK_EVEN, 
+  '4 - 25 - 2019': Schedule.REGULAR, 
+  '5 - 27 - 2019': Schedule.NONE, 
+  //no finals schedules yet
 } 
 
 export function getScheduleFromDay(day: number): Schedule {
@@ -79,6 +84,8 @@ export function getFullSchedule(schedule: Schedule): any {
     return SpecialBlockEvenSchedule
   } else if (schedule == Schedule.ASSEMBLY) {
     return AssemblySchedule
+  } else if (schedule == Schedule.MINIMUM) {
+    return MinimumSchedule
   } // TODO: Add more schedules
 
   return { start: 0, end: 1440, period: Period.DONE };
