@@ -2,8 +2,9 @@
 // Editor: Kevin Mo
 // Copyright (c) iTeam 2019
 
-import { Day, Schedule, Period } from './enums';
-import { RegularSchedule, BlockEvenSchedule, BlockOddSchedule, AssemblySchedule } from './schedules';
+import { Day, Schedule, Period } from './enums'; 
+import { NoSchoolSchedule, RegularSchedule, BlockEvenSchedule, BlockOddSchedule, SpecialBlockOddSchedule, SpecialBlockEvenSchedule, 
+        AssemblySchedule, MinimumSchedule} from './schedules';
 
 // Native Javascript
 export function getCurrentDate(): any {
@@ -24,35 +25,47 @@ export function getCurrentDate(): any {
     mins: now.minutes(),
     total_mins: now.minutes() + (now.hours() * 60),
     day: now.day()
-  }
-} */
+  } 
+} */ 
 
-export function getScheduleFromDay(day: number): Schedule {
-  let shed = Schedule.NONE;
+export const special_dates: any = {
+  //month - day - year: schedule (something from the Schedule enum) 
+  '4 - 15 - 2019': Schedule.BLOCK_ODD, 
+  '4 - 16 - 2019': Schedule.BLOCK_EVEN, 
+  '4 - 17 - 2019': Schedule.SPECIAL_BLOCK_ODD, 
+  '4 - 18 - 2019': Schedule.SPECIAL_BLOCK_EVEN, 
+  '4 - 19 - 2019': Schedule.MINIMUM, 
+  '4 - 23 - 2019': Schedule.BLOCK_EVEN, 
+  '4 - 25 - 2019': Schedule.REGULAR, 
+  '5 - 27 - 2019': Schedule.NONE, 
+  //no finals schedules yet
+}; 
 
-  switch (day) {
-    case Day.SUNDAY:
-      shed = Schedule.NONE;
-      break;
-    case Day.MONDAY:
-      shed = Schedule.REGULAR;
-      break;
-    case Day.TUESDAY:
-      shed = Schedule.REGULAR;
-      break;
-    case Day.WEDNESDAY:
-      shed = Schedule.BLOCK_ODD;
-      break;
-    case Day.THURSDAY:
-      shed = Schedule.BLOCK_EVEN;
-      break;
-    case Day.FRIDAY:
-      shed = Schedule.ASSEMBLY;
-      break;
-    case Day.SATURDAY:
-      shed = Schedule.NONE;
-      break;
-  }
+export function getScheduleFromDay(month: number, day: number, year: number, week_day: number): Schedule {
+  let shed = Schedule.NONE; 
+  let date = `${month} - ${day} - ${year}`; 
+  
+  if(date in special_dates) {
+    shed = special_dates[date]; 
+  } else {
+    switch(week_day) {
+      case Day.SUNDAY: 
+      case Day.SATURDAY: 
+        shed = Schedule.NONE; 
+        break;
+      case Day.MONDAY: 
+      case Day.TUESDAY: 
+      case Day.FRIDAY: 
+        shed = Schedule.REGULAR;
+        break;
+      case Day.WEDNESDAY:
+        shed = Schedule.BLOCK_ODD;
+        break;
+      case Day.THURSDAY:
+        shed = Schedule.BLOCK_EVEN;
+        break; 
+    } 
+  } 
 
   return shed;
 }
@@ -63,21 +76,32 @@ export function toTime(hr: number, min: number) {
 
 export function getFullSchedule(schedule: Schedule): any {
   if (schedule == Schedule.NONE) {
-    return []
+    return NoSchoolSchedule
   } else if (schedule == Schedule.REGULAR) {
     return RegularSchedule
   } else if (schedule == Schedule.BLOCK_ODD) {
     return BlockOddSchedule
   } else if (schedule == Schedule.BLOCK_EVEN) {
     return BlockEvenSchedule
+  } else if (schedule == Schedule.SPECIAL_BLOCK_ODD) {
+    return SpecialBlockOddSchedule
+  } else if (schedule == Schedule.SPECIAL_BLOCK_EVEN) {
+    return SpecialBlockEvenSchedule
   } else if (schedule == Schedule.ASSEMBLY) {
     return AssemblySchedule
+  } else if (schedule == Schedule.MINIMUM) {
+    return MinimumSchedule
+  } else {
+    return NoSchoolSchedule
   } // TODO: Add more schedules
-
-  return { start: 0, end: 1440, period: Period.DONE };
 }
 
 export function getPeriod(time: number, schedule: Schedule): any {
+  let fullSchedule = getFullSchedule(schedule) 
+  
+  return fullSchedule.find((p: any) => (p.start <= time && p.end > time)); 
+  
+  /* 
   if (schedule == Schedule.NONE) {
     return { start: 0, end: 1440, period: Period.DONE };
   } else if (schedule == Schedule.REGULAR) {
@@ -90,7 +114,8 @@ export function getPeriod(time: number, schedule: Schedule): any {
     return AssemblySchedule.find((p) => (p.start <= time && p.end > time));
   } // TODO: Add more schedules
 
-  return { start: 0, end: 1440, period: Period.DONE };
+  return { start: 0, end: 1440, period: Period.DONE }; 
+  */ 
 }
 
 // const { period, end } = getPeriod(getCurrentDate().mins, getScheduleFromDay(getCurrentDate().day))
