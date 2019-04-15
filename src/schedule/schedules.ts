@@ -97,6 +97,7 @@ export const SpecialBlockEvenSchedule: any[] = [
   { start: toTime(13, 24), end: toTime(13, 29), period: Period.LUNCH_PASSING },
   { start: toTime(13, 29), end: toTime(15, 13), period: Period.PERIOD_6 },
   { start: toTime(15, 13), end: toTime(24, 0), period: Period.DONE }, 
+]; 
 
 export const AssemblySchedule: any[] = [
   { start: toTime(0, 0), end: toTime(7, 28), period: Period.NONE },
