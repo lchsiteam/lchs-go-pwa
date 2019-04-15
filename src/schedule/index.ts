@@ -51,6 +51,8 @@ export function getScheduleFromDay(month: number, day: number, year: number, wee
   
   if(date in special_dates) {
     shed = special_dates[date] 
+    
+    console.log(shed) 
   } else {
     switch(week_day) {
       case Day.SUNDAY: 
