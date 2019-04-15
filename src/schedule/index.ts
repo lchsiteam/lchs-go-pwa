@@ -30,7 +30,6 @@ export function getCurrentDate(): any {
 
 export const special_dates: any = {
   //month - day - year: schedule (something from the Schedule enum) 
-  '4 - 14 - 2019': Schedule.SPECIAL_BLOCK_EVEN, 
   '4 - 15 - 2019': Schedule.BLOCK_ODD, 
   '4 - 16 - 2019': Schedule.BLOCK_EVEN, 
   '4 - 17 - 2019': Schedule.SPECIAL_BLOCK_ODD, 
