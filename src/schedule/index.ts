@@ -29,6 +29,11 @@ export function getCurrentDate(): any {
 
 special_dates = {
   //month - day - year: schedule (something from the Schedule enum) 
+  '4 - 15 - 2019': Schedule.BLOCK_ODD, 
+  '4 - 16 - 2019': Schedule.BLOCK_EVEN, 
+  '4 - 17 - 2019': Schedule.SPECIAL_BLOCK_ODD, 
+  '4 - 18 - 2019': Schedule.SPECIAL_BLOCK_EVEN, 
+  '4 - 19 - 2019': Schedule.MINIMUM, 
 } 
 
 export function getScheduleFromDay(day: number): Schedule {
