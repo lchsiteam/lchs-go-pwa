@@ -98,7 +98,7 @@ export function getFullSchedule(schedule: Schedule): any {
 }
 
 export function getPeriod(time: number, schedule: Schedule): any {
-  fullSchedule = getFullSchedule(schedule) 
+  let fullSchedule = getFullSchedule(schedule) 
   
   return fullSchedule.find((p) => (p.start <= time && p.end > time)); 
   
