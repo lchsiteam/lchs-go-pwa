@@ -2,7 +2,7 @@
   <div class="bell-schedule-pg">
     <!-- Place the table in the Bell Schedule page for now -->
     <h3>Today: {{getCurrentScheduleName()}}</h3> 
-    <p>You are viewing the {{this.grade}}th grade schedule. To change grades, go to About -> Settings. </p> 
+    <p class="gradeMessage">You are viewing the {{this.grade}}th grade schedule. To change grades, go to About -> Settings. </p> 
     <!-- Please replace this! -->
     <div class="bell-schedule" v-if="getCurrentScheduleName() !== 'No schedule'">
       <div class="blsch-period-hd">
@@ -24,7 +24,7 @@
   </div>
 </template>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .bell-schedule {
   text-align: left;
 
@@ -54,7 +54,11 @@
   .blsch-period.selected {
     background: rgba(0, 0, 0, .4) !important;
     transform: scale(1.05);
-  }
+  } 
+} 
+
+.gradeMessage {
+  font-size: 15px; 
 }
 </style>
 
