@@ -4,7 +4,7 @@
 
 import { Day, Schedule, Period } from './enums'; 
 import { NoSchoolSchedule, RegularSchedule, BlockEvenSchedule, BlockOddSchedule, SpecialBlockOddSchedule, SpecialBlockEvenSchedule, 
-        AssemblySchedule, MinimumSchedule} from './schedules';
+        AssemblySchedule, MinimumSchedule } from './schedules';
 
 // Native Javascript
 export function getCurrentDate(): any {
@@ -17,19 +17,8 @@ export function getCurrentDate(): any {
   };
 }
 
-// Chad moment.js
-/* function getCurrentDate() {
-  const now = moment().tz('America/Los_Angeles')
-  return {
-    hrs: now.hours(),
-    mins: now.minutes(),
-    total_mins: now.minutes() + (now.hours() * 60),
-    day: now.day()
-  } 
-} */ 
-
 export const special_dates: any = {
-  //month - day - year: schedule (something from the Schedule enum) 
+  // month - day - year: schedule (something from the Schedule enum) 
   '4 - 15 - 2019': Schedule.BLOCK_ODD, 
   '4 - 16 - 2019': Schedule.BLOCK_EVEN, 
   '4 - 17 - 2019': Schedule.SPECIAL_BLOCK_ODD, 
@@ -109,29 +98,11 @@ export function getFullSchedule(schedule: Schedule): any {
 
 export function getPeriod(time: number, schedule: Schedule): any {
   let fullSchedule = getFullSchedule(schedule) 
-  
   return fullSchedule.find((p: any) => (p.start <= time && p.end > time)); 
-  
-  /* 
-  if (schedule == Schedule.NONE) {
-    return { start: 0, end: 1440, period: Period.DONE };
-  } else if (schedule == Schedule.REGULAR) {
-    return RegularSchedule.find((p) => (p.start <= time && p.end > time));
-  } else if (schedule == Schedule.BLOCK_ODD) {
-    return BlockOddSchedule.find((p) => (p.start <= time && p.end > time));
-  } else if (schedule == Schedule.BLOCK_EVEN) {
-    return BlockEvenSchedule.find((p) => (p.start <= time && p.end > time));
-  } else if (schedule == Schedule.ASSEMBLY) {
-    return AssemblySchedule.find((p) => (p.start <= time && p.end > time));
-  } // TODO: Add more schedules
-
-  return { start: 0, end: 1440, period: Period.DONE }; 
-  */ 
 }
 
-// const { period, end } = getPeriod(getCurrentDate().mins, getScheduleFromDay(getCurrentDate().day))
-
 // This works so far, not touching.
+// TODO: evaluate if needed
 export function printTime(time: number) {
   let shortMins, hours, finalString;
 

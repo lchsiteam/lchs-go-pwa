@@ -104,36 +104,20 @@ export default class Home extends Vue {
   }
 
   // Prevent duplication
+  // TODO: Consolidate schedule names into one place to follow DRY
+  // DRY = Don't Repeat Yourself (eg: prevent duplication)
   getCurrentScheduleName() {
-    switch(this.schedule) {
-      case Schedule.REGULAR: 
-        return 'regular schedule'; 
-        break; 
-      case Schedule.BLOCK_ODD: 
-        return 'block schedule (1, 3, 5) '; 
-        break; 
-      case Schedule.BLOCK_EVEN: 
-        return 'block schedule (2, 4, 6) '; 
-        break; 
-      case Schedule.SPECIAL_BLOCK_ODD: 
-        return 'block schedule (3, 1, 5) '; 
-        break; 
-      case Schedule.SPECIAL_BLOCK_EVEN: 
-        return 'block schedule (4, 2, 6) '; 
-        break; 
-      case Schedule.ASSEMBLY: 
-        return 'assembly schedule'; 
-        break; 
-      case Schedule.MINIMUM: 
-        return 'minimum schedule'; 
-        break; 
-      case Schedule.NONE: 
-        return 'No schedule'; 
-        break; 
-      default: 
-        return 'error'; 
-        break; 
-    } 
+    switch (this.schedule) {
+      case Schedule.REGULAR:            return 'regular schedule'; 
+      case Schedule.BLOCK_ODD:          return 'block schedule (1, 3, 5)'; 
+      case Schedule.BLOCK_EVEN:         return 'block schedule (2, 4, 6)'; 
+      case Schedule.SPECIAL_BLOCK_ODD:  return 'block schedule (3, 1, 5)'; 
+      case Schedule.SPECIAL_BLOCK_EVEN: return 'block schedule (4, 2, 6)'; 
+      case Schedule.ASSEMBLY:           return 'assembly schedule'; 
+      case Schedule.MINIMUM:            return 'minimum schedule'; 
+      case Schedule.NONE:               return 'no schedule';
+      default:                          return 'error'; 
+    }
   } 
 
   getTimeUntilNext() {
@@ -147,6 +131,7 @@ export default class Home extends Vue {
   getFullSchedule() {
     return getFullSchedule(this.schedule).filter(({period} : any) => {
       // Dirty solution for filtering schedule.
+      // TODO: Move this elsewhere.
       return [
         Period.PERIOD_0,
         Period.PERIOD_1,
