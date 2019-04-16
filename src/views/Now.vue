@@ -1,7 +1,7 @@
 <template>
   <div class="now">
     <h3>{{getGreeting()}} Today is {{getCurrentScheduleName()}}</h3> 
-    <p>You are viewing the {{this.grade}}th grade schedule. To change grades, go to About -> Settings. </p> 
+    <p class="gradeMessage">You are viewing the {{this.grade}}th grade schedule. To change grades, go to About -> Settings. </p> 
     <div class="grid-fmr">
       <div class="grid-fmr-helper">CURRENT PERIOD</div>
       <div class="grid-fmr-value">{{getCurrentPeriodName()}}</div>
@@ -285,5 +285,9 @@ export default class Home extends Vue {
 
 a {
   color: rgb(168, 230, 255);
+} 
+
+.gradeMessage {
+  font-size: 15px; 
 }
 </style>
