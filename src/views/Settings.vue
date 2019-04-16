@@ -3,14 +3,15 @@
     <h2>App Settings</h2>
     <div class="settings-rows">
       <div class='settings-row'> 
-        <div class='sr-head'> 
-          <b class='sr-title'>Grade</b> 
+        <div class='sr-head'>
+          <span class="sr-badge-new">NEW</span>
+          <b class='sr-title'>Grade Level</b> 
           <span class='sr-desc'>Change which grade is used for calculating schedules</span> 
         </div> 
         <div class='sr-option'>
-          <select v-model='grade' @change='updateGrade()'>
-            <option v-for='grade in allGrades'>{{grade}}</option> 
-          </select> 
+          <select v-model="grade" @change="updateGrade()">
+            <option v-for="grade in allGrades" :key="grade" :value="grade">{{grade}}th Grade</option> 
+          </select>
         </div> 
       </div> 
       <div class="settings-row">

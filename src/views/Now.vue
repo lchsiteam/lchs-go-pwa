@@ -27,7 +27,7 @@
     </div>
     <div class="grid-fmr grid-fmr-mini-click" @click="goToChangelog()" v-if="shouldShowUpdateLog()">
       <div class="grid-fmr-helper">UNREAD UPDATES</div>
-      <div class="grid-fmr-value">LCHS Go has a new settings page + Chrome extension! Tap/click here to read more.</div>
+      <div class="grid-fmr-value">7/8 Students! You can now use LCHS Go! Tap/click here to read more.</div>
     </div>
   </div>
 </template>
