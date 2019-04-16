@@ -1,6 +1,7 @@
 <template>
   <div class="now">
-    <h3>{{getGreeting()}} Today is {{getCurrentScheduleName()}}</h3>
+    <h3>{{getGreeting()}} Today is {{getCurrentScheduleName()}}</h3> 
+    <p>You are viewing the {{this.grade}}th grade schedule. To change grades, go to About -> Settings. </p> 
     <div class="grid-fmr">
       <div class="grid-fmr-helper">CURRENT PERIOD</div>
       <div class="grid-fmr-value">{{getCurrentPeriodName()}}</div>
@@ -34,7 +35,7 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
-import { DateTime } from 'luxon';
+import { DateTime, Duration } from 'luxon';
 
 import { printTime, getScheduleFromDay, getPeriod } from '@/schedule';
 import { Day, Schedule, Period, getPeriodName } from '@/schedule/enums';
@@ -45,14 +46,18 @@ import { Changelog } from '../changelog'
 export default class Home extends Vue {
   private minutes: number = 0
   private schedule: Schedule = Schedule.NONE
-  private currentPeriod = { start: 0, end: 1440, period: Period.NONE }
+  private grade = ''; 
+  private currentPeriod = Period.NONE; 
   private allLogs: any[] = []
 
   updateStats() {
-    const currentDate = DateTime.local().setZone("America/Los_Angeles")
+    const currentDate = DateTime.local().setZone("America/Los_Angeles").plus(Duration.fromMillis(-28800000)); 
     this.minutes = currentDate.minute + (currentDate.hour * 60)
-    this.schedule = getScheduleFromDay(currentDate.month, currentDate.day, currentDate.year, currentDate.weekday)
-    this.currentPeriod = getPeriod(this.minutes, this.schedule)
+    this.schedule = getScheduleFromDay(currentDate.month, currentDate.day, currentDate.year, currentDate.weekday) 
+
+    this.grade = this.$store.state.settings.grade; 
+
+    this.currentPeriod = getPeriod(this.minutes, this.schedule, this.grade); 
   }
 
   goToChangelog() {
