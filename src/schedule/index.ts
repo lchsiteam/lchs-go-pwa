@@ -3,8 +3,8 @@
 // Copyright (c) iTeam 2019
 
 import { Day, Schedule, Period } from './enums'; 
-import { NoSchoolSchedule, RegularSchedule, BlockEvenSchedule, BlockOddSchedule, SpecialBlockOddSchedule, SpecialBlockEvenSchedule, 
-        AssemblySchedule, MinimumSchedule } from './schedules';
+import { NoSchoolSchedule, RegularSchedule, BlockOddSchedule, BlockEvenSchedule, SpecialBlockOddSchedule, SpecialBlockEvenSchedule, 
+        AssemblySchedule, RegularSchedule78, BlockOddSchedule78, BlockEvenSchedule78, SpecialBlockOddSchedule78, SpecialBlockEvenSchedule78, AssemblySchedule7, AssemblySchedule8, MinimumSchedule } from './schedules';
 
 // Native Javascript
 export function getCurrentDate(): any {
@@ -63,29 +63,35 @@ export function toTime(hr: number, min: number) {
   return (hr * 60) + min;
 }
 
-export function getFullSchedule(schedule: Schedule): any {
+export function getFullSchedule(schedule: Schedule, grade: string): any {
   // TODO: Add more schedules
   switch(schedule) {
     case Schedule.NONE: 
       return NoSchoolSchedule; 
       break; 
     case Schedule.REGULAR: 
-      return RegularSchedule; 
+      return grade == '9-12' ? RegularSchedule : RegularSchedule78; 
       break; 
     case Schedule.BLOCK_ODD: 
-      return BlockOddSchedule; 
+      return grade == '9-12' ? BlockOddSchedule : BlockOddSchedule78; 
       break; 
     case Schedule.BLOCK_EVEN: 
-      return BlockEvenSchedule; 
+      return grade == '9-12' ? BlockEvenSchedule : BlockEvenSchedule78; 
       break; 
     case Schedule.SPECIAL_BLOCK_ODD: 
-      return SpecialBlockOddSchedule; 
+      return grade == '9-12' ? SpecialBlockOddSchedule : SpecialBlockOddSchedule78; 
       break; 
     case Schedule.SPECIAL_BLOCK_EVEN: 
-      return SpecialBlockEvenSchedule; 
+      return grade == '9-12' ? SpecialBlockEvenSchedule : SpecialBlockEvenSchedule78; 
       break; 
     case Schedule.ASSEMBLY: 
-      return AssemblySchedule; 
+      if(grade == '9-12') {
+        return AssemblySchedule; 
+      } else if(grade == '8') {
+        return AssemblySchedule8; 
+      } else {
+        return AssemblySchedule7; 
+      } 
       break; 
     case Schedule.MINIMUM: 
       return MinimumSchedule; 
@@ -96,8 +102,8 @@ export function getFullSchedule(schedule: Schedule): any {
   } 
 }
 
-export function getPeriod(time: number, schedule: Schedule): any {
-  let fullSchedule = getFullSchedule(schedule) 
+export function getPeriod(time: number, schedule: Schedule, grade: string): any {
+  let fullSchedule = getFullSchedule(schedule, grade); 
   return fullSchedule.find((p: any) => (p.start <= time && p.end > time)); 
 }
 

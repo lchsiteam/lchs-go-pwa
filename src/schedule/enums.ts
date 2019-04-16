@@ -47,9 +47,7 @@ enum Period {
   STEP_PASSING,
   HOMEROOM,
   HOMEROOM_PASSING,
-  ASSEMBLY,
-  ASSEMBLY_7TH,
-  ASSEMBLY_8TH,
+  ASSEMBLY, 
   PERIOD_4,
   PERIOD_4_PASSING,
   PERIOD_5,
@@ -71,12 +69,12 @@ export function getPeriodName(period: Period) {
   else if (period == Period.PERIOD_3_PASSING) { return 'Passing After Period 3'; }
   else if (period == Period.LUNCH) { return 'Lunch'; }
   else if (period == Period.LUNCH_PASSING) { return 'Passing After Lunch'; }
-  else if (period == Period.STEP_ODD) { return 'STEP (1-3-5)'; }
-  else if (period == Period.STEP_EVEN) { return 'STEP (2-4-6)'; }
+  else if (period == Period.STEP_ODD) { return 'STEP (odd)'; }
+  else if (period == Period.STEP_EVEN) { return 'STEP (even)'; }
   else if (period == Period.HOMEROOM) { return 'Homeroom'; }
   else if (period == Period.HOMEROOM_PASSING) { return 'Passing after Homeroom'; }
   else if (period == Period.STEP_PASSING) { return 'Passing After STEP'; }
-  else if (period == Period.ASSEMBLY) { return 'Assembly Period'; }
+  else if (period == Period.ASSEMBLY) { return 'Assembly Period'; } 
   else if (period == Period.PERIOD_4) { return 'Period 4'; }
   else if (period == Period.PERIOD_4_PASSING) { return 'Passing After Period 4'; }
   else if (period == Period.PERIOD_5) { return 'Period 5'; }
