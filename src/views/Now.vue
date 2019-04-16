@@ -4,19 +4,25 @@
     <p>You are viewing the {{this.grade}}th grade schedule. To change grades, go to About -> Settings. </p> 
     <div class="grid-fmr">
       <div class="grid-fmr-helper">CURRENT PERIOD</div>
-      <div class="grid-fmr-value">{{getCurrentPeriodName()}}</div>
+      <div class="grid-fmr-value">
+        <div>{{getCurrentPeriodName()}}</div>
+        <div class="cd-txt-h">
+          <b>{{getCertainTime(currentPeriod.start)}} - {{getCertainTime(currentPeriod.end)}}</b>
+        </div>
+      </div>
     </div>
-    <div class="grid-fmr">
+    <div class="grid-fmr" @click="useNextPeriodStartAsEnd = !useNextPeriodStartAsEnd" style="cursor: pointer;">
       <div class="grid-fmr-helper">REMAINING TIME</div>
       <div class="grid-fmr-value">
         <div>
           <span class="cd-num">{{getFormattedTimeUntilNext()}}</span>
           <span class="cd-txt">{{getUnitUntilNext()}} until {{getUntilNextName()}}</span>
         </div>
-        <div class="cd-txt-h">
-          <b>{{getCertainTime(currentPeriod.start)}} - {{getCertainTime(currentPeriod.end)}}</b>
-        </div>
         <div class="cd-txt-h">({{Math.round(getCurrentPercentage() * 100)}}% completed)</div>
+      </div>
+      <div class="grid-fmr-absmode">
+        <span v-if="useNextPeriodStartAsEnd">UNTIL NEXT</span>
+        <span v-else>PERIOD END</span>
       </div>
     </div>
     <div class="grid-fmr">
@@ -37,7 +43,7 @@
 import { Component, Vue } from 'vue-property-decorator';
 import { DateTime, Duration } from 'luxon';
 
-import { printTime, getScheduleFromDay, getPeriod } from '@/schedule';
+import { printTime, getScheduleFromDay, getPeriod, getUpcomingPeriod } from '@/schedule';
 import { Day, Schedule, Period, getPeriodName } from '@/schedule/enums';
 import { RegularSchedule, BlockEvenSchedule, BlockOddSchedule } from '@/schedule/schedules';
 import { Changelog } from '../changelog'
@@ -49,9 +55,10 @@ export default class Home extends Vue {
   private grade = ''; 
   private currentPeriod = { start: 0, end: 1440, period: Period.NONE }; 
   private allLogs: any[] = []
+  public useNextPeriodStartAsEnd = false    // TODO: Find a better variable name
 
   updateStats() {
-    const currentDate = DateTime.local().setZone("America/Los_Angeles"); 
+    const currentDate = DateTime.local().setZone("America/Los_Angeles");
     this.minutes = currentDate.minute + (currentDate.hour * 60)
     this.schedule = getScheduleFromDay(currentDate.month, currentDate.day, currentDate.year, currentDate.weekday) 
 
@@ -121,16 +128,29 @@ export default class Home extends Vue {
     } 
   }
 
+  getUpcomingPeriod() {
+    return getUpcomingPeriod(this.minutes, this.schedule, this.grade)
+  }
+
+  getPeriodEnd() {
+    return this.useNextPeriodStartAsEnd ? this.getUpcomingPeriod().start : this.currentPeriod.end
+  }
+
   getTimeUntilNext() {
-    return this.currentPeriod.end - this.minutes
+    return this.getPeriodEnd() - this.minutes
   }
 
   getUnitUntilNext() {
-    return this.currentPeriod.end - this.minutes >= 120 ? "hr." : "min."
+    return this.getPeriodEnd() - this.minutes >= 120 ? "hr." : "min."
   }
 
   getUntilNextName() {
-    return this.currentPeriod.period == Period.DONE ? "next day" : "next period"
+    if (!this.useNextPeriodStartAsEnd) {
+      return this.currentPeriod.period === Period.DONE ? "today ends" : "period ends"
+    } else {
+      const nextPeriod = this.getUpcomingPeriod()
+      return nextPeriod ? getPeriodName(nextPeriod.period) : "next day"
+    }
   }
 
   getCurrentTime24() {
@@ -175,7 +195,7 @@ export default class Home extends Vue {
   }
 
   getCurrentPercentage() {
-    return 1 - (this.getTimeUntilNext() / (this.currentPeriod.end - this.currentPeriod.start))
+    return 1 - (this.getTimeUntilNext() / (this.getPeriodEnd() - this.currentPeriod.start))
   }
 
   getCurrentTimeParts24() {
@@ -242,6 +262,25 @@ export default class Home extends Vue {
   padding: 6px 10px;
   background-color: rgba(0, 0, 0, .1);
   border: 1px solid rgba(0, 0, 0, .3);
+  position: relative;
+
+
+  .grid-fmr-absmode {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 6px 12px;
+    background-color: rgba(0, 0, 0, .1);
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 12px;
+    font-weight: 700;
+    transition: 150ms ease;
+  }
+
+  &:hover > .grid-fmr-absmode {
+    background-color: rgba(0, 0, 0, .15);
+    color: rgba(255, 255, 255, 0.9);
+  }
 }
 
 .grid-fmr-helper {

@@ -103,8 +103,29 @@ export function getFullSchedule(schedule: Schedule, grade: string): any {
 }
 
 export function getPeriod(time: number, schedule: Schedule, grade: string): any {
-  let fullSchedule = getFullSchedule(schedule, grade); 
+  const fullSchedule = getFullSchedule(schedule, grade); 
   return fullSchedule.find((p: any) => (p.start <= time && p.end > time)); 
+}
+
+const periodsFilter = [
+  Period.PERIOD_0,
+  Period.PERIOD_1,
+  Period.PERIOD_2,
+  Period.PERIOD_3,
+  Period.PERIOD_4,
+  Period.PERIOD_5,
+  Period.PERIOD_6,
+  Period.LUNCH,
+  Period.BREAK,
+  Period.STEP_ODD,
+  Period.STEP_EVEN,
+  Period.HOMEROOM,
+  Period.ASSEMBLY,
+]
+
+export function getUpcomingPeriod(time: number, schedule: Schedule, grade: string, pAllow = periodsFilter): any {
+  const fullSchedule = getFullSchedule(schedule, grade);
+  return fullSchedule.find((p: any) => (p.start > time && pAllow.indexOf(p.period) !== -1)); 
 }
 
 // This works so far, not touching.
