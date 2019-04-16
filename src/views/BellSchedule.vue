@@ -72,7 +72,7 @@ export default class Home extends Vue {
   private minutes: number = 0
   private schedule: Schedule = Schedule.NONE
   private grade = ''; 
-  private currentPeriod = Period.NONE; 
+  private currentPeriod = { start: 0, end: 1440, period: Period.NONE }; 
 
   updateStats() {
     const currentDate = DateTime.local().setZone("America/Los_Angeles"); 

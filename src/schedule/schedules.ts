@@ -153,7 +153,7 @@ export const BlockOddSchedule78: any[] = [
   { start: toTime(12, 48), end: toTime(13, 23), period: Period.HOMEROOM },
   { start: toTime(13, 23), end: toTime(13, 29), period: Period.HOMEROOM_PASSING },
   { start: toTime(13, 29), end: toTime(15, 13), period: Period.PERIOD_5 },
-  { start: toTime(15, 14), end: toTime(24, 0), period: Period.DONE },
+  { start: toTime(15, 13), end: toTime(24, 0), period: Period.DONE },
 ];
 
 export const BlockEvenSchedule78: any[] = [
@@ -169,7 +169,7 @@ export const BlockEvenSchedule78: any[] = [
   { start: toTime(12, 48), end: toTime(13, 23), period: Period.HOMEROOM },
   { start: toTime(13, 23), end: toTime(13, 29), period: Period.HOMEROOM_PASSING },
   { start: toTime(13, 29), end: toTime(15, 13), period: Period.PERIOD_6 },
-  { start: toTime(15, 14), end: toTime(24, 0), period: Period.DONE },
+  { start: toTime(15, 13), end: toTime(24, 0), period: Period.DONE },
 ]; 
 
 //special sbac 3, 1, 5, block for 7/8
@@ -186,7 +186,7 @@ export const SpecialBlockOddSchedule78: any[] = [
   { start: toTime(12, 48), end: toTime(13, 23), period: Period.HOMEROOM },
   { start: toTime(13, 23), end: toTime(13, 29), period: Period.HOMEROOM_PASSING },
   { start: toTime(13, 29), end: toTime(15, 13), period: Period.PERIOD_5 },
-  { start: toTime(15, 14), end: toTime(24, 0), period: Period.DONE },
+  { start: toTime(15, 13), end: toTime(24, 0), period: Period.DONE },
 ]; 
 
 //special sbac 4, 2, 6 block for 7/8
@@ -203,7 +203,7 @@ export const SpecialBlockEvenSchedule78: any[] = [
   { start: toTime(12, 48), end: toTime(13, 23), period: Period.HOMEROOM },
   { start: toTime(13, 23), end: toTime(13, 29), period: Period.HOMEROOM_PASSING },
   { start: toTime(13, 29), end: toTime(15, 13), period: Period.PERIOD_6 },
-  { start: toTime(15, 14), end: toTime(24, 0), period: Period.DONE },
+  { start: toTime(15, 13), end: toTime(24, 0), period: Period.DONE },
 ]; 
 
 export const AssemblySchedule7: any[] = [
@@ -224,7 +224,7 @@ export const AssemblySchedule7: any[] = [
   { start: toTime(13, 33), end: toTime(14, 21), period: Period.PERIOD_5 },
   { start: toTime(14, 21), end: toTime(14, 27), period: Period.PERIOD_5_PASSING },
   { start: toTime(14, 27), end: toTime(15, 15), period: Period.PERIOD_6 },
-  { start: toTime(15, 14), end: toTime(24, 0), period: Period.DONE },
+  { start: toTime(15, 15), end: toTime(24, 0), period: Period.DONE },
 ];
 
 export const AssemblySchedule8: any[] = [
@@ -245,7 +245,7 @@ export const AssemblySchedule8: any[] = [
   { start: toTime(13, 33), end: toTime(14, 21), period: Period.PERIOD_5 },
   { start: toTime(14, 21), end: toTime(14, 27), period: Period.PERIOD_5_PASSING },
   { start: toTime(14, 27), end: toTime(15, 15), period: Period.PERIOD_6 },
-  { start: toTime(15, 14), end: toTime(24, 0), period: Period.DONE },
+  { start: toTime(15, 15), end: toTime(24, 0), period: Period.DONE },
 ];
   
   export const MinimumSchedule: any[] = [
