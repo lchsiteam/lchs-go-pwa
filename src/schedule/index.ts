@@ -123,6 +123,22 @@ export function getFullSchedule(schedule: Schedule, grade: string): any {
       return NineTwelveSpecialBlockEvenScheduleFor78; 
       break; 
     case Schedule.ASSEMBLY: 
+      switch(grade) {
+        case '7': 
+          return AssemblySchedule7; 
+          break; 
+        case '8': 
+          return AssemblySchedule8; 
+          break; 
+        case '9-12': 
+          return AssemblySchedule; 
+          break; 
+        default: 
+          return AssemblySchedule; 
+          break; 
+      } 
+      
+      /* 
       if(grade == '9-12') {
         return AssemblySchedule; 
       } else if(grade == '8') {
@@ -130,6 +146,8 @@ export function getFullSchedule(schedule: Schedule, grade: string): any {
       } else {
         return AssemblySchedule7; 
       } 
+      */ 
+      
       break; 
     case Schedule.MINIMUM: 
       return MinimumSchedule; 
