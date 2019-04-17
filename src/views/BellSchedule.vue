@@ -4,7 +4,7 @@
     <h3>Today: {{getCurrentScheduleName()}}</h3> 
     <p class="gradeMessage">You are viewing the {{this.grade}}th grade schedule. To change grades, go to About -> Settings. </p> 
     <!-- Please replace this! -->
-    <div class="bell-schedule" v-if="getCurrentScheduleName() !== 'No schedule'">
+    <div class="bell-schedule" v-if="this.schedule != Schedule.NONE">
       <div class="blsch-period-hd">
         <div class="blsch-period-title">Period</div>
         <div class="blsch-period-start">Start</div>
