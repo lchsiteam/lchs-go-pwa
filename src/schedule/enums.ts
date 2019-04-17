@@ -10,9 +10,11 @@ enum Schedule {
   BLOCK_EVEN, 
   SPECIAL_BLOCK_ODD, 
   SPECIAL_BLOCK_EVEN, 
-  ASSEMBLY,
-  ASSEMBLY7,
-  ASSEMBLY8,
+  NINE_TWELVE_BLOCK_ODD_FOR_78, 
+  NINE_TWELVE_BLOCK_EVEN_FOR_78, 
+  NINE_TWELVE_SPECIAL_BLOCK_ODD_FOR_78, 
+  NINE_TWELVE_SPECIAL_BLOCK_EVEN_FOR_78, 
+  ASSEMBLY, 
   MINIMUM,
   NONE,
 }
@@ -52,7 +54,8 @@ enum Period {
   PERIOD_4_PASSING,
   PERIOD_5,
   PERIOD_5_PASSING,
-  PERIOD_6,
+  PERIOD_6, 
+  PERIOD_6_PASSING, 
   NONE,
   DONE,
 }
@@ -62,7 +65,8 @@ export function getPeriodName(period: Period) {
   else if (period == Period.PERIOD_0_PASSING) { return 'Passing After Period 0'; }
   else if (period == Period.PERIOD_1) { return 'Period 1'; }
   else if (period == Period.PERIOD_1_PASSING) { return 'Passing After Period 1'; }
-  else if (period == Period.PERIOD_2) { return 'Period 2'; }
+  else if (period == Period.PERIOD_2) { return 'Period 2'; } 
+  else if (period == Period.PERIOD_2_PASSING) { return 'Passing after Period 2'; }
   else if (period == Period.BREAK) { return 'Break'; }
   else if (period == Period.BREAK_PASSING) { return 'Passing After Break'; }
   else if (period == Period.PERIOD_3) { return 'Period 3'; }
@@ -79,10 +83,55 @@ export function getPeriodName(period: Period) {
   else if (period == Period.PERIOD_4_PASSING) { return 'Passing After Period 4'; }
   else if (period == Period.PERIOD_5) { return 'Period 5'; }
   else if (period == Period.PERIOD_5_PASSING) { return 'Passing After Period 5'; }
-  else if (period == Period.PERIOD_6) { return 'Period 6'; }
+  else if (period == Period.PERIOD_6) { return 'Period 6'; } 
+  else if (period == Period.PERIOD_6_PASSING) { return 'Passing after Period 6'; } 
   else if (period == Period.NONE) { return 'No School'; }
   else if (period == Period.DONE) { return 'No School'; }
   else { return '????'; }
-}
+} 
+
+export function getScheduleName(schedule: Schedule) {
+  switch(schedule) {
+    case Schedule.REGULAR: 
+      return 'regular schedule'; 
+      break; 
+    case Schedule.BLOCK_ODD: 
+      return 'block schedule (1, 3, 5)'; 
+      break; 
+    case Schedule.BLOCK_EVEN: 
+      return 'block schedule (2, 4, 6)'; 
+      break; 
+    case Schedule.SPECIAL_BLOCK_ODD: 
+      return 'block schedule (3, 1, 5)'; 
+      break; 
+    case Schedule.SPECIAL_BLOCK_EVEN: 
+      return 'block schedule (4, 2, 6)'; 
+      break; 
+    case Schedule.NINE_TWELVE_BLOCK_ODD_FOR_78: 
+      return 'high school block schedule (1, 3, 5)'; 
+      break; 
+    case Schedule.NINE_TWELVE_BLOCK_EVEN_FOR_78: 
+      return 'high school block schedule (2, 4, 6)'; 
+      break; 
+    case Schedule.NINE_TWELVE_SPECIAL_BLOCK_ODD_FOR_78: 
+      return 'high school block schedule (3, 1, 5)'; 
+      break; 
+    case Schedule.NINE_TWELVE_SPECIAL_BLOCK_EVEN_FOR_78: 
+      return 'high school block schedule (4, 2, 6)'; 
+      break; 
+    case Schedule.ASSEMBLY: 
+      return 'assembly schedule'; 
+      break; 
+    case Schedule.MINIMUM: 
+      return 'minimum schedule'; 
+      break; 
+    case Schedule.NONE: 
+      return 'free'; 
+      break; 
+    default: 
+      return 'error'; 
+      break; 
+  } 
+} 
 
 export { Schedule, Day, Period };

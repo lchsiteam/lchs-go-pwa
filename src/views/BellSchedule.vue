@@ -68,7 +68,7 @@ import { Component, Vue } from 'vue-property-decorator'
 import { DateTime, Duration } from 'luxon'
 
 import { printTime, getScheduleFromDay, getPeriod, getFullSchedule } from '@/schedule'
-import { Day, Schedule, Period, getPeriodName } from '@/schedule/enums'
+import { Day, Schedule, Period, getPeriodName, getScheduleName } from '@/schedule/enums'
 import { RegularSchedule, BlockEvenSchedule, BlockOddSchedule } from '@/schedule/schedules'
 
 @Component({})
@@ -81,10 +81,9 @@ export default class Home extends Vue {
   updateStats() {
     const currentDate = DateTime.local().setZone("America/Los_Angeles"); 
     this.minutes = currentDate.minute + (currentDate.hour * 60) 
-    this.schedule = getScheduleFromDay(currentDate.month, currentDate.day, currentDate.year, currentDate.weekday) 
 
     this.grade = this.$store.state.settings.grade; 
-
+    this.schedule = getScheduleFromDay(currentDate.month, currentDate.day, currentDate.year, currentDate.weekday, this.grade); 
     this.currentPeriod = getPeriod(this.minutes, this.schedule, this.grade); 
   }
 
@@ -116,6 +115,9 @@ export default class Home extends Vue {
   // TODO: Consolidate schedule names into one place to follow DRY
   // DRY = Don't Repeat Yourself (eg: prevent duplication)
   getCurrentScheduleName() {
+    return getScheduleName(this.schedule); 
+
+    /*
     switch (this.schedule) {
       case Schedule.REGULAR:            return 'regular schedule'; 
       case Schedule.BLOCK_ODD:          return 'block schedule (1, 3, 5)'; 
@@ -126,7 +128,8 @@ export default class Home extends Vue {
       case Schedule.MINIMUM:            return 'minimum schedule'; 
       case Schedule.NONE:               return 'no schedule';
       default:                          return 'error'; 
-    }
+    } 
+    */ 
   } 
 
   getTimeUntilNext() {

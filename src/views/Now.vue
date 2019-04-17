@@ -44,7 +44,7 @@ import { Component, Vue } from 'vue-property-decorator';
 import { DateTime, Duration } from 'luxon';
 
 import { printTime, getScheduleFromDay, getPeriod, getUpcomingPeriod } from '@/schedule';
-import { Day, Schedule, Period, getPeriodName } from '@/schedule/enums';
+import { Day, Schedule, Period, getPeriodName, getScheduleName } from '@/schedule/enums';
 import { RegularSchedule, BlockEvenSchedule, BlockOddSchedule } from '@/schedule/schedules';
 import { Changelog } from '../changelog'
 
@@ -59,11 +59,10 @@ export default class Home extends Vue {
 
   updateStats() {
     const currentDate = DateTime.local().setZone("America/Los_Angeles");
-    this.minutes = currentDate.minute + (currentDate.hour * 60)
-    this.schedule = getScheduleFromDay(currentDate.month, currentDate.day, currentDate.year, currentDate.weekday) 
+    this.minutes = currentDate.minute + (currentDate.hour * 60); 
 
     this.grade = this.$store.state.settings.grade; 
-
+    this.schedule = getScheduleFromDay(currentDate.month, currentDate.day, currentDate.year, currentDate.weekday, this.grade); 
     this.currentPeriod = getPeriod(this.minutes, this.schedule, this.grade); 
   }
 
@@ -97,21 +96,36 @@ export default class Home extends Vue {
   }
 
   getCurrentScheduleName() {
+    return getScheduleName(this.schedule); 
+
+    /*
     switch(this.schedule) {
       case Schedule.REGULAR: 
         return 'regular schedule'; 
         break; 
       case Schedule.BLOCK_ODD: 
-        return 'block schedule (1, 3, 5) '; 
+        return 'block schedule (1, 3, 5)'; 
         break; 
       case Schedule.BLOCK_EVEN: 
-        return 'block schedule (2, 4, 6) '; 
+        return 'block schedule (2, 4, 6)'; 
         break; 
       case Schedule.SPECIAL_BLOCK_ODD: 
-        return 'block schedule (3, 1, 5) '; 
+        return 'block schedule (3, 1, 5)'; 
         break; 
       case Schedule.SPECIAL_BLOCK_EVEN: 
-        return 'block schedule (4, 2, 6) '; 
+        return 'block schedule (4, 2, 6)'; 
+        break; 
+      case Schedule.912_BLOCK_ODD_FOR_78: 
+        return 'high school block schedule (1, 3, 5)'; 
+        break; 
+      case Schedule.912_BLOCK_EVEN_FOR_78: 
+        return 'high school block schedule (2, 4, 6)'; 
+        break; 
+      case Schedule.912_SPECIAL_BLOCK_ODD_FOR_78: 
+        return 'high school block schedule (3, 1, 5)'; 
+        break; 
+      case Schedule.912_SPECIAL_BLOCK_EVEN_FOR_78: 
+        return 'high school block schedule (4, 2, 6)'; 
         break; 
       case Schedule.ASSEMBLY: 
         return 'assembly schedule'; 
@@ -126,6 +140,7 @@ export default class Home extends Vue {
         return 'error'; 
         break; 
     } 
+    */ 
   }
 
   getUpcomingPeriod() {

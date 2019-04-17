@@ -4,7 +4,7 @@
 
 import { Day, Schedule, Period } from './enums'; 
 import { NoSchoolSchedule, RegularSchedule, BlockOddSchedule, BlockEvenSchedule, SpecialBlockOddSchedule, SpecialBlockEvenSchedule, 
-        AssemblySchedule, RegularSchedule78, BlockOddSchedule78, BlockEvenSchedule78, SpecialBlockOddSchedule78, SpecialBlockEvenSchedule78, AssemblySchedule7, AssemblySchedule8, MinimumSchedule } from './schedules';
+        AssemblySchedule, RegularSchedule78, BlockOddSchedule78, BlockEvenSchedule78, NineTwelveBlockOddScheduleFor78, NineTwelveBlockEvenScheduleFor78, NineTwelveSpecialBlockOddScheduleFor78, NineTwelveSpecialBlockEvenScheduleFor78, AssemblySchedule7, AssemblySchedule8, MinimumSchedule } from './schedules';
 
 // Native Javascript
 export function getCurrentDate(): any {
@@ -17,12 +17,8 @@ export function getCurrentDate(): any {
   };
 }
 
-export const special_dates: any = {
+export const school_special_dates: any = {
   // month - day - year: schedule (something from the Schedule enum) 
-  '4 - 15 - 2019': Schedule.BLOCK_ODD, 
-  '4 - 16 - 2019': Schedule.BLOCK_EVEN, 
-  '4 - 17 - 2019': Schedule.SPECIAL_BLOCK_ODD, 
-  '4 - 18 - 2019': Schedule.SPECIAL_BLOCK_EVEN, 
   '4 - 19 - 2019': Schedule.MINIMUM, 
   '4 - 23 - 2019': Schedule.BLOCK_EVEN, 
   '4 - 25 - 2019': Schedule.REGULAR, 
@@ -30,12 +26,40 @@ export const special_dates: any = {
   //no finals schedules yet
 }; 
 
-export function getScheduleFromDay(month: number, day: number, year: number, week_day: number): Schedule {
+export const seven_eight_special_dates: any = {
+  '4 - 16 - 2019': Schedule.NINE_TWELVE_BLOCK_EVEN_FOR_78, 
+  '4 - 17 - 2019': Schedule.NINE_TWELVE_SPECIAL_BLOCK_ODD_FOR_78, 
+  '4 - 18 - 2019': Schedule.NINE_TWELVE_SPECIAL_BLOCK_EVEN_FOR_78, 
+} 
+
+export const nine_twelve_special_dates: any = {
+  '4 - 16 - 2019': Schedule.BLOCK_EVEN, 
+  '4 - 17 - 2019': Schedule.SPECIAL_BLOCK_ODD, 
+  '4 - 18 - 2019': Schedule.SPECIAL_BLOCK_EVEN, 
+} 
+
+export function getScheduleFromDay(month: number, day: number, year: number, week_day: number, grade: string): Schedule {
   let shed = Schedule.NONE; 
   let date = `${month} - ${day} - ${year}`; 
-  
-  if(date in special_dates) {
-    shed = special_dates[date]; 
+  let grade_special_dates: any = {}; 
+
+  switch(grade) {
+    case '7': 
+    case '8': 
+      grade_special_dates = seven_eight_special_dates; 
+      break; 
+    case '9-12': 
+      grade_special_dates = nine_twelve_special_dates; 
+      break; 
+    default: 
+      grade_special_dates = {}; 
+      break; 
+  } 
+
+  if(date in grade_special_dates) {
+    shed = grade_special_dates[date]; 
+  } else if(date in school_special_dates) {
+    shed = school_special_dates[date]; 
   } else {
     switch(week_day) {
       case Day.SUNDAY: 
@@ -78,11 +102,25 @@ export function getFullSchedule(schedule: Schedule, grade: string): any {
     case Schedule.BLOCK_EVEN: 
       return grade == '9-12' ? BlockEvenSchedule : BlockEvenSchedule78; 
       break; 
+    //the following two are exception schedules for 9/12 only, hence why there's no ternary operator
     case Schedule.SPECIAL_BLOCK_ODD: 
-      return grade == '9-12' ? SpecialBlockOddSchedule : SpecialBlockOddSchedule78; 
+      return SpecialBlockOddSchedule; 
       break; 
     case Schedule.SPECIAL_BLOCK_EVEN: 
-      return grade == '9-12' ? SpecialBlockEvenSchedule : SpecialBlockEvenSchedule78; 
+      return SpecialBlockEvenSchedule; 
+      break; 
+    //the following four are exception schedules for 7/8 only, hence why there's no ternary operator
+    case Schedule.NINE_TWELVE_BLOCK_ODD_FOR_78: 
+      return NineTwelveBlockOddScheduleFor78; 
+      break; 
+    case Schedule.NINE_TWELVE_BLOCK_EVEN_FOR_78: 
+      return NineTwelveBlockEvenScheduleFor78; 
+      break; 
+    case Schedule.NINE_TWELVE_SPECIAL_BLOCK_ODD_FOR_78: 
+      return NineTwelveSpecialBlockOddScheduleFor78; 
+      break; 
+    case Schedule.NINE_TWELVE_SPECIAL_BLOCK_EVEN_FOR_78: 
+      return NineTwelveSpecialBlockEvenScheduleFor78; 
       break; 
     case Schedule.ASSEMBLY: 
       if(grade == '9-12') {
