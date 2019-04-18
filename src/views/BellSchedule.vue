@@ -69,7 +69,10 @@ import { DateTime, Duration } from 'luxon'
 
 import { printTime, getScheduleFromDay, getPeriod, getFullSchedule } from '@/schedule'
 import { Day, Schedule, Period, getPeriodName, getScheduleName } from '@/schedule/enums'
-import { RegularSchedule, BlockEvenSchedule, BlockOddSchedule } from '@/schedule/schedules'
+import { RegularSchedule, BlockEvenSchedule, BlockOddSchedule } from '@/schedule/schedules' 
+
+//testing purposes
+const plus_days = 0; 
 
 @Component({})
 export default class Home extends Vue {
@@ -79,7 +82,7 @@ export default class Home extends Vue {
   private currentPeriod = { start: 0, end: 1440, period: Period.NONE }; 
 
   updateStats() {
-    const currentDate = DateTime.local().setZone("America/Los_Angeles"); 
+    const currentDate = DateTime.local().setZone("America/Los_Angeles").plus(Duration.fromMillis(plus_days * 86400000)); 
     this.minutes = currentDate.minute + (currentDate.hour * 60) 
 
     this.grade = this.$store.state.settings.grade; 

@@ -1,6 +1,6 @@
 <template>
   <div class="now">
-    <h3>{{getGreeting()}} Today is {{getCurrentScheduleName()}}</h3> 
+    <h3>{{getGreeting()}}. Today is {{getCurrentScheduleName()}}. </h3> 
     <p class="gradeMessage">You are viewing the {{this.grade}}th grade schedule. To change grades, go to About -> Settings. </p> 
     <div class="grid-fmr">
       <div class="grid-fmr-helper">CURRENT PERIOD</div>
@@ -46,7 +46,10 @@ import { DateTime, Duration } from 'luxon';
 import { printTime, getScheduleFromDay, getPeriod, getUpcomingPeriod } from '@/schedule';
 import { Day, Schedule, Period, getPeriodName, getScheduleName } from '@/schedule/enums';
 import { RegularSchedule, BlockEvenSchedule, BlockOddSchedule } from '@/schedule/schedules';
-import { Changelog } from '../changelog'
+import { Changelog } from '../changelog' 
+
+//testing purposes
+const plus_days = 0; 
 
 @Component({})
 export default class Now extends Vue {
@@ -59,7 +62,7 @@ export default class Now extends Vue {
   public useNextPeriodStartAsEnd = false    // TODO: Find a better variable name
 
   updateStats() {
-    const currentDate = DateTime.local().setZone("America/Los_Angeles");
+    const currentDate = DateTime.local().setZone("America/Los_Angeles").plus(Duration.fromMillis(plus_days * 86400000)); 
     this.minutes = currentDate.minute + (currentDate.hour * 60); 
 
     this.currentDateTime = currentDate
@@ -76,14 +79,15 @@ export default class Now extends Vue {
   shouldShowUpdateLog() {
     return !this.$store.state.isExtension && 
       this.allLogs.map(l => l.id).filter(id => this.$store.state.changelog.readUpdates.indexOf(id) === -1).length > 0
-  }
+  } 
 
+  //Don't put the period (the punctuation mark one) here. It is supplied in the place where this function is called. 
   getGreeting() {
-    if (this.minutes <= 330) return "Good late evening." 
-    else if (this.minutes <= 720) return "Good morning." 
-    else if (this.minutes <= 1050) return "Good afternoon." 
-    else if (this.minutes <= 1440) return "Good evening." 
-    else return "Hello, student."
+    if (this.minutes <= 330) return "Good late evening" 
+    else if (this.minutes <= 720) return "Good morning" 
+    else if (this.minutes <= 1050) return "Good afternoon" 
+    else if (this.minutes <= 1440) return "Good evening" 
+    else return "Hello, student"
   }
 
   printTime(time: number) {

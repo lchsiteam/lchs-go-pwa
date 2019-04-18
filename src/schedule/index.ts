@@ -4,7 +4,7 @@
 
 import { Day, Schedule, Period } from './enums'; 
 import { NoSchoolSchedule, RegularSchedule, BlockOddSchedule, BlockEvenSchedule, SpecialBlockOddSchedule, SpecialBlockEvenSchedule, 
-        AssemblySchedule, RegularSchedule78, BlockOddSchedule78, BlockEvenSchedule78, NineTwelveBlockOddScheduleFor78, NineTwelveBlockEvenScheduleFor78, NineTwelveSpecialBlockOddScheduleFor78, NineTwelveSpecialBlockEvenScheduleFor78, AssemblySchedule7, AssemblySchedule8, MinimumSchedule } from './schedules';
+        AssemblySchedule, RegularSchedule78, BlockOddSchedule78, BlockEvenSchedule78, NineTwelveBlockOddScheduleFor78, NineTwelveBlockEvenScheduleFor78, NineTwelveSpecialBlockOddScheduleFor78, NineTwelveSpecialBlockEvenScheduleFor78, AssemblySchedule7, AssemblySchedule8, EarlyReleaseSchedule78, MinimumSchedule } from './schedules';
 
 // Native Javascript
 export function getCurrentDate(): any {
@@ -30,6 +30,10 @@ export const seven_eight_special_dates: any = {
   '4 - 16 - 2019': Schedule.NINE_TWELVE_BLOCK_EVEN_FOR_78, 
   '4 - 17 - 2019': Schedule.NINE_TWELVE_SPECIAL_BLOCK_ODD_FOR_78, 
   '4 - 18 - 2019': Schedule.NINE_TWELVE_SPECIAL_BLOCK_EVEN_FOR_78, 
+  '4 - 25 - 2019': Schedule.EARLY_RELEASE, 
+  '4 - 26 - 2019': Schedule.EARLY_RELEASE, 
+  '4 - 29 - 2019': Schedule.EARLY_RELEASE, 
+  '4 - 30 - 2019': Schedule.EARLY_RELEASE, 
 } 
 
 export const nine_twelve_special_dates: any = {
@@ -148,6 +152,10 @@ export function getFullSchedule(schedule: Schedule, grade: string): any {
       } 
       */ 
       
+      break; 
+    //Hypothetically, this would also be used to convey a 9-12 early release day. However, 9-12 doesn't seem to have any. 
+    case Schedule.EARLY_RELEASE: 
+      return EarlyReleaseSchedule78; 
       break; 
     case Schedule.MINIMUM: 
       return MinimumSchedule; 

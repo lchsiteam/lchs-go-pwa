@@ -14,6 +14,7 @@ enum Schedule {
   NINE_TWELVE_BLOCK_EVEN_FOR_78, 
   NINE_TWELVE_SPECIAL_BLOCK_ODD_FOR_78, 
   NINE_TWELVE_SPECIAL_BLOCK_EVEN_FOR_78, 
+  EARLY_RELEASE, 
   ASSEMBLY, 
   MINIMUM,
   NONE,
@@ -121,6 +122,9 @@ export function getScheduleName(schedule: Schedule) {
       break; 
     case Schedule.ASSEMBLY: 
       return 'assembly schedule'; 
+      break; 
+    case Schedule.EARLY_RELEASE: 
+      return 'early release schedule'; 
       break; 
     case Schedule.MINIMUM: 
       return 'minimum schedule'; 
