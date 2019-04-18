@@ -21,3 +21,5 @@ yarn-error.log*
 *.sw*
 
 .firebase/
+
+package-lock.json

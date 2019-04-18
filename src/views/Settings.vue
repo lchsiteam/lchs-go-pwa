@@ -4,7 +4,6 @@
     <div class="settings-rows">
       <div class="settings-row">
         <div class="sr-head">
-          <span class="sr-badge-new">NEW</span>
           <b class="sr-title">Time Display</b>
           <span class="sr-desc">Change between 12h and 24h time</span>
         </div>
@@ -20,7 +19,21 @@
       <div class="settings-row">
         <div class="sr-head">
           <span class="sr-badge-new">NEW</span>
-          <b class="sr-title">Enable Animations</b>
+          <b class="sr-title">Enable Theme Animations</b>
+          <span class="sr-desc">Toggle fancy color fading</span>
+        </div>
+        <div class="sr-option">
+          <div class="ex-selector">
+            <div class="ex-selector-option" @click="updateOptionBL('enableThemeAnimations', true)"
+              :class="{selected: this.$store.state.settings.enableThemeAnimations}">Enable</div>
+            <div class="ex-selector-option" @click="updateOptionBL('enableThemeAnimations', false)"
+              :class="{selected: !this.$store.state.settings.enableThemeAnimations}">Disable</div>
+          </div>
+        </div>
+      </div>
+      <div class="settings-row">
+        <div class="sr-head">
+          <b class="sr-title">Enable Blinking</b>
           <span class="sr-desc">Toggle fancy blinking animations</span>
         </div>
         <div class="sr-option">
@@ -34,7 +47,6 @@
       </div>
       <div class="settings-row">
         <div class="sr-head">
-          <span class="sr-badge-new">NEW</span>
           <b class="sr-title">Show Hidden Periods</b>
           <span class="sr-desc">Show passing periods and times outside school on bell schedule</span>
         </div>

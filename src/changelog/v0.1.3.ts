@@ -2,8 +2,19 @@ export default {
   title: "v0.1.3",
   entries: [
     {
-      id: 3,
+      id: 4,
       isNew: true,
+      isPublic: true,
+      title: "Special Day Schedules and Background Animations",
+      author: "Ryan King",
+      tagline: "Fading animation option for background!",
+      content: [
+        { type: "text", text: "Special days that do not follow the normal schedule such as Assembly days are now shown. In addition, you can make the background theme slowly change color with the click of a switch." },
+      ]
+    },
+    {
+      id: 3,
+      isNew: false,
       isPublic: false,
       title: "CRITICAL: Web Apps Won't Update On iOS",
       author: "Kevin Mo",
@@ -18,7 +29,7 @@ export default {
     },
     {
       id: 2,
-      isNew: true,
+      isNew: false,
       isPublic: true,
       title: "Chrome extension finally out!",
       author: "Kai Bredemann",
@@ -31,8 +42,8 @@ export default {
     },
     {
       id: 1,
-      isNew: true,
-      isPublic: true,
+      isNew: false,
+      isPublic: false,
       title: "Update: Introducing the Settings Page",
       author: "Kevin Mo",
       tagline: "The beginning of a new era for customization",

@@ -1,5 +1,5 @@
 <template>
-  <div id="app-container" :style="getCSSColorScheme()">
+  <div id="app-container" :style="getCSSColorScheme()" :class="{ toggleOff: !this.$store.state.settings.enableThemeAnimations }">
     <div id="app">
       <div id="nav">
         <router-link to="/home">Now</router-link>
@@ -42,6 +42,12 @@ export default class App extends Vue {
 
 <style lang="scss">
 
+@keyframes AnimatedTheme {
+  0% { background-position: 50% 0%; }
+  50% { background-position: 51% 100%; }
+  100% { background-position: 50% 0%; }
+}
+
 html, body, #app-container {
   height: auto;
   min-height: 100vh;
@@ -53,6 +59,13 @@ html, body, #app-container {
 
 #app-container {
   background: linear-gradient(to bottom, var(--gradient-top-color, #42b983), var(--gradient-bottom-color, #2f9768));
+  background-size: 200% 200%;
+  animation: AnimatedTheme 10s ease infinite;
+
+  &.toggleOff {
+    background-size: 100%;
+    animation: none;
+  }
 }
 
 #app {
