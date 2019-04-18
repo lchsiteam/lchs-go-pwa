@@ -71,6 +71,7 @@ import { printTime, getScheduleFromDay, getPeriod, getFullSchedule } from '@/sch
 import { Day, Schedule, Period, getPeriodName, getScheduleName } from '@/schedule/enums'
 import { RegularSchedule, BlockEvenSchedule, BlockOddSchedule } from '@/schedule/schedules' 
 
+//testing purposes
 const plus_days = 0; 
 
 @Component({})
