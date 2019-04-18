@@ -21,7 +21,7 @@
         <div class="cd-txt-h">({{Math.round(getCurrentPercentage() * 100)}}% completed)</div>
       </div>
       <div class="grid-fmr-absmode">
-        <span v-if="useNextPeriodStartAsEnd">UNTIL NEXT</span>
+        <span v-if="useNextPeriodStartAsEnd">UNTIL NEXT (BETA)</span>
         <span v-else>PERIOD END</span>
       </div>
     </div>
@@ -49,8 +49,9 @@ import { RegularSchedule, BlockEvenSchedule, BlockOddSchedule } from '@/schedule
 import { Changelog } from '../changelog'
 
 @Component({})
-export default class Home extends Vue {
+export default class Now extends Vue {
   private minutes: number = 0
+  private currentDateTime: any
   private schedule: Schedule = Schedule.NONE
   private grade = ''; 
   private currentPeriod = { start: 0, end: 1440, period: Period.NONE }; 
@@ -60,6 +61,8 @@ export default class Home extends Vue {
   updateStats() {
     const currentDate = DateTime.local().setZone("America/Los_Angeles");
     this.minutes = currentDate.minute + (currentDate.hour * 60); 
+
+    this.currentDateTime = currentDate
 
     this.grade = this.$store.state.settings.grade; 
     this.schedule = getScheduleFromDay(currentDate.month, currentDate.day, currentDate.year, currentDate.weekday, this.grade); 
@@ -97,58 +100,16 @@ export default class Home extends Vue {
 
   getCurrentScheduleName() {
     return getScheduleName(this.schedule); 
-
-    /*
-    switch(this.schedule) {
-      case Schedule.REGULAR: 
-        return 'regular schedule'; 
-        break; 
-      case Schedule.BLOCK_ODD: 
-        return 'block schedule (1, 3, 5)'; 
-        break; 
-      case Schedule.BLOCK_EVEN: 
-        return 'block schedule (2, 4, 6)'; 
-        break; 
-      case Schedule.SPECIAL_BLOCK_ODD: 
-        return 'block schedule (3, 1, 5)'; 
-        break; 
-      case Schedule.SPECIAL_BLOCK_EVEN: 
-        return 'block schedule (4, 2, 6)'; 
-        break; 
-      case Schedule.912_BLOCK_ODD_FOR_78: 
-        return 'high school block schedule (1, 3, 5)'; 
-        break; 
-      case Schedule.912_BLOCK_EVEN_FOR_78: 
-        return 'high school block schedule (2, 4, 6)'; 
-        break; 
-      case Schedule.912_SPECIAL_BLOCK_ODD_FOR_78: 
-        return 'high school block schedule (3, 1, 5)'; 
-        break; 
-      case Schedule.912_SPECIAL_BLOCK_EVEN_FOR_78: 
-        return 'high school block schedule (4, 2, 6)'; 
-        break; 
-      case Schedule.ASSEMBLY: 
-        return 'assembly schedule'; 
-        break; 
-      case Schedule.MINIMUM: 
-        return 'minimum schedule'; 
-        break; 
-      case Schedule.NONE: 
-        return 'free'; 
-        break; 
-      default: 
-        return 'error'; 
-        break; 
-    } 
-    */ 
   }
 
   getUpcomingPeriod() {
-    return getUpcomingPeriod(this.minutes, this.schedule, this.grade)
+    return getUpcomingPeriod(this.minutes, this.currentDateTime, this.schedule, this.grade)
   }
 
   getPeriodEnd() {
-    return this.useNextPeriodStartAsEnd ? this.getUpcomingPeriod().start : this.currentPeriod.end
+    if (this.useNextPeriodStartAsEnd) {
+      return this.getUpcomingPeriod().start + ((this.getUpcomingPeriod().daysSince || 0) * 1440)
+    } else { return this.currentPeriod.end }
   }
 
   getTimeUntilNext() {

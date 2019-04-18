@@ -179,9 +179,29 @@ const periodsFilter = [
   Period.ASSEMBLY,
 ]
 
-export function getUpcomingPeriod(time: number, schedule: Schedule, grade: string, pAllow = periodsFilter): any {
-  const fullSchedule = getFullSchedule(schedule, grade);
-  return fullSchedule.find((p: any) => (p.start > time && pAllow.indexOf(p.period) !== -1)); 
+export function getUpcomingPeriod(time: number, dateTime: any, schedule: Schedule, grade: string, pAllow = periodsFilter): any {
+  const fullSchedule = getFullSchedule(schedule, grade)
+  const result = fullSchedule.find((p: any) => (p.start > time && pAllow.indexOf(p.period) !== -1))
+  if (result) { return result }
+  else {
+    // Find the next period across next multiple days
+    // TODO: remove the limit
+    let daysSince = 1
+    while (daysSince < 100) {
+      const nextDate = dateTime.plus({ days: daysSince }).set({ hour: 0, minute: 0 })
+      const nextSchedule = getFullSchedule(
+        getScheduleFromDay(nextDate.month, nextDate.day, nextDate.year, nextDate.weekday, grade), grade
+      )
+      
+      const result = nextSchedule.find((p: any) => (p.start > 0 && pAllow.indexOf(p.period) !== -1))
+
+      if (result) { return {...result, daysSince } }
+      else { daysSince += 1 }
+    }
+
+    // TODO: replace Period.NONE with something else
+    return { start: 0, end: 1440, period: Period.NONE, daysSince: 100 }
+  }
 }
 
 // This works so far, not touching.
