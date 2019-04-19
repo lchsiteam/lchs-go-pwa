@@ -106,7 +106,7 @@ export default class Home extends Vue {
   colorThemeId = this.$store.state.settings.colorTheme
   grade = this.$store.state.settings.grade
   allThemes: any[] = [] 
-  allGrades: any[] = ['7', '8', '9-12'] 
+  allGrades = [7, 8, 9, 10, 11, 12]; 
 
   updateOptionBL(name: string, value: boolean): void {
     this.$store.commit('UPDATE_SETTING', { name, value })
