@@ -15,6 +15,13 @@ enum Schedule {
   NINE_TWELVE_SPECIAL_BLOCK_ODD_FOR_78, 
   NINE_TWELVE_SPECIAL_BLOCK_EVEN_FOR_78, 
   EARLY_RELEASE, 
+  PRE_FINALS_3264, 
+  PRE_FINALS_2156, 
+  PRE_FINALS_1235, 
+  ASSEMBLY_SHORT, 
+  FINALS_34, 
+  FINALS_15, 
+  FINALS_26, 
   ASSEMBLY, 
   MINIMUM,
   NONE,
@@ -119,6 +126,27 @@ export function getScheduleName(schedule: Schedule) {
       break; 
     case Schedule.NINE_TWELVE_SPECIAL_BLOCK_EVEN_FOR_78: 
       return 'high school block schedule (4, 2, 6)'; 
+      break; 
+    case Schedule.PRE_FINALS_3264: 
+      return 'pre-finals schedule (3, 2, 6, 4)'; 
+      break; 
+    case Schedule.PRE_FINALS_2156: 
+      return 'pre-finals schedule (2, 1, 5, 6)'; 
+      break; 
+    case Schedule.PRE_FINALS_1235: 
+      return 'pre-finals schedule (1, 2, 3, 5)'; 
+      break; 
+    case Schedule.ASSEMBLY_SHORT: 
+      return 'short assembly schedule'; 
+      break; 
+    case Schedule.FINALS_34: 
+      return 'finals schedule (3, 4)'; 
+      break; 
+    case Schedule.FINALS_15: 
+      return 'finals schedule (1, 5)'; 
+      break; 
+    case Schedule.FINALS_26: 
+      return 'finals schedule (2, 6)'; 
       break; 
     case Schedule.ASSEMBLY: 
       return 'assembly schedule'; 
