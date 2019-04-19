@@ -26,43 +26,43 @@ export const school_special_dates: any = {
   //no finals schedules yet
 }; 
 
-export const seven_eight_special_dates: any = {
-  '4 - 16 - 2019': Schedule.NINE_TWELVE_BLOCK_EVEN_FOR_78, 
-  '4 - 17 - 2019': Schedule.NINE_TWELVE_SPECIAL_BLOCK_ODD_FOR_78, 
-  '4 - 18 - 2019': Schedule.NINE_TWELVE_SPECIAL_BLOCK_EVEN_FOR_78, 
+export const ms_special_dates: any = {
   '4 - 25 - 2019': Schedule.EARLY_RELEASE, 
   '4 - 26 - 2019': Schedule.EARLY_RELEASE, 
   '4 - 29 - 2019': Schedule.EARLY_RELEASE, 
   '4 - 30 - 2019': Schedule.EARLY_RELEASE, 
 } 
 
-export const nine_twelve_special_dates: any = {
-  '4 - 16 - 2019': Schedule.BLOCK_EVEN, 
-  '4 - 17 - 2019': Schedule.SPECIAL_BLOCK_ODD, 
-  '4 - 18 - 2019': Schedule.SPECIAL_BLOCK_EVEN, 
+export const hs_special_dates: any = {
 } 
 
-export function getScheduleFromDay(month: number, day: number, year: number, week_day: number, grade: string): Schedule {
+export const grade_special_dates: any = {
+  7: {
+  }, 
+  8: {
+  }, 
+  9: {
+  }, 
+  10: {
+  }, 
+  11: {
+  }, 
+  12: {
+  }, 
+} 
+
+export function getScheduleFromDay(month: number, day: number, year: number, week_day: number, grade: number): Schedule {
   let shed = Schedule.NONE; 
-  let date = `${month} - ${day} - ${year}`; 
-  let grade_special_dates: any = {}; 
-
-  switch(grade) {
-    case '7': 
-    case '8': 
-      grade_special_dates = seven_eight_special_dates; 
-      break; 
-    case '9-12': 
-      grade_special_dates = nine_twelve_special_dates; 
-      break; 
-    default: 
-      grade_special_dates = {}; 
-      break; 
-  } 
-
-  if(date in grade_special_dates) {
-    shed = grade_special_dates[date]; 
-  } else if(date in school_special_dates) {
+  const high_schooler = 9 <= grade <= 12; 
+  const date = `${month} - ${day} - ${year}`; 
+  const own_grade_dates = grade_special_dates[grade]; 
+  const own_section_dates = high_schooler ? hs_special_dates : ms_special_dates; 
+  
+  if(date in own_grade_dates) {
+    shed = own_grade_dates[date]; 
+  else if(date in own_section_dates) {
+    shed = own_section_dates[date]; 
+  else if(date in school_special_dates) {
     shed = school_special_dates[date]; 
   } else {
     switch(week_day) {
