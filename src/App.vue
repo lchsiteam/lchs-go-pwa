@@ -28,12 +28,14 @@ export default class App extends Vue {
   }
 
   getCSSColorScheme() {
+    const currentColorScheme = this.getCurrentColorScheme()
+
     return {
-      '--gradient-top-color': this.getCurrentColorScheme().gradientTopColor,
-      '--gradient-bottom-color': this.getCurrentColorScheme().gradientBottomColor,
-      '--button-menu-color': this.getCurrentColorScheme().btnMenuColor,
-      '--button-submenu-color': this.getCurrentColorScheme().btnSubmenuColor,
-      '--button-hover-color': this.getCurrentColorScheme().btnHoverColor,
+      '--gradient-colors': currentColorScheme.gradientColors.join(', '),
+      '--button-menu-color': currentColorScheme.btnMenuColor,
+      '--button-submenu-color': currentColorScheme.btnSubmenuColor,
+      '--button-hover-color': currentColorScheme.btnHoverColor,
+      '--gradient-count': currentColorScheme.gradientColors.length,
     }
   }
 }
@@ -58,9 +60,9 @@ html, body, #app-container {
 }
 
 #app-container {
-  background: linear-gradient(to bottom, var(--gradient-top-color, #42b983), var(--gradient-bottom-color, #2f9768));
-  background-size: 200% 200%;
-  animation: AnimatedTheme 10s ease infinite;
+  background: linear-gradient(to bottom, var(--gradient-colors, "#42b983, #2f9768"));
+  background-size: 400% 400%;
+  animation: AnimatedTheme 20s ease infinite;
 
   &.toggleOff {
     background-size: 100%;
