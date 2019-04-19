@@ -206,7 +206,15 @@ export default class Now extends Vue {
     else {
       return this.getCurrentTimeParts24()
     }
-  }
+  } 
+  
+  created() {
+    let grade = this.$store.state.settings.grade; 
+    
+    if(!(grade in this.allGrades)) {
+      grade = this.allGrades[0]; 
+    
+    this.grade = grade; 
 
   mounted() {
     setInterval(this.updateStats, 5000)
