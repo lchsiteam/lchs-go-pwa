@@ -18,7 +18,7 @@ enum Schedule {
   PRE_FINALS_3264, 
   PRE_FINALS_2156, 
   PRE_FINALS_1345, 
-  ASSEMBLY_SHORT, 
+  FINAL_ASSEMBLY, 
   FINALS_34, 
   FINALS_15, 
   FINALS_26, 
@@ -136,8 +136,8 @@ export function getScheduleName(schedule: Schedule) {
     case Schedule.PRE_FINALS_1345: 
       return 'pre-finals schedule (1, 3, 4, 5)'; 
       break; 
-    case Schedule.ASSEMBLY_SHORT: 
-      return 'short assembly schedule'; 
+    case Schedule.FINAL_ASSEMBLY: 
+      return 'final assembly schedule'; 
       break; 
     case Schedule.FINALS_34: 
       return 'finals schedule (3, 4)'; 
