@@ -229,8 +229,8 @@ getDaysUntil() {
   };
   let closest = "13,1";
   for (var key in break_dates) {
-      if ((parseInt(break_dates[key]).substring(0,1) < month) || ((parseInt(break_dates[key]).substring(0,1) === month) && (parseInt(break_dates[key]).substring(2,1) <= day))) {
-          if((parseInt(break_dates[key]).substring(0,1) < parseInt(closest).substring(0,1)) || ((parseInt(break_dates[key]).substring(0,1) === parseInt(closest).substring(0,1)) && (parseInt(break_dates[key]).substring(2,1) < parseInt(closest).substring(2,1)))) {
+      if ((parseInt(break_dates[key].substring(0,1)) < month) || ((parseInt(break_dates[key]).substring(0,1) === month) && (parseInt(break_dates[key]).substring(2,1) <= day))) {
+          if((parseInt(break_dates[key].substring(0,1)) < parseInt(closest).substring(0,1)) || ((parseInt(break_dates[key]).substring(0,1) === parseInt(closest).substring(0,1)) && (parseInt(break_dates[key]).substring(2,1) < parseInt(closest).substring(2,1)))) {
               let closest = break_dates[key];
               let closest_name = key
           }
