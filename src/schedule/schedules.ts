@@ -331,7 +331,7 @@ export const EarlyReleaseSchedule78: any[] = [
   { start: toTime(12, 41), end: toTime(24, 0), period: Period.DONE }, 
 ]; 
 
-export const PreFinalsSchedule3264: any[] = [
+export const PreFinals3264Schedule: any[] = [
   { start: toTime(0, 0), end: toTime(8, 30), period: Period.NONE }, 
   { start: toTime(8, 30), end: toTime(10, 35), period: Period.PERIOD_3 }, 
   { start: toTime(10, 35), end: toTime(10, 45), period: Period.BREAK }, 
@@ -345,7 +345,7 @@ export const PreFinalsSchedule3264: any[] = [
   { start: toTime(15, 13), end: toTime(24, 0), period: Period.DONE }, 
 ]; 
 
-export const PreFinalsSchedule2156: any[] = [
+export const PreFinals2156Schedule: any[] = [
   { start: toTime(0, 0), end: toTime(8, 30), period: Period.NONE }, 
   { start: toTime(8, 30), end: toTime(10, 35), period: Period.PERIOD_2 }, 
   { start: toTime(10, 35), end: toTime(10, 45), period: Period.BREAK }, 
@@ -359,7 +359,7 @@ export const PreFinalsSchedule2156: any[] = [
   { start: toTime(15, 13), end: toTime(24, 0), period: Period.DONE }, 
 ]; 
 
-export const PreFinalsSchedule1345: any[] = [
+export const PreFinals1345Schedule: any[] = [
   { start: toTime(0, 0), end: toTime(8, 30), period: Period.NONE }, 
   { start: toTime(8, 30), end: toTime(10, 35), period: Period.PERIOD_1 }, 
   { start: toTime(10, 35), end: toTime(10, 45), period: Period.BREAK }, 
@@ -426,4 +426,4 @@ export const MinimumSchedule: any[] = [
   { start: toTime(12, 18), end: toTime(12, 25), period: Period.PERIOD_5_PASSING },
   { start: toTime(12, 25), end: toTime(13, 3), period: Period.PERIOD_6 },
   { start: toTime(13, 3), end: toTime(24, 0), period: Period.DONE },
-];
+]; 
