@@ -13,7 +13,7 @@
       </div>
       <div class="credit-item-container">
         <div class="credit-item">Kevin Mo (kmo19)</div>
-        <div class="credit-item-role">Refactor, Web App</div>
+        <div class="credit-item-role">Advisor, Web App, Refactor</div>
       </div>
       <div class="credit-item-container">
         <div class="credit-item">Devyn Oh (doh22)</div>
@@ -25,6 +25,14 @@
       </div>
       <div class="credit-item-container">
         <div class="credit-item">Ryan King (rking21)</div>
+        <div class="credit-item-role">Core Contributor</div>
+      </div>
+      <div class="credit-item-container">
+        <div class="credit-item">Bryan Wang (bwang21)</div>
+        <div class="credit-item-role">Core Contributor</div>
+      </div>
+      <div class="credit-item-container">
+        <div class="credit-item">Ean Jeffries (ejeffries22)</div>
         <div class="credit-item-role">Core Contributor</div>
       </div>
     </div>
