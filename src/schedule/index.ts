@@ -4,8 +4,8 @@
 
 import { Day, Schedule, Period } from './enums'; 
 import { NoSchoolSchedule, RegularSchedule, BlockOddSchedule, BlockEvenSchedule, SpecialBlockOddSchedule, SpecialBlockEvenSchedule, 
-        AssemblySchedule, RegularSchedule78, BlockOddSchedule78, BlockEvenSchedule78, NineTwelveBlockOddScheduleFor78, 
-        NineTwelveBlockEvenScheduleFor78, NineTwelveSpecialBlockOddScheduleFor78, NineTwelveSpecialBlockEvenScheduleFor78, 
+        AssemblySchedule, RegularSchedule78, BlockOddSchedule78, BlockEvenSchedule78, HSBlockOddScheduleFor78, 
+        HSBlockEvenScheduleFor78, HSSpecialBlockOddScheduleFor78, HSSpecialBlockEvenScheduleFor78, 
         AssemblySchedule7, AssemblySchedule8, EarlyReleaseSchedule78, MinimumSchedule, PreFinals3264Schedule, PreFinals2156Schedule, 
         PreFinals1345Schedule, FinalAssemblySchedule78, FinalAssemblySchedule12, Finals34Schedule, Finals15Schedule, 
         Finals26Schedule } from './schedules'; 
@@ -128,25 +128,17 @@ export function getFullSchedule(schedule: Schedule, grade: number): any {
     case Schedule.BLOCK_EVEN: 
       return high_schooler ? BlockEvenSchedule : BlockEvenSchedule78; 
       break; 
-    //the following two are exception schedules for 9/12 only, hence why there's no ternary operator
-    case Schedule.SPECIAL_BLOCK_ODD: 
-      return SpecialBlockOddSchedule; 
+    case Schedule.SBAC_BLOCK_ODD: 
+      return high_schooler ? BlockOddSchedule : HSBlockOddScheduleFor78; 
       break; 
-    case Schedule.SPECIAL_BLOCK_EVEN: 
-      return SpecialBlockEvenSchedule; 
+    case Schedule.SBAC_BLOCK_EVEN: 
+      return high_schooler ? BlockEvenSchedule : HSBlockEvenScheduleFor78; 
       break; 
-    //the following four are exception schedules for 7/8 only, hence why there's no ternary operator
-    case Schedule.NINE_TWELVE_BLOCK_ODD_FOR_78: 
-      return NineTwelveBlockOddScheduleFor78; 
+    case Schedule.SBAC_SPECIAL_BLOCK_ODD: 
+      return high_schooler ? SpecialBlockOddSchedule : HSSpecialBlockOddScheduleFor78; 
       break; 
-    case Schedule.NINE_TWELVE_BLOCK_EVEN_FOR_78: 
-      return NineTwelveBlockEvenScheduleFor78; 
-      break; 
-    case Schedule.NINE_TWELVE_SPECIAL_BLOCK_ODD_FOR_78: 
-      return NineTwelveSpecialBlockOddScheduleFor78; 
-      break; 
-    case Schedule.NINE_TWELVE_SPECIAL_BLOCK_EVEN_FOR_78: 
-      return NineTwelveSpecialBlockEvenScheduleFor78; 
+    case Schedule.SBAC_SPECIAL_BLOCK_EVEN: 
+      return high_schooler ? SpecialBlockEvenSchedule : HSSpecialBlockEvenScheduleFor78; 
       break; 
     //pre-finals schedules are the same across all grades, hence there are no switches/ternary operators
     case Schedule.PRE_FINALS_3264: 
@@ -188,7 +180,6 @@ export function getFullSchedule(schedule: Schedule, grade: number): any {
       */ 
       
       break; 
-    //Hypothetically, this would also be used to convey a 9-12 early release day. However, 9-12 doesn't seem to have any. 
     case Schedule.FINAL_ASSEMBLY: 
       if(grade == 12) {
         return FinalAssemblySchedule12; 
@@ -208,6 +199,8 @@ export function getFullSchedule(schedule: Schedule, grade: number): any {
     case Schedule.FINALS_26: 
       return Finals26Schedule; 
       break; 
+    //Hypothetically, this would also be used to convey a 9-12 early release day. However, 9-12 
+    //doesn't seem to have any. 
     case Schedule.EARLY_RELEASE: 
       return EarlyReleaseSchedule78; 
       break; 

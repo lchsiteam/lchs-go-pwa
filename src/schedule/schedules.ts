@@ -172,7 +172,7 @@ export const BlockEvenSchedule78: any[] = [
   { start: toTime(15, 13), end: toTime(24, 0), period: Period.DONE },
 ]; 
 
-export const NineTwelveBlockOddScheduleFor78: any[] = [
+export const HSBlockOddScheduleFor78: any[] = [
   { start: toTime(0, 0), end: toTime(7, 28), period: Period.NONE },
   { start: toTime(7, 28), end: toTime(8, 24), period: Period.PERIOD_0 },
   { start: toTime(8, 24), end: toTime(8, 30), period: Period.PERIOD_0_PASSING },
@@ -188,7 +188,7 @@ export const NineTwelveBlockOddScheduleFor78: any[] = [
   { start: toTime(15, 13), end: toTime(24, 0), period: Period.DONE },
 ];
 
-export const NineTwelveBlockEvenScheduleFor78: any[] = [
+export const HSBlockEvenScheduleFor78: any[] = [
   { start: toTime(0, 0), end: toTime(7, 28), period: Period.NONE },
   { start: toTime(7, 28), end: toTime(8, 24), period: Period.PERIOD_0 },
   { start: toTime(8, 24), end: toTime(8, 30), period: Period.PERIOD_0_PASSING },
@@ -205,7 +205,7 @@ export const NineTwelveBlockEvenScheduleFor78: any[] = [
 ]; 
 
 //special sbac 3, 1, 5 block for 7/8
-export const NineTwelveSpecialBlockOddScheduleFor78: any[] = [
+export const HSSpecialBlockOddScheduleFor78: any[] = [
   { start: toTime(0, 0), end: toTime(7, 28), period: Period.NONE },
   { start: toTime(7, 28), end: toTime(8, 24), period: Period.PERIOD_0 },
   { start: toTime(8, 24), end: toTime(8, 30), period: Period.PERIOD_0_PASSING },
@@ -222,7 +222,7 @@ export const NineTwelveSpecialBlockOddScheduleFor78: any[] = [
 ]; 
 
 //special sbac 4, 2, 6 block for 7/8
-export const NineTwelveSpecialBlockEvenScheduleFor78: any[] = [
+export const HSSpecialBlockEvenScheduleFor78: any[] = [
   { start: toTime(0, 0), end: toTime(7, 28), period: Period.NONE },
   { start: toTime(7, 28), end: toTime(8, 24), period: Period.PERIOD_0 },
   { start: toTime(8, 24), end: toTime(8, 30), period: Period.PERIOD_0_PASSING },

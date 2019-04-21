@@ -8,12 +8,10 @@ enum Schedule {
   REGULAR,
   BLOCK_ODD,
   BLOCK_EVEN, 
-  SPECIAL_BLOCK_ODD, 
-  SPECIAL_BLOCK_EVEN, 
-  NINE_TWELVE_BLOCK_ODD_FOR_78, 
-  NINE_TWELVE_BLOCK_EVEN_FOR_78, 
-  NINE_TWELVE_SPECIAL_BLOCK_ODD_FOR_78, 
-  NINE_TWELVE_SPECIAL_BLOCK_EVEN_FOR_78, 
+  SBAC_BLOCK_ODD, 
+  SBAC_BLOCK_EVEN, 
+  SBAC_SPECIAL_BLOCK_ODD, 
+  SBAC_SPECIAL_BLOCK_EVEN, 
   EARLY_RELEASE, 
   PRE_FINALS_3264, 
   PRE_FINALS_2156, 
@@ -109,23 +107,17 @@ export function getScheduleName(schedule: Schedule) {
     case Schedule.BLOCK_EVEN: 
       return 'block schedule (2, 4, 6)'; 
       break; 
-    case Schedule.SPECIAL_BLOCK_ODD: 
-      return 'block schedule (3, 1, 5)'; 
+    case Schedule.SBAC_BLOCK_ODD: 
+      return 'SBAC block schedule (1, 3, 5)'; 
       break; 
-    case Schedule.SPECIAL_BLOCK_EVEN: 
-      return 'block schedule (4, 2, 6)'; 
+    case Schedule.SBAC_BLOCK_EVEN: 
+      return 'SBAC block schedule (2, 4, 6)'; 
       break; 
-    case Schedule.NINE_TWELVE_BLOCK_ODD_FOR_78: 
-      return 'high school block schedule (1, 3, 5)'; 
+    case Schedule.SBAC_SPECIAL_BLOCK_ODD: 
+      return 'SBAC block schedule (3, 1, 5)'; 
       break; 
-    case Schedule.NINE_TWELVE_BLOCK_EVEN_FOR_78: 
-      return 'high school block schedule (2, 4, 6)'; 
-      break; 
-    case Schedule.NINE_TWELVE_SPECIAL_BLOCK_ODD_FOR_78: 
-      return 'high school block schedule (3, 1, 5)'; 
-      break; 
-    case Schedule.NINE_TWELVE_SPECIAL_BLOCK_EVEN_FOR_78: 
-      return 'high school block schedule (4, 2, 6)'; 
+    case Schedule.SBAC_SPECIAL_BLOCK_EVEN: 
+      return 'SBAC block schedule (4, 2, 6)'; 
       break; 
     case Schedule.PRE_FINALS_3264: 
       return 'pre-finals schedule (3, 2, 6, 4)'; 
