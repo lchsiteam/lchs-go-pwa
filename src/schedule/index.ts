@@ -132,6 +132,16 @@ export function getFullSchedule(schedule: Schedule, grade: number): any {
     case Schedule.NINE_TWELVE_SPECIAL_BLOCK_EVEN_FOR_78: 
       return NineTwelveSpecialBlockEvenScheduleFor78; 
       break; 
+    //pre-finals schedules are the same across all grades, hence there are no switches/ternary operators
+    case Schedule.PRE_FINALS_3264: 
+      return PreFinals3264Schedule; 
+      break; 
+    case Schedule.PRE_FINALS_2156: 
+      return PreFinals2156Schedule; 
+      break; 
+    case Schedule.PRE_FINALS_1345: 
+      return PreFinals1345Schedule; 
+      break; 
     case Schedule.ASSEMBLY: 
       switch(grade) {
         case 7: 
@@ -163,6 +173,25 @@ export function getFullSchedule(schedule: Schedule, grade: number): any {
       
       break; 
     //Hypothetically, this would also be used to convey a 9-12 early release day. However, 9-12 doesn't seem to have any. 
+    case Schedule.FINAL_ASSEMBLY: 
+      if(grade == 12) {
+        return FinalAssemblySchedule12; 
+      } else if(high_schooler) {
+        //just a normal assembly schedule
+        return AssemblySchedule; 
+      } else {
+        return AssemblySchedule78; 
+      } 
+      break; 
+    case Schedule.FINALS_34: 
+      return Finals34Schedule; 
+      break; 
+    case Schedule.FINALS_15: 
+      return Finals15Schedule; 
+      break; 
+    case Schedule.FINALS_26: 
+      return Finals26Schedule; 
+      break; 
     case Schedule.EARLY_RELEASE: 
       return EarlyReleaseSchedule78; 
       break; 
