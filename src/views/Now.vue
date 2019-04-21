@@ -225,6 +225,7 @@ export default class Now extends Vue {
       
       this.changeGrade(grade); 
     } 
+    //note that this didn't make any assignments to this.grade. That's because the assignments are made in this.updateStats. 
     
     setInterval(this.updateStats, 5000)
     this.updateStats()
