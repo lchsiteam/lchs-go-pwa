@@ -27,6 +27,13 @@ export const school_special_dates: any = {
   '4 - 23 - 2019': Schedule.BLOCK_EVEN, 
   '4 - 25 - 2019': Schedule.REGULAR, 
   '5 - 27 - 2019': Schedule.NONE, 
+  '5 - 28 - 2019': Schedule.PRE_FINALS_3264, 
+  '5 - 29 - 2019': Schedule.PRE_FINALS_2156, 
+  '5 - 30 - 2019': Schedule.PRE_FINALS_1345, 
+  '5 - 31 - 2019': Schedule.FINAL_ASSEMBLY, 
+  '6 - 3 - 2019': Schedule.FINALS_34, 
+  '6 - 4 - 2019': Schedule.FINALS_15, 
+  '6 - 5 - 2019': Schedule.FINALS_26, 
   //no finals schedules yet
 }; 
 
@@ -44,6 +51,8 @@ export const grade_special_dates: any = {
   7: {
   }, 
   8: {
+    '6 - 4 - 2019': Schedule.NONE, 
+    '6 - 5 - 2019': Schedule.NONE, 
   }, 
   9: {
   }, 
@@ -52,6 +61,9 @@ export const grade_special_dates: any = {
   11: {
   }, 
   12: {
+    '6 - 3 - 2019': Schedule.NONE, 
+    '6 - 4 - 2019': Schedule.NONE, 
+    '6 - 5 - 2019': Schedule.NONE, 
   }, 
 } 
 
