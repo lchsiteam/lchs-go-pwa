@@ -122,13 +122,13 @@ export default class Home extends Vue {
 
   mounted() {
     //this part is to prevent invalid grade values
-    let grade = this.$store.state.settings.grade; 
+    this.grade = this.$store.state.settings.grade; 
     
-    if(!(grade in allGrades)) {
-      grade = allGrades[0]; 
-    } 
+    if(allGrades.indexOf(this.grade) == -1) {
+      this.grade = allGrades[0]; 
+      
+      this.updateGrade(); 
     
-    this.grade = grade; 
     this.allThemes = Themes
   }
 }
