@@ -427,3 +427,30 @@ export const MinimumSchedule: any[] = [
   { start: toTime(12, 25), end: toTime(13, 3), period: Period.PERIOD_6 },
   { start: toTime(13, 3), end: toTime(24, 0), period: Period.DONE },
 ]; 
+
+export const Finals34Schedule: any[] = [
+  { start: toTime(0, 0), end: toTime(8, 30), period: Period.NONE }, 
+  { start: toTime(8, 30), end: toTime(10, 35), period: Period.PERIOD_3 }, 
+  { start: toTime(10, 35), end: toTime(10, 55), period: Period.BREAK }, 
+  { start: toTime(10, 55), end: toTime(11, 0), period: Period.BREAK_PASSING }, 
+  { start: toTime(11, 0), end: toTime(1, 5), period: Period.PERIOD_4 }, 
+  { start: toTime(1, 5), end: toTime(24, 0), period: Period.DONE }, 
+]; 
+
+export const Finals15Schedule: any[] = [
+  { start: toTime(0, 0), end: toTime(8, 30), period: Period.NONE }, 
+  { start: toTime(8, 30), end: toTime(10, 35), period: Period.PERIOD_1 }, 
+  { start: toTime(10, 35), end: toTime(10, 55), period: Period.BREAK }, 
+  { start: toTime(10, 55), end: toTime(11, 0), period: Period.BREAK_PASSING }, 
+  { start: toTime(11, 0), end: toTime(1, 5), period: Period.PERIOD_5 }, 
+  { start: toTime(1, 5), end: toTime(24, 0), period: Period.DONE }, 
+]; 
+
+export const Finals26Schedule: any[] = [
+  { start: toTime(0, 0), end: toTime(8, 30), period: Period.NONE }, 
+  { start: toTime(8, 30), end: toTime(10, 35), period: Period.PERIOD_2 }, 
+  { start: toTime(10, 35), end: toTime(10, 55), period: Period.BREAK }, 
+  { start: toTime(10, 55), end: toTime(11, 0), period: Period.BREAK_PASSING }, 
+  { start: toTime(11, 0), end: toTime(1, 5), period: Period.PERIOD_6 }, 
+  { start: toTime(1, 5), end: toTime(24, 0), period: Period.DONE }, 
+]; 
