@@ -128,6 +128,7 @@ export default class Home extends Vue {
       this.grade = allGrades[0]; 
       
       this.updateGrade(); 
+    } 
     
     this.allThemes = Themes
   }
