@@ -4,7 +4,11 @@
 
 import { Day, Schedule, Period } from './enums'; 
 import { NoSchoolSchedule, RegularSchedule, BlockOddSchedule, BlockEvenSchedule, SpecialBlockOddSchedule, SpecialBlockEvenSchedule, 
-        AssemblySchedule, RegularSchedule78, BlockOddSchedule78, BlockEvenSchedule78, NineTwelveBlockOddScheduleFor78, NineTwelveBlockEvenScheduleFor78, NineTwelveSpecialBlockOddScheduleFor78, NineTwelveSpecialBlockEvenScheduleFor78, AssemblySchedule7, AssemblySchedule8, EarlyReleaseSchedule78, MinimumSchedule } from './schedules';
+        AssemblySchedule, RegularSchedule78, BlockOddSchedule78, BlockEvenSchedule78, NineTwelveBlockOddScheduleFor78, 
+        NineTwelveBlockEvenScheduleFor78, NineTwelveSpecialBlockOddScheduleFor78, NineTwelveSpecialBlockEvenScheduleFor78, 
+        AssemblySchedule7, AssemblySchedule8, EarlyReleaseSchedule78, MinimumSchedule, PreFinals3264Schedule, PreFinals2156Schedule, 
+        PreFinals1345Schedule, FinalAssemblySchedule78, FinalAssemblySchedule12, Finals34Schedule, Finals15Schedule, 
+        Finals26Schedule } from './schedules';
 
 // Native Javascript
 export function getCurrentDate(): any {
