@@ -43,7 +43,7 @@
 import { Component, Vue } from 'vue-property-decorator';
 import { DateTime, Duration } from 'luxon';
 
-import { printTime, getScheduleFromDay, getPeriod, getUpcomingPeriod } from '@/schedule';
+import { printTime, getScheduleFromDay, getPeriod, getUpcomingPeriod, allGrades } from '@/schedule';
 import { Day, Schedule, Period, getPeriodName, getScheduleName } from '@/schedule/enums';
 import { RegularSchedule, BlockEvenSchedule, BlockOddSchedule } from '@/schedule/schedules';
 import { Changelog } from '../changelog' 
@@ -55,8 +55,8 @@ const plus_days = 0;
 export default class Now extends Vue {
   private minutes: number = 0
   private currentDateTime: any
-  private schedule: Schedule = Schedule.NONE
-  private grade = ''; 
+  private schedule: Schedule = Schedule.NONE; 
+  private grade = allGrades[0]; 
   private currentPeriod = { start: 0, end: 1440, period: Period.NONE }; 
   private allLogs: any[] = []
   public useNextPeriodStartAsEnd = false    // TODO: Find a better variable name
@@ -208,15 +208,24 @@ export default class Now extends Vue {
     }
   } 
   
-  created() {
-    let grade = this.$store.state.settings.grade; 
-    
-    if(!(grade in this.allGrades)) {
-      grade = this.allGrades[0]; 
-    
-    this.grade = grade; 
+  updateOptionBL(name: string, value: boolean): void {
+    this.$store.commit('UPDATE_SETTING', { name, value }); 
+  } 
+  
+  changeGrade(grade) {
+    this.updateOptionBL('grade', grade); 
+  } 
 
   mounted() {
+    //correct invalid grade settings if any
+    let grade = this.$store.state.settings.grade; 
+    
+    if(allGrades.indexOf(grade) == -1) {
+      grade = this.allGrades[0]; 
+      
+      this.changeGrade(grade); 
+    } 
+    
     setInterval(this.updateStats, 5000)
     this.updateStats()
 
