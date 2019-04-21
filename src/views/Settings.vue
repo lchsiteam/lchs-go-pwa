@@ -98,15 +98,15 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
-import { Themes } from '../themes';
+import { Themes } from '../themes'; 
+import { allGrades } from '@/schedules'; 
 
 @Component({})
 export default class Home extends Vue {
   public appVersion = `v${process.env.VUE_APP_VERSION} (b${process.env.VUE_APP_COMMIT_COUNT.trim()}#${process.env.VUE_APP_COMMIT_SHASH.trim()})`
   colorThemeId = this.$store.state.settings.colorTheme
-  grade = this.$store.state.settings.grade
-  allThemes: any[] = [] 
-  allGrades = [7, 8, 9, 10, 11, 12]; 
+  grade = allGrades[0]; 
+  allThemes: any[] = []; 
 
   updateOptionBL(name: string, value: boolean): void {
     this.$store.commit('UPDATE_SETTING', { name, value })
@@ -121,6 +121,14 @@ export default class Home extends Vue {
   } 
 
   mounted() {
+    //this part is to prevent invalid grade values
+    let grade = this.$store.state.settings.grade; 
+    
+    if(!(grade in allGrades)) {
+      grade = allGrades[0]; 
+    } 
+    
+    this.grade = grade; 
     this.allThemes = Themes
   }
 }
