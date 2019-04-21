@@ -91,20 +91,22 @@ export function toTime(hr: number, min: number) {
   return (hr * 60) + min;
 }
 
-export function getFullSchedule(schedule: Schedule, grade: string): any {
+export function getFullSchedule(schedule: Schedule, grade: number): any {
+  const high_schooler = 9 <= grade <= 12; 
+  
   // TODO: Add more schedules
   switch(schedule) {
     case Schedule.NONE: 
       return NoSchoolSchedule; 
       break; 
     case Schedule.REGULAR: 
-      return grade == '9-12' ? RegularSchedule : RegularSchedule78; 
+      return high_schooler ? RegularSchedule : RegularSchedule78; 
       break; 
     case Schedule.BLOCK_ODD: 
-      return grade == '9-12' ? BlockOddSchedule : BlockOddSchedule78; 
+      return high_schooler ? BlockOddSchedule : BlockOddSchedule78; 
       break; 
     case Schedule.BLOCK_EVEN: 
-      return grade == '9-12' ? BlockEvenSchedule : BlockEvenSchedule78; 
+      return high_schooler ? BlockEvenSchedule : BlockEvenSchedule78; 
       break; 
     //the following two are exception schedules for 9/12 only, hence why there's no ternary operator
     case Schedule.SPECIAL_BLOCK_ODD: 
@@ -128,13 +130,16 @@ export function getFullSchedule(schedule: Schedule, grade: string): any {
       break; 
     case Schedule.ASSEMBLY: 
       switch(grade) {
-        case '7': 
+        case 7: 
           return AssemblySchedule7; 
           break; 
-        case '8': 
+        case 8: 
           return AssemblySchedule8; 
           break; 
-        case '9-12': 
+        case 9: 
+        case 10: 
+        case 11: 
+        case 12: 
           return AssemblySchedule; 
           break; 
         default: 
@@ -166,7 +171,7 @@ export function getFullSchedule(schedule: Schedule, grade: string): any {
   } 
 }
 
-export function getPeriod(time: number, schedule: Schedule, grade: string): any {
+export function getPeriod(time: number, schedule: Schedule, grade: number): any {
   const fullSchedule = getFullSchedule(schedule, grade); 
   return fullSchedule.find((p: any) => (p.start <= time && p.end > time)); 
 }
@@ -187,7 +192,7 @@ const periodsFilter = [
   Period.ASSEMBLY,
 ]
 
-export function getUpcomingPeriod(time: number, dateTime: any, schedule: Schedule, grade: string, pAllow = periodsFilter): any {
+export function getUpcomingPeriod(time: number, dateTime: any, schedule: Schedule, grade: number, pAllow = periodsFilter): any {
   const fullSchedule = getFullSchedule(schedule, grade)
   const result = fullSchedule.find((p: any) => (p.start > time && pAllow.indexOf(p.period) !== -1))
   if (result) { return result }
@@ -195,7 +200,7 @@ export function getUpcomingPeriod(time: number, dateTime: any, schedule: Schedul
     // Find the next period across next multiple days
     // TODO: remove the limit
     let daysSince = 1
-    while (daysSince < 100) {
+    while (daysSince < 1000) {
       const nextDate = dateTime.plus({ days: daysSince }).set({ hour: 0, minute: 0 })
       const nextSchedule = getFullSchedule(
         getScheduleFromDay(nextDate.month, nextDate.day, nextDate.year, nextDate.weekday, grade), grade
@@ -208,7 +213,7 @@ export function getUpcomingPeriod(time: number, dateTime: any, schedule: Schedul
     }
 
     // TODO: replace Period.NONE with something else
-    return { start: 0, end: 1440, period: Period.NONE, daysSince: 100 }
+    return { start: 0, end: 1440, period: Period.NONE, daysSince: daysSince }; 
   }
 }
 
