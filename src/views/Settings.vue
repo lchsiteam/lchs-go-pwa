@@ -99,16 +99,17 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
 import { Themes } from '../themes'; 
-import { allGrades } from '@/schedules'; 
+import { allGrades } from '@/schedule'; 
 
 @Component({})
 export default class Home extends Vue {
   public appVersion = `v${process.env.VUE_APP_VERSION} (b${process.env.VUE_APP_COMMIT_COUNT.trim()}#${process.env.VUE_APP_COMMIT_SHASH.trim()})`
   colorThemeId = this.$store.state.settings.colorTheme
   grade = allGrades[0]; 
+  allGrades = allGrades; 
   allThemes: any[] = []; 
 
-  updateOptionBL(name: string, value: boolean): void {
+  updateOptionBL(name: string, value: any): void {
     this.$store.commit('UPDATE_SETTING', { name, value })
   }
 

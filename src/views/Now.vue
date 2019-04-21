@@ -43,13 +43,11 @@
 import { Component, Vue } from 'vue-property-decorator';
 import { DateTime, Duration } from 'luxon';
 
-import { printTime, getScheduleFromDay, getPeriod, getUpcomingPeriod, allGrades } from '@/schedule';
+import { printTime, getScheduleFromDay, getPeriod, getUpcomingPeriod, allGrades, 
+plus_days } from '@/schedule';
 import { Day, Schedule, Period, getPeriodName, getScheduleName } from '@/schedule/enums';
 import { RegularSchedule, BlockEvenSchedule, BlockOddSchedule } from '@/schedule/schedules';
-import { Changelog } from '../changelog' 
-
-//testing purposes
-const plus_days = 0; 
+import { Changelog } from '../changelog'; 
 
 @Component({})
 export default class Now extends Vue {
@@ -208,11 +206,11 @@ export default class Now extends Vue {
     }
   } 
   
-  updateOptionBL(name: string, value: boolean): void {
+  updateOptionBL(name: string, value: any): void {
     this.$store.commit('UPDATE_SETTING', { name, value }); 
   } 
-  
-  changeGrade(grade) {
+
+  changeGrade(grade: number) {
     this.updateOptionBL('grade', grade); 
   } 
 
@@ -221,7 +219,7 @@ export default class Now extends Vue {
     let grade = this.$store.state.settings.grade; 
     
     if(allGrades.indexOf(grade) == -1) {
-      grade = this.allGrades[0]; 
+      grade = allGrades[0]; 
       
       this.changeGrade(grade); 
     } 

@@ -67,12 +67,10 @@
 import { Component, Vue } from 'vue-property-decorator'
 import { DateTime, Duration } from 'luxon'
 
-import { printTime, getScheduleFromDay, getPeriod, getFullSchedule, allGrades } from '@/schedule'
+import { printTime, getScheduleFromDay, getPeriod, getFullSchedule, allGrades, 
+plus_days } from '@/schedule'
 import { Day, Schedule, Period, getPeriodName, getScheduleName } from '@/schedule/enums'
-import { RegularSchedule, BlockEvenSchedule, BlockOddSchedule } from '@/schedule/schedules' 
-
-//testing purposes
-const plus_days = 0; 
+import { RegularSchedule, BlockEvenSchedule, BlockOddSchedule } from '@/schedule/schedules'; 
 
 @Component({})
 export default class Home extends Vue {
@@ -187,14 +185,22 @@ export default class Home extends Vue {
 
   getCertainTime(time: number) {
     return this.$store.state.settings.useMilitaryTime ? this.getCertainTime24(time) : this.getCertainTime12(time)
-  }
+  } 
+
+  updateOptionBL(name: string, value: any): void {
+    this.$store.commit('UPDATE_SETTING', { name, value }); 
+  } 
+
+  changeGrade(grade: number) {
+    this.updateOptionBL('grade', grade); 
+  } 
 
   mounted() {
     //correct invalid grade settings if any
     let grade = this.$store.state.settings.grade; 
     
     if(allGrades.indexOf(grade) == -1) {
-      grade = this.allGrades[0]; 
+      grade = allGrades[0]; 
       
       this.changeGrade(grade); 
     } 

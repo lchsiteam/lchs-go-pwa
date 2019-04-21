@@ -10,7 +10,9 @@ import { NoSchoolSchedule, RegularSchedule, BlockOddSchedule, BlockEvenSchedule,
         PreFinals1345Schedule, FinalAssemblySchedule78, FinalAssemblySchedule12, Finals34Schedule, Finals15Schedule, 
         Finals26Schedule } from './schedules'; 
 
-const allGrades = [7, 8, 9, 10, 11, 12]; 
+export const plus_days = 0; 
+
+export const allGrades = [7, 8, 9, 10, 11, 12]; 
 
 // Native Javascript
 export function getCurrentDate(): any {
@@ -71,16 +73,16 @@ export const grade_special_dates: any = {
 
 export function getScheduleFromDay(month: number, day: number, year: number, week_day: number, grade: number): Schedule {
   let shed = Schedule.NONE; 
-  const high_schooler = 9 <= grade <= 12; 
+  const high_schooler = 9 <= grade && grade <= 12; 
   const date = `${month} - ${day} - ${year}`; 
   const own_grade_dates = grade_special_dates[grade]; 
   const own_section_dates = high_schooler ? hs_special_dates : ms_special_dates; 
   
   if(date in own_grade_dates) {
     shed = own_grade_dates[date]; 
-  else if(date in own_section_dates) {
+  } else if(date in own_section_dates) {
     shed = own_section_dates[date]; 
-  else if(date in school_special_dates) {
+  } else if(date in school_special_dates) {
     shed = school_special_dates[date]; 
   } else {
     switch(week_day) {
@@ -110,7 +112,7 @@ export function toTime(hr: number, min: number) {
 }
 
 export function getFullSchedule(schedule: Schedule, grade: number): any {
-  const high_schooler = 9 <= grade <= 12; 
+  const high_schooler = 9 <= grade && grade <= 12; 
   
   // TODO: Add more schedules
   switch(schedule) {
@@ -194,7 +196,7 @@ export function getFullSchedule(schedule: Schedule, grade: number): any {
         //just a normal assembly schedule
         return AssemblySchedule; 
       } else {
-        return AssemblySchedule78; 
+        return FinalAssemblySchedule78; 
       } 
       break; 
     case Schedule.FINALS_34: 
