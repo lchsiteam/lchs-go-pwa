@@ -2,6 +2,18 @@
   <div class="settings">
     <h2>App Settings</h2>
     <div class="settings-rows">
+      <div class='settings-row'> 
+        <div class='sr-head'>
+          <span class="sr-badge-new">NEW</span>
+          <b class='sr-title'>Grade Level</b> 
+          <span class='sr-desc'>Change which grade is used for calculating schedules</span> 
+        </div> 
+        <div class='sr-option'>
+          <select v-model="grade" @change="updateGrade()">
+            <option v-for="grade in allGrades" :key="grade" :value="grade">{{grade}}th Grade</option> 
+          </select>
+        </div> 
+      </div> 
       <div class="settings-row">
         <div class="sr-head">
           <b class="sr-title">Time Display</b>
@@ -92,7 +104,9 @@ import { Themes } from '../themes';
 export default class Home extends Vue {
   public appVersion = `v${process.env.VUE_APP_VERSION} (b${process.env.VUE_APP_COMMIT_COUNT.trim()}#${process.env.VUE_APP_COMMIT_SHASH.trim()})`
   colorThemeId = this.$store.state.settings.colorTheme
-  allThemes: any[] = []
+  grade = this.$store.state.settings.grade
+  allThemes: any[] = [] 
+  allGrades: any[] = ['7', '8', '9-12'] 
 
   updateOptionBL(name: string, value: boolean): void {
     this.$store.commit('UPDATE_SETTING', { name, value })
@@ -100,7 +114,11 @@ export default class Home extends Vue {
 
   updateTheme() {
     this.updateOptionBL('colorTheme', this.colorThemeId)
-  }
+  } 
+  
+  updateGrade() {
+    this.updateOptionBL('grade', this.grade); 
+  } 
 
   mounted() {
     this.allThemes = Themes
