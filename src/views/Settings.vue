@@ -122,31 +122,8 @@ export default class Home extends Vue {
 
   mounted() {
     this.allThemes = Themes
-  }
-
-  getCurrentColorScheme() {
-    return this.getColorSchemeFromId(this.$store.state.settings.colorTheme)
-  }
-
-  getColorSchemeFromId(themeId: string) {
-    return Themes.filter(t => t.id === themeId)[0] || Themes[0]
-  }
-
-getCSSColorScheme() {
-    return {
-      '--gradient-top-color': this.getCurrentColorScheme().gradientTopColor,
-      '--gradient-bottom-color': this.getCurrentColorScheme().gradientBottomColor,
-      '--button-menu-color': this.getCurrentColorScheme().btnMenuColor,
-      '--button-submenu-color': this.getCurrentColorScheme().btnSubmenuColor,
-      '--button-hover-color': this.getCurrentColorScheme().btnHoverColor,
-    }
-  }
-
-
-
-  
+  } 
 }
-
 </script>
 
 <style lang="scss">
