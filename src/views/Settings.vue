@@ -9,8 +9,8 @@
           <span class='sr-desc'>Change which grade is used for calculating schedules</span> 
         </div> 
         <div class='sr-option'>
-          <select v-model="grade" @change="updateGrade()" class = "GradeSelect">
-            <option v-for="grade in allGrades" :key="grade" :value="grade" class = "GradeSelectItem">{{grade}}th Grade</option> 
+          <select v-model="grade" @change="updateGrade()" class = "grade-select">
+            <option v-for="grade in allGrades" :key="grade" :value="grade" class = "grade-select-item">{{grade}}th Grade</option> 
           </select>
         </div> 
       </div> 
@@ -78,8 +78,8 @@
           <span class="sr-desc">Change app color scheme. Send an email to team@lciteam.club for suggestions.</span>
         </div>
         <div class="sr-option">
-          <select v-model="colorThemeId" @change="updateTheme()" class="GradeSelect">
-            <option v-for="theme in allThemes" :key="theme.id" :value="theme.id" class="GradeSelectItem">{{theme.name}}</option>
+          <select v-model="colorThemeId" @change="updateTheme()" class="grade-select">
+            <option v-for="theme in allThemes" :key="theme.id" :value="theme.id" class="grade-select-item">{{theme.name}}</option>
           </select>
         </div>
       </div>
@@ -123,7 +123,30 @@ export default class Home extends Vue {
   mounted() {
     this.allThemes = Themes
   }
+
+  getCurrentColorScheme() {
+    return this.getColorSchemeFromId(this.$store.state.settings.colorTheme)
+  }
+
+  getColorSchemeFromId(themeId: string) {
+    return Themes.filter(t => t.id === themeId)[0] || Themes[0]
+  }
+
+getCSSColorScheme() {
+    return {
+      '--gradient-top-color': this.getCurrentColorScheme().gradientTopColor,
+      '--gradient-bottom-color': this.getCurrentColorScheme().gradientBottomColor,
+      '--button-menu-color': this.getCurrentColorScheme().btnMenuColor,
+      '--button-submenu-color': this.getCurrentColorScheme().btnSubmenuColor,
+      '--button-hover-color': this.getCurrentColorScheme().btnHoverColor,
+    }
+  }
+
+
+
+  
 }
+
 </script>
 
 <style lang="scss">
@@ -206,7 +229,7 @@ export default class Home extends Vue {
   }
 }
 
-select.GradeSelect {
+select.grade-select {
   color: #ffffff;
   background: rgba(0,0,0,.2);
   padding: 5px;
@@ -216,11 +239,12 @@ select.GradeSelect {
   border-color:rgba(0,0,0,0);
   border-width: 1px;
   border-radius: 3px;
-}
+} 
 
-option.GradeSelectItem  {
-color: #444444;
-  background: rgba(0,0,0,0.02);
+option.grade-select-item  {
+color: rgba(255, 255, 255, 0.6);
+
+  background: var(--button-menu-color, #42b983);
   padding: 5px;
   text-decoration-color: white;
   font-weight: 600;
