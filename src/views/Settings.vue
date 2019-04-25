@@ -9,8 +9,8 @@
           <span class='sr-desc'>Change which grade is used for calculating schedules</span> 
         </div> 
         <div class='sr-option'>
-          <select v-model="grade" @change="updateGrade()">
-            <option v-for="grade in allGrades" :key="grade" :value="grade">{{grade}}th Grade</option> 
+          <select v-model="grade" @change="updateGrade()" class = "grade-select">
+            <option v-for="grade in allGrades" :key="grade" :value="grade" class = "grade-select-item">{{grade}}th Grade</option> 
           </select>
         </div> 
       </div> 
@@ -78,8 +78,8 @@
           <span class="sr-desc">Change app color scheme. Send an email to team@lciteam.club for suggestions.</span>
         </div>
         <div class="sr-option">
-          <select v-model="colorThemeId" @change="updateTheme()">
-            <option v-for="theme in allThemes" :key="theme.id" :value="theme.id">{{theme.name}}</option>
+          <select v-model="colorThemeId" @change="updateTheme()" class="grade-select">
+            <option v-for="theme in allThemes" :key="theme.id" :value="theme.id" class="grade-select-item">{{theme.name}}</option>
           </select>
         </div>
       </div>
@@ -122,7 +122,7 @@ export default class Home extends Vue {
 
   mounted() {
     this.allThemes = Themes
-  }
+  } 
 }
 </script>
 
@@ -205,4 +205,31 @@ export default class Home extends Vue {
     }
   }
 }
+
+select.grade-select {
+  color: #ffffff;
+  background: rgba(0,0,0,.2);
+  padding: 5px;
+  text-decoration-color: white;
+  font-weight: 600;
+  font-family: Niramit,Avenir,sans-serif;
+  border-color:rgba(0,0,0,0);
+  border-width: 1px;
+  border-radius: 3px;
+} 
+
+option.grade-select-item  {
+color: rgba(255, 255, 255, 0.6);
+
+  background: var(--button-menu-color, #42b983);
+  padding: 5px;
+  text-decoration-color: white;
+  font-weight: 600;
+  font-family: Niramit,Avenir,sans-serif;
+  border-color:rgba(0,0,0,0);
+  border-width: 1px;
+  border-radius: 3px;
+
+}
+
 </style>
