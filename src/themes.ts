@@ -41,8 +41,8 @@ export const Themes = [
     ["#3A3A3A", "#2A2A2A"], "#555555", "#111111", "#222222"
   ),
   new LCHSGoTheme(
-    "theme1", "Theme A", "(none)",
-    ["#f0f1a0", "#e376a38c"], "#edcea4", "#e376a359", "rgba(151, 47, 147, 0.11)",
+    "theme1", "True Sunset", "(none)",
+    ["#fa709a", "#fee140"], "#edcea4", "#e376a359", "rgba(151, 47, 147, 0.11)",
   ),
   new LCHSGoTheme(
     "theme3", "Theme C", "(none)",
@@ -53,19 +53,35 @@ export const Themes = [
     ["#f2f3aea3", "#16c2b47a"], "#97b7b5c2", "#97b7b5a8", "rgba(176, 174, 197, 0.36)",
   ),
   new LCHSGoTheme(
-    "theme5", "Theme E", "(none)",
-    ["#93ef91c4", "#ae38a92e"], "#d01fac4a", "#748685a6", "rgba(176, 174, 197, 0.36)"
+    "theme5", "New Life", "(none)",
+    ["#43e97b", "#38f9d7"], "#d01fac4a", "#748685a6", "rgba(176, 174, 197, 0.36)"
   ),
   new LCHSGoTheme(
     "theme6", "Theme F", "(none)",
     ["#2512c291", "#3897ae63"], "#a0becca8", "#a0becc66", "rgba(112, 139, 146, 0.47)"
   ),
   new LCHSGoTheme(
-    "theme7", "Theme G", "(none)",
-    ["#b94296ba", "#bcc4e5"], "#65087780", "#712a80a6", "rgba(111, 15, 96, 0.43)"
+    "theme7", "Northern Miracle", "(none)",
+    ["#00dbde", "#fc00ff"], "#65087780", "#712a80a6", "rgba(111, 15, 96, 0.43)"
   ),
   new LCHSGoTheme(
     "theme9", "Theme I", "(none)",
     ["#ffffff00", "#4100ff"], "#291fe2c7", "#291fe2a8", "rgba(71, 0, 255, 0.43)"
+  ),
+  new LCHSGoTheme(
+    "theme11", "Rainbow Theme", "(none)",
+    ["#ff2400", "#e81d1d", "#e8b71d", "#e3e81d", "#1de840", "#1ddde8", "#2b1de8", "#dd00f3", "#dd00f3"], "#291fe2c7", "#291fe2a8", "rgba(71, 0, 255, 0.43)"
+  ),
+  new LCHSGoTheme(
+    "theme12", "Dark Night", "(none)",
+    ["#30cfd0", "#330867"], "#291fe2c7", "#291fe2a8", "rgba(71, 0, 255, 0.43)"
+  ),
+  new LCHSGoTheme(
+    "theme13", "Sweet Blend", "(none)",
+    ["#3f51b1", "#5a55ae", "#7b5fac", "#8f6aae", "#a86aa4", "#cc6b8e", "#f18271", "#f3a469", "#f7c978"], "#291fe2c7", "#291fe2a8", "rgba(71, 0, 255, 0.43)"
+  ),
+  new LCHSGoTheme(
+    "theme14", "Morning Sun", "(none)",
+    ["#f83600", "#f9d423"], "#291fe2c7", "#291fe2a8", "rgba(71, 0, 255, 0.43)"
   ),
 ]

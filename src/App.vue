@@ -50,6 +50,7 @@ export default class App extends Vue {
   100% { background-position: 50% 0%; }
 }
 
+
 html, body, #app-container {
   height: auto;
   min-height: 100vh;
