@@ -25,11 +25,11 @@ export class LCHSGoTheme {
 
 export const Themes = [
   new LCHSGoTheme(
-    "theme8", "Violet Delight (H)", "(none)",
+    "theme8", "Violet Delight", "(none)",
     ["#62f1de", "#4100ffa6"], "#0d3ad275", "#6c64ffa6", "rgba(131, 111, 183, 0.43)"
   ),
   new LCHSGoTheme(
-    "theme2", "Marine Sky (B)", "A calming blue reminiscent of the beaches",
+    "theme2", "Marine Sky", "A calming blue reminiscent of the beaches",
     ["#a8d7c9", "#2a5ebb"], "#6786bd", "#314e82", "rgba(92, 125, 185, 0.4)",
   ),
   new LCHSGoTheme(
@@ -45,27 +45,23 @@ export const Themes = [
     ["#fa709a", "#fee140"], "#edcea4", "#e376a359", "rgba(151, 47, 147, 0.11)",
   ),
   new LCHSGoTheme(
-    "theme3", "Theme C", "(none)",
-    ["#ddeb2353", "#eb232370"], "#f07f6d94", "#f07f6d94", "rgba(228, 153, 153, 0.4)",
-  ),
-  new LCHSGoTheme(
-    "theme4", "Theme D", "(none)",
-    ["#f2f3aea3", "#16c2b47a"], "#97b7b5c2", "#97b7b5a8", "rgba(176, 174, 197, 0.36)",
+    "theme4", "Aqua Sky", "(none)",
+    ["#007adf", "#00ecbc"], "#97b7b5c2", "#97b7b5a8", "rgba(176, 174, 197, 0.36)",
   ),
   new LCHSGoTheme(
     "theme5", "New Life", "(none)",
     ["#43e97b", "#38f9d7"], "#d01fac4a", "#748685a6", "rgba(176, 174, 197, 0.36)"
   ),
   new LCHSGoTheme(
-    "theme6", "Theme F", "(none)",
-    ["#2512c291", "#3897ae63"], "#a0becca8", "#a0becc66", "rgba(112, 139, 146, 0.47)"
+    "theme6", "Crystal River", "(none)",
+    ["#22e1ff", "#1d8fe1"], "#625eb1", "#a0becc66", "rgba(112, 139, 146, 0.47)"
   ),
   new LCHSGoTheme(
     "theme7", "Northern Miracle", "(none)",
     ["#00dbde", "#fc00ff"], "#65087780", "#712a80a6", "rgba(111, 15, 96, 0.43)"
   ),
   new LCHSGoTheme(
-    "theme9", "Theme I", "(none)",
+    "theme9", "We kept this 'cus Devyn liked it...", "(none)",
     ["#ffffff00", "#4100ff"], "#291fe2c7", "#291fe2a8", "rgba(71, 0, 255, 0.43)"
   ),
   new LCHSGoTheme(
@@ -83,5 +79,9 @@ export const Themes = [
   new LCHSGoTheme(
     "theme14", "Morning Sun", "(none)",
     ["#f83600", "#f9d423"], "#291fe2c7", "#291fe2a8", "rgba(71, 0, 255, 0.43)"
+  ),
+  new LCHSGoTheme(
+    "theme15", "Dynamic Theme", "A theme that changes depending on the time of day!", 
+    ["#30cfd0", "#330867"], "#291fe2c7", "#291fe2a8", "rgba(71, 0, 255, 0.43)"
   ),
 ]

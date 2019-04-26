@@ -16,6 +16,7 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
 import { Themes } from './themes';
+import { DateTime } from 'luxon';
 
 @Component({})
 export default class App extends Vue {
@@ -28,10 +29,56 @@ export default class App extends Vue {
   }
 
   getCSSColorScheme() {
+    let themeGradientColors
     const currentColorScheme = this.getCurrentColorScheme()
-
+    if (this.$store.state.settings.colorTheme === "theme15") {
+      const currentDate = DateTime.local().setZone("America/Los_Angeles")
+      switch(currentDate.hour) {
+        case 5:
+        case 6:
+        case 7:
+        case 8:
+          themeGradientColors = this.getColorSchemeFromId("theme14").gradientColors
+          break;
+        case 9:
+        case 10:
+        case 11:
+        case 12:
+          themeGradientColors = this.getColorSchemeFromId("theme4").gradientColors
+          break;
+        case 13:
+        case 14:
+        case 15:
+        case 16:
+          themeGradientColors = this.getColorSchemeFromId("theme6").gradientColors
+          break;
+        case 17:
+        case 18:
+        case 19:
+        case 20:
+          themeGradientColors = this.getColorSchemeFromId("theme1").gradientColors
+          break;
+        case 21:
+        case 22:
+        case 23:
+        case 0:
+        case 24:
+        case 1:
+        case 2:
+        case 3:
+        case 4:
+          themeGradientColors = this.getColorSchemeFromId("theme12").gradientColors
+          break;
+        default:
+          themeGradientColors = this.getColorSchemeFromId("theme10").gradientColors
+          break;
+      }
+    }
+    else {
+      themeGradientColors = currentColorScheme.gradientColors
+    }
     return {
-      '--gradient-colors': currentColorScheme.gradientColors.join(', '),
+      '--gradient-colors': themeGradientColors.join(', '),
       '--button-menu-color': currentColorScheme.btnMenuColor,
       '--button-submenu-color': currentColorScheme.btnSubmenuColor,
       '--button-hover-color': currentColorScheme.btnHoverColor,
