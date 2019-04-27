@@ -210,10 +210,6 @@ export default class Now extends Vue {
     this.$store.commit('UPDATE_SETTING', { name, value }); 
   } 
 
-  changeGrade(grade: number) {
-    this.updateOptionBL('grade', grade); 
-  } 
-
   mounted() {
     //correct invalid grade settings if any
     let grade = this.$store.state.settings.grade; 
