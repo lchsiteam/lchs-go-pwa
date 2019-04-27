@@ -16,6 +16,7 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
 import { Themes } from './themes';
+import { DateTime } from 'luxon';
 
 @Component({})
 export default class App extends Vue {
@@ -28,12 +29,60 @@ export default class App extends Vue {
   }
 
   getCSSColorScheme() {
+    let themeGradientColors
+    const currentColorScheme = this.getCurrentColorScheme()
+    if (this.$store.state.settings.colorTheme === "theme15") {
+      const currentDate = DateTime.local().setZone("America/Los_Angeles")
+      switch(currentDate.hour) {
+        case 5:
+        case 6:
+        case 7:
+        case 8:
+          themeGradientColors = this.getColorSchemeFromId("theme14").gradientColors
+          break;
+        case 9:
+        case 10:
+        case 11:
+        case 12:
+          themeGradientColors = this.getColorSchemeFromId("theme4").gradientColors
+          break;
+        case 13:
+        case 14:
+        case 15:
+        case 16:
+          themeGradientColors = this.getColorSchemeFromId("theme6").gradientColors
+          break;
+        case 17:
+        case 18:
+        case 19:
+        case 20:
+          themeGradientColors = this.getColorSchemeFromId("theme1").gradientColors
+          break;
+        case 21:
+        case 22:
+        case 23:
+        case 0:
+        case 24:
+        case 1:
+        case 2:
+        case 3:
+        case 4:
+          themeGradientColors = this.getColorSchemeFromId("theme12").gradientColors
+          break;
+        default:
+          themeGradientColors = this.getColorSchemeFromId("theme10").gradientColors
+          break;
+      }
+    }
+    else {
+      themeGradientColors = currentColorScheme.gradientColors
+    }
     return {
-      '--gradient-top-color': this.getCurrentColorScheme().gradientTopColor,
-      '--gradient-bottom-color': this.getCurrentColorScheme().gradientBottomColor,
-      '--button-menu-color': this.getCurrentColorScheme().btnMenuColor,
-      '--button-submenu-color': this.getCurrentColorScheme().btnSubmenuColor,
-      '--button-hover-color': this.getCurrentColorScheme().btnHoverColor,
+      '--gradient-colors': themeGradientColors.join(', '),
+      '--button-menu-color': currentColorScheme.btnMenuColor,
+      '--button-submenu-color': currentColorScheme.btnSubmenuColor,
+      '--button-hover-color': currentColorScheme.btnHoverColor,
+      '--gradient-count': currentColorScheme.gradientColors.length,
     }
   }
 }
@@ -48,6 +97,7 @@ export default class App extends Vue {
   100% { background-position: 50% 0%; }
 }
 
+
 html, body, #app-container {
   height: auto;
   min-height: 100vh;
@@ -58,9 +108,9 @@ html, body, #app-container {
 }
 
 #app-container {
-  background: linear-gradient(to bottom, var(--gradient-top-color, #42b983), var(--gradient-bottom-color, #2f9768));
-  background-size: 200% 200%;
-  animation: AnimatedTheme 10s ease infinite;
+  background: linear-gradient(to bottom, var(--gradient-colors, "#42b983, #2f9768"));
+  background-size: 400% 400%;
+  animation: AnimatedTheme 20s ease infinite;
 
   &.toggleOff {
     background-size: 100%;

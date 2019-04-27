@@ -11,7 +11,7 @@ const defaultConfig = {
     enableThemeAnimations: true,
     showExtraPeriods: false,
     colorTheme: "theme8", 
-    grade: '9-12',
+    grade: 7, 
   },
   changelog: {
     readUpdates: [],
