@@ -181,7 +181,6 @@ export default class Now extends Vue {
     else {
       return this.getCurrentTimeParts24()
     }
-<<<<<<< HEAD
   } 
   
   updateOptionBL(name: string, value: any): void {
@@ -190,12 +189,6 @@ export default class Now extends Vue {
   changeGrade(grade: number) {
     this.updateOptionBL('grade', grade); 
   } 
-=======
-  }
-  
-
-
->>>>>>> 5e5f1f4e0972411c6f4599cd60d0f0f41e5ceb76
   mounted() {
     //correct invalid grade settings if any
     let grade = this.$store.state.settings.grade; 
