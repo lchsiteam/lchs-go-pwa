@@ -38,21 +38,22 @@ export default class App extends Vue {
         case 6:
         case 7:
         case 8:
+        case 9:
           themeGradientColors = this.getColorSchemeFromId("theme14").gradientColors
           break;
-        case 9:
         case 10:
         case 11:
-        case 12:
           themeGradientColors = this.getColorSchemeFromId("theme4").gradientColors
           break;
+        case 12:
         case 13:
         case 14:
         case 15:
-        case 16:
           themeGradientColors = this.getColorSchemeFromId("theme6").gradientColors
           break;
+        case 16:
         case 17:
+          themeGradientColors = this.getColorSchemeFromId("theme7").gradientColors
         case 18:
         case 19:
         case 20:
