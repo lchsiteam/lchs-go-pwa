@@ -76,7 +76,7 @@ import { RegularSchedule, BlockEvenSchedule, BlockOddSchedule } from '@/schedule
 export default class Home extends Vue {
   private minutes: number = 0
   private schedule: Schedule = Schedule.NONE; 
-  private grade = allGrades[0]; 
+  private grade = allGrades[2]; 
   private currentPeriod = { start: 0, end: 1440, period: Period.NONE }; 
 
   updateStats() {
@@ -196,11 +196,11 @@ export default class Home extends Vue {
   } 
 
   mounted() {
-    //correct invalid grade settings if any
+    //correct invalid grade settings to 9th grade if any
     let grade = this.$store.state.settings.grade; 
     
     if(allGrades.indexOf(grade) == -1) {
-      grade = allGrades[0]; 
+      grade = allGrades[2]; 
       
       this.changeGrade(grade); 
     } 
