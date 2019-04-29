@@ -54,7 +54,7 @@ export default class Now extends Vue {
   private minutes: number = 0
   private currentDateTime: any
   private schedule: Schedule = Schedule.NONE; 
-  private grade = allGrades[0]; 
+  private grade = allGrades[2]; 
   private currentPeriod = { start: 0, end: 1440, period: Period.NONE }; 
   private allLogs: any[] = []
   public useNextPeriodStartAsEnd = false    // TODO: Find a better variable name
@@ -219,7 +219,7 @@ export default class Now extends Vue {
     let grade = this.$store.state.settings.grade; 
     
     if(allGrades.indexOf(grade) == -1) {
-      grade = allGrades[0]; 
+      grade = allGrades[2]; 
       
       this.changeGrade(grade); 
     } 
