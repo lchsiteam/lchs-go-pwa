@@ -34,7 +34,7 @@
     </div>
     <div class="grid-fmr grid-fmr-mini-click" @click="goToChangelog()" v-if="shouldShowUpdateLog()">
       <div class="grid-fmr-helper">UNREAD UPDATES</div>
-      <div class="grid-fmr-value">7/8 Students! You can now use LCHS Go! Tap/click here to read more.</div>
+      <div class="grid-fmr-value">Support the LCHS iTeam by donating your old computer! Also see: New Aesthetics and Themes.</div>
     </div>
   </div>
 </template>
