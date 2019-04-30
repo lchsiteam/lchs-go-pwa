@@ -76,7 +76,7 @@ export default class App extends Vue {
       }
     }
     else {
-      themeGradient = currentColorScheme.gradientColors
+      themeGradient = currentColorScheme
     }
     return {
       '--gradient-colors': themeGradient.join(', '),
