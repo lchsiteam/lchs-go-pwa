@@ -79,7 +79,7 @@ export default class App extends Vue {
       themeGradient = currentColorScheme
     }
     return {
-      '--gradient-colors': themeGradient.join(', '),
+      '--gradient-colors': themeGradient.gradientColors.join(', '),
       '--button-menu-color': themeGradient.btnMenuColor,
       '--button-submenu-color': themeGradient.btnSubmenuColor,
       '--button-hover-color': themeGradient.btnHoverColor,
