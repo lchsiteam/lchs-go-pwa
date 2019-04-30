@@ -33,46 +33,26 @@ export default class App extends Vue {
     const currentColorScheme = this.getCurrentColorScheme()
     if (this.$store.state.settings.colorTheme === "theme15") {
       const currentDate = DateTime.local().setZone("America/Los_Angeles")
-      switch(currentDate.hour) {
-        case 5:
-        case 6:
-        case 7:
-        case 8:
-        case 9:
+      if (currentDate.hour === 5 || currentDate.hour === 6 || currentDate.hour === 7 || currentDate.hour === 8 || currentDate.hour === 9) {
           themeGradient = this.getColorSchemeFromId("theme14")
-          break;
-        case 10:
-        case 11:
-          themeGradient = this.getColorSchemeFromId("theme4")
-          break;
-        case 12:
-        case 13:
-        case 14:
-        case 15:
-          themeGradient = this.getColorSchemeFromId("theme6")
-          break;
-        case 16:
-        case 17:
-          themeGradient = this.getColorSchemeFromId("theme7")
-        case 18:
-        case 19:
-        case 20:
-          themeGradient = this.getColorSchemeFromId("theme1")
-          break;
-        case 21:
-        case 22:
-        case 23:
-        case 0:
-        case 24:
-        case 1:
-        case 2:
-        case 3:
-        case 4:
-          themeGradient = this.getColorSchemeFromId("theme12")
-          break;
-        default:
-          themeGradient = this.getColorSchemeFromId("theme10")
-          break;
+      }
+      else if (currentDate.hour === 10 || currentDate.hour === 11) {
+        themeGradient = this.getColorSchemeFromId("theme4")
+      }
+      else if (currentDate.hour === 12 || currentDate.hour === 13 || currentDate.hour === 14 || currentDate.hour === 15) {
+        themeGradient = this.getColorSchemeFromId("theme6")
+      }
+      else if (currentDate.hour === 16 || currentDate.hour === 17) {
+        themeGradient = this.getColorSchemeFromId("theme7")
+      }
+      else if (currentDate.hour === 18 || currentDate.hour === 19 || currentDate.hour === 20) {
+        themeGradient = this.getColorSchemeFromId("theme1")
+      }
+      else if (currentDate.hour === 21 || currentDate.hour === 22 || currentDate.hour === 23 || currentDate.hour === 24 || currentDate.hour === 0 || currentDate.hour === 1 || currentDate.hour === 2 || currentDate.hour === 3 || currentDate.hour === 4) {
+        themeGradient = this.getColorSchemeFromId("theme12")
+      }
+      else:
+        themeGradient = this.getColorSchemeFromId("theme10")
       }
     }
     else {
