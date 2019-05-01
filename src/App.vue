@@ -35,20 +35,15 @@ export default class App extends Vue {
       const currentDate = DateTime.local().setZone("America/Los_Angeles")
       if (currentDate.hour >=21 && currentDate.hour <= 4) {
         themeGradient = this.getColorSchemeFromId("theme12")
-      }
-      else if (currentDate.hour <= 9) {
+      } else if (currentDate.hour <= 9) {
         themeGradient = this.getColorSchemeFromId("theme14")
-      }
-      else if (currentDate.hour <= 11) {
+      } else if (currentDate.hour <= 11) {
         themeGradient = this.getColorSchemeFromId("theme4") 
-      }
-      else if (currentDate.hour <= 15) {
+      } else if (currentDate.hour <= 15) {
         themeGradient = this.getColorSchemeFromId("theme6")
-      }
-      else if (currentDate.hour <= 17) {
+      } else if (currentDate.hour <= 17) {
         themeGradient = this.getColorSchemeFromId("theme7")
-      }
-      else:
+      } else {
         themeGradient = this.getColorSchemeFromId("theme1")
       }
     }
