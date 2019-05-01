@@ -33,26 +33,23 @@ export default class App extends Vue {
     const currentColorScheme = this.getCurrentColorScheme()
     if (this.$store.state.settings.colorTheme === "theme15") {
       const currentDate = DateTime.local().setZone("America/Los_Angeles")
-      if (currentDate.hour === 5 || currentDate.hour === 6 || currentDate.hour === 7 || currentDate.hour === 8 || currentDate.hour === 9) {
-          themeGradient = this.getColorSchemeFromId("theme14")
-      }
-      else if (currentDate.hour === 10 || currentDate.hour === 11) {
-        themeGradient = this.getColorSchemeFromId("theme4")
-      }
-      else if (currentDate.hour === 12 || currentDate.hour === 13 || currentDate.hour === 14 || currentDate.hour === 15) {
-        themeGradient = this.getColorSchemeFromId("theme6")
-      }
-      else if (currentDate.hour === 16 || currentDate.hour === 17) {
-        themeGradient = this.getColorSchemeFromId("theme7")
-      }
-      else if (currentDate.hour === 18 || currentDate.hour === 19 || currentDate.hour === 20) {
-        themeGradient = this.getColorSchemeFromId("theme1")
-      }
-      else if (currentDate.hour === 21 || currentDate.hour === 22 || currentDate.hour === 23 || currentDate.hour === 24 || currentDate.hour === 0 || currentDate.hour === 1 || currentDate.hour === 2 || currentDate.hour === 3 || currentDate.hour === 4) {
+      if (currentDate.hour >=21 && currentDate.hour <= 4) {
         themeGradient = this.getColorSchemeFromId("theme12")
       }
+      else if (currentDate.hour <= 9) {
+        themeGradient = this.getColorSchemeFromId("theme14")
+      }
+      else if (currentDate.hour <= 11) {
+        themeGradient = this.getColorSchemeFromId("theme4") 
+      }
+      else if (currentDate.hour <= 15) {
+        themeGradient = this.getColorSchemeFromId("theme6")
+      }
+      else if (currentDate.hour <= 17) {
+        themeGradient = this.getColorSchemeFromId("theme7")
+      }
       else:
-        themeGradient = this.getColorSchemeFromId("theme10")
+        themeGradient = this.getColorSchemeFromId("theme1")
       }
     }
     else {
