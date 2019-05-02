@@ -32,9 +32,9 @@
         <div class="cd-txt-h">(This page updates time automatically)</div>
       </div>
     </div>
-    <div class="grid-fmr grid-fmr-mini-click" @click="goToChangelog()" v-if="shouldShowUpdateLog()">
-      <div class="grid-fmr-helper">UNREAD UPDATES</div>
-      <div class="grid-fmr-value">Support the LCHS iTeam by donating your old computer! Also see: New Aesthetics and Themes.</div>
+    <div class="grid-fmr grid-fmr-mini-click" v-if="shouldShowUpdateLog()">
+      <div class="grid-fmr-helper">UNREAD UPDATES</div> 
+      <div v-for='entry in getUnreadUpdates()' :key='entry.id' @click='goToChangelog()'>{{entry.title}}</div> 
     </div>
   </div>
 </template>
@@ -63,13 +63,16 @@ export default class Now extends Vue {
     this.grade = this.$store.state.settings.grade; 
     this.schedule = getScheduleFromDay(currentDate.month, currentDate.day, currentDate.year, currentDate.weekday, this.grade); 
     this.currentPeriod = getPeriod(this.minutes, this.schedule, this.grade); 
-  }
+  } 
+  getUnreadUpdates() {
+    return this.allLogs.filter(entry => this.$store.state.changelog.readUpdates.indexOf(entry.id) === -1); 
+  } 
   goToChangelog() {
     this.$router.push('/about/changelog')
   }
   shouldShowUpdateLog() {
     return !this.$store.state.isExtension && 
-      this.allLogs.map(l => l.id).filter(id => this.$store.state.changelog.readUpdates.indexOf(id) === -1).length > 0
+      this.getUnreadUpdates().length > 0
   } 
   //Don't put the period (the punctuation mark one) here. It is supplied in the place where this function is called. 
   getGreeting() {
