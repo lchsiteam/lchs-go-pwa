@@ -4,7 +4,7 @@ export default {
     {
       id: 6, 
       isPublic: true, 
-      title: 'Support the LCHS iTeam by donating your old computer! New Aesthetics and Themes.', 
+      title: 'IMPORTANT NOTICE! Also New Aesthetics and Themes', 
       author: 'Ryan King', 
       tagline: 'LCHS Go now looks better and with more functionality. (Read below to see how you can support the LCHS iTeam)' ,
       content: [
