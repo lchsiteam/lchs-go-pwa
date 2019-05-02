@@ -3,7 +3,6 @@ export default {
   entries: [
     {
       id: 6, 
-      isNew: true, 
       isPublic: true, 
       title: 'Support the LCHS iTeam by donating your old computer! New Aesthetics and Themes.', 
       author: 'Ryan King', 
