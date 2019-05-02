@@ -186,6 +186,7 @@ export default class Now extends Vue {
   updateOptionBL(name: string, value: any): void {
     this.$store.commit('UPDATE_SETTING', { name, value }); 
   } 
+
   changeGrade(grade: number) {
     this.updateOptionBL('grade', grade); 
   } 
