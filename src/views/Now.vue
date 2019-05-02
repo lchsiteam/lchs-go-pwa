@@ -32,9 +32,9 @@
         <div class="cd-txt-h">(This page updates time automatically)</div>
       </div>
     </div>
-    <div class="grid-fmr grid-fmr-mini-click" v-if="shouldShowUpdateLog()">
+    <div v-if="shouldShowUpdateLog()">
       <div class="grid-fmr-helper">UNREAD UPDATES</div> 
-      <div v-for='entry in getUnreadUpdates()' :key='entry.id' @click='goToChangelog()'>{{entry.title}}</div> 
+      <div class='grid-fmr grid-fmr-mini-click' v-for='entry in getUnreadUpdates()' :key='entry.id' @click='goToChangelog()'>{{entry.title}}</div> 
     </div>
   </div>
 </template>
