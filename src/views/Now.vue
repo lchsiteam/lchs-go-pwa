@@ -34,7 +34,7 @@
     </div>
     <div class='grid-fmr' v-if="shouldShowUpdateLog()">
       <div class="grid-fmr-helper">UNREAD UPDATES</div> 
-      <div class='grid-fmr-mini-click' v-for='entry in getUnreadUpdates()' :key='entry.id' @click='goToChangelog()'>{{entry.title}}</div> 
+      <div v-for='entry in getUnreadUpdates()' :key='entry.id' @click='goToChangelog()'>○ {{entry.title}}</div> 
     </div>
   </div>
 </template>
