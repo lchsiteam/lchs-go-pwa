@@ -105,7 +105,7 @@ import { allGrades } from '@/schedule';
 export default class Home extends Vue {
   public appVersion = `v${process.env.VUE_APP_VERSION} (b${process.env.VUE_APP_COMMIT_COUNT.trim()}#${process.env.VUE_APP_COMMIT_SHASH.trim()})`
   colorThemeId = this.$store.state.settings.colorTheme
-  grade = allGrades[0]; 
+  grade = allGrades[2]; 
   allGrades = allGrades; 
   allThemes: any[] = []; 
 
@@ -126,7 +126,7 @@ export default class Home extends Vue {
     this.grade = this.$store.state.settings.grade; 
     
     if(allGrades.indexOf(this.grade) == -1) {
-      this.grade = allGrades[0]; 
+      this.grade = allGrades[2]; 
       
       this.updateGrade(); 
     } 
