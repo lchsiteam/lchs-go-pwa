@@ -64,7 +64,7 @@ export default class App extends Vue {
 
 // Your web app's Firebase configuration
   var firebaseConfig = {
-    apiKey: "AIzaSyDTj7AhNpYOKVtnj9ltUK5fEBxVuGlWRF0",
+    apiKey: "----------------------------------",
     authDomain: "lchs-go.firebaseapp.com",
     databaseURL: "https://lchs-go.firebaseio.com",
     projectId: "lchs-go",
