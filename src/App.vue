@@ -16,6 +16,7 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
 import { Themes } from './themes';
+import { DateTime } from 'luxon';
 
 @Component({})
 export default class App extends Vue {
@@ -28,12 +29,33 @@ export default class App extends Vue {
   }
 
   getCSSColorScheme() {
+    let themeGradient
+    const currentColorScheme = this.getCurrentColorScheme()
+    if (this.$store.state.settings.colorTheme === "theme15") {
+      const currentDate = DateTime.local().setZone("America/Los_Angeles")
+      if (currentDate.hour >=21 && currentDate.hour <= 4) {
+        themeGradient = this.getColorSchemeFromId("theme12")
+      } else if (currentDate.hour <= 9) {
+        themeGradient = this.getColorSchemeFromId("theme14")
+      } else if (currentDate.hour <= 11) {
+        themeGradient = this.getColorSchemeFromId("theme4") 
+      } else if (currentDate.hour <= 15) {
+        themeGradient = this.getColorSchemeFromId("theme6")
+      } else if (currentDate.hour <= 17) {
+        themeGradient = this.getColorSchemeFromId("theme7")
+      } else {
+        themeGradient = this.getColorSchemeFromId("theme1")
+      }
+    }
+    else {
+      themeGradient = currentColorScheme
+    }
     return {
-      '--gradient-top-color': this.getCurrentColorScheme().gradientTopColor,
-      '--gradient-bottom-color': this.getCurrentColorScheme().gradientBottomColor,
-      '--button-menu-color': this.getCurrentColorScheme().btnMenuColor,
-      '--button-submenu-color': this.getCurrentColorScheme().btnSubmenuColor,
-      '--button-hover-color': this.getCurrentColorScheme().btnHoverColor,
+      '--gradient-colors': themeGradient.gradientColors.join(', '),
+      '--button-menu-color': themeGradient.btnMenuColor,
+      '--button-submenu-color': themeGradient.btnSubmenuColor,
+      '--button-hover-color': themeGradient.btnHoverColor,
+      '--gradient-count': themeGradient.gradientColors.length,
     }
   }
 }
@@ -48,6 +70,7 @@ export default class App extends Vue {
   100% { background-position: 50% 0%; }
 }
 
+
 html, body, #app-container {
   height: auto;
   min-height: 100vh;
@@ -58,9 +81,9 @@ html, body, #app-container {
 }
 
 #app-container {
-  background: linear-gradient(to bottom, var(--gradient-top-color, #42b983), var(--gradient-bottom-color, #2f9768));
-  background-size: 200% 200%;
-  animation: AnimatedTheme 10s ease infinite;
+  background: linear-gradient(to bottom, var(--gradient-colors, "#42b983, #2f9768"));
+  background-size: 400% 400%;
+  animation: AnimatedTheme 20s ease infinite;
 
   &.toggleOff {
     background-size: 100%;

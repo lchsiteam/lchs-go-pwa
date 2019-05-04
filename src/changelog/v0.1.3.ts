@@ -3,7 +3,6 @@ export default {
   entries: [
     {
       id: 5, 
-      isNew: true, 
       isPublic: true, 
       title: '7/8 Schedules and New Settings', 
       author: 'Bryan Wang', 
@@ -15,7 +14,6 @@ export default {
     }, 
     {
       id: 4, 
-      isNew: false, 
       isPublic: true,
       title: "Special Day Schedules and Background Animations",
       author: "Ryan King",
@@ -25,8 +23,7 @@ export default {
       ]
     },
     {
-      id: 3,
-      isNew: false,
+      id: 3, 
       isPublic: false,
       title: "CRITICAL: Web Apps Won't Update On iOS",
       author: "Kevin Mo",
@@ -40,8 +37,7 @@ export default {
       ]
     },
     {
-      id: 2,
-      isNew: false,
+      id: 2, 
       isPublic: true,
       title: "Chrome extension finally out!",
       author: "Kai Bredemann",
@@ -53,8 +49,7 @@ export default {
       ]
     },
     {
-      id: 1,
-      isNew: false,
+      id: 1, 
       isPublic: false,
       title: "Update: Introducing the Settings Page",
       author: "Kevin Mo",
