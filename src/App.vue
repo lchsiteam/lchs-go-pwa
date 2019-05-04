@@ -17,6 +17,8 @@
 import { Component, Vue } from 'vue-property-decorator';
 import { Themes } from './themes';
 import { DateTime } from 'luxon';
+import firebase from 'firebase';
+import firebaseui from 'firebaseui';
 
 @Component({})
 export default class App extends Vue {
@@ -59,6 +61,20 @@ export default class App extends Vue {
     }
   }
 }
+
+// Your web app's Firebase configuration
+  var firebaseConfig = {
+    apiKey: "AIzaSyDTj7AhNpYOKVtnj9ltUK5fEBxVuGlWRF0",
+    authDomain: "lchs-go.firebaseapp.com",
+    databaseURL: "https://lchs-go.firebaseio.com",
+    projectId: "lchs-go",
+    storageBucket: "lchs-go.appspot.com",
+    messagingSenderId: "169999463820",
+    appId: "1:169999463820:web:5d92ce5f5fdc5366"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+
 </script>
 
 

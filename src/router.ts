@@ -22,6 +22,7 @@ export default new Router({
         { path: 'credits', component: () => import('./views/Credits.vue') },
         { path: 'settings', component: () => import('./views/Settings.vue') },
         { path: 'changelog', component: () => import('./views/Changelog.vue') },
+        { path: 'signIn', component: () => import('./views/SignIn.vue') },
         { path: '', redirect: 'credits' },
       ]
     },
