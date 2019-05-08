@@ -17,7 +17,7 @@
       </div>
       <div class="credit-item-container">
         <div class="credit-item">Devyn Oh (doh22)</div>
-        <div class="credit-item-role">Core Contributor</div>
+        <div class="credit-item-role">Core Contributor, Firebase Specialist</div>
       </div>
       <div class="credit-item-container">
         <div class="credit-item">Cassie Eisen (ceisen22)</div>
