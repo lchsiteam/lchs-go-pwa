@@ -71,8 +71,7 @@ export default class Now extends Vue {
     this.$router.push('/about/changelog')
   }
   shouldShowUpdateLog() {
-    return !this.$store.state.isExtension && 
-      this.getUnreadUpdates().length > 0
+    return this.getUnreadUpdates().length > 0
   } 
   //Don't put the period (the punctuation mark one) here. It is supplied in the place where this function is called. 
   getGreeting() {
