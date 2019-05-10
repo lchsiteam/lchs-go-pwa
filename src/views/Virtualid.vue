@@ -11,9 +11,7 @@
     <p>The Virtual ID is a simple way for students to have access to their ID Card. Since it only requires opening the LCHS Go page, you can access your student ID faster than you can access a photo on your phone, or your physical ID card.</p>
     <p>The Virtual ID can be used for everything including signing in to the IRC checking out devices from the Help Lab, or anything that would require your normal ID card.</p>
     <h5>A note about Privacy</h5>
-    <p>In settings, you may decide whether the LCHS Go App stores your ID number. The LCHS Go Team promises not to use your ID number for anything other than displaying your barcode.</p>
-    <p>If you do not feel safe, you can always disable this. However, this means that everytime you wish to use Virtual ID, you will need to put in your ID number again, as we will not remember it for future refrence.</p>
-    <p>Note that the storage of your ID number is purely for you convenience and those who choose to disable this option will have access to all the same functionalities as those who have it enabled.</p>
+    <p>This app remembers your ID number for your convenience. The LCHS Go Team has no access to your ID information. </p> 
   </div>
 </template>
 <script lang="ts">
