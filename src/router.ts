@@ -11,6 +11,7 @@ export default new Router({
       path: '/home',
       component: Home,
       children: [
+        { path: 'virtualid', component: () => import('./views/Virtualid.vue') },
         { path: 'schedule', component: () => import('./views/BellSchedule.vue') },
         { path: '', component: () => import('./views/Now.vue') },
       ]
