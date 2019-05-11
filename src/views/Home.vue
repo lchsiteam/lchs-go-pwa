@@ -14,7 +14,7 @@ import Vue from 'vue'
 export default Vue.extend({
   beforeRouteEnter(to, from, next) {
     next(vm => {
-      is_extension = from.query.utm_source === 'extension' || to.query.utm_source === 'extension'; 
+      let is_extension = from.query.utm_source === 'extension' || to.query.utm_source === 'extension'; 
       
       vm.$store.commit('UPDATE_EXTENSION_STATUS', is_extension); 
     })
