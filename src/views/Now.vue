@@ -68,7 +68,8 @@ export default class Now extends Vue {
     return this.allLogs.filter(entry => this.$store.state.changelog.readUpdates.indexOf(entry.id) === -1); 
   } 
   goToChangelog() {
-    this.$router.push('/about/changelog')
+    if (this.$store.state.isExtension) { window.open('/about/changelog', '_blank'); } 
+    else { this.$router.push('about/changelog'); } 
   }
   shouldShowUpdateLog() {
     return this.getUnreadUpdates().length > 0
