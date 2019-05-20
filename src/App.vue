@@ -63,17 +63,18 @@ export default class App extends Vue {
 }
 
 // Your web app's Firebase configuration
-  var firebaseConfig = {
-    apiKey: "--------------------------------------",
-    authDomain: "lchs-go.firebaseapp.com",
-    databaseURL: "https://lchs-go.firebaseio.com",
-    projectId: "lchs-go",
-    storageBucket: "lchs-go.appspot.com",
-    messagingSenderId: "169999463820",
-    appId: "1:169999463820:web:95ebca156deaa88c"
-  };
-  // Initialize Firebase
-  firebase.initializeApp(firebaseConfig);
+var firebaseConfig = {
+  apiKey: "--------------------------------------",
+  authDomain: "lchs-go.firebaseapp.com",
+  databaseURL: "https://lchs-go.firebaseio.com",
+  projectId: "lchs-go",
+  storageBucket: "lchs-go.appspot.com",
+  messagingSenderId: "169999463820",
+  appId: "1:169999463820:web:95ebca156deaa88c"
+};
+
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
 
 </script>
 
