@@ -12,6 +12,7 @@ const defaultConfig = {
     showExtraPeriods: false,
     colorTheme: "theme8", 
     grade: 9, 
+    idInput: '', 
   },
   changelog: {
     readUpdates: [],

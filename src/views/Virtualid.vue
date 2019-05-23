@@ -16,11 +16,13 @@
 </template>
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
+
 @Component({})
 export default class VirtualID extends Vue {
 	rawInput: any = ""
 	currentInput: any = ""
 	shouldShow: boolean = false
+
 	updateOptionBL(name: string, value: any): void {
     this.$store.commit('UPDATE_SETTING', { name, value }); 
 	}
@@ -32,20 +34,25 @@ export default class VirtualID extends Vue {
 			this.updateOptionBL('idInput', this.currentInput); 
 		}
 	} 
+
 	validNumber(idNumber: any) {
 		return idNumber.length === 5 && !isNaN(idNumber); 
 	} 
+
 	getMessage() {
 		if (this.currentInput.length === 0) { return "" }
 		return this.validNumber(this.currentInput) ? 'Your ID Barcode' : 'Please enter a valid ID number'; 
 	}
+
 	getBarcodeUrl() {
 		if (!this.validNumber(this.currentInput)) return "";
 		return `http://www.barcodes4.me/barcode/c39/${this.currentInput}.png`; 
 	} 
+
 	mounted() {
 		this.rawInput = this.$store.state.settings.idInput; 
 		this.saveInput()
 	}
 }
 </script>
+

@@ -68,11 +68,11 @@ export default class Now extends Vue {
     return this.allLogs.filter(entry => this.$store.state.changelog.readUpdates.indexOf(entry.id) === -1); 
   } 
   goToChangelog() {
-    this.$router.push('/about/changelog')
+    if (this.$store.state.isExtension) { window.open('/about/changelog', '_blank'); } 
+    else { this.$router.push('about/changelog'); } 
   }
   shouldShowUpdateLog() {
-    return !this.$store.state.isExtension && 
-      this.getUnreadUpdates().length > 0
+    return this.getUnreadUpdates().length > 0
   } 
   //Don't put the period (the punctuation mark one) here. It is supplied in the place where this function is called. 
   getGreeting() {
