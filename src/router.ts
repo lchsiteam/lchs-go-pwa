@@ -8,25 +8,26 @@ export default new Router({
   mode: 'history',
   routes: [
     {
-      path: '/',
-      name: 'home',
+      path: '/home',
       component: Home,
+      children: [
+        //{ path: 'virtualid', component: () => import('./views/Virtualid.vue') },
+        { path: 'schedule', component: () => import('./views/BellSchedule.vue') },
+        { path: '', component: () => import('./views/Now.vue') },
+      ]
     },
     {
       path: '/about',
-      name: 'about',
-      // route level code-splitting
-      // this generates a separate chunk (about.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
       component: () => import(/* webpackChunkName: "about" */ './views/About.vue'),
+      children: [
+        { path: 'credits', component: () => import('./views/Credits.vue') },
+        { path: 'settings', component: () => import('./views/Settings.vue') },
+        { path: 'changelog', component: () => import('./views/Changelog.vue') },
+        { path: 'signIn', component: () => import('./views/SignIn.vue') },
+        { path: '', redirect: 'credits' },
+      ]
     },
-    {
-      path: '/today',
-      name: 'today',
-      // route level code-splitting
-      // this generates a separate chunk (about.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () => import(/* webpackChunkName: "about" */ './views/About.vue'),
-    },
+    { path: '/', redirect: 'home' },
+    { path: '*', redirect: 'home' },
   ],
 });
