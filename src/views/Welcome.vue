@@ -8,14 +8,14 @@
       <input v-model='rawInput' type='checkbox' :id="`grade${grade}`" :value='grade'>{{grade}}th Grade
     </div> 
     <!--
-    <input v-model="rawInput" type="checkbox" id="grade7" :value=7>7th Grade
-    <input v-model="rawInput" type="checkbox" id="grade8" :value=8>8th Grade
+    <input v-model="rawInput" type="checkbox" id="grade7" :value='7'>7th Grade
+    <input v-model="rawInput" type="checkbox" id="grade8" :value='8'>8th Grade
     <br>
-    <input v-model="rawInput" type="checkbox" id="grade9" :value=9>9th Grade
-    <input v-model="rawInput" type="checkbox" id="grade10" :value=10>10th Grade
+    <input v-model="rawInput" type="checkbox" id="grade9" :value='9'>9th Grade
+    <input v-model="rawInput" type="checkbox" id="grade10" :value='10'>10th Grade
     <br>
-    <input v-model="rawInput" type="checkbox" id="grade11" :value=11>11th Grade
-    <input v-model="rawInput" type="checkbox" id="grade12" :value=12>12th Grade
+    <input v-model="rawInput" type="checkbox" id="grade11" :value='11'>11th Grade
+    <input v-model="rawInput" type="checkbox" id="grade12" :value='12'>12th Grade
     <br><br>
     --> 
     <button @click="saveInput()" :disabled="!buttonOn(rawInput)">Submit</button>
