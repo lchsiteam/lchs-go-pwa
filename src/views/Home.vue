@@ -3,6 +3,8 @@
     <div class="sub-nav">
       <router-link class="sub-nav-item" to="/home" exact>Now</router-link>
       <router-link class="sub-nav-item" to="/home/schedule">Bell Schedule</router-link>
+      <router-link class="sub-nav-item" to="/home/Virtualid">Virtual ID</router-link>
+      <router-link class="sub-nav-item" to="/home/Welcome">Virtual ID</router-link>
     </div>
     <router-view></router-view>
     <p>Have feature suggestions? Send us a quick email at <a class="a" href="mailto:team@lciteam.club">team@lciteam.club</a>.</p>
@@ -14,9 +16,9 @@ import Vue from 'vue'
 export default Vue.extend({
   beforeRouteEnter(to, from, next) {
     next(vm => {
-      if (from.query.utm_source === "extension" || to.query.utm_source === 'extension') {
-        vm.$store.commit('UPDATE_EXTENSION_STATUS', true)
-      }
+      let is_extension = from.query.utm_source === 'extension' || to.query.utm_source === 'extension'; 
+      
+      vm.$store.commit('UPDATE_EXTENSION_STATUS', is_extension); 
     })
   },
 })

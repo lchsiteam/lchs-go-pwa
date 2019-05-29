@@ -4,4 +4,4 @@
 import Update013 from './v0.1.3';
 import Update020 from './v0.2.0';
 
-export const Changelog = [ Update013, Update020 ]
+export const Changelog = [ Update020, Update013 ]

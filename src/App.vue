@@ -29,60 +29,33 @@ export default class App extends Vue {
   }
 
   getCSSColorScheme() {
-    let themeGradientColors
+    let themeGradient
     const currentColorScheme = this.getCurrentColorScheme()
     if (this.$store.state.settings.colorTheme === "theme15") {
       const currentDate = DateTime.local().setZone("America/Los_Angeles")
-      switch(currentDate.hour) {
-        case 5:
-        case 6:
-        case 7:
-        case 8:
-          themeGradientColors = this.getColorSchemeFromId("theme14").gradientColors
-          break;
-        case 9:
-        case 10:
-        case 11:
-        case 12:
-          themeGradientColors = this.getColorSchemeFromId("theme4").gradientColors
-          break;
-        case 13:
-        case 14:
-        case 15:
-        case 16:
-          themeGradientColors = this.getColorSchemeFromId("theme6").gradientColors
-          break;
-        case 17:
-        case 18:
-        case 19:
-        case 20:
-          themeGradientColors = this.getColorSchemeFromId("theme1").gradientColors
-          break;
-        case 21:
-        case 22:
-        case 23:
-        case 0:
-        case 24:
-        case 1:
-        case 2:
-        case 3:
-        case 4:
-          themeGradientColors = this.getColorSchemeFromId("theme12").gradientColors
-          break;
-        default:
-          themeGradientColors = this.getColorSchemeFromId("theme10").gradientColors
-          break;
+      if (currentDate.hour >=21 && currentDate.hour <= 4) {
+        themeGradient = this.getColorSchemeFromId("theme12")
+      } else if (currentDate.hour <= 9) {
+        themeGradient = this.getColorSchemeFromId("theme14")
+      } else if (currentDate.hour <= 11) {
+        themeGradient = this.getColorSchemeFromId("theme4") 
+      } else if (currentDate.hour <= 15) {
+        themeGradient = this.getColorSchemeFromId("theme6")
+      } else if (currentDate.hour <= 17) {
+        themeGradient = this.getColorSchemeFromId("theme7")
+      } else {
+        themeGradient = this.getColorSchemeFromId("theme1")
       }
     }
     else {
-      themeGradientColors = currentColorScheme.gradientColors
+      themeGradient = currentColorScheme
     }
     return {
-      '--gradient-colors': themeGradientColors.join(', '),
-      '--button-menu-color': currentColorScheme.btnMenuColor,
-      '--button-submenu-color': currentColorScheme.btnSubmenuColor,
-      '--button-hover-color': currentColorScheme.btnHoverColor,
-      '--gradient-count': currentColorScheme.gradientColors.length,
+      '--gradient-colors': themeGradient.gradientColors.join(', '),
+      '--button-menu-color': themeGradient.btnMenuColor,
+      '--button-submenu-color': themeGradient.btnSubmenuColor,
+      '--button-hover-color': themeGradient.btnHoverColor,
+      '--gradient-count': themeGradient.gradientColors.length,
     }
   }
 }

@@ -32,9 +32,9 @@
         <div class="cd-txt-h">(This page updates time automatically)</div>
       </div>
     </div>
-    <div class="grid-fmr grid-fmr-mini-click" @click="goToChangelog()" v-if="shouldShowUpdateLog()">
-      <div class="grid-fmr-helper">UNREAD UPDATES</div>
-      <div class="grid-fmr-value">7/8 Students! You can now use LCHS Go! Tap/click here to read more.</div>
+    <div class='grid-fmr grid-fmr-mini-click' v-if="shouldShowUpdateLog()" @click='goToChangelog()'>
+      <div class="grid-fmr-helper">UNREAD UPDATES</div> 
+      <div v-for='entry in getUnreadUpdates()' :key='entry.id'>○ {{entry.title}}</div> 
     </div>
   </div>
 </template>
@@ -52,7 +52,7 @@ export default class Now extends Vue {
   private minutes: number = 0
   private currentDateTime: any
   private schedule: Schedule = Schedule.NONE; 
-  private grade = allGrades[0]; 
+  private grade = allGrades[2]; 
   private currentPeriod = { start: 0, end: 1440, period: Period.NONE }; 
   private allLogs: any[] = []
   public useNextPeriodStartAsEnd = false    // TODO: Find a better variable name
@@ -63,13 +63,16 @@ export default class Now extends Vue {
     this.grade = this.$store.state.settings.grade; 
     this.schedule = getScheduleFromDay(currentDate.month, currentDate.day, currentDate.year, currentDate.weekday, this.grade); 
     this.currentPeriod = getPeriod(this.minutes, this.schedule, this.grade); 
-  }
+  } 
+  getUnreadUpdates() {
+    return this.allLogs.filter(entry => this.$store.state.changelog.readUpdates.indexOf(entry.id) === -1); 
+  } 
   goToChangelog() {
-    this.$router.push('/about/changelog')
+    if (this.$store.state.isExtension) { window.open('/about/changelog', '_blank'); } 
+    else { this.$router.push('about/changelog'); } 
   }
   shouldShowUpdateLog() {
-    return !this.$store.state.isExtension && 
-      this.allLogs.map(l => l.id).filter(id => this.$store.state.changelog.readUpdates.indexOf(id) === -1).length > 0
+    return this.getUnreadUpdates().length > 0
   } 
   //Don't put the period (the punctuation mark one) here. It is supplied in the place where this function is called. 
   getGreeting() {
@@ -186,6 +189,7 @@ export default class Now extends Vue {
   updateOptionBL(name: string, value: any): void {
     this.$store.commit('UPDATE_SETTING', { name, value }); 
   } 
+
   changeGrade(grade: number) {
     this.updateOptionBL('grade', grade); 
   } 
@@ -194,7 +198,7 @@ export default class Now extends Vue {
     let grade = this.$store.state.settings.grade; 
     
     if(allGrades.indexOf(grade) == -1) {
-      grade = allGrades[0]; 
+      grade = allGrades[2]; 
       
       this.changeGrade(grade); 
     } 
