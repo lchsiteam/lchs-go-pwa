@@ -1,4 +1,4 @@
-<template>
+k<template>
   <div id="app-container" :style="getCSSColorScheme()" :class="{ toggleOff: !this.$store.state.settings.enableThemeAnimations }">
     <div id="app">
       <div id="nav">
@@ -90,7 +90,6 @@ html, body, #app-container {
     animation: none;
   }
 }
-
 #app {
   font-family: 'Niramit', Avenir, sans-serif;
   -webkit-font-smoothing: antialiased;

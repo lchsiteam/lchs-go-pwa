@@ -4,6 +4,10 @@
       <router-link class="sub-nav-item" to="/home" exact>Now</router-link>
       <router-link class="sub-nav-item" to="/home/schedule">Bell Schedule</router-link>
     </div>
+    <div>
+      <router-link class="sub-nav-item" to="/home/virtualid">Virtual ID</router-link>
+      <router-link class="sub-nav-item" to="/home/announcements">Announcements</router-link>
+    </div>
     <router-view></router-view>
     <p>Have feature suggestions? Send us a quick email at <a class="a" href="mailto:team@lciteam.club">team@lciteam.club</a>.</p>
   </div>
