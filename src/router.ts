@@ -13,6 +13,8 @@ export default new Router({
       children: [
         { path: 'announcements', component: () => import('./views/News.vue') },
         { path: 'virtualid', component: () => import('./views/Virtualid.vue') },
+        { path: 'Welcome', component: () => import('./views/Welcome.vue') },
+        { path: 'Virtualid', component: () => import('./views/Virtualid.vue') },
         { path: 'schedule', component: () => import('./views/BellSchedule.vue') },
         { path: '', component: () => import('./views/Now.vue') },
       ]
