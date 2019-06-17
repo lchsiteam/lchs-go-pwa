@@ -28,7 +28,7 @@ export function getCurrentDate(): any {
 
 const summer_break = [new MDY_Date(6, 6, 2019), new MDY_Date(8, 14, 2019)]; 
 
-const breaks = [summer_break] 
+const breaks = [summer_break]; 
 
 export const school_special_dates: any = {
   // month - day - year: schedule (something from the Schedule enum) 
