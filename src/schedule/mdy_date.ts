@@ -31,7 +31,7 @@ export class MDY_Date {
         let result_list = this.date_list.slice(); 
 
         for(let index = 0; index < result_list.length; index++) {
-        result_list[index] -= other.date_list[index]; 
+            result_list[index] -= other.date_list[index]; 
         } 
 
         return result_list; 
