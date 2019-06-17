@@ -21,7 +21,8 @@ enum Schedule {
   FINALS_15, 
   FINALS_26, 
   ASSEMBLY, 
-  MINIMUM,
+  MINIMUM, 
+  SUMMER_SCHOOL, 
   NONE,
 }
 
