@@ -153,6 +153,9 @@ export function getScheduleName(schedule: Schedule) {
     case Schedule.NONE: 
       return 'free'; 
       break; 
+    case Schedule.SUMMER_SCHOOL: 
+      return 'summer school' 
+      break; 
     default: 
       return 'error'; 
       break; 

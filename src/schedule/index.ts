@@ -9,7 +9,8 @@ import { NoSchoolSchedule, RegularSchedule, BlockOddSchedule, BlockEvenSchedule,
         HSBlockEvenScheduleFor78, HSSpecialBlockOddScheduleFor78, HSSpecialBlockEvenScheduleFor78, 
         AssemblySchedule7, AssemblySchedule8, EarlyReleaseSchedule78, MinimumSchedule, PreFinals3264Schedule, PreFinals2156Schedule, 
         PreFinals1345Schedule, FinalAssemblySchedule78, FinalAssemblySchedule12, Finals34Schedule, Finals15Schedule, 
-        Finals26Schedule } from './schedules'; 
+        Finals26Schedule, 
+        SummerSchoolSchedule} from './schedules'; 
 
 export const plus_days = 0; 
 
@@ -30,7 +31,11 @@ const summer_break = [new MDY_Date(6, 6, 2019), new MDY_Date(8, 14, 2019)];
 
 const breaks = [summer_break]; 
 
+const summer_school: [MDY_Date, MDY_Date] = [new MDY_Date(6, 17, 2019), new MDY_Date(7, 19, 2019)]; 
+
 export const school_special_dates: any = {
+  '7 - 4 - 2019': Schedule.NONE, 
+  '7 - 5 - 2019': Schedule.NONE, 
   // month - day - year: schedule (something from the Schedule enum) 
 }; 
 
@@ -71,22 +76,9 @@ export function getScheduleFromDay(month: number, day: number, year: number, wee
     shed = school_special_dates[date]; 
   } else {
     // check to see if this date falls in a multi-date exception
-    let not_break = true; 
+    const is_summer_school = date_obj.between(...summer_school); 
 
-    for(const brk of breaks) {
-      const [start, end] = brk; 
-      
-      console.log(date_obj.between(start, end)); 
-
-      if(date_obj.between(start, end)) {
-        shed = Schedule.NONE; 
-        not_break = false; 
-
-        break; 
-      } 
-    }
-
-    if(not_break) {
+    if(is_summer_school) {
       switch(week_day) {
         case Day.SUNDAY: 
         case Day.SATURDAY: 
@@ -94,15 +86,46 @@ export function getScheduleFromDay(month: number, day: number, year: number, wee
           break;
         case Day.MONDAY: 
         case Day.TUESDAY: 
+        case Day.WEDNESDAY: 
+        case Day.THURSDAY: 
         case Day.FRIDAY: 
-          shed = Schedule.REGULAR;
-          break;
-        case Day.WEDNESDAY:
-          shed = Schedule.BLOCK_ODD;
-          break;
-        case Day.THURSDAY:
-          shed = Schedule.BLOCK_EVEN;
+          shed = Schedule.SUMMER_SCHOOL; 
           break; 
+      } 
+    } else {
+      let not_break = true; 
+
+      for(const brk of breaks) {
+        const [start, end] = brk; 
+        
+        //console.log(date_obj.between(start, end)); 
+
+        if(date_obj.between(start, end)) {
+          shed = Schedule.NONE; 
+          not_break = false; 
+
+          break; 
+        } 
+      }
+
+      if(not_break) {
+        switch(week_day) {
+          case Day.SUNDAY: 
+          case Day.SATURDAY: 
+            shed = Schedule.NONE; 
+            break;
+          case Day.MONDAY: 
+          case Day.TUESDAY: 
+          case Day.FRIDAY: 
+            shed = Schedule.REGULAR;
+            break;
+          case Day.WEDNESDAY:
+            shed = Schedule.BLOCK_ODD;
+            break;
+          case Day.THURSDAY:
+            shed = Schedule.BLOCK_EVEN;
+            break; 
+        } 
       } 
     } 
   } 
@@ -209,6 +232,9 @@ export function getFullSchedule(schedule: Schedule, grade: number): any {
       break; 
     case Schedule.MINIMUM: 
       return MinimumSchedule; 
+      break; 
+    case Schedule.SUMMER_SCHOOL: 
+      return SummerSchoolSchedule; 
       break; 
     default: 
       return NoSchoolSchedule; 
