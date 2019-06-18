@@ -9,8 +9,7 @@ import { NoSchoolSchedule, RegularSchedule, BlockOddSchedule, BlockEvenSchedule,
         HSBlockEvenScheduleFor78, HSSpecialBlockOddScheduleFor78, HSSpecialBlockEvenScheduleFor78, 
         AssemblySchedule7, AssemblySchedule8, EarlyReleaseSchedule78, MinimumSchedule, PreFinals3264Schedule, PreFinals2156Schedule, 
         PreFinals1345Schedule, FinalAssemblySchedule78, FinalAssemblySchedule12, Finals34Schedule, Finals15Schedule, 
-        Finals26Schedule, 
-        SummerSchoolSchedule} from './schedules'; 
+        Finals26Schedule, SummerSchoolSchedule } from './schedules'; 
 
 export const plus_days = 0; 
 
