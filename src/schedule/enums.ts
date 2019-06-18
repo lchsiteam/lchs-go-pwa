@@ -21,7 +21,8 @@ enum Schedule {
   FINALS_15, 
   FINALS_26, 
   ASSEMBLY, 
-  MINIMUM,
+  MINIMUM, 
+  SUMMER_SCHOOL, 
   NONE,
 }
 
@@ -151,6 +152,9 @@ export function getScheduleName(schedule: Schedule) {
       break; 
     case Schedule.NONE: 
       return 'free'; 
+      break; 
+    case Schedule.SUMMER_SCHOOL: 
+      return 'summer school' 
       break; 
     default: 
       return 'error'; 
