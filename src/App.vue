@@ -17,8 +17,8 @@
 import { Component, Vue } from 'vue-property-decorator';
 import { Themes } from './themes';
 import { DateTime } from 'luxon';
-import { firebase } from 'firebase';
-import { firebaseui } from 'firebaseui';
+import firebase from 'firebase';
+import firebaseui from 'firebaseui';
 
 @Component({})
 export default class App extends Vue {
