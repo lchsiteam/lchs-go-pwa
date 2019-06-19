@@ -89,7 +89,7 @@ export default class Now extends Vue {
     return getPeriodName(this.currentPeriod.period)
   }
   getFormattedTimeUntilNext() {
-    return this.getTimeUntilNext() >= 120 ? Math.ceil(this.getTimeUntilNext() / 60) : this.getTimeUntilNext()
+    return [Math.floor(this.getTimeUntilNext()/60), this.getTimeUntilNext() % 60]
   }
   getCurrentScheduleName() {
     return getScheduleName(this.schedule); 
