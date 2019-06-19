@@ -16,9 +16,9 @@
       <div class="grid-fmr-value">
         <div>
           <span class="cd-num" v-if="(getFormattedTimeUntilNext()[0]!=0)">{{getFormattedTimeUntilNext()[0]}}</span>
-	  <span class="cd=txt" v-if="(getFormattedTimeUntilNext()[0]!=0)"> hr. </span>
-	  <span class="cd-num">{{getFormattedTimeUntilNext()[1]}}</span<
-	  <span class="cd-txt"> min.</span>
+          <span class="cd-txt" v-if="(getFormattedTimeUntilNext()[0]!=0)"> hr. </span>
+          <span class="cd-num">{{getFormattedTimeUntilNext()[1]}}</span>
+          <span class="cd-txt"> min.</span>
           <span class="cd-txt">until {{getUntilNextName()}}</span>
         </div>
         <div class="cd-txt-h">({{Math.round(getCurrentPercentage() * 100)}}% completed)</div>
