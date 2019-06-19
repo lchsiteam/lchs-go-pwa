@@ -17,6 +17,8 @@
 import { Component, Vue } from 'vue-property-decorator';
 import { Themes } from './themes';
 import { DateTime } from 'luxon';
+import firebase from 'firebase';
+import firebaseui from 'firebaseui';
 
 @Component({})
 export default class App extends Vue {
@@ -59,6 +61,19 @@ export default class App extends Vue {
     }
   }
 }
+
+  // Your web app's Firebase configuration
+  var firebaseConfig = {
+    apiKey: "AIzaSyDWaQp0SxDc4t_aaUIxdDI_Zb0rf8YWASc",
+    authDomain: "helloyeet-c3c84.firebaseapp.com",
+    databaseURL: "https://helloyeet-c3c84.firebaseio.com",
+    projectId: "helloyeet-c3c84",
+    storageBucket: "helloyeet-c3c84.appspot.com",
+    messagingSenderId: "969131500601",
+    appId: "1:969131500601:web:f47d01d3ff7c4eef"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
 </script>
 
 
@@ -90,7 +105,6 @@ html, body, #app-container {
     animation: none;
   }
 }
-
 #app {
   font-family: 'Niramit', Avenir, sans-serif;
   -webkit-font-smoothing: antialiased;
