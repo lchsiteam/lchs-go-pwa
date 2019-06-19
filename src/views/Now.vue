@@ -16,8 +16,8 @@
       <div class="grid-fmr-value">
         <div>
           <span class="cd-num" v-if="(getFormattedTimeUntilNext()[0]!=0)">{{getFormattedTimeUntilNext()[0]}}</span>
-          <span class="cd=txt" v-if="(getFormattedTimeUntilNext()[0]!=0)"> hr. </span>
-          <span class="cd-num">{{getFormattedTimeUntilNext()[1]}}</span<
+          <span class="cd-txt" v-if="(getFormattedTimeUntilNext()[0]!=0)"> hr. </span>
+          <span class="cd-num">{{getFormattedTimeUntilNext()[1]}}</span>
           <span class="cd-txt"> min.</span>
           <span class="cd-txt">until {{getUntilNextName()}}</span>
         </div>
@@ -45,8 +45,7 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
 import { DateTime, Duration } from 'luxon';
-import { printTime, getScheduleFromDay, getPeriod, getUpcomingPeriod, allGrades, 
-plus_days } from '@/schedule';
+import { printTime, getScheduleFromDay, getPeriod, getUpcomingPeriod, allGrades, plus_days } from '@/schedule';
 import { Day, Schedule, Period, getPeriodName, getScheduleName } from '@/schedule/enums';
 import { RegularSchedule, BlockEvenSchedule, BlockOddSchedule } from '@/schedule/schedules';
 import { Changelog } from '../changelog'; 
