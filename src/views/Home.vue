@@ -8,7 +8,7 @@
     <div>
       <router-link class="sub-nav-item" to="/home/Virtualid">Virtual ID</router-link>
       <router-link class="sub-nav-item" to="/home/Welcome">Welcome Page</router-link>
-      <router-link class="sub-nav-item" to="/home/announcements">Announcements</router-link>
+      <router-link class="sub-nav-item" to="/home/news">Announcements</router-link>
     </div>
     -->
     <router-view></router-view>
