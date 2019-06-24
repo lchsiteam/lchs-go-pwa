@@ -456,9 +456,11 @@ export const Finals26Schedule: any[] = [
 ]; 
 
 export const SummerSchoolSchedule: any[] = [
-  { start: toTime(0, 0), end: toTime(7, 45), period: Period.NONE }, 
+  { start: toTime(0, 0), end: toTime(7, 39), period: Period.NONE }, 
+  { start: toTime(7, 39), end: toTime(7, 45), period: Period.PERIOD_0_PASSING }, 
   { start: toTime(7, 45), end: toTime(10, 0), period: Period.PERIOD_1 }, 
-  { start: toTime(10, 0), end: toTime(10, 20), period: Period.BREAK }, 
+  { start: toTime(10, 0), end: toTime(10, 15), period: Period.BREAK }, 
+  { start: toTime(10, 15), end: toTime(10, 20), period: Period.BREAK_PASSING }, 
   { start: toTime(10, 20), end: toTime(13, 0), period: Period.PERIOD_2 }, 
   { start: toTime(13, 0), end: toTime(24, 0), period: Period.DONE }, 
 ]; 
