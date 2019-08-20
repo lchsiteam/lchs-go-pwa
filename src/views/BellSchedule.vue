@@ -3,7 +3,13 @@
     <!-- Place the table in the Bell Schedule page for now -->
     <h3>Today: {{getCurrentScheduleName()}}</h3> 
     <p class="gradeMessage">You are viewing the {{this.grade}}th grade schedule. To change grades, go to About -> Settings. </p> 
-    <!-- Please replace this! -->
+    <p>Click the black arrow to display a calendar selection.</p>
+    <label for="start">Enter date:</label>
+    <input type="date" id="start" name="day-of-school"
+      :value="this.date"
+      min="2019-07-01" max="2020-5-3">
+    <p>{{this.date}}</p>
+    
     <div class="bell-schedule" v-if="getCurrentScheduleName() != 'free'">
       <div class="blsch-period-hd">
         <div class="blsch-period-title">Period</div>
@@ -77,12 +83,14 @@ export default class Home extends Vue {
   private minutes: number = 0
   private schedule: Schedule = Schedule.NONE; 
   private grade = allGrades[2]; 
+  private date = ""
   private currentPeriod = { start: 0, end: 1440, period: Period.NONE }; 
+
 
   updateStats() {
     const currentDate = DateTime.local().setZone("America/Los_Angeles").plus(Duration.fromMillis(plus_days * 86400000)); 
     this.minutes = currentDate.minute + (currentDate.hour * 60) 
-
+    this.date = `${currentDate.year}-${currentDate.month}-${currentDate.day}`; 
     this.grade = this.$store.state.settings.grade; 
     this.schedule = getScheduleFromDay(currentDate.month, currentDate.day, currentDate.year, currentDate.weekday, this.grade); 
     this.currentPeriod = getPeriod(this.minutes, this.schedule, this.grade); 
