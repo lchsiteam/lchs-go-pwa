@@ -119,10 +119,10 @@ export function getScheduleFromDay(month: number, day: number, year: number, wee
             shed = Schedule.REGULAR;
             break;
           case Day.WEDNESDAY:
-            shed = Schedule.BLOCK_ODD;
+            shed = Schedule.REGULAR;//BLOCK_ODD;
             break;
           case Day.THURSDAY:
-            shed = Schedule.BLOCK_EVEN;
+            shed = Schedule.REGULAR;//BLOCK_EVEN;
             break; 
         } 
       } 
