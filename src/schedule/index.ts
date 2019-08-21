@@ -148,10 +148,10 @@ export function getFullSchedule(schedule: Schedule, grade: number): any {
       return high_schooler ? RegularSchedule : RegularSchedule78; 
       break; 
     case Schedule.BLOCK_ODD: 
-      return high_schooler ? BlockOddSchedule : BlockOddSchedule78; 
+      return high_schooler ? RegularSchedule : RegularSchedule78; //return high_schooler ? BlockOddSchedule : BlockOddSchedule78; 
       break; 
     case Schedule.BLOCK_EVEN: 
-      return high_schooler ? BlockEvenSchedule : BlockEvenSchedule78; 
+      return high_schooler ? RegularSchedule : RegularSchedule78; //return high_schooler ? BlockEvenSchedule : BlockEvenSchedule78; 
       break; 
     case Schedule.SBAC_BLOCK_ODD: 
       return high_schooler ? BlockOddSchedule : HSBlockOddScheduleFor78; 
