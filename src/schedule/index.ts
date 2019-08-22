@@ -26,15 +26,17 @@ export function getCurrentDate(): any {
   };
 } 
 
-const summer_break = [new MDY_Date(6, 6, 2019), new MDY_Date(8, 14, 2019)]; 
+const summer_break = []; 
 
-const breaks = [summer_break]; 
+const breaks = []; 
 
 const summer_school: [MDY_Date, MDY_Date] = [new MDY_Date(6, 17, 2019), new MDY_Date(7, 19, 2019)]; 
 
 export const school_special_dates: any = {
-  '7 - 4 - 2019': Schedule.NONE, 
-  '7 - 5 - 2019': Schedule.NONE, 
+  '8 - 21 - 2019': Schedule.REGULAR, 
+  '8 - 22 - 2019': Schedule.REGULAR, 
+  '8 - 23 - 2019': Schedule.ASSEMBLY, 
+  
   // month - day - year: schedule (something from the Schedule enum) 
 }; 
 
