@@ -9,7 +9,7 @@ import { NoSchoolSchedule, RegularSchedule, BlockOddSchedule, BlockEvenSchedule,
         HSBlockEvenScheduleFor78, HSSpecialBlockOddScheduleFor78, HSSpecialBlockEvenScheduleFor78, 
         AssemblySchedule7, AssemblySchedule8, EarlyReleaseSchedule78, MinimumSchedule, PreFinals3264Schedule, PreFinals2156Schedule, 
         PreFinals1345Schedule, FinalAssemblySchedule78, FinalAssemblySchedule12, Finals34Schedule, Finals15Schedule, 
-        Finals26Schedule, SummerSchoolSchedule } from './schedules'; 
+        Finals26Schedule, FinalsTBDSchedule, SummerSchoolSchedule } from './schedules'; 
 
 export const plus_days = 0; 
 
@@ -246,6 +246,9 @@ export function getFullSchedule(schedule: Schedule, grade: number): any {
       break; 
     case Schedule.FINALS_26: 
       return Finals26Schedule; 
+      break; 
+    case Schedule.FINALS_TBD: 
+      return FinalsTBDSchedule; 
       break; 
     //Hypothetically, this would also be used to convey a 9-12 early release day. However, 9-12 
     //doesn't seem to have any. 
