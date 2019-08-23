@@ -7,7 +7,7 @@
     <label for="start">Enter date:</label>
     <input type="date" id="start" name="day-of-school"
       v-model="date"
-      min="2019-07-01" max="2020-5-3">
+      min="2019-07-01" max="2020-05-03">
     <p>{{this.date}}</p>
     
     <div class="bell-schedule" v-if="getCurrentScheduleName() != 'free'">
@@ -215,11 +215,11 @@ export default class Home extends Vue {
     
     const currentDate = DateTime.local().setZone("America/Los_Angeles").plus(Duration.fromMillis(plus_days * 86400000)); 
     
-    const year = currentDate.year.toString(); 
-    const month = currentDate.month.toString(); 
-    const day = currentDate.day.toString(); 
+    const year = currentDate.year.toString().padStart(4, '0'); 
+    const month = currentDate.month.toString().padStart(2, '0'); 
+    const day = currentDate.day.toString().padStart(2, '0'); 
     
-    this.date = `${currentDate.year}-${currentDate.month}-${currentDate.day}`; 
+    this.date = `${year}-${month}-${day}`; 
     
     setInterval(this.updateStats, 5000)
     this.updateStats()
