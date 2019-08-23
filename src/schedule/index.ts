@@ -26,17 +26,15 @@ export function getCurrentDate(): any {
   };
 } 
 
-const summer_break = []; 
+const summer_break = [new MDY_Date(6, 6, 2019), new MDY_Date(8, 14, 2019)]; 
 
-const breaks = []; 
+const breaks = [summer_break]; 
 
 const summer_school: [MDY_Date, MDY_Date] = [new MDY_Date(6, 17, 2019), new MDY_Date(7, 19, 2019)]; 
 
 export const school_special_dates: any = {
-  '8 - 21 - 2019': Schedule.REGULAR, 
-  '8 - 22 - 2019': Schedule.REGULAR, 
-  '8 - 23 - 2019': Schedule.ASSEMBLY, 
-  
+  '7 - 4 - 2019': Schedule.NONE, 
+  '7 - 5 - 2019': Schedule.NONE, 
   // month - day - year: schedule (something from the Schedule enum) 
 }; 
 
@@ -121,10 +119,10 @@ export function getScheduleFromDay(month: number, day: number, year: number, wee
             shed = Schedule.REGULAR;
             break;
           case Day.WEDNESDAY:
-            shed = Schedule.BLOCK_ODD;
+            shed = Schedule.REGULAR;//BLOCK_ODD;
             break;
           case Day.THURSDAY:
-            shed = Schedule.BLOCK_EVEN;
+            shed = Schedule.REGULAR;//BLOCK_EVEN;
             break; 
         } 
       } 
@@ -150,10 +148,10 @@ export function getFullSchedule(schedule: Schedule, grade: number): any {
       return high_schooler ? RegularSchedule : RegularSchedule78; 
       break; 
     case Schedule.BLOCK_ODD: 
-      return high_schooler ? BlockOddSchedule : BlockOddSchedule78; 
+      return high_schooler ? RegularSchedule : RegularSchedule78; //return high_schooler ? BlockOddSchedule : BlockOddSchedule78; 
       break; 
     case Schedule.BLOCK_EVEN: 
-      return high_schooler ? BlockEvenSchedule : BlockEvenSchedule78; 
+      return high_schooler ? RegularSchedule : RegularSchedule78; //return high_schooler ? BlockEvenSchedule : BlockEvenSchedule78; 
       break; 
     case Schedule.SBAC_BLOCK_ODD: 
       return high_schooler ? BlockOddSchedule : HSBlockOddScheduleFor78; 
