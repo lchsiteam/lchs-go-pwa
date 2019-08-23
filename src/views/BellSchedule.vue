@@ -6,7 +6,7 @@
     <p>Click the black arrow to display a calendar selection.</p>
     <label for="start">Enter date:</label>
     <input type="date" id="start" name="day-of-school"
-      :value="this.date"
+      v-model="this.date"
       min="2019-07-01" max="2020-5-3">
     <p>{{this.date}}</p>
     
