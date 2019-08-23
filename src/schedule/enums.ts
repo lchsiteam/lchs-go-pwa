@@ -19,7 +19,8 @@ enum Schedule {
   FINAL_ASSEMBLY, 
   FINALS_34, 
   FINALS_15, 
-  FINALS_26, 
+  FINALS_26,
+  FINALS_TBD,
   ASSEMBLY, 
   MINIMUM, 
   SUMMER_SCHOOL, 
@@ -63,6 +64,7 @@ enum Period {
   PERIOD_5_PASSING,
   PERIOD_6, 
   PERIOD_6_PASSING, 
+  TBD, 
   NONE,
   DONE,
 }
@@ -92,6 +94,7 @@ export function getPeriodName(period: Period) {
   else if (period == Period.PERIOD_5_PASSING) { return 'Passing After Period 5'; }
   else if (period == Period.PERIOD_6) { return 'Period 6'; } 
   else if (period == Period.PERIOD_6_PASSING) { return 'Passing after Period 6'; } 
+  else if (period == Period.TBD) { return 'To Be Determined'; }
   else if (period == Period.NONE) { return 'No School'; }
   else if (period == Period.DONE) { return 'No School'; }
   else { return '????'; }
@@ -149,6 +152,9 @@ export function getScheduleName(schedule: Schedule) {
       break; 
     case Schedule.MINIMUM: 
       return 'minimum schedule'; 
+      break; 
+    case Schedule.FINALS_TBD: 
+      return 'finals schedule (TBD)'; 
       break; 
     case Schedule.NONE: 
       return 'free'; 
