@@ -26,9 +26,9 @@ export function getCurrentDate(): any {
   };
 } 
 
-const summer_break = []; 
+const summer_break: any[] = []; 
 
-const breaks = []; 
+const breaks: any[] = []; 
 
 const summer_school: [MDY_Date, MDY_Date] = [new MDY_Date(6, 17, 2019), new MDY_Date(7, 19, 2019)]; 
 
