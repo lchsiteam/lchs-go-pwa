@@ -90,7 +90,6 @@ export default class Home extends Vue {
   updateStats() {
     const currentDate = DateTime.local().setZone("America/Los_Angeles").plus(Duration.fromMillis(plus_days * 86400000)); 
     this.minutes = currentDate.minute + (currentDate.hour * 60) 
-    this.date = `${currentDate.year}-${currentDate.month}-${currentDate.day}`; 
     this.grade = this.$store.state.settings.grade; 
     this.schedule = getScheduleFromDay(currentDate.month, currentDate.day, currentDate.year, currentDate.weekday, this.grade); 
     this.currentPeriod = getPeriod(this.minutes, this.schedule, this.grade); 
@@ -213,6 +212,14 @@ export default class Home extends Vue {
       this.changeGrade(grade); 
     } 
     //note that this didn't make any assignments to this.grade. That's because this part is just to correct invalid settings. 
+    
+    const currentDate = DateTime.local().setZone("America/Los_Angeles").plus(Duration.fromMillis(plus_days * 86400000)); 
+    
+    const year = currentDate.year.toString(); 
+    const month = currentDate.month.toString(); 
+    const day = currentDate.day.toString(); 
+    
+    this.date = `${currentDate.year}-${currentDate.month}-${currentDate.day}`; 
     
     setInterval(this.updateStats, 5000)
     this.updateStats()
