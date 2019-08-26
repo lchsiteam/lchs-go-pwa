@@ -286,6 +286,7 @@ const periodsFilter = [
   Period.STEP_EVEN,
   Period.HOMEROOM,
   Period.ASSEMBLY,
+  Period.TBD,
 ]
 
 export function getUpcomingPeriod(time: number, dateTime: any, schedule: Schedule, grade: number, pAllow = periodsFilter): any {
