@@ -28,7 +28,11 @@ export function getCurrentDate(): any {
 
 const summer_break: any[] = []; 
 
-const breaks: any[] = []; 
+
+const tg_break: MDY_Date[] = [new MDY_Date(11, 25, 2019), new MDY_Date(11, 29, 2019)]; 
+const winter_break: MDY_Date[] = [new MDY_Date(12, 20, 2019), new MDY_Date(1, 6, 2019)]; //Please don't ever delete these, just comment them out if you have to
+
+const breaks: any[] = [tg_break, winter_break]; 
 
 const summer_school: [MDY_Date, MDY_Date] = [new MDY_Date(6, 17, 2019), new MDY_Date(7, 19, 2019)]; 
 
@@ -37,26 +41,9 @@ export const school_special_dates: any = {
   '8 - 22 - 2019': Schedule.REGULAR, 
   '8 - 23 - 2019': Schedule.ASSEMBLY, 
   '9 - 2 - 2019': Schedule.NONE,
-  '10 - 25 - 2019': Schedule.NONE,
-  '10 - 26 - 2019': Schedule.NONE,
-  '10 - 27 - 2019': Schedule.NONE,
-  '10 - 28 - 2019': Schedule.NONE,
-  '10 - 29 - 2019': Schedule.NONE,
   '12 - 17 - 2019': Schedule.FINALS_TBD,
   '12 - 18 - 2019': Schedule.FINALS_TBD,
   '12 - 19 - 2019': Schedule.FINALS_TBD,
-  '12 - 20 - 2019': Schedule.NONE,
-  '12 - 23 - 2019': Schedule.NONE,
-  '12 - 24 - 2019': Schedule.NONE,
-  '12 - 25 - 2019': Schedule.NONE,
-  '12 - 26 - 2019': Schedule.NONE,
-  '12 - 27 - 2019': Schedule.NONE,
-  '12 - 30 - 2019': Schedule.NONE,
-  '12 - 31 - 2019': Schedule.NONE,
-  '1 - 1 - 2019': Schedule.NONE,
-  '1 - 2 - 2019': Schedule.NONE,
-  '1 - 3 - 2019': Schedule.NONE,
-  '1 - 6 - 2019': Schedule.NONE,
   
   // month - day - year: schedule (something from the Schedule enum) 
 }; 
