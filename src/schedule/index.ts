@@ -30,7 +30,7 @@ const summer_break: any[] = [];
 
 
 const tg_break: MDY_Date[] = [new MDY_Date(11, 25, 2019), new MDY_Date(11, 29, 2019)]; 
-const winter_break: MDY_Date[] = [new MDY_Date(12, 20, 2019), new MDY_Date(1, 6, 2019)]; //Please don't ever delete these, just comment them out if you have to
+const winter_break: MDY_Date[] = [new MDY_Date(12, 20, 2019), new MDY_Date(1, 6, 2020)]; //Please don't ever delete these, just comment them out if you have to
 
 const breaks: any[] = [tg_break, winter_break]; 
 
