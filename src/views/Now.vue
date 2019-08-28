@@ -60,6 +60,7 @@ export default class Now extends Vue {
   public useNextPeriodStartAsEnd = false    // TODO: Find a better variable name
   updateStats() {
     const currentDate = DateTime.local().setZone("America/Los_Angeles").plus(Duration.fromMillis(plus_days * 86400000)); 
+    export const WriteDate = DateTime.local().setZone("America/Los_Angeles").plus(Duration.fromMillis(plus_days * 86400000));
     this.minutes = currentDate.minute + (currentDate.hour * 60); 
     this.currentDateTime = currentDate
     this.grade = this.$store.state.settings.grade; 
