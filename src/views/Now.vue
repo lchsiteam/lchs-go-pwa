@@ -35,6 +35,7 @@
         <div class="cd-txt-h">(This page updates time automatically)</div>
       </div>
     </div>
+    <p>Today is <a class="a">{{currentDate}}% completed</a>.</p>
     <div class='grid-fmr grid-fmr-mini-click' v-if="shouldShowUpdateLog()" @click='goToChangelog()'>
       <div class="grid-fmr-helper">UNREAD UPDATES</div> 
       <div v-for='entry in getUnreadUpdates()' :key='entry.id'>○ {{entry.title}}</div> 
@@ -290,5 +291,8 @@ a {
 } 
 .gradeMessage {
   font-size: 15px; 
+  
+  a.a {
+  color: rgb(168, 230, 255);
 }
 </style>
