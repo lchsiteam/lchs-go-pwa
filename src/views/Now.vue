@@ -67,8 +67,8 @@ export default class Now extends Vue {
     this.currentPeriod = getPeriod(this.minutes, this.schedule, this.grade); 
   } 
   
-  getCurrentDateFormatted() {
-    return DateTime.local().setZone("America/Los_Angeles").plus(Duration.fromMillis(plus_days * 86400000)).month();
+  getCurrentDate() {
+    return DateFull.local().setZone("America/Los_Angeles").plus(Duration.fromMillis(plus_days * 86400000));
    }
   
   getUnreadUpdates() {
