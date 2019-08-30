@@ -68,7 +68,7 @@ export default class Now extends Vue {
   } 
   
   getCurrentDate() {
-    return currentDate;
+    return DateTime.local().setZone("America/Los_Angeles").plus(Duration.fromMillis(plus_days * 86400000));;
    }
   
   getUnreadUpdates() {
