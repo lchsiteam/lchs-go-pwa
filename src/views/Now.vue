@@ -35,7 +35,7 @@
         <div class="cd-txt-h">(This page updates time automatically)</div>
       </div>
     </div>
-    <p>Today is <a class="a">{{currentDate}}</a>.</p>
+    <p>Today is <a class="a">{{getCurrentDate()}}</a>.</p>
     <div class='grid-fmr grid-fmr-mini-click' v-if="shouldShowUpdateLog()" @click='goToChangelog()'>
       <div class="grid-fmr-helper">UNREAD UPDATES</div> 
       <div v-for='entry in getUnreadUpdates()' :key='entry.id'>○ {{entry.title}}</div> 
@@ -67,8 +67,9 @@ export default class Now extends Vue {
     this.currentPeriod = getPeriod(this.minutes, this.schedule, this.grade); 
   } 
   
-  gitCurrentDate() {
+  getCurrentDate() {
     return currentDate;
+   }
   
   getUnreadUpdates() {
     return this.allLogs.filter(entry => this.$store.state.changelog.readUpdates.indexOf(entry.id) === -1); 
