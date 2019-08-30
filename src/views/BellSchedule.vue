@@ -161,6 +161,7 @@ export default class Home extends Vue {
         Period.STEP_EVEN,
         Period.HOMEROOM, 
         Period.ASSEMBLY,
+        Period.TBD,
       ].indexOf(period) !== -1 || this.$store.state.settings.showExtraPeriods
     })
   }
