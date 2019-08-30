@@ -288,7 +288,8 @@ a {
 } 
 .gradeMessage {
   font-size: 15px; 
-  
+}  
+
   a.a {
   color: rgb(168, 230, 255);
 }
