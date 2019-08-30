@@ -1,4 +1,18 @@
-   <div class="grid-fmr-helper">REMAINING TIME</div>
+<template>
+  <div class="now">
+    <h3>{{getGreeting()}}. Today is {{getCurrentScheduleName()}}. </h3> 
+    <p class="gradeMessage">You are viewing the {{this.grade}}th grade schedule. To change grades, go to About -> Settings. </p> 
+    <div class="grid-fmr">
+      <div class="grid-fmr-helper">CURRENT PERIOD</div>
+      <div class="grid-fmr-value">
+        <div>{{getCurrentPeriodName()}}</div>
+        <div class="cd-txt-h">
+          <b>{{getCertainTime(currentPeriod.start)}} - {{getCertainTime(currentPeriod.end)}}</b>
+        </div>
+      </div>
+    </div>
+    <div class="grid-fmr" @click="useNextPeriodStartAsEnd = !useNextPeriodStartAsEnd" style="cursor: pointer;">
+      <div class="grid-fmr-helper">REMAINING TIME</div>
       <div class="grid-fmr-value">
         <div>
           <span class="cd-num" v-if="(getFormattedTimeUntilNext()[0]!=0)">{{getFormattedTimeUntilNext()[0]}}</span>
