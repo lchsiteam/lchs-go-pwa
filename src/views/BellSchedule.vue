@@ -91,7 +91,8 @@ export default class Home extends Vue {
     const currentDate = DateTime.local().setZone("America/Los_Angeles").plus(Duration.fromMillis(plus_days * 86400000)); 
     this.minutes = currentDate.minute + (currentDate.hour * 60) 
     this.grade = this.$store.state.settings.grade; 
-    this.schedule = getScheduleFromDay(currentDate.month, currentDate.day, currentDate.year, currentDate.weekday, this.grade); 
+    this.dateTime = this.getDateTimeFromStr(); 
+    if (this.dateTime) {this.schedule = getScheduleFromDay(this.dateTime.month, this.dateTime.day, this.dateTime.year, this.dateTime.weekday, this.grade); } 
     this.currentPeriod = getPeriod(this.minutes, this.schedule, this.grade); 
   }
 
@@ -101,7 +102,17 @@ export default class Home extends Vue {
     else if (this.minutes <= 1050) return "Good afternoon." 
     else if (this.minutes <= 1440) return "Good evening." 
     else return "Hello, student."
-  }
+  } 
+  
+  getDateTimeFromStr() {
+    if (this.date) {
+      let [year, month, day] = this.date.split('-'); 
+      
+      let chosenDate = DateTime.local(year, month, day).setZone("America/Los_Angeles"); 
+      
+      return chosenDate; 
+    } 
+  } 
 
   printTime(time: number) {
     return printTime(time)
