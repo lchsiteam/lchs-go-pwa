@@ -85,6 +85,7 @@ export default class Home extends Vue {
   private grade = allGrades[2]; 
   private date = ""; 
   private currentDateStr = ""; 
+  private dateTime: any = undefined; 
   private currentPeriod = { start: 0, end: 1440, period: Period.NONE }; 
 
 
@@ -94,7 +95,7 @@ export default class Home extends Vue {
     this.currentDateStr = this.getCurrentDateStr(currentDate); 
     this.minutes = currentDate.minute + (currentDate.hour * 60) 
     this.grade = this.$store.state.settings.grade; 
-    this.dateTime: any = this.getDateTimeFromStr(); 
+    this.dateTime = this.getDateTimeFromStr(); 
     if (this.dateTime) {this.schedule = getScheduleFromDay(this.dateTime.month, this.dateTime.day, this.dateTime.year, this.dateTime.weekday, this.grade); } 
     this.currentPeriod = getPeriod(this.minutes, this.schedule, this.grade); 
   } 
@@ -127,7 +128,7 @@ export default class Home extends Vue {
   
   getDateTimeFromStr() {
     if (this.date) {
-      let [year, month, day] = this.date.split('-'); 
+      let [year, month, day] = this.date.split('-').map(parseInt); 
       
       let chosenDate = DateTime.local(year, month, day).setZone("America/Los_Angeles"); 
       
