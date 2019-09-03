@@ -1,7 +1,7 @@
 <template>
   <div class="bell-schedule-pg">
     <!-- Place the table in the Bell Schedule page for now -->
-    <h3>Today: {{getCurrentScheduleName()}}</h3> 
+    <h3>{{getDateLong()}}: {{getCurrentScheduleName()}}</h3> 
     <p class="gradeMessage">You are viewing the {{this.grade}}th grade schedule. To change grades, go to About -> Settings. </p> 
     <p>Click the black arrow to display a calendar selection.</p>
     <label for="start">Enter date:</label>
@@ -94,7 +94,7 @@ export default class Home extends Vue {
     this.currentDateStr = this.getCurrentDateStr(currentDate); 
     this.minutes = currentDate.minute + (currentDate.hour * 60) 
     this.grade = this.$store.state.settings.grade; 
-    this.dateTime = this.getDateTimeFromStr(); 
+    this.dateTime: any = this.getDateTimeFromStr(); 
     if (this.dateTime) {this.schedule = getScheduleFromDay(this.dateTime.month, this.dateTime.day, this.dateTime.year, this.dateTime.weekday, this.grade); } 
     this.currentPeriod = getPeriod(this.minutes, this.schedule, this.grade); 
   } 
@@ -105,6 +105,16 @@ export default class Home extends Vue {
     const day = currentDate.day.toString().padStart(2, '0'); 
     
     return `${year}-${month}-${day}`; 
+  } 
+  
+  getDateLong() {
+    if (this.date !== this.currentDate && this.dateTime) {
+      const dt = this.dateTime; 
+      
+      return `${dt.monthLong} ${dt.day}, ${dt.year}`; 
+    } else {
+      return "Today"; 
+    } 
   } 
 
   getGreeting() {
