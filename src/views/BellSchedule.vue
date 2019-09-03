@@ -96,6 +96,7 @@ export default class Home extends Vue {
     this.minutes = currentDate.minute + (currentDate.hour * 60) 
     this.grade = this.$store.state.settings.grade; 
     this.dateTime = this.getDateTimeFromStr(); 
+    console.log(this.dateTime); 
     if (this.dateTime) {this.schedule = getScheduleFromDay(this.dateTime.month, this.dateTime.day, this.dateTime.year, this.dateTime.weekday, this.grade); } 
     this.currentPeriod = getPeriod(this.minutes, this.schedule, this.grade); 
   } 
