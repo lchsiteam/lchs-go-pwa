@@ -83,18 +83,29 @@ export default class Home extends Vue {
   private minutes: number = 0
   private schedule: Schedule = Schedule.NONE; 
   private grade = allGrades[2]; 
-  private date = ""
+  private date = ""; 
+  private currentDateStr = ""; 
   private currentPeriod = { start: 0, end: 1440, period: Period.NONE }; 
 
 
   updateStats() {
     const currentDate = DateTime.local().setZone("America/Los_Angeles").plus(Duration.fromMillis(plus_days * 86400000)); 
+    
+    this.currentDateStr = this.getCurrentDateStr(currentDate); 
     this.minutes = currentDate.minute + (currentDate.hour * 60) 
     this.grade = this.$store.state.settings.grade; 
     this.dateTime = this.getDateTimeFromStr(); 
     if (this.dateTime) {this.schedule = getScheduleFromDay(this.dateTime.month, this.dateTime.day, this.dateTime.year, this.dateTime.weekday, this.grade); } 
     this.currentPeriod = getPeriod(this.minutes, this.schedule, this.grade); 
-  }
+  } 
+  
+  getCurrentDateStr(currentDate: DateTime) {
+    const year = currentDate.year.toString().padStart(4, '0'); 
+    const month = currentDate.month.toString().padStart(2, '0'); 
+    const day = currentDate.day.toString().padStart(2, '0'); 
+    
+    return `${year}-${month}-${day}`; 
+  } 
 
   getGreeting() {
     if (this.minutes <= 330) return "Good late evening." 
@@ -224,16 +235,10 @@ export default class Home extends Vue {
     } 
     //note that this didn't make any assignments to this.grade. That's because this part is just to correct invalid settings. 
     
-    const currentDate = DateTime.local().setZone("America/Los_Angeles").plus(Duration.fromMillis(plus_days * 86400000)); 
-    
-    const year = currentDate.year.toString().padStart(4, '0'); 
-    const month = currentDate.month.toString().padStart(2, '0'); 
-    const day = currentDate.day.toString().padStart(2, '0'); 
-    
-    this.date = `${year}-${month}-${day}`; 
-    
     setInterval(this.updateStats, 5000)
-    this.updateStats()
+    this.updateStats() 
+    
+    this.date = this.currentDateStr; 
   }
 }
 </script>
