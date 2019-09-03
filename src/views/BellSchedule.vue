@@ -110,9 +110,7 @@ export default class Home extends Vue {
   
   getDateLong() {
     if (this.date !== this.currentDateStr && this.dateTime) {
-      const dt = this.dateTime; 
-      
-      return `${dt.monthLong} ${dt.day}, ${dt.year}`; 
+      return this.dateTime.toLocaleString(DateTime.DATE_HUGE); 
     } else {
       return "Today"; 
     } 
