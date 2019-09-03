@@ -1,6 +1,6 @@
 <template>
   <div class="now">
-    <h3>{{getGreeting()}}. Today is {{getCurrentScheduleName()}}. </h3> 
+    <h3>{{getGreeting()}}. Today is {{getCurrentScheduleName()}}. It is {{getCurrentDate()}}. </h3> 
     <p class="gradeMessage">You are viewing the {{this.grade}}th grade schedule. To change grades, go to About -> Settings. </p> 
     <div class="grid-fmr">
       <div class="grid-fmr-helper">CURRENT PERIOD</div>
@@ -35,7 +35,6 @@
         <div class="cd-txt-h">(This page updates time automatically)</div>
       </div>
     </div>
-    <p>Today is {{getCurrentDate()}}.</p>
     <div class='grid-fmr grid-fmr-mini-click' v-if="shouldShowUpdateLog()" @click='goToChangelog()'>
       <div class="grid-fmr-helper">UNREAD UPDATES</div> 
       <div v-for='entry in getUnreadUpdates()' :key='entry.id'>○ {{entry.title}}</div> 
