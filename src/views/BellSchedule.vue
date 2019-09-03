@@ -109,7 +109,7 @@ export default class Home extends Vue {
   } 
   
   getDateLong() {
-    if (this.date !== this.currentDate && this.dateTime) {
+    if (this.date !== this.currentDateStr && this.dateTime) {
       const dt = this.dateTime; 
       
       return `${dt.monthLong} ${dt.day}, ${dt.year}`; 
