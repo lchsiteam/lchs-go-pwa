@@ -128,9 +128,10 @@ export default class Home extends Vue {
   getDateTimeFromStr() {
     if (this.date) {
       console.log(this.date); 
-      console.log(this.date.split('-')); 
       let dateArray; 
       let [year, month, day] = dateArray = this.date.split('-').map(parseInt); 
+      
+      console.log(dateArray); 
       
       let chosenDate = DateTime.local(year, month, day).setZone("America/Los_Angeles"); 
       
