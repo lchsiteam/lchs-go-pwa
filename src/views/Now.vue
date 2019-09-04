@@ -1,6 +1,6 @@
 <template>
   <div class="now">
-    <div class = "ScheduleFormat" >{{getGreeting()}}. Today is {{getCurrentScheduleName()}}.</div> 
+    <h3 class = "ScheduleFormat" >{{getGreeting()}}. Today is {{getCurrentScheduleName()}}.</h3> 
     <h3> It is {{getCurrentDate()}}.</h3>
     <p class="gradeMessage">You are viewing the {{this.grade}}th grade schedule. To change grades, go to About -> Settings. </p> 
     <div class="grid-fmr">
