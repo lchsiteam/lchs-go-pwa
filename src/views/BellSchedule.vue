@@ -129,6 +129,7 @@ export default class Home extends Vue {
     if (this.date) {
       console.log(this.date); 
       console.log(this.date.split('-')); 
+      let dateArray; 
       let [year, month, day] = dateArray = this.date.split('-').map(parseInt); 
       
       let chosenDate = DateTime.local(year, month, day).setZone("America/Los_Angeles"); 
