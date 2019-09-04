@@ -131,7 +131,7 @@ export default class Home extends Vue {
       console.log(this.date.split('-')); 
       
       let dateArray; 
-      let [year, month, day] = dateArray = this.date.split('-').map(parseInt); 
+      let [year, month, day] = dateArray = this.date.split('-').map(Number); 
       
       console.log(dateArray); 
       
