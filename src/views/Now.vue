@@ -296,7 +296,7 @@ a {
 }  
 .ScheduleFormat {
    margin-bottom: -10px; 
-   margin-top: -5px;
+   margin-top: 10px;
 }
 
   a.a {
