@@ -7,7 +7,7 @@
     <label for="start">Enter date:</label>
     <input type="date" id="start" name="day-of-school"
       v-model="date"
-      min="2019-07-01" max="2020-05-03">
+      min="2019-07-01" max="2020-05-03" :change="updateStats()">
     <p>{{this.date}}</p>
     
     <div class="bell-schedule" v-if="getCurrentScheduleName() != 'free'">
