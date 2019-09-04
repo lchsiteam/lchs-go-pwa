@@ -93,11 +93,11 @@ export default class Home extends Vue {
     const currentDate = DateTime.local().setZone("America/Los_Angeles").plus(Duration.fromMillis(plus_days * 86400000)); 
     
     this.currentDateStr = this.getCurrentDateStr(currentDate); 
+    if (!this.date) { this.date = this.currentDateStr; } 
     this.minutes = currentDate.minute + (currentDate.hour * 60) 
     this.grade = this.$store.state.settings.grade; 
     this.dateTime = this.getDateTimeFromStr(); 
-    console.log(this.dateTime); 
-    if (this.dateTime) {this.schedule = getScheduleFromDay(this.dateTime.month, this.dateTime.day, this.dateTime.year, this.dateTime.weekday, this.grade); } 
+    this.schedule = getScheduleFromDay(this.dateTime.month, this.dateTime.day, this.dateTime.year, this.dateTime.weekday, this.grade);  
     this.currentPeriod = getPeriod(this.minutes, this.schedule, this.grade); 
   } 
   
@@ -126,19 +126,17 @@ export default class Home extends Vue {
   } 
   
   getDateTimeFromStr() {
-    if (this.date) {
-      console.log(this.date); 
-      console.log(this.date.split('-')); 
-      
-      let dateArray; 
-      let [year, month, day] = dateArray = this.date.split('-').map(Number); 
-      
-      console.log(dateArray); 
-      
-      let chosenDate = DateTime.local(year, month, day).setZone("America/Los_Angeles"); 
-      
-      return chosenDate; 
-    } 
+    console.log(this.date); 
+    console.log(this.date.split('-')); 
+
+    let dateArray; 
+    let [year, month, day] = dateArray = this.date.split('-').map(Number); 
+
+    console.log(dateArray); 
+
+    let chosenDate = DateTime.local(year, month, day).setZone("America/Los_Angeles"); 
+
+    return chosenDate; 
   } 
 
   printTime(time: number) {
@@ -252,9 +250,7 @@ export default class Home extends Vue {
     //note that this didn't make any assignments to this.grade. That's because this part is just to correct invalid settings. 
     
     setInterval(this.updateStats, 5000)
-    this.updateStats() 
-    
-    this.date = this.currentDateStr; 
+    this.updateStats(); 
   }
 }
 </script>
