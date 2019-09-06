@@ -46,7 +46,7 @@ export const Themes = [
   ),
   new LCHSGoTheme(
     "theme4", "Aqua Sky", "(none)",
-    ["#007adf", "#00ecbc"], "#97b7b5c2", "#97b7b5a8", "rgba(176, 174, 197, 0.36)",
+    ["#007adf", "#00ecbc"], "#0097bc", "#12abd1", "rgba(152, 201, 223, 0.55)",
   ),
   new LCHSGoTheme(
     "theme5", "New Life", "(none)",
@@ -66,11 +66,11 @@ export const Themes = [
   ),
   new LCHSGoTheme(
     "theme11", "Rainbow Theme", "(none)",
-    ["#ff2400", "#e81d1d", "#e8b71d", "#e3e81d", "#1de840", "#1ddde8", "#2b1de8", "#dd00f3", "#dd00f3"], "#291fe2c7", "#291fe2a8", "rgba(71, 0, 255, 0.43)"
+    ["#ff2400", "#e81d1d", "#e8b71d", "#e3e81d", "#1de840", "#1ddde8", "#2b1de8", "#dd00f3", "#dd00f3"], "#ffffff75", "#ffffff75", "#ffffff75"
   ),
   new LCHSGoTheme(
     "theme12", "Dark Night", "(none)",
-    ["#30cfd0", "#330867"], "#291fe2c7", "#291fe2a8", "rgba(71, 0, 255, 0.43)"
+    ["#30cfd0", "#330867"], "#ffffff5e", "#ffffff5e", "rgba(71, 0, 255, 0.43)"
   ),
   new LCHSGoTheme(
     "theme13", "Sweet Blend", "(none)",
@@ -78,7 +78,7 @@ export const Themes = [
   ),
   new LCHSGoTheme(
     "theme14", "Morning Sun", "(none)",
-    ["#f83600", "#f9d423"], "#291fe2c7", "#291fe2a8", "rgba(71, 0, 255, 0.43)"
+    ["#f83600", "#f9d423"], "#f96d0c", "#f96d0c", "rgba(249, 172, 26, 0.45)"
   ),
   new LCHSGoTheme(
     "theme15", "Dynamic Theme", "A theme that changes depending on the time of day!", 
