@@ -84,4 +84,8 @@ export const Themes = [
     "theme15", "Dynamic Theme", "A theme that changes depending on the time of day!", 
     ["#30cfd0", "#330867"], "#291fe2c7", "#291fe2a8", "rgba(71, 0, 255, 0.43)"
   ),
+  new LCHSGoTheme(
+    "theme16", "Pink", "(none)",
+    ["#ff69b4", "#ff69b4"], "#ff69b4", "#ff69b4", "rgba(255, 105, 180, 0.43)"
+  ),
 ]
