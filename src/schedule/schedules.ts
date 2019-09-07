@@ -13,6 +13,10 @@ export const NoSchoolSchedule: any[] = [
   { start: toTime(0, 0), end: toTime(24, 0), period: Period.DONE }, 
 ]; 
 
+export const NoEventSchedule: any[] = [
+  { start: toTime(0, 0), end: toTime(24, 0), period: Period.EVENTNOPE }, 
+]; 
+
 export const RegularSchedule: any[] = [
   { start: toTime(0, 0), end: toTime(7, 28), period: Period.NONE },
   { start: toTime(7, 28), end: toTime(8, 24), period: Period.PERIOD_0 },
@@ -472,4 +476,25 @@ export const SummerSchoolSchedule: any[] = [
   { start: toTime(10, 15), end: toTime(10, 20), period: Period.BREAK_PASSING }, 
   { start: toTime(10, 20), end: toTime(13, 0), period: Period.PERIOD_2 }, 
   { start: toTime(13, 0), end: toTime(24, 0), period: Period.DONE }, 
+]; 
+
+
+export const HSBackToSchoolNight: any[] = [
+  { start: toTime(0, 0), end: toTime(7, 28), period: Period.EVENTNOPE },
+  { start: toTime(7, 28), end: toTime(8, 24), period: Period.PERIOD_0 },
+  { start: toTime(8, 24), end: toTime(8, 30), period: Period.PERIOD_0_PASSING },
+  { start: toTime(8, 30), end: toTime(9, 26), period: Period.PERIOD_1 },
+  { start: toTime(9, 26), end: toTime(9, 32), period: Period.PERIOD_1_PASSING },
+  { start: toTime(9, 32), end: toTime(10, 28), period: Period.PERIOD_2 },
+  { start: toTime(10, 28), end: toTime(10, 38), period: Period.BREAK },
+  { start: toTime(10, 38), end: toTime(10, 43), period: Period.BREAK_PASSING },
+  { start: toTime(10, 43), end: toTime(11, 39), period: Period.PERIOD_3 },
+  { start: toTime(11, 39), end: toTime(11, 45), period: Period.PERIOD_3_PASSING },
+  { start: toTime(11, 45), end: toTime(12, 41), period: Period.PERIOD_4 },
+  { start: toTime(12, 41), end: toTime(13, 11), period: Period.LUNCH },
+  { start: toTime(13, 11), end: toTime(13, 16), period: Period.LUNCH_PASSING },
+  { start: toTime(13, 16), end: toTime(14, 12), period: Period.PERIOD_5 },
+  { start: toTime(14, 12), end: toTime(14, 18), period: Period.PERIOD_5_PASSING },
+  { start: toTime(14, 18), end: toTime(15, 14), period: Period.PERIOD_6 },
+  { start: toTime(15, 14), end: toTime(24, 0), period: Period.EVENTNOPE },
 ]; 

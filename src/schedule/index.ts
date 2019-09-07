@@ -4,14 +4,14 @@
 
 import { MDY_Date } from './mdy_date'; 
 import { Day, Schedule, Period } from './enums'; 
-import { NoSchoolSchedule, RegularSchedule, BlockOddSchedule, BlockEvenSchedule, SpecialBlockOddSchedule, SpecialBlockEvenSchedule, 
+import { NoSchoolSchedule, NoEventSchedule, RegularSchedule, BlockOddSchedule, BlockEvenSchedule, SpecialBlockOddSchedule, SpecialBlockEvenSchedule, 
         AssemblySchedule, RegularSchedule78, BlockOddSchedule78, BlockEvenSchedule78, HSBlockOddScheduleFor78, 
         HSBlockEvenScheduleFor78, HSSpecialBlockOddScheduleFor78, HSSpecialBlockEvenScheduleFor78, 
         AssemblySchedule7, AssemblySchedule8, EarlyReleaseSchedule78, MinimumSchedule, PreFinals3264Schedule, PreFinals2156Schedule, 
         PreFinals1345Schedule, FinalAssemblySchedule78, FinalAssemblySchedule12, Finals34Schedule, Finals15Schedule, 
-        Finals26Schedule, FinalsTBDSchedule, SummerSchoolSchedule } from './schedules'; 
+        Finals26Schedule, FinalsTBDSchedule, SummerSchoolSchedule,HSBackToSchoolNight } from './schedules'; 
 
-export const plus_days = 0; 
+export const plus_days = 4; 
 
 export const allGrades = [7, 8, 9, 10, 11, 12, 13]; 
 
@@ -67,6 +67,9 @@ export const grade_special_dates: any = {
   }, 
   12: {
   }, 
+  13: {
+    '9 - 11 - 2019': Schedule.HSBACKTOSCHOOLNIGHT
+  }, 
 }; 
 
 export function getScheduleFromDay(month: number, day: number, year: number, week_day: number, grade: number): Schedule {
@@ -101,6 +104,8 @@ export function getScheduleFromDay(month: number, day: number, year: number, wee
           shed = Schedule.SUMMER_SCHOOL; 
           break; 
       } 
+    } else if (grade == 13) {
+      shed = Schedule.NOEVENT;
     } else {
       let not_break = true; 
 
@@ -154,6 +159,12 @@ export function getFullSchedule(schedule: Schedule, grade: number): any {
     case Schedule.NONE: 
       return NoSchoolSchedule; 
       break; 
+    case Schedule.NOEVENT:
+      return NoEventSchedule;
+      break;
+    case Schedule.HSBACKTOSCHOOLNIGHT:
+      return HSBackToSchoolNight;
+      break;
     case Schedule.REGULAR: 
       return high_schooler ? RegularSchedule : RegularSchedule78; 
       break; 
@@ -338,4 +349,14 @@ export function printTime(time: number) {
   }
 
   return finalString;
+}
+
+export function strGrade(grade: any){
+  if(grade < 13) {
+    grade = String(grade);
+    grade = grade.concat('th Grade');
+  } else if (grade == 13) {
+    grade = 'Event'
+  }
+return grade;
 }

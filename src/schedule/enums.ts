@@ -25,6 +25,8 @@ enum Schedule {
   MINIMUM, 
   SUMMER_SCHOOL, 
   NONE,
+  NOEVENT,
+  HSBACKTOSCHOOLNIGHT,
 }
 
 enum Day {
@@ -66,6 +68,7 @@ enum Period {
   PERIOD_6_PASSING, 
   TBD, 
   NONE,
+  EVENTNOPE,
   DONE,
 }
 
@@ -97,6 +100,7 @@ export function getPeriodName(period: Period) {
   else if (period == Period.TBD) { return 'To Be Determined'; }
   else if (period == Period.NONE) { return 'No School'; }
   else if (period == Period.DONE) { return 'No School'; }
+  else if (period == Period.EVENTNOPE) { return 'No Event'; }
   else { return '????'; }
 } 
 
@@ -162,6 +166,11 @@ export function getScheduleName(schedule: Schedule) {
     case Schedule.SUMMER_SCHOOL: 
       return 'summer school' 
       break; 
+    case Schedule.NOEVENT: 
+      return 'free'; 
+      break; 
+    case Schedule.HSBACKTOSCHOOLNIGHT:
+      return 'High School Back to School Night'
     default: 
       return 'error'; 
       break; 
