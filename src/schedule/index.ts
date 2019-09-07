@@ -13,7 +13,7 @@ import { NoSchoolSchedule, RegularSchedule, BlockOddSchedule, BlockEvenSchedule,
 
 export const plus_days = 0; 
 
-export const allGrades = [7, 8, 9, 10, 11, 12]; 
+export const allGrades = [7, 8, 9, 10, 11, 12, 13]; 
 
 // Native Javascript
 export function getCurrentDate(): any {
