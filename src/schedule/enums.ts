@@ -169,7 +169,7 @@ export function getScheduleName(schedule: Schedule) {
       return 'summer school' 
       break; 
     case Schedule.NOEVENT: 
-      return 'free'; 
+      return 'No Special Events'; 
       break; 
     case Schedule.HSBACKTOSCHOOLNIGHT:
       return 'High School Back to School Night'
