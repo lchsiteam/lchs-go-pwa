@@ -11,7 +11,7 @@ import { NoSchoolSchedule, NoEventSchedule, RegularSchedule, BlockOddSchedule, B
         PreFinals1345Schedule, FinalAssemblySchedule78, FinalAssemblySchedule12, Finals34Schedule, Finals15Schedule, 
         Finals26Schedule, FinalsTBDSchedule, SummerSchoolSchedule,HSBackToSchoolNight } from './schedules'; 
 
-export const plus_days = 4; 
+export const plus_days = 0; 
 
 export const allGrades = [7, 8, 9, 10, 11, 12, 13]; 
 
