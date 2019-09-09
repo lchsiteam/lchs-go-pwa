@@ -60,6 +60,7 @@ enum Period {
   HOMEROOM,
   HOMEROOM_PASSING,
   ASSEMBLY, 
+  ASSEMBLY_PASSING,
   PERIOD_4,
   PERIOD_4_PASSING,
   PERIOD_5,
@@ -91,6 +92,7 @@ export function getPeriodName(period: Period) {
   else if (period == Period.HOMEROOM_PASSING) { return 'Passing after Homeroom'; }
   else if (period == Period.STEP_PASSING) { return 'Passing After STEP'; }
   else if (period == Period.ASSEMBLY) { return 'Assembly Period'; } 
+  else if (period == Period.ASSEMBLY_PASSING) { return 'Passing after Assembly'; }
   else if (period == Period.PERIOD_4) { return 'Period 4'; }
   else if (period == Period.PERIOD_4_PASSING) { return 'Passing After Period 4'; }
   else if (period == Period.PERIOD_5) { return 'Period 5'; }
