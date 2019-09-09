@@ -1,7 +1,7 @@
 <template>
   <div class="now">
     <h3>{{getGreeting()}}. Today is {{getCurrentScheduleName()}}. </h3> 
-    <p class="gradeMessage">You are viewing the {{this.grade}}th grade schedule. To change grades, go to About -> Settings. </p> 
+    <p class="gradeMessage">You are viewing the {{strGrade(grade)}} schedule. To change grades, go to About -> Settings. </p> 
     <div class="grid-fmr">
       <div class="grid-fmr-helper">CURRENT PERIOD</div>
       <div class="grid-fmr-value">
@@ -76,6 +76,15 @@ export default class Now extends Vue {
   shouldShowUpdateLog() {
     return this.getUnreadUpdates().length > 0
   } 
+  strGrade(grade: any){
+    if(grade < 13) {
+      grade = String(grade);
+      grade = grade.concat('th Grade');
+    } else if (grade == 13) {
+      grade = 'Event'
+    }
+  return grade;
+  }
   //Don't put the period (the punctuation mark one) here. It is supplied in the place where this function is called. 
   getGreeting() {
     if (this.minutes <= 330) return "Good late evening" 
