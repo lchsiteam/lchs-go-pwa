@@ -22,8 +22,8 @@ export default new Router({
       path: '/about',
       component: () => import(/* webpackChunkName: "about" */ './views/About.vue'),
       children: [
-        { path: 'credits', component: () => import('./views/Credits.vue') },
         { path: 'settings', component: () => import('./views/Settings.vue') },
+        { path: 'credits', component: () => import('./views/Credits.vue') },
         { path: 'changelog', component: () => import('./views/Changelog.vue') },
         { path: '', redirect: 'credits' },
       ]
