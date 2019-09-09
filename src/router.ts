@@ -16,16 +16,16 @@ export default new Router({
         //{ path: 'Virtualid', component: () => import('./views/Virtualid.vue') },
         { path: 'schedule', component: () => import('./views/BellSchedule.vue') },
         { path: '', component: () => import('./views/Now.vue') },
+        { path: 'settings', component: () => import('./views/Settings.vue') },
       ]
     },
     {
       path: '/about',
       component: () => import(/* webpackChunkName: "about" */ './views/About.vue'),
       children: [
-        { path: 'settings', component: () => import('./views/Settings.vue') },
         { path: 'credits', component: () => import('./views/Credits.vue') },
         { path: 'changelog', component: () => import('./views/Changelog.vue') },
-        { path: '', redirect: 'settings' },
+        { path: '', redirect: 'credits' },
       ]
     },
     { path: '/', redirect: 'home' },
