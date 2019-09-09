@@ -25,7 +25,7 @@ export default new Router({
         { path: 'settings', component: () => import('./views/Settings.vue') },
         { path: 'credits', component: () => import('./views/Credits.vue') },
         { path: 'changelog', component: () => import('./views/Changelog.vue') },
-        { path: '', redirect: 'credits' },
+        { path: '', redirect: 'settings' },
       ]
     },
     { path: '/', redirect: 'home' },
