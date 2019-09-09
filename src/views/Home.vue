@@ -3,7 +3,7 @@
     <div class="sub-nav">
       <router-link class="sub-nav-item" to="/home" exact>  Now  </router-link>
       <router-link class="sub-nav-item" to="/home/schedule">Bell Schedule</router-link>
-      <router-link class="sub-nav-item" to="/about/settings">Settings</router-link>
+      <router-link class="sub-nav-item" to="/home/settings">Settings</router-link>
     </div>
     <!--
     <div>
