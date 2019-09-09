@@ -19,11 +19,14 @@ enum Schedule {
   FINAL_ASSEMBLY, 
   FINALS_34, 
   FINALS_15, 
-  FINALS_26, 
+  FINALS_26,
+  FINALS_TBD,
   ASSEMBLY, 
   MINIMUM, 
   SUMMER_SCHOOL, 
   NONE,
+  NOEVENT,
+  HSBACKTOSCHOOLNIGHT,
 }
 
 enum Day {
@@ -57,13 +60,16 @@ enum Period {
   HOMEROOM,
   HOMEROOM_PASSING,
   ASSEMBLY, 
+  ASSEMBLY_PASSING,
   PERIOD_4,
   PERIOD_4_PASSING,
   PERIOD_5,
   PERIOD_5_PASSING,
   PERIOD_6, 
   PERIOD_6_PASSING, 
+  TBD, 
   NONE,
+  EVENTNOPE,
   DONE,
 }
 
@@ -86,14 +92,17 @@ export function getPeriodName(period: Period) {
   else if (period == Period.HOMEROOM_PASSING) { return 'Passing after Homeroom'; }
   else if (period == Period.STEP_PASSING) { return 'Passing After STEP'; }
   else if (period == Period.ASSEMBLY) { return 'Assembly Period'; } 
+  else if (period == Period.ASSEMBLY_PASSING) { return 'Passing after Assembly'; }
   else if (period == Period.PERIOD_4) { return 'Period 4'; }
   else if (period == Period.PERIOD_4_PASSING) { return 'Passing After Period 4'; }
   else if (period == Period.PERIOD_5) { return 'Period 5'; }
   else if (period == Period.PERIOD_5_PASSING) { return 'Passing After Period 5'; }
   else if (period == Period.PERIOD_6) { return 'Period 6'; } 
   else if (period == Period.PERIOD_6_PASSING) { return 'Passing after Period 6'; } 
+  else if (period == Period.TBD) { return 'To Be Determined'; }
   else if (period == Period.NONE) { return 'No School'; }
   else if (period == Period.DONE) { return 'No School'; }
+  else if (period == Period.EVENTNOPE) { return 'No Event'; }
   else { return '????'; }
 } 
 
@@ -150,12 +159,20 @@ export function getScheduleName(schedule: Schedule) {
     case Schedule.MINIMUM: 
       return 'minimum schedule'; 
       break; 
+    case Schedule.FINALS_TBD: 
+      return 'finals schedule (TBD)'; 
+      break; 
     case Schedule.NONE: 
       return 'free'; 
       break; 
     case Schedule.SUMMER_SCHOOL: 
       return 'summer school' 
       break; 
+    case Schedule.NOEVENT: 
+      return 'No Special Events'; 
+      break; 
+    case Schedule.HSBACKTOSCHOOLNIGHT:
+      return 'High School Back to School Night'
     default: 
       return 'error'; 
       break; 

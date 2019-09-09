@@ -4,16 +4,16 @@
 
 import { MDY_Date } from './mdy_date'; 
 import { Day, Schedule, Period } from './enums'; 
-import { NoSchoolSchedule, RegularSchedule, BlockOddSchedule, BlockEvenSchedule, SpecialBlockOddSchedule, SpecialBlockEvenSchedule, 
+import { NoSchoolSchedule, NoEventSchedule, RegularSchedule, BlockOddSchedule, BlockEvenSchedule, SpecialBlockOddSchedule, SpecialBlockEvenSchedule, 
         AssemblySchedule, RegularSchedule78, BlockOddSchedule78, BlockEvenSchedule78, HSBlockOddScheduleFor78, 
         HSBlockEvenScheduleFor78, HSSpecialBlockOddScheduleFor78, HSSpecialBlockEvenScheduleFor78, 
         AssemblySchedule7, AssemblySchedule8, EarlyReleaseSchedule78, MinimumSchedule, PreFinals3264Schedule, PreFinals2156Schedule, 
         PreFinals1345Schedule, FinalAssemblySchedule78, FinalAssemblySchedule12, Finals34Schedule, Finals15Schedule, 
-        Finals26Schedule, SummerSchoolSchedule } from './schedules'; 
+        Finals26Schedule, FinalsTBDSchedule, SummerSchoolSchedule,HSBackToSchoolNight } from './schedules'; 
 
 export const plus_days = 0; 
 
-export const allGrades = [7, 8, 9, 10, 11, 12]; 
+export const allGrades = [7, 8, 9, 10, 11, 12, 13]; 
 
 // Native Javascript
 export function getCurrentDate(): any {
@@ -28,7 +28,11 @@ export function getCurrentDate(): any {
 
 const summer_break: any[] = []; 
 
-const breaks: any[] = []; 
+
+const tg_break: MDY_Date[] = [new MDY_Date(11, 25, 2019), new MDY_Date(11, 29, 2019)]; 
+const winter_break: MDY_Date[] = [new MDY_Date(12, 20, 2019), new MDY_Date(1, 6, 2020)]; //Please don't ever delete these, just comment them out if you have to
+
+const breaks: any[] = [tg_break, winter_break]; 
 
 const summer_school: [MDY_Date, MDY_Date] = [new MDY_Date(6, 17, 2019), new MDY_Date(7, 19, 2019)]; 
 
@@ -36,6 +40,10 @@ export const school_special_dates: any = {
   '8 - 21 - 2019': Schedule.REGULAR, 
   '8 - 22 - 2019': Schedule.REGULAR, 
   '8 - 23 - 2019': Schedule.ASSEMBLY, 
+  '9 - 2 - 2019': Schedule.NONE,
+  '12 - 17 - 2019': Schedule.FINALS_TBD,
+  '12 - 18 - 2019': Schedule.FINALS_TBD,
+  '12 - 19 - 2019': Schedule.FINALS_TBD,
   
   // month - day - year: schedule (something from the Schedule enum) 
 }; 
@@ -58,6 +66,9 @@ export const grade_special_dates: any = {
   11: {
   }, 
   12: {
+  }, 
+  13: {
+    '9 - 11 - 2019': Schedule.HSBACKTOSCHOOLNIGHT
   }, 
 }; 
 
@@ -93,6 +104,8 @@ export function getScheduleFromDay(month: number, day: number, year: number, wee
           shed = Schedule.SUMMER_SCHOOL; 
           break; 
       } 
+    } else if (grade == 13) {
+      shed = Schedule.NOEVENT;
     } else {
       let not_break = true; 
 
@@ -146,6 +159,12 @@ export function getFullSchedule(schedule: Schedule, grade: number): any {
     case Schedule.NONE: 
       return NoSchoolSchedule; 
       break; 
+    case Schedule.NOEVENT:
+      return NoEventSchedule;
+      break;
+    case Schedule.HSBACKTOSCHOOLNIGHT:
+      return HSBackToSchoolNight;
+      break;
     case Schedule.REGULAR: 
       return high_schooler ? RegularSchedule : RegularSchedule78; 
       break; 
@@ -226,6 +245,9 @@ export function getFullSchedule(schedule: Schedule, grade: number): any {
     case Schedule.FINALS_26: 
       return Finals26Schedule; 
       break; 
+    case Schedule.FINALS_TBD: 
+      return FinalsTBDSchedule; 
+      break; 
     //Hypothetically, this would also be used to convey a 9-12 early release day. However, 9-12 
     //doesn't seem to have any. 
     case Schedule.EARLY_RELEASE: 
@@ -262,6 +284,7 @@ const periodsFilter = [
   Period.STEP_EVEN,
   Period.HOMEROOM,
   Period.ASSEMBLY,
+  Period.TBD,
 ]
 
 export function getUpcomingPeriod(time: number, dateTime: any, schedule: Schedule, grade: number, pAllow = periodsFilter): any {
@@ -326,4 +349,14 @@ export function printTime(time: number) {
   }
 
   return finalString;
+}
+
+export function strGrade(grade: any){
+  if(grade < 13) {
+    grade = String(grade);
+    grade = grade.concat('th Grade');
+  } else if (grade == 13) {
+    grade = 'Event'
+  }
+return grade;
 }

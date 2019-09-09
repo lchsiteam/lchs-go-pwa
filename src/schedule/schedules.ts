@@ -13,6 +13,10 @@ export const NoSchoolSchedule: any[] = [
   { start: toTime(0, 0), end: toTime(24, 0), period: Period.DONE }, 
 ]; 
 
+export const NoEventSchedule: any[] = [
+  { start: toTime(0, 0), end: toTime(24, 0), period: Period.EVENTNOPE }, 
+]; 
+
 export const RegularSchedule: any[] = [
   { start: toTime(0, 0), end: toTime(7, 28), period: Period.NONE },
   { start: toTime(7, 28), end: toTime(8, 24), period: Period.PERIOD_0 },
@@ -455,6 +459,15 @@ export const Finals26Schedule: any[] = [
   { start: toTime(13, 5), end: toTime(24, 0), period: Period.DONE }, 
 ]; 
 
+export const FinalsTBDSchedule: any[] = [
+  { start: toTime(0, 0), end: toTime(8, 30), period: Period.NONE }, 
+  { start: toTime(8, 30), end: toTime(10, 35), period: Period.TBD }, 
+  { start: toTime(10, 35), end: toTime(10, 55), period: Period.BREAK }, 
+  { start: toTime(10, 55), end: toTime(11, 0), period: Period.BREAK_PASSING }, 
+  { start: toTime(11, 0), end: toTime(13, 5), period: Period.TBD }, 
+  { start: toTime(13, 5), end: toTime(24, 0), period: Period.DONE }, 
+]; 
+
 export const SummerSchoolSchedule: any[] = [
   { start: toTime(0, 0), end: toTime(7, 39), period: Period.NONE }, 
   { start: toTime(7, 39), end: toTime(7, 45), period: Period.PERIOD_0_PASSING }, 
@@ -463,4 +476,25 @@ export const SummerSchoolSchedule: any[] = [
   { start: toTime(10, 15), end: toTime(10, 20), period: Period.BREAK_PASSING }, 
   { start: toTime(10, 20), end: toTime(13, 0), period: Period.PERIOD_2 }, 
   { start: toTime(13, 0), end: toTime(24, 0), period: Period.DONE }, 
+]; 
+
+
+export const HSBackToSchoolNight: any[] = [
+  { start: toTime(0, 0), end: toTime(17, 45), period: Period.EVENTNOPE },
+  { start: toTime(17, 45), end: toTime(18, 25), period: Period.ASSEMBLY },
+  { start: toTime(18, 25), end: toTime(18, 30), period: Period.ASSEMBLY_PASSING },
+  { start: toTime(18, 30), end: toTime(18, 40), period: Period.PERIOD_1 },
+  { start: toTime(18, 40), end: toTime(18, 45), period: Period.PERIOD_1_PASSING },
+  { start: toTime(18, 45), end: toTime(18, 55), period: Period.PERIOD_2 },
+  { start: toTime(18, 55), end: toTime(19, 0), period: Period.PERIOD_2_PASSING },
+  { start: toTime(19, 0), end: toTime(19, 10), period: Period.PERIOD_3 },
+  { start: toTime(19, 10), end: toTime(19, 15), period: Period.PERIOD_3_PASSING },
+  { start: toTime(19, 15), end: toTime(19, 25), period: Period.PERIOD_4 },
+  { start: toTime(19, 25), end: toTime(19, 30), period: Period.PERIOD_4_PASSING },
+  { start: toTime(19, 30), end: toTime(19, 40), period: Period.PERIOD_5 },
+  { start: toTime(19, 40), end: toTime(19, 45), period: Period.PERIOD_5_PASSING },
+  { start: toTime(19, 45), end: toTime(19, 55), period: Period.PERIOD_6 },
+  { start: toTime(19, 55), end: toTime(20, 0), period: Period.PERIOD_6_PASSING },
+  { start: toTime(20, 0), end: toTime(20, 10), period: Period.PERIOD_0 },
+  { start: toTime(15, 14), end: toTime(24, 0), period: Period.EVENTNOPE },
 ]; 
