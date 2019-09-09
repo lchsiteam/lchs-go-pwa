@@ -2,7 +2,7 @@
   <div class="bell-schedule-pg">
     <!-- Place the table in the Bell Schedule page for now -->
     <h3>Today: {{getCurrentScheduleName()}}</h3> 
-    <p class="gradeMessage">You are viewing the {{this.grade}}th grade schedule. To change grades, go to About -> Settings. </p> 
+    <p class="gradeMessage">You are viewing the {{strGrade(grade)}} schedule. To change grades, go to About -> Settings. </p> 
     <!-- Please replace this! -->
     <div class="bell-schedule" v-if="getCurrentScheduleName() != 'free'">
       <div class="blsch-period-hd">
@@ -140,6 +140,15 @@ export default class Home extends Vue {
   getUnitUntilNext() {
     return this.currentPeriod.end - this.minutes >= 120 ? "hr." : "min."
   }
+  strGrade(grade: any){
+    if(grade < 13) {
+      grade = String(grade);
+      grade = grade.concat('th Grade');
+    } else if (grade == 13) {
+      grade = 'Event'
+    }
+  return grade;
+  }
 
   getFullSchedule() {
     let grade = this.$store.state.settings.grade; 
@@ -195,6 +204,7 @@ export default class Home extends Vue {
   changeGrade(grade: number) {
     this.updateOptionBL('grade', grade); 
   } 
+  
 
   mounted() {
     //correct invalid grade settings to 9th grade if any
@@ -211,4 +221,5 @@ export default class Home extends Vue {
     this.updateStats()
   }
 }
+
 </script>
