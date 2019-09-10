@@ -2,7 +2,7 @@
   <div class="bell-schedule-pg">
     <!-- Place the table in the Bell Schedule page for now -->
     <h3>Today: {{getCurrentScheduleName()}}</h3> 
-    <p class="gradeMessage">You are viewing the {{strGrade(grade)}} schedule. To change grades, go to About -> Settings. </p> 
+    <p class="gradeMessage">You are viewing the {{strGrade(grade)}} schedule. To change grades, go to Settings. </p> 
     <!-- Please replace this! -->
     <div class="bell-schedule" v-if="getCurrentScheduleName() != 'free'">
       <div class="blsch-period-hd">
