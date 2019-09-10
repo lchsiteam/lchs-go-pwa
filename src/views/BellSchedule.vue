@@ -1,9 +1,10 @@
 <template>
   <div class="bell-schedule-pg">
     <!-- Place the table in the Bell Schedule page for now -->
-    <h3>Today: {{getCurrentScheduleName()}}</h3>
+    <h3>Today: {{getCurrentScheduleName()}}</h3> 
+    <p class="gradeMessage">You are viewing the {{strGrade(grade)}} schedule. To change grades, go to About -> Settings. </p> 
     <!-- Please replace this! -->
-    <div class="bell-schedule" v-if="getCurrentScheduleName() !== 'No schedule'">
+    <div class="bell-schedule" v-if="getCurrentScheduleName() != 'free'">
       <div class="blsch-period-hd">
         <div class="blsch-period-title">Period</div>
         <div class="blsch-period-start">Start</div>
@@ -23,7 +24,7 @@
   </div>
 </template>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .bell-schedule {
   text-align: left;
 
@@ -53,30 +54,38 @@
   .blsch-period.selected {
     background: rgba(0, 0, 0, .4) !important;
     transform: scale(1.05);
-  }
+  } 
+} 
+
+.gradeMessage {
+  font-size: 15px; 
 }
 </style>
 
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
-import { DateTime } from 'luxon'
+import { DateTime, Duration } from 'luxon'
 
-import { printTime, getScheduleFromDay, getPeriod, getFullSchedule } from '@/schedule'
-import { Day, Schedule, Period, getPeriodName } from '@/schedule/enums'
-import { RegularSchedule, BlockEvenSchedule, BlockOddSchedule } from '@/schedule/schedules'
+import { printTime, getScheduleFromDay, getPeriod, getFullSchedule, allGrades, 
+plus_days } from '@/schedule'
+import { Day, Schedule, Period, getPeriodName, getScheduleName } from '@/schedule/enums'
+import { RegularSchedule, BlockEvenSchedule, BlockOddSchedule } from '@/schedule/schedules'; 
 
 @Component({})
 export default class Home extends Vue {
   private minutes: number = 0
-  private schedule: Schedule = Schedule.NONE
-  private currentPeriod = { start: 0, end: 1440, period: Period.NONE }
+  private schedule: Schedule = Schedule.NONE; 
+  private grade = allGrades[2]; 
+  private currentPeriod = { start: 0, end: 1440, period: Period.NONE }; 
 
   updateStats() {
-    const currentDate = DateTime.local().setZone("America/Los_Angeles")
-    this.minutes = currentDate.minute + (currentDate.hour * 60)
-    this.schedule = getScheduleFromDay(currentDate.weekday)
-    this.currentPeriod = getPeriod(this.minutes, this.schedule)
+    const currentDate = DateTime.local().setZone("America/Los_Angeles").plus(Duration.fromMillis(plus_days * 86400000)); 
+    this.minutes = currentDate.minute + (currentDate.hour * 60) 
+
+    this.grade = this.$store.state.settings.grade; 
+    this.schedule = getScheduleFromDay(currentDate.month, currentDate.day, currentDate.year, currentDate.weekday, this.grade); 
+    this.currentPeriod = getPeriod(this.minutes, this.schedule, this.grade); 
   }
 
   getGreeting() {
@@ -104,13 +113,25 @@ export default class Home extends Vue {
   }
 
   // Prevent duplication
+  // TODO: Consolidate schedule names into one place to follow DRY
+  // DRY = Don't Repeat Yourself (eg: prevent duplication)
   getCurrentScheduleName() {
-    if (this.schedule == Schedule.REGULAR) return "Regular Schedule"
-    else if (this.schedule == Schedule.BLOCK_ODD) return "Block Schedule (1-3-5)"
-    else if (this.schedule == Schedule.BLOCK_EVEN) return "Block Schedule (2-4-6)"
-    else if (this.schedule == Schedule.ASSEMBLY) return "Assembly Schedule"
-    else return "No schedule"
-  }
+    return getScheduleName(this.schedule); 
+
+    /*
+    switch (this.schedule) {
+      case Schedule.REGULAR:            return 'regular schedule'; 
+      case Schedule.BLOCK_ODD:          return 'block schedule (1, 3, 5)'; 
+      case Schedule.BLOCK_EVEN:         return 'block schedule (2, 4, 6)'; 
+      case Schedule.SPECIAL_BLOCK_ODD:  return 'block schedule (3, 1, 5)'; 
+      case Schedule.SPECIAL_BLOCK_EVEN: return 'block schedule (4, 2, 6)'; 
+      case Schedule.ASSEMBLY:           return 'assembly schedule'; 
+      case Schedule.MINIMUM:            return 'minimum schedule'; 
+      case Schedule.NONE:               return 'no schedule';
+      default:                          return 'error'; 
+    } 
+    */ 
+  } 
 
   getTimeUntilNext() {
     return this.currentPeriod.end - this.minutes
@@ -119,10 +140,22 @@ export default class Home extends Vue {
   getUnitUntilNext() {
     return this.currentPeriod.end - this.minutes >= 120 ? "hr." : "min."
   }
+  strGrade(grade: any){
+    if(grade < 13) {
+      grade = String(grade);
+      grade = grade.concat('th Grade');
+    } else if (grade == 13) {
+      grade = 'Event'
+    }
+  return grade;
+  }
 
   getFullSchedule() {
-    return getFullSchedule(this.schedule).filter(({period} : any) => {
+    let grade = this.$store.state.settings.grade; 
+
+    return getFullSchedule(this.schedule, grade).filter(({period} : any) => {
       // Dirty solution for filtering schedule.
+      // TODO: Move this elsewhere.
       return [
         Period.PERIOD_0,
         Period.PERIOD_1,
@@ -135,9 +168,9 @@ export default class Home extends Vue {
         Period.BREAK,
         Period.STEP_ODD,
         Period.STEP_EVEN,
-        Period.HOMEROOM,
-        Period.HOMEROOM_PASSING,
+        Period.HOMEROOM, 
         Period.ASSEMBLY,
+        Period.TBD,
       ].indexOf(period) !== -1 || this.$store.state.settings.showExtraPeriods
     })
   }
@@ -162,11 +195,31 @@ export default class Home extends Vue {
 
   getCertainTime(time: number) {
     return this.$store.state.settings.useMilitaryTime ? this.getCertainTime24(time) : this.getCertainTime12(time)
-  }
+  } 
+
+  updateOptionBL(name: string, value: any): void {
+    this.$store.commit('UPDATE_SETTING', { name, value }); 
+  } 
+
+  changeGrade(grade: number) {
+    this.updateOptionBL('grade', grade); 
+  } 
+  
 
   mounted() {
+    //correct invalid grade settings to 9th grade if any
+    let grade = this.$store.state.settings.grade; 
+    
+    if(allGrades.indexOf(grade) == -1) {
+      grade = allGrades[2]; 
+      
+      this.changeGrade(grade); 
+    } 
+    //note that this didn't make any assignments to this.grade. That's because this part is just to correct invalid settings. 
+    
     setInterval(this.updateStats, 5000)
     this.updateStats()
   }
 }
+
 </script>

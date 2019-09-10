@@ -11,8 +11,12 @@ export default new Router({
       path: '/home',
       component: Home,
       children: [
+        //{ path: 'news', component: () => import('./views/News.vue') },
+        //{ path: 'Welcome', component: () => import('./views/Welcome.vue') },
+        //{ path: 'Virtualid', component: () => import('./views/Virtualid.vue') },
         { path: 'schedule', component: () => import('./views/BellSchedule.vue') },
         { path: '', component: () => import('./views/Now.vue') },
+        { path: 'settings', component: () => import('./views/Settings.vue') },
       ]
     },
     {
@@ -20,7 +24,6 @@ export default new Router({
       component: () => import(/* webpackChunkName: "about" */ './views/About.vue'),
       children: [
         { path: 'credits', component: () => import('./views/Credits.vue') },
-        { path: 'settings', component: () => import('./views/Settings.vue') },
         { path: 'changelog', component: () => import('./views/Changelog.vue') },
         { path: '', redirect: 'credits' },
       ]

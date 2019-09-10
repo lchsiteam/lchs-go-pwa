@@ -1,9 +1,19 @@
 export default {
-  title: "v0.1.3",
+  title: "v0.1.3", 
   entries: [
     {
-      id: 4,
-      isNew: true,
+      id: 5, 
+      isPublic: true, 
+      title: '7/8 Schedules and New Settings', 
+      author: 'Bryan Wang', 
+      tagline: 'Not just for high schoolers anymore! ', 
+      content: [
+        { type: 'text', text: 'Schedules for 7th and 8th graders are now available! Change your grade in the settings. '}, 
+        { type: 'text', text: 'The "Remaining Time" section on the "Now" screen can now be toggled between showing the amount of time until your period ends, and showing the amount of time until your next period. Use the button in the top right corner of that section to toggle. '}, 
+      ], 
+    }, 
+    {
+      id: 4, 
       isPublic: true,
       title: "Special Day Schedules and Background Animations",
       author: "Ryan King",
@@ -13,8 +23,7 @@ export default {
       ]
     },
     {
-      id: 3,
-      isNew: false,
+      id: 3, 
       isPublic: false,
       title: "CRITICAL: Web Apps Won't Update On iOS",
       author: "Kevin Mo",
@@ -28,8 +37,7 @@ export default {
       ]
     },
     {
-      id: 2,
-      isNew: false,
+      id: 2, 
       isPublic: true,
       title: "Chrome extension finally out!",
       author: "Kai Bredemann",
@@ -41,8 +49,7 @@ export default {
       ]
     },
     {
-      id: 1,
-      isNew: false,
+      id: 1, 
       isPublic: false,
       title: "Update: Introducing the Settings Page",
       author: "Kevin Mo",

@@ -10,7 +10,10 @@ const defaultConfig = {
     enableAnimations: true,
     enableThemeAnimations: true,
     showExtraPeriods: false,
-    colorTheme: "default",
+    colorTheme: "theme8", 
+    grade: 9, 
+    idInput: '', 
+    gradeInput: [],
   },
   changelog: {
     readUpdates: [],
