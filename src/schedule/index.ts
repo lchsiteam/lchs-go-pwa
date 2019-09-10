@@ -23,7 +23,7 @@ export function getCurrentDate(): any {
     mins: now.getMinutes(),
     total_mins: now.getMinutes() + (now.getHours() * 60),
     day: now.getDay(),
-  };
+  }; 
 } 
 
 const summer_break: any[] = []; 
