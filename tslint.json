@@ -14,10 +14,11 @@
     "interface-name": false,
     "ordered-imports": false,
     "object-literal-sort-keys": false,
-    "no-consecutive-blank-lines": false,
     "member-access": false,
     "prefer-const": false,
     "one-line": false,
-    "max-line-length": false
+    "max-line-length": false,
+    "no-console": false,
+    "no-shadowed-variable": false
   }
 }
