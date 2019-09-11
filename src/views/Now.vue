@@ -132,13 +132,13 @@ export default class Now extends Vue {
   }
 
   getCurrentTime12() {
-    let end_string = 'AM';
+    let endString = 'AM';
     let hours = Math.floor(this.minutes / 60);
-    let new_hours = (hours % 12 === 0 ? 12 : hours % 12);     // Show 12:00 AM instead of 00:00 AM
+    let newHours = (hours % 12 === 0 ? 12 : hours % 12);     // Show 12:00 AM instead of 00:00 AM
     if (hours >= 12) {
-      end_string = 'PM';
+      endString = 'PM';
     }
-    return `${new_hours + ':' + ('0000' + (this.minutes % 60)).substr(-2)} ${end_string}`;
+    return `${newHours + ':' + ('0000' + (this.minutes % 60)).substr(-2)} ${endString}`;
   }
 
   getCurrentTime() {
@@ -150,13 +150,13 @@ export default class Now extends Vue {
     }
   }
   getCertainTime12(time: number) {
-    let end_string = 'AM';
+    let endString = 'AM';
     let hours = Math.floor(time / 60);
-    let new_hours = (hours % 12 === 0 ? 12 : hours % 12);     // Show 12:00 AM instead of 00:00 AM
+    let newHours = (hours % 12 === 0 ? 12 : hours % 12);     // Show 12:00 AM instead of 00:00 AM
     if (hours >= 12 && hours <= 23) {
-      end_string = 'PM';
+      endString = 'PM';
     }
-    return `${new_hours + ':' + ('0000' + (time % 60)).substr(-2)} ${end_string}`;
+    return `${newHours + ':' + ('0000' + (time % 60)).substr(-2)} ${endString}`;
   }
   getCertainTime24(time: number) {
     return ('0000' + Math.floor(time / 60)).substr(-2) + ':' + ('0000' + (time % 60)).substr(-2);
@@ -175,15 +175,15 @@ export default class Now extends Vue {
   }
 
   getCurrentTimeParts12() {
-    let end_string = 'AM';
+    let endString = 'AM';
     let hours = Math.floor(this.minutes / 60);
-    let new_hours = (hours % 12 === 0 ? 12 : hours % 12);     // Show 12:00 AM instead of 00:00 AM
+    let newHours = (hours % 12 === 0 ? 12 : hours % 12);     // Show 12:00 AM instead of 00:00 AM
     if (hours >= 12) {
-      end_string = 'PM';
+      endString = 'PM';
     }
     return {
-      hr: new_hours,
-      min: `${('0000' + (this.minutes % 60)).substr(-2)} ${end_string}`,
+      hr: newHours,
+      min: `${('0000' + (this.minutes % 60)).substr(-2)} ${endString}`,
     };
   }
 

@@ -180,13 +180,13 @@ export default class Home extends Vue {
   }
 
   public getCertainTime12(time: number) {
-    let end_string = 'AM';
+    let endString = 'AM';
     let hours = Math.floor(time / 60);
-    let new_hours = (hours % 12 === 0 ? 12 : hours % 12);     // Show 12:00 AM instead of 00:00 AM
+    let newHours = (hours % 12 === 0 ? 12 : hours % 12);     // Show 12:00 AM instead of 00:00 AM
     if (hours >= 12 && hours <= 23) {
-      end_string = 'PM';
+      endString = 'PM';
     }
-    return `${new_hours + ':' + ('0000' + (time % 60)).substr(-2)} ${end_string}`;
+    return `${newHours + ':' + ('0000' + (time % 60)).substr(-2)} ${endString}`;
   }
 
   public getCertainTime24(time: number) {
