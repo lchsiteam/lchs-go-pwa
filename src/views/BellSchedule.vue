@@ -251,10 +251,6 @@ export default class Home extends Vue {
 
   public mounted() {
     // correct invalid grade settings to 9th grade if any
-    let grade = this.$store.state.settings.grade;
-  
-  mounted() {
-    //correct invalid grade settings to 9th grade if any
     let grade = this.$store.state.settings.grade; 
     
     if(allGrades.indexOf(grade) == -1) {
