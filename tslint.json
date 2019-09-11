@@ -18,9 +18,6 @@
     "member-access": false,
     "prefer-const": false,
     "one-line": false,
-    "max-line-length": false,
-
-    "no-console": false,
-    "variable-name": false
+    "max-line-length": false
   }
 }
