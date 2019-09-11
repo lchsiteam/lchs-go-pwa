@@ -1,7 +1,7 @@
 <template>
   <div class="now">
     <h3>{{getGreeting()}}. Today is {{getCurrentScheduleName()}}. </h3> 
-    <p class="gradeMessage">You are viewing the {{this.grade}}th grade schedule. To change grades, go to About -> Settings. </p> 
+    <p class="gradeMessage">You are viewing the {{strGrade(grade)}} schedule. To change grades, go to About -> Settings. </p> 
     <div class="grid-fmr">
       <div class="grid-fmr-helper">CURRENT PERIOD</div>
       <div class="grid-fmr-value">
@@ -15,8 +15,11 @@
       <div class="grid-fmr-helper">REMAINING TIME</div>
       <div class="grid-fmr-value">
         <div>
-          <span class="cd-num">{{getFormattedTimeUntilNext()}}</span>
-          <span class="cd-txt">{{getUnitUntilNext()}} until {{getUntilNextName()}}</span>
+          <span class="cd-num" v-if="(getFormattedTimeUntilNext()[0]!=0)">{{getFormattedTimeUntilNext()[0]}}</span>
+          <span class="cd-txt" v-if="(getFormattedTimeUntilNext()[0]!=0)">hr. </span>
+          <span class="cd-num">{{getFormattedTimeUntilNext()[1]}}</span>
+          <span class="cd-txt">min.</span>
+          <span class="cd-txt">until {{getUntilNextName()}}</span>
         </div>
         <div class="cd-txt-h">({{Math.round(getCurrentPercentage() * 100)}}% completed)</div>
       </div>
@@ -42,8 +45,7 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
 import { DateTime, Duration } from 'luxon';
-import { printTime, getScheduleFromDay, getPeriod, getUpcomingPeriod, allGrades, 
-plus_days } from '@/schedule';
+import { printTime, getScheduleFromDay, getPeriod, getUpcomingPeriod, allGrades, plus_days } from '@/schedule';
 import { Day, Schedule, Period, getPeriodName, getScheduleName } from '@/schedule/enums';
 import { RegularSchedule, BlockEvenSchedule, BlockOddSchedule } from '@/schedule/schedules';
 import { Changelog } from '../changelog'; 
@@ -68,12 +70,21 @@ export default class Now extends Vue {
     return this.allLogs.filter(entry => this.$store.state.changelog.readUpdates.indexOf(entry.id) === -1); 
   } 
   goToChangelog() {
-    this.$router.push('/about/changelog')
+    if (this.$store.state.isExtension) { window.open('/about/changelog', '_blank'); } 
+    else { this.$router.push('about/changelog'); } 
   }
   shouldShowUpdateLog() {
-    return !this.$store.state.isExtension && 
-      this.getUnreadUpdates().length > 0
+    return this.getUnreadUpdates().length > 0
   } 
+  strGrade(grade: any){
+    if(grade < 13) {
+      grade = String(grade);
+      grade = grade.concat('th Grade');
+    } else if (grade == 13) {
+      grade = 'Event'
+    }
+  return grade;
+  }
   //Don't put the period (the punctuation mark one) here. It is supplied in the place where this function is called. 
   getGreeting() {
     if (this.minutes <= 330) return "Good late evening" 
@@ -89,7 +100,7 @@ export default class Now extends Vue {
     return getPeriodName(this.currentPeriod.period)
   }
   getFormattedTimeUntilNext() {
-    return this.getTimeUntilNext() >= 120 ? Math.ceil(this.getTimeUntilNext() / 60) : this.getTimeUntilNext()
+    return [Math.floor(this.getTimeUntilNext()/60), this.getTimeUntilNext() % 60]
   }
   getCurrentScheduleName() {
     return getScheduleName(this.schedule); 
@@ -189,6 +200,7 @@ export default class Now extends Vue {
   updateOptionBL(name: string, value: any): void {
     this.$store.commit('UPDATE_SETTING', { name, value }); 
   } 
+
   changeGrade(grade: number) {
     this.updateOptionBL('grade', grade); 
   } 

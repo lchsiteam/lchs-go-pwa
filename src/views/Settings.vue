@@ -10,7 +10,7 @@
         </div> 
         <div class='sr-option'>
           <select v-model="grade" @change="updateGrade()" class = "grade-select">
-            <option v-for="grade in allGrades" :key="grade" :value="grade" class = "grade-select-item">{{grade}}th Grade</option> 
+            <option v-for="grade in allGrades" :key="grade" :value="grade" class = "grade-select-item">{{strGrade(grade)}}</option> 
           </select>
         </div> 
       </div> 
@@ -108,6 +108,16 @@ export default class Home extends Vue {
   grade = allGrades[2]; 
   allGrades = allGrades; 
   allThemes: any[] = []; 
+
+  strGrade(grade: any){
+    if(grade < 13) {
+      grade = String(grade);
+      grade = grade.concat('th Grade');
+    } else if (grade == 13) {
+      grade = 'Event'
+    }
+  return grade;
+  }
 
   updateOptionBL(name: string, value: any): void {
     this.$store.commit('UPDATE_SETTING', { name, value })
