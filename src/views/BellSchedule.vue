@@ -9,7 +9,6 @@
       v-model="date"
       min="2019-07-01" max="2020-05-03" :change="updateStats()">
     <p>{{this.date}}</p>
-    
     <div class="bell-schedule" v-if="getCurrentScheduleName() != 'free'">
       <div class="blsch-period-hd">
         <div class="blsch-period-title">Period</div>
@@ -70,13 +69,13 @@
 
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator'
-import { DateTime, Duration } from 'luxon'
+import { Component, Vue } from 'vue-property-decorator';
+import { DateTime, Duration } from 'luxon';
 
-import { printTime, getScheduleFromDay, getPeriod, getFullSchedule, allGrades, 
-plus_days } from '@/schedule'
-import { Day, Schedule, Period, getPeriodName, getScheduleName } from '@/schedule/enums'
-import { RegularSchedule, BlockEvenSchedule, BlockOddSchedule } from '@/schedule/schedules'; 
+import { printTime, getScheduleFromDay, getPeriod, getFullSchedule, allGrades,
+plus_days } from '@/schedule';
+import { Day, Schedule, Period, getPeriodName, getScheduleName } from '@/schedule/enums';
+import { RegularSchedule, BlockEvenSchedule, BlockOddSchedule } from '@/schedule/schedules';
 
 @Component({})
 export default class Home extends Vue {
@@ -87,6 +86,7 @@ export default class Home extends Vue {
   private currentDateStr = ""; 
   private dateTime: any = undefined; 
   private currentPeriod = { start: 0, end: 1440, period: Period.NONE }; 
+
 
 
   updateStats() {
@@ -140,54 +140,63 @@ export default class Home extends Vue {
   } 
 
   printTime(time: number) {
-    return printTime(time)
+    return printTime(time);
   }
 
   getPeriodName(period: Period): string {
-    return getPeriodName(period)
+    return getPeriodName(period);
   }
 
   getCurrentPeriodName() {
-    return getPeriodName(this.currentPeriod.period)
+    return getPeriodName(this.currentPeriod.period);
   }
 
   getFormattedTimeUntilNext() {
-    return this.getTimeUntilNext() >= 120 ? Math.ceil(this.getTimeUntilNext() / 60) : this.getTimeUntilNext()
+    return this.getTimeUntilNext() >= 120 ? Math.ceil(this.getTimeUntilNext() / 60) : this.getTimeUntilNext();
   }
 
   // Prevent duplication
   // TODO: Consolidate schedule names into one place to follow DRY
   // DRY = Don't Repeat Yourself (eg: prevent duplication)
   getCurrentScheduleName() {
-    return getScheduleName(this.schedule); 
+    return getScheduleName(this.schedule);
 
     /*
     switch (this.schedule) {
-      case Schedule.REGULAR:            return 'regular schedule'; 
-      case Schedule.BLOCK_ODD:          return 'block schedule (1, 3, 5)'; 
-      case Schedule.BLOCK_EVEN:         return 'block schedule (2, 4, 6)'; 
-      case Schedule.SPECIAL_BLOCK_ODD:  return 'block schedule (3, 1, 5)'; 
-      case Schedule.SPECIAL_BLOCK_EVEN: return 'block schedule (4, 2, 6)'; 
-      case Schedule.ASSEMBLY:           return 'assembly schedule'; 
-      case Schedule.MINIMUM:            return 'minimum schedule'; 
+      case Schedule.REGULAR:            return 'regular schedule';
+      case Schedule.BLOCK_ODD:          return 'block schedule (1, 3, 5)';
+      case Schedule.BLOCK_EVEN:         return 'block schedule (2, 4, 6)';
+      case Schedule.SPECIAL_BLOCK_ODD:  return 'block schedule (3, 1, 5)';
+      case Schedule.SPECIAL_BLOCK_EVEN: return 'block schedule (4, 2, 6)';
+      case Schedule.ASSEMBLY:           return 'assembly schedule';
+      case Schedule.MINIMUM:            return 'minimum schedule';
       case Schedule.NONE:               return 'no schedule';
-      default:                          return 'error'; 
-    } 
-    */ 
-  } 
+      default:                          return 'error';
+    }
+    */
+  }
 
   getTimeUntilNext() {
-    return this.currentPeriod.end - this.minutes
+    return this.currentPeriod.end - this.minutes;
   }
 
   getUnitUntilNext() {
-    return this.currentPeriod.end - this.minutes >= 120 ? "hr." : "min."
+    return this.currentPeriod.end - this.minutes >= 120 ? 'hr.' : 'min.';
+  }
+  strGrade(grade: any){
+    if (grade < 13) {
+      grade = String(grade);
+      grade = grade.concat('th Grade');
+    } else if (grade === 13) {
+      grade = 'Event';
+    }
+    return grade;
   }
 
   getFullSchedule() {
-    let grade = this.$store.state.settings.grade; 
+    let grade = this.$store.state.settings.grade;
 
-    return getFullSchedule(this.schedule, grade).filter(({period} : any) => {
+    return getFullSchedule(this.schedule, grade).filter(({period}: any) => {
       // Dirty solution for filtering schedule.
       // TODO: Move this elsewhere.
       return [
@@ -202,42 +211,48 @@ export default class Home extends Vue {
         Period.BREAK,
         Period.STEP_ODD,
         Period.STEP_EVEN,
-        Period.HOMEROOM, 
+        Period.HOMEROOM,
         Period.ASSEMBLY,
-      ].indexOf(period) !== -1 || this.$store.state.settings.showExtraPeriods
-    })
+        Period.TBD,
+      ].indexOf(period) !== -1 || this.$store.state.settings.showExtraPeriods;
+    });
   }
 
   getCurrentTime() {
-    return ("0000" + Math.floor(this.minutes / 60)).substr(-2) + ":" + ("0000" + (this.minutes % 60)).substr(-2)
+    return ('0000' + Math.floor(this.minutes / 60)).substr(-2) + ':' + ('0000' + (this.minutes % 60)).substr(-2);
   }
 
-  getCertainTime12(time: number) {
-    let end_string = "AM"
-    let hours = Math.floor(time / 60)
-    let new_hours = (hours % 12 === 0 ? 12 : hours % 12)     // Show 12:00 AM instead of 00:00 AM
+  public getCertainTime12(time: number) {
+    let end_string = 'AM';
+    let hours = Math.floor(time / 60);
+    let new_hours = (hours % 12 === 0 ? 12 : hours % 12);     // Show 12:00 AM instead of 00:00 AM
     if (hours >= 12 && hours <= 23) {
-      end_string = "PM"
+      end_string = 'PM';
     }
-    return `${new_hours + ":" + ("0000" + (time % 60)).substr(-2)} ${end_string}`
+    return `${new_hours + ':' + ('0000' + (time % 60)).substr(-2)} ${end_string}`;
   }
 
-  getCertainTime24(time: number) {
-    return ("0000" + Math.floor(time / 60)).substr(-2) + ":" + ("0000" + (time % 60)).substr(-2)
+  public getCertainTime24(time: number) {
+    return ('0000' + Math.floor(time / 60)).substr(-2) + ':' + ('0000' + (time % 60)).substr(-2);
   }
 
-  getCertainTime(time: number) {
-    return this.$store.state.settings.useMilitaryTime ? this.getCertainTime24(time) : this.getCertainTime12(time)
-  } 
+  public getCertainTime(time: number) {
+    return this.$store.state.settings.useMilitaryTime ? this.getCertainTime24(time) : this.getCertainTime12(time);
+  }
 
-  updateOptionBL(name: string, value: any): void {
-    this.$store.commit('UPDATE_SETTING', { name, value }); 
-  } 
+  public updateOptionBL(name: string, value: any): void {
+    this.$store.commit('UPDATE_SETTING', { name, value });
+  }
 
-  changeGrade(grade: number) {
-    this.updateOptionBL('grade', grade); 
-  } 
+  public changeGrade(grade: number) {
+    this.updateOptionBL('grade', grade);
+  }
 
+
+  public mounted() {
+    // correct invalid grade settings to 9th grade if any
+    let grade = this.$store.state.settings.grade;
+  
   mounted() {
     //correct invalid grade settings to 9th grade if any
     let grade = this.$store.state.settings.grade; 
@@ -253,4 +268,5 @@ export default class Home extends Vue {
     this.updateStats(); 
   }
 }
+
 </script>

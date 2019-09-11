@@ -1,7 +1,7 @@
 <template>
   <div class="now">
     <h3>{{getGreeting()}}. Today is {{getCurrentScheduleName()}}. </h3> 
-    <p class="gradeMessage">You are viewing the {{this.grade}}th grade schedule. To change grades, go to About -> Settings. </p> 
+    <p class="gradeMessage">You are viewing the {{strGrade(grade)}} schedule. To change grades, go to About -> Settings. </p> 
     <div class="grid-fmr">
       <div class="grid-fmr-helper">CURRENT PERIOD</div>
       <div class="grid-fmr-value">
@@ -48,170 +48,179 @@ import { DateTime, Duration } from 'luxon';
 import { printTime, getScheduleFromDay, getPeriod, getUpcomingPeriod, allGrades, plus_days } from '@/schedule';
 import { Day, Schedule, Period, getPeriodName, getScheduleName } from '@/schedule/enums';
 import { RegularSchedule, BlockEvenSchedule, BlockOddSchedule } from '@/schedule/schedules';
-import { Changelog } from '../changelog'; 
+import { Changelog } from '../changelog';
 @Component({})
 export default class Now extends Vue {
-  private minutes: number = 0
-  private currentDateTime: any
-  private schedule: Schedule = Schedule.NONE; 
-  private grade = allGrades[2]; 
-  private currentPeriod = { start: 0, end: 1440, period: Period.NONE }; 
-  private allLogs: any[] = []
-  public useNextPeriodStartAsEnd = false    // TODO: Find a better variable name
+  public useNextPeriodStartAsEnd = false;    // TODO: Find a better variable name
+  private minutes: number = 0;
+  private currentDateTime: any;
+  private schedule: Schedule = Schedule.NONE;
+  private grade = allGrades[2];
+  private currentPeriod = { start: 0, end: 1440, period: Period.NONE };
+  private allLogs: any[] = [];
   updateStats() {
-    const currentDate = DateTime.local().setZone("America/Los_Angeles").plus(Duration.fromMillis(plus_days * 86400000)); 
-    this.minutes = currentDate.minute + (currentDate.hour * 60); 
-    this.currentDateTime = currentDate
-    this.grade = this.$store.state.settings.grade; 
-    this.schedule = getScheduleFromDay(currentDate.month, currentDate.day, currentDate.year, currentDate.weekday, this.grade); 
-    this.currentPeriod = getPeriod(this.minutes, this.schedule, this.grade); 
-  } 
+    const currentDate = DateTime.local().setZone('America/Los_Angeles').plus(Duration.fromMillis(plus_days * 86400000));
+    this.minutes = currentDate.minute + (currentDate.hour * 60);
+    this.currentDateTime = currentDate;
+    this.grade = this.$store.state.settings.grade;
+    this.schedule = getScheduleFromDay(currentDate.month, currentDate.day, currentDate.year, currentDate.weekday, this.grade);
+    this.currentPeriod = getPeriod(this.minutes, this.schedule, this.grade);
+  }
   getUnreadUpdates() {
-    return this.allLogs.filter(entry => this.$store.state.changelog.readUpdates.indexOf(entry.id) === -1); 
-  } 
+    return this.allLogs.filter((entry) => this.$store.state.changelog.readUpdates.indexOf(entry.id) === -1);
+  }
   goToChangelog() {
-    if (this.$store.state.isExtension) { window.open('/about/changelog', '_blank'); } 
-    else { this.$router.push('about/changelog'); } 
+    if (this.$store.state.isExtension) { window.open('/about/changelog', '_blank'); }
+    else { this.$router.push('about/changelog'); }
   }
   shouldShowUpdateLog() {
-    return this.getUnreadUpdates().length > 0
-  } 
-  //Don't put the period (the punctuation mark one) here. It is supplied in the place where this function is called. 
+    return this.getUnreadUpdates().length > 0;
+  }
+  strGrade(grade: any){
+    if (grade < 13) {
+      grade = String(grade);
+      grade = grade.concat('th Grade');
+    } else if (grade === 13) {
+      grade = 'Event';
+    }
+    return grade;
+  }
+  // Don't put the period (the punctuation mark one) here. It is supplied in the place where this function is called.
   getGreeting() {
-    if (this.minutes <= 330) return "Good late evening" 
-    else if (this.minutes <= 720) return "Good morning" 
-    else if (this.minutes <= 1050) return "Good afternoon" 
-    else if (this.minutes <= 1440) return "Good evening" 
-    else return "Hello, student"
+    if (this.minutes <= 330) { return 'Good late evening'; }
+    else if (this.minutes <= 720) { return 'Good morning'; }
+    else if (this.minutes <= 1050) { return 'Good afternoon'; }
+    else if (this.minutes <= 1440) { return 'Good evening'; }
+    else { return 'Hello, student'; }
   }
   printTime(time: number) {
-    return printTime(time)
+    return printTime(time);
   }
   getCurrentPeriodName() {
-    return getPeriodName(this.currentPeriod.period)
+    return getPeriodName(this.currentPeriod.period);
   }
   getFormattedTimeUntilNext() {
-    return [Math.floor(this.getTimeUntilNext()/60), this.getTimeUntilNext() % 60]
+    return [Math.floor(this.getTimeUntilNext() / 60), this.getTimeUntilNext() % 60];
   }
   getCurrentScheduleName() {
-    return getScheduleName(this.schedule); 
+    return getScheduleName(this.schedule);
   }
   getUpcomingPeriod() {
-    return getUpcomingPeriod(this.minutes, this.currentDateTime, this.schedule, this.grade)
+    return getUpcomingPeriod(this.minutes, this.currentDateTime, this.schedule, this.grade);
   }
   getPeriodEnd() {
     if (this.useNextPeriodStartAsEnd) {
-      return this.getUpcomingPeriod().start + ((this.getUpcomingPeriod().daysSince || 0) * 1440)
-    } else { return this.currentPeriod.end }
+      return this.getUpcomingPeriod().start + ((this.getUpcomingPeriod().daysSince || 0) * 1440);
+    } else { return this.currentPeriod.end; }
   }
   getTimeUntilNext() {
-    return this.getPeriodEnd() - this.minutes
+    return this.getPeriodEnd() - this.minutes;
   }
   getUnitUntilNext() {
-    return this.getPeriodEnd() - this.minutes >= 120 ? "hr." : "min."
+    return this.getPeriodEnd() - this.minutes >= 120 ? 'hr.' : 'min.';
   }
   getUntilNextName() {
     if (!this.useNextPeriodStartAsEnd) {
-      return this.currentPeriod.period === Period.DONE ? "today ends" : "period ends"
+      return this.currentPeriod.period === Period.DONE ? 'today ends' : 'period ends';
     } else {
-      const nextPeriod = this.getUpcomingPeriod()
-      return nextPeriod ? getPeriodName(nextPeriod.period) : "next day"
+      const nextPeriod = this.getUpcomingPeriod();
+      return nextPeriod ? getPeriodName(nextPeriod.period) : 'next day';
     }
   }
   getCurrentTime24() {
-    return ("0000" + Math.floor(this.minutes / 60)).substr(-2) + ":" + ("0000" + (this.minutes % 60)).substr(-2)
+    return ('0000' + Math.floor(this.minutes / 60)).substr(-2) + ':' + ('0000' + (this.minutes % 60)).substr(-2);
   }
- 
+
   getCurrentTime12() {
-    let end_string = "AM"
-    let hours = Math.floor(this.minutes / 60)
-    let new_hours = (hours % 12 === 0 ? 12 : hours % 12)     // Show 12:00 AM instead of 00:00 AM
+    let end_string = 'AM';
+    let hours = Math.floor(this.minutes / 60);
+    let new_hours = (hours % 12 === 0 ? 12 : hours % 12);     // Show 12:00 AM instead of 00:00 AM
     if (hours >= 12) {
-      end_string = "PM"
+      end_string = 'PM';
     }
-    return `${new_hours + ":" + ("0000" + (this.minutes % 60)).substr(-2)} ${end_string}`
+    return `${new_hours + ':' + ('0000' + (this.minutes % 60)).substr(-2)} ${end_string}`;
   }
-   
+
   getCurrentTime() {
-    if(!this.$store.state.settings.useMilitaryTime) {
-      return this.getCurrentTime12()
+    if (!this.$store.state.settings.useMilitaryTime) {
+      return this.getCurrentTime12();
     }
     else {
-      return this.getCurrentTime24()
+      return this.getCurrentTime24();
     }
   }
   getCertainTime12(time: number) {
-    let end_string = "AM"
-    let hours = Math.floor(time / 60)
-    let new_hours = (hours % 12 === 0 ? 12 : hours % 12)     // Show 12:00 AM instead of 00:00 AM
+    let end_string = 'AM';
+    let hours = Math.floor(time / 60);
+    let new_hours = (hours % 12 === 0 ? 12 : hours % 12);     // Show 12:00 AM instead of 00:00 AM
     if (hours >= 12 && hours <= 23) {
-      end_string = "PM"
+      end_string = 'PM';
     }
-    return `${new_hours + ":" + ("0000" + (time % 60)).substr(-2)} ${end_string}`
+    return `${new_hours + ':' + ('0000' + (time % 60)).substr(-2)} ${end_string}`;
   }
   getCertainTime24(time: number) {
-    return ("0000" + Math.floor(time / 60)).substr(-2) + ":" + ("0000" + (time % 60)).substr(-2)
+    return ('0000' + Math.floor(time / 60)).substr(-2) + ':' + ('0000' + (time % 60)).substr(-2);
   }
   getCertainTime(time: number) {
-    return this.$store.state.settings.useMilitaryTime ? this.getCertainTime24(time) : this.getCertainTime12(time)
+    return this.$store.state.settings.useMilitaryTime ? this.getCertainTime24(time) : this.getCertainTime12(time);
   }
   getCurrentPercentage() {
-    return 1 - (this.getTimeUntilNext() / (this.getPeriodEnd() - this.currentPeriod.start))
+    return 1 - (this.getTimeUntilNext() / (this.getPeriodEnd() - this.currentPeriod.start));
   }
   getCurrentTimeParts24() {
     return {
-      hr: ("0000" + Math.floor(this.minutes / 60)).substr(-2),
-      min: ("0000" + (this.minutes % 60)).substr(-2)
-    }
+      hr: ('0000' + Math.floor(this.minutes / 60)).substr(-2),
+      min: ('0000' + (this.minutes % 60)).substr(-2),
+    };
   }
- 
+
   getCurrentTimeParts12() {
-    let end_string = "AM"
-    let hours = Math.floor(this.minutes / 60)
-    let new_hours = (hours % 12 === 0 ? 12 : hours % 12)     // Show 12:00 AM instead of 00:00 AM
+    let end_string = 'AM';
+    let hours = Math.floor(this.minutes / 60);
+    let new_hours = (hours % 12 === 0 ? 12 : hours % 12);     // Show 12:00 AM instead of 00:00 AM
     if (hours >= 12) {
-      end_string = "PM"
+      end_string = 'PM';
     }
     return {
       hr: new_hours,
-      min: `${("0000" + (this.minutes % 60)).substr(-2)} ${end_string}`
-    }
+      min: `${('0000' + (this.minutes % 60)).substr(-2)} ${end_string}`,
+    };
   }
- 
+
   getCurrentTimeParts() {
-    //to do: replace "12hourplaceholder" with object/variable that determines if 12-hour mode is turned on
-    if(!this.$store.state.settings.useMilitaryTime) {
-      return this.getCurrentTimeParts12()
+    // to do: replace "12hourplaceholder" with object/variable that determines if 12-hour mode is turned on
+    if (!this.$store.state.settings.useMilitaryTime) {
+      return this.getCurrentTimeParts12();
     }
     else {
-      return this.getCurrentTimeParts24()
+      return this.getCurrentTimeParts24();
     }
-  } 
-  
+  }
+
   updateOptionBL(name: string, value: any): void {
-    this.$store.commit('UPDATE_SETTING', { name, value }); 
-  } 
+    this.$store.commit('UPDATE_SETTING', { name, value });
+  }
 
   changeGrade(grade: number) {
-    this.updateOptionBL('grade', grade); 
-  } 
+    this.updateOptionBL('grade', grade);
+  }
   mounted() {
-    //correct invalid grade settings if any
-    let grade = this.$store.state.settings.grade; 
-    
-    if(allGrades.indexOf(grade) == -1) {
-      grade = allGrades[2]; 
-      
-      this.changeGrade(grade); 
-    } 
-    //note that this didn't make any assignments to this.grade. That's because this part is just to correct invalid settings. 
-    
-    setInterval(this.updateStats, 5000)
-    this.updateStats()
-    Changelog.forEach(version => {
-      this.allLogs = this.allLogs.concat(version.entries)
-    })
-    this.allLogs = this.allLogs.filter(log => log.isPublic) 
+    // correct invalid grade settings if any
+    let grade = this.$store.state.settings.grade;
+
+    if (allGrades.indexOf(grade) === -1) {
+      grade = allGrades[2];
+
+      this.changeGrade(grade);
+    }
+    // note that this didn't make any assignments to this.grade. That's because this part is just to correct invalid settings.
+
+    setInterval(this.updateStats, 5000);
+    this.updateStats();
+    Changelog.forEach((version) => {
+      this.allLogs = this.allLogs.concat(version.entries);
+    });
+    this.allLogs = this.allLogs.filter((log) => log.isPublic);
   }
 }
 </script>

@@ -2,7 +2,6 @@
   <div class="about">
     <div class="sub-nav">
       <router-link class="sub-nav-item" to="/about/credits">Credits</router-link>
-      <router-link class="sub-nav-item" to="/about/settings">Settings</router-link>
       <router-link class="sub-nav-item" to="/about/changelog">Log</router-link>
     </div>
     <router-view></router-view>
@@ -14,7 +13,7 @@ import { Component, Vue } from 'vue-property-decorator';
 
 @Component({})
 export default class Home extends Vue {
-  public appVersion = `v${process.env.VUE_APP_VERSION} (b${process.env.VUE_APP_COMMIT_COUNT.trim()}#${process.env.VUE_APP_COMMIT_SHASH.trim()})`
+  public appVersion = `v${process.env.VUE_APP_VERSION} (b${process.env.VUE_APP_COMMIT_COUNT.trim()}#${process.env.VUE_APP_COMMIT_SHASH.trim()})`;
 }
 </script>
 
