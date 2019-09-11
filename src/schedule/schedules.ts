@@ -478,7 +478,6 @@ export const SummerSchoolSchedule: any[] = [
   { start: toTime(13, 0), end: toTime(24, 0), period: Period.DONE },
 ];
 
-
 export const HSBackToSchoolNight: any[] = [
   { start: toTime(0, 0), end: toTime(17, 45), period: Period.EVENTNOPE },
   { start: toTime(17, 45), end: toTime(18, 25), period: Period.ASSEMBLY },

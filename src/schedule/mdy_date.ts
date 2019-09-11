@@ -1,43 +1,43 @@
-export class MDY_Date {
-    private date_list: number[];
+export class MDYDate {
+    private dateList: number[];
 
     constructor(month: number, day: number, year: number) {
-        this.date_list = [year, month, day];
+        this.dateList = [year, month, day];
     }
 
-    public before(other: MDY_Date): boolean {
-        return this.first_nonzero_diff(other) < 0;
+    public before(other: MDYDate): boolean {
+        return this.firstNonzero_diff(other) < 0;
     }
 
-    public is_same(other: MDY_Date): boolean {
-        return this.first_nonzero_diff(other) === 0;
+    public is_same(other: MDYDate): boolean {
+        return this.firstNonzero_diff(other) === 0;
     }
 
-    public after(other: MDY_Date): boolean {
-        return this.first_nonzero_diff(other) > 0;
+    public after(other: MDYDate): boolean {
+        return this.firstNonzero_diff(other) > 0;
     }
 
-    public between(lower: MDY_Date, upper: MDY_Date) {
+    public between(lower: MDYDate, upper: MDYDate) {
         return (this.after(lower) || this.is_same(lower)) && (this.before(upper) || this.is_same(upper));
     }
 
-    private diff(other: MDY_Date): number[] {
+    private diff(other: MDYDate): number[] {
         /*
         internal method
-        what this basically does is return the result of "subtracting" this.date_list and other.date_list
-        what this means is basically result[i] = this.date_list[i] - other.date_list[i]
+        what this basically does is return the result of "subtracting" this.dateList and other.dateList
+        what this means is basically result[i] = this.dateList[i] - other.dateList[i]
         */
 
-        let result_list = this.date_list.slice();
+        let resultList = this.dateList.slice();
 
-        for (let index = 0; index < result_list.length; index++) {
-            result_list[index] -= other.date_list[index];
+        for (let index = 0; index < resultList.length; index++) {
+            resultList[index] -= other.dateList[index];
         }
 
-        return result_list;
+        return resultList;
     }
 
-    private first_nonzero_diff(other: MDY_Date): number {
+    private firstNonzero_diff(other: MDYDate): number {
         /*
         internal method
         finds the first item of the diff between the two dates that isn't 0
@@ -45,8 +45,8 @@ export class MDY_Date {
         */
 
         const diff = this.diff(other);
-        const first_nonzero = diff.find((v) => v !== 0);
+        const firstNonzero = diff.find((v) => v !== 0);
 
-        return first_nonzero !== undefined ? first_nonzero : 0;
+        return firstNonzero !== undefined ? firstNonzero : 0;
     }
 }
