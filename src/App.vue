@@ -174,5 +174,5 @@ html, body, #app-container {
     background-color: var(--button-submenu-color, #2f9768);
     box-shadow: 0 0 8px 4px rgba(100, 100, 100, .1);
   }
-}
+} 
 </style>
