@@ -4,6 +4,11 @@
     <h3>Today: {{getCurrentScheduleName()}}</h3> 
     <p class="gradeMessage">You are viewing the {{strGrade(grade)}} schedule. To change grades, go to Settings. </p> 
     <!-- Please replace this! -->
+    <div id='app'>
+      <vc-date-picker
+        v-model="date"
+      />
+    </div>
     <div class="bell-schedule" v-if="getCurrentScheduleName() != 'free'">
       <div class="blsch-period-hd">
         <div class="blsch-period-title">Period</div>
@@ -62,6 +67,9 @@
 }
 </style>
 
+<script src='https://unpkg.com/vue/dist/vue.js'></script>
+
+<script src='https://unpkg.com/v-calendar@next'></script>
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
@@ -72,12 +80,24 @@ plus_days } from '@/schedule'
 import { Day, Schedule, Period, getPeriodName, getScheduleName } from '@/schedule/enums'
 import { RegularSchedule, BlockEvenSchedule, BlockOddSchedule } from '@/schedule/schedules'; 
 
+import VCalendar from 'v-calendar';
+
+Vue.use(VCalendar, {
+  componentPrefix: 'vc',
+});
+
 @Component({})
 export default class Home extends Vue {
   private minutes: number = 0
   private schedule: Schedule = Schedule.NONE; 
   private grade = allGrades[2]; 
   private currentPeriod = { start: 0, end: 1440, period: Period.NONE }; 
+
+  data() {
+    return {
+      date: new Date(),
+    }
+  }
 
   updateStats() {
     const currentDate = DateTime.local().setZone("America/Los_Angeles").plus(Duration.fromMillis(plus_days * 86400000)); 
