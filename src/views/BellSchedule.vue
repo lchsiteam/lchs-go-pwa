@@ -7,7 +7,14 @@
     <div id='app'>
       <vc-date-picker
         v-model="date"
-      />
+        :value="null"
+        color="red"
+        is-dark
+	is-expanded
+	:min-date='new Date(2019, 7, 14)'
+	:max-date='new Date(2020, 4, 31)'
+	popover.placement="bottom"
+    />
     </div>
     <div class="bell-schedule" v-if="getCurrentScheduleName() != 'free'">
       <div class="blsch-period-hd">
