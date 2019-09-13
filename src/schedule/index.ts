@@ -2,7 +2,7 @@
 // Editor: Kevin Mo
 // Copyright (c) iTeam 2019
 
-import { MDY_Date } from './mdy_date';
+import { MDYDate } from './mdy_date';
 import { Day, Schedule, Period } from './enums';
 import { NoSchoolSchedule, NoEventSchedule, RegularSchedule, BlockOddSchedule, BlockEvenSchedule, SpecialBlockOddSchedule, SpecialBlockEvenSchedule,
         AssemblySchedule, RegularSchedule78, BlockOddSchedule78, BlockEvenSchedule78, HSBlockOddScheduleFor78,
@@ -11,7 +11,7 @@ import { NoSchoolSchedule, NoEventSchedule, RegularSchedule, BlockOddSchedule, B
         PreFinals1345Schedule, FinalAssemblySchedule78, FinalAssemblySchedule12, Finals34Schedule, Finals15Schedule,
         Finals26Schedule, FinalsTBDSchedule, SummerSchoolSchedule, HSBackToSchoolNight } from './schedules';
 
-export const plus_days = 0;
+export const plusDays = 0;
 
 export const allGrades = [7, 8, 9, 10, 11, 12, 13];
 
@@ -26,17 +26,16 @@ export function getCurrentDate(): any {
   };
 }
 
-const summer_break: any[] = [];
+const summerBreak: any[] = [];
 
+const tgBreak: MDYDate[] = [new MDYDate(11, 25, 2019), new MDYDate(11, 29, 2019)];
+const winterBreak: MDYDate[] = [new MDYDate(12, 20, 2019), new MDYDate(1, 6, 2020)]; // Please don't ever delete these, just comment them out if you have to
 
-const tg_break: MDY_Date[] = [new MDY_Date(11, 25, 2019), new MDY_Date(11, 29, 2019)];
-const winter_break: MDY_Date[] = [new MDY_Date(12, 20, 2019), new MDY_Date(1, 6, 2020)]; // Please don't ever delete these, just comment them out if you have to
+const breaks: any[] = [tgBreak, winterBreak];
 
-const breaks: any[] = [tg_break, winter_break];
+const summerSchool: [MDYDate, MDYDate] = [new MDYDate(6, 17, 2019), new MDYDate(7, 19, 2019)];
 
-const summer_school: [MDY_Date, MDY_Date] = [new MDY_Date(6, 17, 2019), new MDY_Date(7, 19, 2019)];
-
-export const school_special_dates: any = {
+export const schoolSpecialDates: any = {
   '8 - 21 - 2019': Schedule.REGULAR,
   '8 - 22 - 2019': Schedule.REGULAR,
   '8 - 23 - 2019': Schedule.ASSEMBLY,
@@ -48,13 +47,13 @@ export const school_special_dates: any = {
   // month - day - year: schedule (something from the Schedule enum)
 };
 
-export const ms_special_dates: any = {
+export const msSpecialDates: any = {
 };
 
-export const hs_special_dates: any = {
+export const hsSpecialDates: any = {
 };
 
-export const grade_special_dates: any = {
+export const gradeSpecialDates: any = {
   7: {
   },
   8: {
@@ -72,26 +71,26 @@ export const grade_special_dates: any = {
   },
 };
 
-export function getScheduleFromDay(month: number, day: number, year: number, week_day: number, grade: number): Schedule {
+export function getScheduleFromDay(month: number, day: number, year: number, weekDay: number, grade: number): Schedule {
   let shed = Schedule.NONE;
-  const high_schooler = 9 <= grade && grade <= 12;
+  const highSchooler = 9 <= grade && grade <= 12;
   const date = `${month} - ${day} - ${year}`;
-  const date_obj = new MDY_Date(month, day, year);
-  const own_grade_dates = grade_special_dates[grade];
-  const own_section_dates = high_schooler ? hs_special_dates : ms_special_dates;
+  const dateObj = new MDYDate(month, day, year);
+  const ownGradeDates = gradeSpecialDates[grade];
+  const ownSectionDates = highSchooler ? hsSpecialDates : msSpecialDates;
 
-  if (date in own_grade_dates) {
-    shed = own_grade_dates[date];
-  } else if (date in own_section_dates) {
-    shed = own_section_dates[date];
-  } else if (date in school_special_dates) {
-    shed = school_special_dates[date];
+  if (date in ownGradeDates) {
+    shed = ownGradeDates[date];
+  } else if (date in ownSectionDates) {
+    shed = ownSectionDates[date];
+  } else if (date in schoolSpecialDates) {
+    shed = schoolSpecialDates[date];
   } else {
     // check to see if this date falls in a multi-date exception
-    const is_summer_school = date_obj.between(...summer_school);
+    const isSummerSchool = dateObj.between(...summerSchool);
 
-    if (is_summer_school) {
-      switch (week_day) {
+    if (isSummerSchool) {
+      switch (weekDay) {
         case Day.SUNDAY:
         case Day.SATURDAY:
           shed = Schedule.NONE;
@@ -107,23 +106,23 @@ export function getScheduleFromDay(month: number, day: number, year: number, wee
     } else if (grade === 13) {
       shed = Schedule.NOEVENT;
     } else {
-      let not_break = true;
+      let notBreak = true;
 
       for (const brk of breaks) {
         const [start, end] = brk;
 
-        // console.log(date_obj.between(start, end));
+        // console.log(dateObj.between(start, end));
 
-        if (date_obj.between(start, end)) {
+        if (dateObj.between(start, end)) {
           shed = Schedule.NONE;
-          not_break = false;
+          notBreak = false;
 
           break;
         }
       }
 
-      if (not_break) {
-        switch (week_day) {
+      if (notBreak) {
+        switch (weekDay) {
           case Day.SUNDAY:
           case Day.SATURDAY:
             shed = Schedule.NONE;
@@ -152,7 +151,7 @@ export function toTime(hr: number, min: number) {
 }
 
 export function getFullSchedule(schedule: Schedule, grade: number): any {
-  const high_schooler = 9 <= grade && grade <= 12;
+  const highSchooler = 9 <= grade && grade <= 12;
 
   // TODO: Add more schedules
   switch (schedule) {
@@ -166,25 +165,25 @@ export function getFullSchedule(schedule: Schedule, grade: number): any {
       return HSBackToSchoolNight;
       break;
     case Schedule.REGULAR:
-      return high_schooler ? RegularSchedule : RegularSchedule78;
+      return highSchooler ? RegularSchedule : RegularSchedule78;
       break;
     case Schedule.BLOCK_ODD:
-      return high_schooler ? BlockOddSchedule : BlockOddSchedule78;
+      return highSchooler ? BlockOddSchedule : BlockOddSchedule78;
       break;
     case Schedule.BLOCK_EVEN:
-      return high_schooler ? BlockEvenSchedule : BlockEvenSchedule78;
+      return highSchooler ? BlockEvenSchedule : BlockEvenSchedule78;
       break;
     case Schedule.SBAC_BLOCK_ODD:
-      return high_schooler ? BlockOddSchedule : HSBlockOddScheduleFor78;
+      return highSchooler ? BlockOddSchedule : HSBlockOddScheduleFor78;
       break;
     case Schedule.SBAC_BLOCK_EVEN:
-      return high_schooler ? BlockEvenSchedule : HSBlockEvenScheduleFor78;
+      return highSchooler ? BlockEvenSchedule : HSBlockEvenScheduleFor78;
       break;
     case Schedule.SBAC_SPECIAL_BLOCK_ODD:
-      return high_schooler ? SpecialBlockOddSchedule : HSSpecialBlockOddScheduleFor78;
+      return highSchooler ? SpecialBlockOddSchedule : HSSpecialBlockOddScheduleFor78;
       break;
     case Schedule.SBAC_SPECIAL_BLOCK_EVEN:
-      return high_schooler ? SpecialBlockEvenSchedule : HSSpecialBlockEvenScheduleFor78;
+      return highSchooler ? SpecialBlockEvenSchedule : HSSpecialBlockEvenScheduleFor78;
       break;
     // pre-finals schedules are the same across all grades, hence there are no switches/ternary operators
     case Schedule.PRE_FINALS_3264:
@@ -229,7 +228,7 @@ export function getFullSchedule(schedule: Schedule, grade: number): any {
     case Schedule.FINAL_ASSEMBLY:
       if (grade === 12) {
         return FinalAssemblySchedule12;
-      } else if (high_schooler) {
+      } else if (highSchooler) {
         // just a normal assembly schedule
         return AssemblySchedule;
       } else {
@@ -336,7 +335,7 @@ export function printTime(time: number) {
     }
   } else if (hours === 1) {
     if (shortMins === 1) {
-      finalString = hours + ' hour and ', shortMins + ' minute';
+      finalString = hours + ' hour and ' + shortMins + ' minute';
     }
     else {
       finalString = hours + ' hour and ' + shortMins + ' minutes';

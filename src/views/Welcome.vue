@@ -29,7 +29,6 @@ import { allGrades } from '@/schedule';
 import firebase from 'firebase';
 import firebaseui from 'firebaseui';
 
-
 @Component({})
 export default class Welcome extends Vue {
   // this is a class variable
@@ -125,5 +124,4 @@ function handleUIError(error: any) {
   return Promise.reject(error);
 }
 /* Google Sign In */
-
 </script>
