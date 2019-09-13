@@ -78,6 +78,6 @@ export default class Home extends Vue {
 
 .credit-item-role {
   font-size: 12px;
-  opacity: 0.8;
+  opacity: 0.8; 
 }
 </style>
