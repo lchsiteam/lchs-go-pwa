@@ -98,51 +98,51 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
-import { Themes } from '../themes'; 
-import { allGrades } from '@/schedule'; 
+import { Themes } from '../themes';
+import { allGrades } from '@/schedule';
 
 @Component({})
 export default class Home extends Vue {
-  public appVersion = `v${process.env.VUE_APP_VERSION} (b${process.env.VUE_APP_COMMIT_COUNT.trim()}#${process.env.VUE_APP_COMMIT_SHASH.trim()})`
-  colorThemeId = this.$store.state.settings.colorTheme
-  grade = allGrades[2]; 
-  allGrades = allGrades; 
-  allThemes: any[] = []; 
+  public appVersion = `v${process.env.VUE_APP_VERSION} (b${process.env.VUE_APP_COMMIT_COUNT.trim()}#${process.env.VUE_APP_COMMIT_SHASH.trim()})`;
+  colorThemeId = this.$store.state.settings.colorTheme;
+  grade = allGrades[2];
+  allGrades = allGrades;
+  allThemes: any[] = [];
 
   strGrade(grade: any){
-    if(grade < 13) {
+    if (grade < 13) {
       grade = String(grade);
       grade = grade.concat('th Grade');
-    } else if (grade == 13) {
-      grade = 'Event'
+    } else if (grade === 13) {
+      grade = 'Event';
     }
-  return grade;
+    return grade;
   }
 
   updateOptionBL(name: string, value: any): void {
-    this.$store.commit('UPDATE_SETTING', { name, value })
+    this.$store.commit('UPDATE_SETTING', { name, value });
   }
 
   updateTheme() {
-    this.updateOptionBL('colorTheme', this.colorThemeId)
-  } 
-  
+    this.updateOptionBL('colorTheme', this.colorThemeId);
+  }
+
   updateGrade() {
-    this.updateOptionBL('grade', this.grade); 
-  } 
+    this.updateOptionBL('grade', this.grade);
+  }
 
   mounted() {
-    //this part is to prevent invalid grade values
-    this.grade = this.$store.state.settings.grade; 
-    
-    if(allGrades.indexOf(this.grade) == -1) {
-      this.grade = allGrades[2]; 
-      
-      this.updateGrade(); 
-    } 
-    
-    this.allThemes = Themes
-  } 
+    // this part is to prevent invalid grade values
+    this.grade = this.$store.state.settings.grade;
+
+    if (allGrades.indexOf(this.grade) === -1) {
+      this.grade = allGrades[2];
+
+      this.updateGrade();
+    }
+
+    this.allThemes = Themes;
+  }
 }
 </script>
 
