@@ -4,17 +4,17 @@
     <h3>Today: {{getCurrentScheduleName()}}</h3> 
     <p class="gradeMessage">You are viewing the {{strGrade(grade)}} schedule. To change grades, go to Settings. </p> 
     <!-- Please replace this! -->
-    <div id='app'>
+    <div class='app'>
       <vc-date-picker
+        class='vc-picker'
+	:is-expanded=true
         v-model="date"
         :value="null"
         color="red"
         is-dark
-	is-expanded
 	:min-date='new Date(2019, 7, 14)'
 	:max-date='new Date(2020, 4, 31)'
-	popover.placement="bottom"
-    />
+      />
     </div>
     <div class="bell-schedule" v-if="getCurrentScheduleName() != 'free'">
       <div class="blsch-period-hd">
@@ -37,10 +37,10 @@
 </template>
 
 <style lang="scss" scoped>
-.bell-schedule {
+div.bell-schedule {
   text-align: left;
 
-  .blsch-period, .blsch-period-hd {
+  div.blsch-period, .blsch-period-hd {
     & > div { display: inline-block; }
     .blsch-period-title,
     .blsch-period-start,
@@ -51,27 +51,33 @@
     transition: 150ms ease;
   }
 
-  .blsch-period-hd {
+  div.blsch-period-hd {
     background: rgba(0, 0, 0, .25);
   }
 
-  .blsch-period-container:nth-child(2n) > .blsch-period {
+  div.blsch-period-container:nth-child(2n) > .blsch-period {
     background: rgba(0, 0, 0, .05);
   }
 
-  .blsch-period-container:nth-child(2n+1) > .blsch-period{
+  div.blsch-period-container:nth-child(2n+1) > .blsch-period{
     background: rgba(0, 0, 0, .1);
   }
 
-  .blsch-period.selected {
+  div.blsch-period.selected {
     background: rgba(0, 0, 0, .4) !important;
     transform: scale(1.05);
   } 
 } 
 
-.gradeMessage {
+div.gradeMessage {
   font-size: 15px; 
 }
+
+div.app {
+  max-width: 100px;
+  background: rgba(0,0,0,0.1);
+}
+
 </style>
 
 <script src='https://unpkg.com/vue/dist/vue.js'></script>
