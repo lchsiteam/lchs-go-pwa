@@ -7,13 +7,13 @@
     <div class='app'>
       <vc-date-picker
         class='vc-picker'
-	:is-expanded=true
+        :is-expanded=true
         v-model="date"
         :value="null"
         color="red"
         is-dark
-	:min-date='new Date(2019, 7, 14)'
-	:max-date='new Date(2020, 4, 31)'
+        :min-date='new Date(2019, 7, 14)'
+        :max-date='new Date(2020, 4, 31)'
       />
     </div>
     <div class="bell-schedule" v-if="getCurrentScheduleName() != 'free'">
@@ -80,10 +80,6 @@ div.app {
 
 </style>
 
-<script src='https://unpkg.com/vue/dist/vue.js'></script>
-
-<script src='https://unpkg.com/v-calendar@next'></script>
-
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
 import { DateTime, Duration } from 'luxon'
@@ -92,12 +88,6 @@ import { printTime, getScheduleFromDay, getPeriod, getFullSchedule, allGrades,
 plus_days } from '@/schedule'
 import { Day, Schedule, Period, getPeriodName, getScheduleName } from '@/schedule/enums'
 import { RegularSchedule, BlockEvenSchedule, BlockOddSchedule } from '@/schedule/schedules'; 
-
-import VCalendar from 'v-calendar';
-
-Vue.use(VCalendar, {
-  componentPrefix: 'vc',
-});
 
 @Component({})
 export default class Home extends Vue {
