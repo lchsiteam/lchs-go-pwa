@@ -6,8 +6,20 @@
     <!-- Please replace this! -->
     <div class='bell-schedule-datepicker'>
       <div class="blsch-dp-left" @click="updateShift(-1)">&#8592;</div>
-      <div class="blsch-dp-status" @click="updateShift(-daysShifted)">Viewing <b>{{getCurrentShiftMsg()}}</b></div>
+      <div class='app'>
+        <vc-date-picker
+          class='date-picker'
+	        :is-expanded=true
+          v-model="date"
+          :value="null"
+          color="red"
+          is-dark
+	        :min-date='new Date(2019, 7, 14)'
+	        :max-date='new Date(2020, 4, 31)'>
+        </vc-date-picker>
+      </div>
       <div class="blsch-dp-right" @click="updateShift(1)">&#8594;</div>
+      <div class="blsch-dp-status" @click="updateShift(-daysShifted)">Viewing <b>{{getCurrentShiftMsg()}}</b></div>
     </div>
     <div class="bell-schedule" v-if="getCurrentScheduleName() != 'free'">
       <div class="blsch-period-hd">
@@ -66,6 +78,11 @@ div.gradeMessage {
   font-size: 15px; 
 }
 
+div.app {
+  max-width: 200px;
+  background: rgba(0,0,0,0.1);
+}
+
 .bell-schedule-datepicker {
   padding: 10px;
   div {
@@ -96,6 +113,10 @@ div.gradeMessage {
 
 </style>
 
+<script src='https://unpkg.com/vue/dist/vue.js'></script>
+
+<script src='https://unpkg.com/v-calendar@next'></script>
+
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
 import { DateTime, Duration } from 'luxon';
@@ -105,6 +126,12 @@ plusDays } from '@/schedule';
 import { Day, Schedule, Period, getPeriodName, getScheduleName } from '@/schedule/enums';
 import { RegularSchedule, BlockEvenSchedule, BlockOddSchedule } from '@/schedule/schedules';
 
+import VCalendar from 'v-calendar';
+
+Vue.use(VCalendar, {
+  componentPrefix: 'vc',
+});
+
 @Component({})
 export default class Home extends Vue {
 
@@ -112,13 +139,20 @@ export default class Home extends Vue {
   private schedule: Schedule = Schedule.NONE; 
   private grade = allGrades[2]; 
   private currentPeriod = { start: 0, end: 1440, period: Period.NONE };
+  private date = new Date();
 
   public daysShifted = 0;
+  
+  data() {
+    return {
+      date: new Date(),
+    }
+  }
 
   updateStats() {
     const currentDate = DateTime.local().setZone("America/Los_Angeles").plus(Duration.fromMillis(this.daysShifted * 86400000)); 
     this.minutes = currentDate.minute + (currentDate.hour * 60)
-
+    updateShift(Math.ceil((Math.abs(this.date - new Date())) / (1000 * 60 * 60 * 24)))
     this.grade = this.$store.state.settings.grade;
     this.schedule = getScheduleFromDay(currentDate.month, currentDate.day, currentDate.year, currentDate.weekday, this.grade);
     this.currentPeriod = getPeriod(this.minutes, this.schedule, this.grade);
