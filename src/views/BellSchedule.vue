@@ -1,9 +1,14 @@
 <template>
   <div class="bell-schedule-pg">
     <!-- Place the table in the Bell Schedule page for now -->
-    <h3>Today: {{getCurrentScheduleName()}}</h3> 
+    <h3>Schedule: {{getCurrentScheduleName()}}</h3> 
     <p class="gradeMessage">You are viewing the {{strGrade(grade)}} schedule. To change grades, go to Settings. </p> 
     <!-- Please replace this! -->
+    <div class='bell-schedule-datepicker'>
+      <div class="blsch-dp-left" @click="updateShift(-1)">&#8592;</div>
+      <div class="blsch-dp-status" @click="updateShift(-daysShifted)">Viewing <b>{{getCurrentShiftMsg()}}</b></div>
+      <div class="blsch-dp-right" @click="updateShift(1)">&#8594;</div>
+    </div>
     <div class="bell-schedule" v-if="getCurrentScheduleName() != 'free'">
       <div class="blsch-period-hd">
         <div class="blsch-period-title">Period</div>
@@ -11,7 +16,7 @@
         <div class="blsch-period-end">End</div>
       </div>
       <div class="blsch-period-container" v-for="period of getFullSchedule()" :key="period.period">
-        <div class="blsch-period" :class="{ selected: currentPeriod.period === period.period }">
+        <div class="blsch-period" :class="{ selected: daysShifted == 0 && currentPeriod.period === period.period }">
           <div class="blsch-period-title">{{getPeriodName(period.period)}}</div>
           <div class="blsch-period-start">{{getCertainTime(period.start)}}</div>
           <div class="blsch-period-end">{{getCertainTime(period.end)}}</div>
@@ -19,16 +24,16 @@
       </div>
     </div>
     <div v-else>
-      There is no bell schedule today.
+      There is no bell schedule on this day.
     </div>
   </div>
 </template>
 
 <style lang="scss" scoped>
-.bell-schedule {
+div.bell-schedule {
   text-align: left;
 
-  .blsch-period, .blsch-period-hd {
+  div.blsch-period, .blsch-period-hd {
     & > div { display: inline-block; }
     .blsch-period-title,
     .blsch-period-start,
@@ -39,29 +44,57 @@
     transition: 150ms ease;
   }
 
-  .blsch-period-hd {
+  div.blsch-period-hd {
     background: rgba(0, 0, 0, .25);
   }
 
-  .blsch-period-container:nth-child(2n) > .blsch-period {
+  div.blsch-period-container:nth-child(2n) > .blsch-period {
     background: rgba(0, 0, 0, .05);
   }
 
-  .blsch-period-container:nth-child(2n+1) > .blsch-period{
+  div.blsch-period-container:nth-child(2n+1) > .blsch-period{
     background: rgba(0, 0, 0, .1);
   }
 
-  .blsch-period.selected {
+  div.blsch-period.selected {
     background: rgba(0, 0, 0, .4) !important;
     transform: scale(1.05);
   } 
-} 
+}
 
-.gradeMessage {
+div.gradeMessage {
   font-size: 15px; 
 }
-</style>
 
+.bell-schedule-datepicker {
+  padding: 10px;
+  div {
+    display: inline-block;
+  }
+  .blsch-dp-left,
+  .blsch-dp-right {
+    padding: 0 5px;
+    cursor: pointer;
+    transition: 150ms ease;
+  }
+  .blsch-dp-left:hover {
+    transform: translateX(-5px);
+  }
+  .blsch-dp-right:hover {
+    transform: translateX(5px);
+  }
+  .blsch-dp-status {
+    min-width: 220px;
+    cursor: pointer;
+    border-radius: 4px;
+    padding: 0 10px;
+    &:hover {
+      background: rgba(0, 0, 0, 0.1);
+    }
+  }
+}
+
+</style>
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
@@ -74,14 +107,17 @@ import { RegularSchedule, BlockEvenSchedule, BlockOddSchedule } from '@/schedule
 
 @Component({})
 export default class Home extends Vue {
-  private minutes: number = 0;
-  private schedule: Schedule = Schedule.NONE;
-  private grade = allGrades[2];
+
+  private minutes: number = 0
+  private schedule: Schedule = Schedule.NONE; 
+  private grade = allGrades[2]; 
   private currentPeriod = { start: 0, end: 1440, period: Period.NONE };
 
+  public daysShifted = 0;
+
   updateStats() {
-    const currentDate = DateTime.local().setZone('America/Los_Angeles').plus(Duration.fromMillis(plusDays * 86400000));
-    this.minutes = currentDate.minute + (currentDate.hour * 60);
+    const currentDate = DateTime.local().setZone("America/Los_Angeles").plus(Duration.fromMillis(this.daysShifted * 86400000)); 
+    this.minutes = currentDate.minute + (currentDate.hour * 60)
 
     this.grade = this.$store.state.settings.grade;
     this.schedule = getScheduleFromDay(currentDate.month, currentDate.day, currentDate.year, currentDate.weekday, this.grade);
@@ -94,6 +130,26 @@ export default class Home extends Vue {
     else if (this.minutes <= 1050) { return 'Good afternoon.'; }
     else if (this.minutes <= 1440) { return 'Good evening.'; }
     else { return 'Hello, student.'; }
+  }
+
+  getCurrentShiftMsg() {
+    // Stopgap solution for calendar!
+    // You must implement the calendar properly!
+    const today = DateTime.local().setZone("America/Los_Angeles")
+    const shifted = today.plus(Duration.fromMillis(this.daysShifted * 86400000));
+
+    if (this.daysShifted == 0) return "Today"
+    else if (this.daysShifted == 1) return "Tomorrow"
+    else if (this.daysShifted == -1) return "Yesterday"
+    else if (today.weekNumber - 1 == shifted.weekNumber) return `last ${shifted.weekdayLong} (${shifted.month}/${shifted.day})`
+    else if (today.weekNumber == shifted.weekNumber) return `this ${shifted.weekdayLong} (${shifted.month}/${shifted.day})`
+    else if (today.weekNumber + 1 == shifted.weekNumber) return `next ${shifted.weekdayLong} (${shifted.month}/${shifted.day})`
+    else return `${shifted.monthShort} ${shifted.day}`
+  }
+
+  updateShift(shiftBy: number) {
+    this.daysShifted += shiftBy;
+    this.updateStats();
   }
 
   printTime(time: number) {
