@@ -97,16 +97,17 @@ div.gradeMessage {
 </style>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator'
-import { DateTime, Duration } from 'luxon'
+import { Component, Vue } from 'vue-property-decorator';
+import { DateTime, Duration } from 'luxon';
 
-import { printTime, getScheduleFromDay, getPeriod, getFullSchedule, allGrades, 
-plus_days } from '@/schedule'
-import { Day, Schedule, Period, getPeriodName, getScheduleName } from '@/schedule/enums'
-import { RegularSchedule, BlockEvenSchedule, BlockOddSchedule } from '@/schedule/schedules'; 
+import { printTime, getScheduleFromDay, getPeriod, getFullSchedule, allGrades,
+plusDays } from '@/schedule';
+import { Day, Schedule, Period, getPeriodName, getScheduleName } from '@/schedule/enums';
+import { RegularSchedule, BlockEvenSchedule, BlockOddSchedule } from '@/schedule/schedules';
 
 @Component({})
 export default class Home extends Vue {
+
   private minutes: number = 0
   private schedule: Schedule = Schedule.NONE; 
   private grade = allGrades[2]; 
@@ -116,19 +117,19 @@ export default class Home extends Vue {
 
   updateStats() {
     const currentDate = DateTime.local().setZone("America/Los_Angeles").plus(Duration.fromMillis(this.daysShifted * 86400000)); 
-    this.minutes = currentDate.minute + (currentDate.hour * 60) 
+    this.minutes = currentDate.minute + (currentDate.hour * 60)
 
-    this.grade = this.$store.state.settings.grade; 
-    this.schedule = getScheduleFromDay(currentDate.month, currentDate.day, currentDate.year, currentDate.weekday, this.grade); 
-    this.currentPeriod = getPeriod(this.minutes, this.schedule, this.grade); 
+    this.grade = this.$store.state.settings.grade;
+    this.schedule = getScheduleFromDay(currentDate.month, currentDate.day, currentDate.year, currentDate.weekday, this.grade);
+    this.currentPeriod = getPeriod(this.minutes, this.schedule, this.grade);
   }
 
   getGreeting() {
-    if (this.minutes <= 330) return "Good late evening." 
-    else if (this.minutes <= 720) return "Good morning." 
-    else if (this.minutes <= 1050) return "Good afternoon." 
-    else if (this.minutes <= 1440) return "Good evening." 
-    else return "Hello, student."
+    if (this.minutes <= 330) { return 'Good late evening.'; }
+    else if (this.minutes <= 720) { return 'Good morning.'; }
+    else if (this.minutes <= 1050) { return 'Good afternoon.'; }
+    else if (this.minutes <= 1440) { return 'Good evening.'; }
+    else { return 'Hello, student.'; }
   }
 
   getCurrentShiftMsg() {
@@ -152,63 +153,63 @@ export default class Home extends Vue {
   }
 
   printTime(time: number) {
-    return printTime(time)
+    return printTime(time);
   }
 
   getPeriodName(period: Period): string {
-    return getPeriodName(period)
+    return getPeriodName(period);
   }
 
   getCurrentPeriodName() {
-    return getPeriodName(this.currentPeriod.period)
+    return getPeriodName(this.currentPeriod.period);
   }
 
   getFormattedTimeUntilNext() {
-    return this.getTimeUntilNext() >= 120 ? Math.ceil(this.getTimeUntilNext() / 60) : this.getTimeUntilNext()
+    return this.getTimeUntilNext() >= 120 ? Math.ceil(this.getTimeUntilNext() / 60) : this.getTimeUntilNext();
   }
 
   // Prevent duplication
   // TODO: Consolidate schedule names into one place to follow DRY
   // DRY = Don't Repeat Yourself (eg: prevent duplication)
   getCurrentScheduleName() {
-    return getScheduleName(this.schedule); 
+    return getScheduleName(this.schedule);
 
     /*
     switch (this.schedule) {
-      case Schedule.REGULAR:            return 'regular schedule'; 
-      case Schedule.BLOCK_ODD:          return 'block schedule (1, 3, 5)'; 
-      case Schedule.BLOCK_EVEN:         return 'block schedule (2, 4, 6)'; 
-      case Schedule.SPECIAL_BLOCK_ODD:  return 'block schedule (3, 1, 5)'; 
-      case Schedule.SPECIAL_BLOCK_EVEN: return 'block schedule (4, 2, 6)'; 
-      case Schedule.ASSEMBLY:           return 'assembly schedule'; 
-      case Schedule.MINIMUM:            return 'minimum schedule'; 
+      case Schedule.REGULAR:            return 'regular schedule';
+      case Schedule.BLOCK_ODD:          return 'block schedule (1, 3, 5)';
+      case Schedule.BLOCK_EVEN:         return 'block schedule (2, 4, 6)';
+      case Schedule.SPECIAL_BLOCK_ODD:  return 'block schedule (3, 1, 5)';
+      case Schedule.SPECIAL_BLOCK_EVEN: return 'block schedule (4, 2, 6)';
+      case Schedule.ASSEMBLY:           return 'assembly schedule';
+      case Schedule.MINIMUM:            return 'minimum schedule';
       case Schedule.NONE:               return 'no schedule';
-      default:                          return 'error'; 
-    } 
-    */ 
-  } 
+      default:                          return 'error';
+    }
+    */
+  }
 
   getTimeUntilNext() {
-    return this.currentPeriod.end - this.minutes
+    return this.currentPeriod.end - this.minutes;
   }
 
   getUnitUntilNext() {
-    return this.currentPeriod.end - this.minutes >= 120 ? "hr." : "min."
+    return this.currentPeriod.end - this.minutes >= 120 ? 'hr.' : 'min.';
   }
   strGrade(grade: any){
-    if(grade < 13) {
+    if (grade < 13) {
       grade = String(grade);
       grade = grade.concat('th Grade');
-    } else if (grade == 13) {
-      grade = 'Event'
+    } else if (grade === 13) {
+      grade = 'Event';
     }
-  return grade;
+    return grade;
   }
 
   getFullSchedule() {
-    let grade = this.$store.state.settings.grade; 
+    let grade = this.$store.state.settings.grade;
 
-    return getFullSchedule(this.schedule, grade).filter(({period} : any) => {
+    return getFullSchedule(this.schedule, grade).filter(({period}: any) => {
       // Dirty solution for filtering schedule.
       // TODO: Move this elsewhere.
       return [
@@ -223,58 +224,56 @@ export default class Home extends Vue {
         Period.BREAK,
         Period.STEP_ODD,
         Period.STEP_EVEN,
-        Period.HOMEROOM, 
+        Period.HOMEROOM,
         Period.ASSEMBLY,
         Period.TBD,
-      ].indexOf(period) !== -1 || this.$store.state.settings.showExtraPeriods
-    })
+      ].indexOf(period) !== -1 || this.$store.state.settings.showExtraPeriods;
+    });
   }
 
   getCurrentTime() {
-    return ("0000" + Math.floor(this.minutes / 60)).substr(-2) + ":" + ("0000" + (this.minutes % 60)).substr(-2)
+    return ('0000' + Math.floor(this.minutes / 60)).substr(-2) + ':' + ('0000' + (this.minutes % 60)).substr(-2);
   }
 
-  getCertainTime12(time: number) {
-    let end_string = "AM"
-    let hours = Math.floor(time / 60)
-    let new_hours = (hours % 12 === 0 ? 12 : hours % 12)     // Show 12:00 AM instead of 00:00 AM
+  public getCertainTime12(time: number) {
+    let endString = 'AM';
+    let hours = Math.floor(time / 60);
+    let newHours = (hours % 12 === 0 ? 12 : hours % 12);     // Show 12:00 AM instead of 00:00 AM
     if (hours >= 12 && hours <= 23) {
-      end_string = "PM"
+      endString = 'PM';
     }
-    return `${new_hours + ":" + ("0000" + (time % 60)).substr(-2)} ${end_string}`
+    return `${newHours + ':' + ('0000' + (time % 60)).substr(-2)} ${endString}`;
   }
 
-  getCertainTime24(time: number) {
-    return ("0000" + Math.floor(time / 60)).substr(-2) + ":" + ("0000" + (time % 60)).substr(-2)
+  public getCertainTime24(time: number) {
+    return ('0000' + Math.floor(time / 60)).substr(-2) + ':' + ('0000' + (time % 60)).substr(-2);
   }
 
-  getCertainTime(time: number) {
-    return this.$store.state.settings.useMilitaryTime ? this.getCertainTime24(time) : this.getCertainTime12(time)
-  } 
+  public getCertainTime(time: number) {
+    return this.$store.state.settings.useMilitaryTime ? this.getCertainTime24(time) : this.getCertainTime12(time);
+  }
 
-  updateOptionBL(name: string, value: any): void {
-    this.$store.commit('UPDATE_SETTING', { name, value }); 
-  } 
+  public updateOptionBL(name: string, value: any): void {
+    this.$store.commit('UPDATE_SETTING', { name, value });
+  }
 
-  changeGrade(grade: number) {
-    this.updateOptionBL('grade', grade); 
-  } 
-  
+  public changeGrade(grade: number) {
+    this.updateOptionBL('grade', grade);
+  }
 
-  mounted() {
-    //correct invalid grade settings to 9th grade if any
-    let grade = this.$store.state.settings.grade; 
-    
-    if(allGrades.indexOf(grade) == -1) {
-      grade = allGrades[2]; 
-      
-      this.changeGrade(grade); 
-    } 
-    //note that this didn't make any assignments to this.grade. That's because this part is just to correct invalid settings. 
-    
-    setInterval(this.updateStats, 5000)
-    this.updateStats()
+  public mounted() {
+    // correct invalid grade settings to 9th grade if any
+    let grade = this.$store.state.settings.grade;
+
+    if (allGrades.indexOf(grade) === -1) {
+      grade = allGrades[2];
+
+      this.changeGrade(grade);
+    }
+    // note that this didn't make any assignments to this.grade. That's because this part is just to correct invalid settings.
+
+    setInterval(this.updateStats, 5000);
+    this.updateStats();
   }
 }
-
 </script>
