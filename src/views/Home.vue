@@ -1,25 +1,32 @@
 <template>
   <div class="home">
     <div class="sub-nav">
-      <router-link class="sub-nav-item" to="/home" exact>Now</router-link>
+      <router-link class="sub-nav-item" to="/home" exact>  Now  </router-link>
       <router-link class="sub-nav-item" to="/home/schedule">Bell Schedule</router-link>
+      <router-link class="sub-nav-item" to="/home/settings">Settings</router-link>
     </div>
+    <!--
+    <div>
+      <router-link class="sub-nav-item" to="/home/Virtualid">Virtual ID</router-link>
+      <router-link class="sub-nav-item" to="/home/Welcome">Welcome Page</router-link>
+      <router-link class="sub-nav-item" to="/home/news">Announcements</router-link>
+    </div>
+    -->
     <router-view></router-view>
     <p>Have feature suggestions? Send us a quick email at <a class="a" href="mailto:team@lciteam.club">team@lciteam.club</a>.</p>
   </div>
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
+import Vue from 'vue';
 export default Vue.extend({
   beforeRouteEnter(to, from, next) {
-    next(vm => {
-      let is_extension = from.query.utm_source === 'extension' || to.query.utm_source === 'extension'; 
-      
-      vm.$store.commit('UPDATE_EXTENSION_STATUS', is_extension); 
-    })
+    next((vm) => {
+      let isExtension = from.query.utm_source === 'extension' || to.query.utm_source === 'extension';
+      vm.$store.commit('UPDATE_EXTENSION_STATUS', isExtension);
+    });
   },
-})
+});
 </script>
 
 <style lang="scss" scoped>

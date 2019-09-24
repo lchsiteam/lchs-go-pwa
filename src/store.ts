@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
-import StoragePlugin from './localStorage'
+import StoragePlugin from './localStorage';
 
 Vue.use(Vuex);
 
@@ -10,14 +10,15 @@ const defaultConfig = {
     enableAnimations: true,
     enableThemeAnimations: true,
     showExtraPeriods: false,
-    colorTheme: "theme8", 
-    grade: 9, 
-    idInput: '', 
+    colorTheme: 'theme8',
+    grade: 9,
+    idInput: '',
+    gradeInput: [],
   },
   changelog: {
     readUpdates: [],
-  }
-}
+  },
+};
 
 export default new Vuex.Store({
   state: {
@@ -26,17 +27,17 @@ export default new Vuex.Store({
   },
   mutations: {
     UPDATE_SETTING(state: any, { name, value }) {
-      state.settings[name] = value
+      state.settings[name] = value;
     },
     UPDATE_READ_PROGRESS(state: any, logId) {
-      state.changelog.readUpdates = state.changelog.readUpdates.filter((l: number) => l !== logId).concat([logId])
+      state.changelog.readUpdates = state.changelog.readUpdates.filter((l: number) => l !== logId).concat([logId]);
     },
     SET_READ_PROGRESS(state: any, logIds) {
-      state.changelog.readUpdates = logIds
+      state.changelog.readUpdates = logIds;
     },
     UPDATE_EXTENSION_STATUS(state: any, newStatus) {
-      state.isExtension = newStatus
-    }
+      state.isExtension = newStatus;
+    },
   },
   actions: {
 

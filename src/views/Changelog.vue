@@ -127,35 +127,35 @@ import { Changelog } from '../changelog';
 
 @Component({})
 export default class ChangelogPage extends Vue {
-  allLogs: any[] = []
-  currentLog: any = null
-  currentLogId: number = 0
+  allLogs: any[] = [];
+  currentLog: any = null;
+  currentLogId: number = 0;
 
   updateAllRead() {
-    this.$store.commit('SET_READ_PROGRESS', this.allLogs.map(l => l.id))
+    this.$store.commit('SET_READ_PROGRESS', this.allLogs.map((l) => l.id));
   }
 
   updateRead(id: number) {
-    this.$store.commit('UPDATE_READ_PROGRESS', id)
+    this.$store.commit('UPDATE_READ_PROGRESS', id);
   }
 
   openCurrentLog(id: number) {
     if (this.currentLogId === id) {
       // user un-clicks the announcement
-      this.currentLogId = 0
-      this.currentLog = null
+      this.currentLogId = 0;
+      this.currentLog = null;
     } else {
       this.currentLogId = id;
-      this.currentLog = this.allLogs.find(l => l.id === id);
-      this.updateRead(id)
+      this.currentLog = this.allLogs.find((l) => l.id === id);
+      this.updateRead(id);
     }
   }
 
   mounted() {
-    Changelog.forEach(version => {
-      this.allLogs = this.allLogs.concat(version.entries)
-    })
-    this.allLogs = this.allLogs.filter(log => log.isPublic) 
+    Changelog.forEach((version) => {
+      this.allLogs = this.allLogs.concat(version.entries);
+    });
+    this.allLogs = this.allLogs.filter((log) => log.isPublic);
   }
 }
 </script>

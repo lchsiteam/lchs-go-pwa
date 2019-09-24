@@ -23,34 +23,34 @@ import firebaseui from 'firebaseui';
 @Component({})
 export default class App extends Vue {
   getCurrentColorScheme() {
-    return this.getColorSchemeFromId(this.$store.state.settings.colorTheme)
+    return this.getColorSchemeFromId(this.$store.state.settings.colorTheme);
   }
 
   getColorSchemeFromId(themeId: string) {
-    return Themes.filter(t => t.id === themeId)[0] || Themes[0]
+    return Themes.filter((t) => t.id === themeId)[0] || Themes[0];
   }
 
   getCSSColorScheme() {
-    let themeGradient
-    const currentColorScheme = this.getCurrentColorScheme()
-    if (this.$store.state.settings.colorTheme === "theme15") {
-      const currentDate = DateTime.local().setZone("America/Los_Angeles")
-      if (currentDate.hour >=21 && currentDate.hour <= 4) {
-        themeGradient = this.getColorSchemeFromId("theme12")
+    let themeGradient;
+    const currentColorScheme = this.getCurrentColorScheme();
+    if (this.$store.state.settings.colorTheme === 'theme15') {
+      const currentDate = DateTime.local().setZone('America/Los_Angeles');
+      if (currentDate.hour >= 21 && currentDate.hour <= 4) {
+        themeGradient = this.getColorSchemeFromId('theme12');
       } else if (currentDate.hour <= 9) {
-        themeGradient = this.getColorSchemeFromId("theme14")
+        themeGradient = this.getColorSchemeFromId('theme14');
       } else if (currentDate.hour <= 11) {
-        themeGradient = this.getColorSchemeFromId("theme4") 
+        themeGradient = this.getColorSchemeFromId('theme4');
       } else if (currentDate.hour <= 15) {
-        themeGradient = this.getColorSchemeFromId("theme6")
+        themeGradient = this.getColorSchemeFromId('theme6');
       } else if (currentDate.hour <= 17) {
-        themeGradient = this.getColorSchemeFromId("theme7")
+        themeGradient = this.getColorSchemeFromId('theme7');
       } else {
-        themeGradient = this.getColorSchemeFromId("theme1")
+        themeGradient = this.getColorSchemeFromId('theme1');
       }
     }
     else {
-      themeGradient = currentColorScheme
+      themeGradient = currentColorScheme;
     }
     return {
       '--gradient-colors': themeGradient.gradientColors.join(', '),
@@ -58,9 +58,10 @@ export default class App extends Vue {
       '--button-submenu-color': themeGradient.btnSubmenuColor,
       '--button-hover-color': themeGradient.btnHoverColor,
       '--gradient-count': themeGradient.gradientColors.length,
-    }
+    };
   }
 }
+
 
 // Your web app's Firebase configuration
 var firebaseConfig = {
@@ -75,6 +76,7 @@ var firebaseConfig = {
 
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
+
 
 </script>
 
@@ -107,7 +109,6 @@ html, body, #app-container {
     animation: none;
   }
 }
-
 #app {
   font-family: 'Niramit', Avenir, sans-serif;
   -webkit-font-smoothing: antialiased;
