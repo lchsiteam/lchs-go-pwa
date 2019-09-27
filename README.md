@@ -57,9 +57,12 @@ yarn run build
 yarn run lint
 ```
 
+## 
 ## Project Feedback
 ### team@lciteam.club
 ### Feel free to send us suggestions for features or changes
+
+# 
 
 ## Copyright Disclaimer and Privacy Policy
 ###### Effective date: May 02, 2019
