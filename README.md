@@ -31,15 +31,7 @@
 ### Ean Jeffries
 ####   - Core Contributor
 
-###  
-#  
-#  
-#  
-#  
-#  
-#  
-#  
-#  
+##   
 
 ## Project setup
 ```
