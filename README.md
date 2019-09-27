@@ -4,14 +4,14 @@
 
 ### LCHS Go is a progressive web app, that also functions as an extension.  It provides the user with information for the LCHS Bell Schedule such as the current period, the time until the next period, and the Bell Schedule for the entire day.  It also lets you look into the future for bell schedules on other days.
 
-![LCHS Go Website QR Code]()
-![LCHS Go Extension QR Code]()
-![LCHS Go Now Page]()
-![LCHS Go Bell Schedule Page]()
-![LCHS Go Date Change Schedule]()
-![LCHS Go Settings Page]()
-![LCHS Go Changelog Page]()
-![LCHS Go Extension Page]()
+![](https://cdn1.imggmi.com/uploads/2019/9/27/dd75324486f12b6a102e944f50ab4e94-full.png)
+![](https://cdn1.imggmi.com/uploads/2019/9/27/a85c77e187266198413123731ac0145b-full.png)
+![](https://cdn1.imggmi.com/uploads/2019/9/27/f9ce292d076bc96cda1df70e17a16325-full.png)
+![](https://cdn1.imggmi.com/uploads/2019/9/27/b08bdfdaf35339e437d0a42dc3df4e74-full.png)
+![](https://cdn1.imggmi.com/uploads/2019/9/27/b26701b2e38a53af9ab0e8a6fe9c6e1d-full.png)
+![](https://cdn1.imggmi.com/uploads/2019/9/27/d4a290aa5305b32e4b1f890e0581b689-full.png)
+![](https://cdn1.imggmi.com/uploads/2019/9/28/0dc6f02adcd88b6e2e2b237505114c7f-full.png)
+![](https://cdn1.imggmi.com/uploads/2019/9/27/b37ee470c043458c3017b207d014ada2-full.png)
 
 ## Contributors 
 
