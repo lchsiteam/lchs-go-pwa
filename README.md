@@ -36,8 +36,8 @@
 
 
 
-# /n
-# /n
+# \n
+# \n
 ## Project setup
 ```
 yarn install
