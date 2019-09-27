@@ -142,8 +142,10 @@ yarn run lint
 ###### These third parties have access to your Personal Data only to perform these tasks on our behalf and are obligated not to disclose or use it for any other purpose.
 
 ### Links to Other Sites
-#### [lciTeam club website](https://lciteam.club)
-#### [LCHS Website](https://lchsspartans.net)
+#### [lciteam club website](https://lciteam.club)
+#### [LCHS Website (Official School Website)](https://lchsspartans.net)
+#### [School District](https://lcusd.net)
+#### [LCUSD Technology Page](https://www.lcusd.net/apps/pages/index.jsp?uREC_ID=346637&type=d&pREC_ID=755155) and [LCUSD Tech Support](https://help.lcusd.net/hc/en-us)
 
 ###### Our Service may contain links to other sites that are not operated by us. If you click on a third party link, you will be directed to that third party's site. We strongly advise you to review the Privacy Policy of every site you visit.
 
