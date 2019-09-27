@@ -6,30 +6,30 @@
 ## Contributors 
 
 ### Kai Bredemann
-#### Original Script Editor
-#### Chrome Extension
+####   - Original Script Editor
+####   - Chrome Extension
 
 ### Kevin Mo
-#### Advisor
-#### Web App
-#### Refactor
+####   - Advisor
+####   - Web App
+####   - Refactor
 
 ### Devyn Oh
-#### Core Contributor
+####   - Core Contributor
 
 ### Cassie Eisen
-#### Core Contributor
-#### Theme Artist
+####   - Core Contributor
+####   - Theme Artist
 
 ### Ryan King
-#### Core Contributor
-#### Theme Animator
+####   - Core Contributor
+####   - Theme Animator
 
 ### Bryan Wang
-#### Core Contributor
+####   - Core Contributor
 
 ### Ean Jeffries
-#### Core Contributor
+####   - Core Contributor
 
 ## Project setup
 ```
