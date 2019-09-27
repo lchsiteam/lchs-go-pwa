@@ -55,9 +55,9 @@ yarn run lint
 ## Copyright Disclaimer and Privacy Policy
 ###### Effective date: May 02, 2019
 
-###### LCHS Go ("us", "we", or "our") operates the go.lciteam.club website and the LCHS Go mobile application (hereinafter referred to as the "Service").
+###### LCHS Go ("us", "we", or "our") operates the [go.lciteam.club](https://go.lciteam.club) website and the LCHS Go mobile application (hereinafter referred to as the "Service").
 
-###### This page informs you of our policies regarding the collection, use, and disclosure of personal data when you use our Service and the choices you have associated with that data. Our Privacy Policy for LCHS Go is created with the help of the PrivacyPolicies.com Privacy Policy Generator.
+###### This page informs you of our policies regarding the collection, use, and disclosure of personal data when you use our Service and the choices you have associated with that data. Our Privacy Policy for LCHS Go is created with the help of the (PrivacyPolicies.com) Privacy Policy Generator.
 
 ###### We use your data to provide and improve the Service. By using the Service, you agree to the collection and use of information in accordance with this policy. Unless otherwise defined in this Privacy Policy, the terms used in this Privacy Policy have the same meanings as in our Terms and Conditions.
 
@@ -142,6 +142,8 @@ yarn run lint
 ###### These third parties have access to your Personal Data only to perform these tasks on our behalf and are obligated not to disclose or use it for any other purpose.
 
 ### Links to Other Sites
+#### [lciTeam club website](https://lciteam.club)
+#### [LCHS Website](https://lchsspartans.net)
 
 ###### Our Service may contain links to other sites that are not operated by us. If you click on a third party link, you will be directed to that third party's site. We strongly advise you to review the Privacy Policy of every site you visit.
 
