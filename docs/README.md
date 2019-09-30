@@ -6,11 +6,8 @@
 
 ![](https://cdn1.imggmi.com/uploads/2019/9/27/dd75324486f12b6a102e944f50ab4e94-full.png)
 ![](https://cdn1.imggmi.com/uploads/2019/9/27/a85c77e187266198413123731ac0145b-full.png)
-![](https://cdn1.imggmi.com/uploads/2019/9/27/f9ce292d076bc96cda1df70e17a16325-full.png)
-![](https://cdn1.imggmi.com/uploads/2019/9/27/b08bdfdaf35339e437d0a42dc3df4e74-full.png)
-![](https://cdn1.imggmi.com/uploads/2019/9/27/b26701b2e38a53af9ab0e8a6fe9c6e1d-full.png)
-![](https://cdn1.imggmi.com/uploads/2019/9/27/d4a290aa5305b32e4b1f890e0581b689-full.png)
-![](https://cdn1.imggmi.com/uploads/2019/9/28/0dc6f02adcd88b6e2e2b237505114c7f-full.png)
+![](https://drive.google.com/file/d/15I1Mm8fy8vBtpOOjfUvvnyR5Z7jiQck1/view?usp=sharing)
+![](https://drive.google.com/file/d/1QOJKJsQYzbN_uckiO6PYQIxPMRHZRz1M/view?usp=sharing)
 ![](https://cdn1.imggmi.com/uploads/2019/9/27/b37ee470c043458c3017b207d014ada2-full.png)
 
 ## Contributors 
@@ -122,11 +119,6 @@ Ctrl + C
 ### Copy and Paste
 ```
 Right Click
-```
-
-## Putting this here just cause (plz don't delete it)
-```
-/clone ~3600 120 ~50 ~3616 0 ~66 ~ 0 ~
 ```
 
 ## 
