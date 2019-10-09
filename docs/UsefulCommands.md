@@ -1,5 +1,7 @@
 ## Good Commands To Have
 
+### PROJECT SETUP COMMANDS ARE NOT HERE!  REFER TO README!
+
 ### Deploys a Firebase Project
 ```
 firebase deploy
