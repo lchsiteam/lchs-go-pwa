@@ -4,7 +4,7 @@ Disclaimer
 Last updated: October 09, 2019
 
 The information contained on https://go.lciteam.club website and LCHS Go
-mobile app (the "Service") is for general information purposes only.
+chrome extension (the "Service") is for general information purposes only.
 
 LCHS Go assumes no responsibility for errors or omissions in the
 contents on the Service.
@@ -24,7 +24,7 @@ harmful components.
 External links disclaimer
 -------------------------
 
-https://go.lciteam.club website and LCHS Go mobile app may contain links
+https://go.lciteam.club website and LCHS Go chrome extension may contain links
 to external websites that are not provided or maintained by or in any
 way affiliated with LCHS Go
 
