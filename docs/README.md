@@ -15,6 +15,16 @@ LCHS Go Website QR Code &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp;
 ![](https://cdn1.imggmi.com/uploads/2019/9/27/b37ee470c043458c3017b207d014ada2-full.png)
 
 ## Project setup
+
+### Clone the repository
+```
+git clone https://github.com/lchsiteam/lchs-go-pwa.git
+```
+### Enter the repository folder
+```
+cd lchs-go-pwa
+```
+### Setup yarn
 ```
 yarn install
 ```
