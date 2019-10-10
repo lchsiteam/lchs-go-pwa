@@ -1,5 +1,5 @@
 # LCHS-Go Github
-### [go.lciteam.club](https://go.lciteam.club) or scan Website QR Code in "Images for Project"
+### [go.lciteam.club](https://go.lciteam.club) or scan [Website QR Code](Images for Project/Website QR Code.png)Website QR Code in "Images for Project"
 ### [Chrome Extension](https://chrome.google.com/webstore/detail/lchs-go/cmmaleejnmjplfcnhojldkiejpndakad) or scan Chrome Extension QR Code in "Images for Project"
 
 ### LCHS Go is a progressive web app, that also functions as an extension.  It provides the user with information for the LCHS Bell Schedule such as the current period, the time until the next period, and the Bell Schedule for the entire day.  It also lets you look into the future for bell schedules on other days.
