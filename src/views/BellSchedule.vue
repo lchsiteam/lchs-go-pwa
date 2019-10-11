@@ -139,7 +139,7 @@ import { printTime, getScheduleFromDay, getPeriod, getFullSchedule, allGrades,
 plusDays } from '@/schedule';
 import { Day, Schedule, Period, getPeriodName, getScheduleName } from '@/schedule/enums';
 import { RegularSchedule, BlockEvenSchedule, BlockOddSchedule } from '@/schedule/schedules';
-import { MDY_Date} from '@/schedule/mdy_date'; 
+import { MDYDate } from '@/schedule/mdy_date'; 
 
 import VCalendar from 'v-calendar';
 
@@ -200,8 +200,8 @@ export default class Home extends Vue {
   } 
   
   compareDates(first: Date, second: Date) {
-    let firstObj = new MDY_Date(first.monthIndex, first.day, first.year); 
-    let secondObj = new MDY_Date(second.monthIndex, second.day, second.year); 
+    let firstObj = new MDYDate(first.getMonth(), first.getDate(), first.getFullYear()); 
+    let secondObj = new MDYDate(second.getMonth(), second.getDate(), first.getFullYear()); 
     
     return firstObj.firstNonzero_diff(secondObj); 
   } 
