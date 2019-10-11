@@ -37,7 +37,7 @@ export class MDYDate {
         return resultList;
     }
 
-    private firstNonzero_diff(other: MDYDate): number {
+    public firstNonzero_diff(other: MDYDate): number {
         /*
         internal method
         finds the first item of the diff between the two dates that isn't 0

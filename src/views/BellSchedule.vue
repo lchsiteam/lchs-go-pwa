@@ -5,7 +5,7 @@
     <p class="gradeMessage">You are viewing the {{strGrade(grade)}} schedule. To change grades, go to Settings. </p>
     <!-- Please replace this! -->
     <div class='bell-schedule-datepicker'>
-      <div class="blsch-dp-left" @click="updateShift(-1)">&#8592;</div>
+      <div v-if='canUseLeft()' class="blsch-dp-left" @click="updateShift(-1)">&#8592;</div>
       <div class="blsch-dp-status">
         <vc-date-picker @input="updateStats(); updateStats()"
           class='date-picker'
@@ -13,13 +13,14 @@
           value="null"
           color="red"
           is-dark
-          :min-date='new Date(2019, 7, 14)'
-          :max-date='new Date(2020, 4, 31)'
+          :min-date='minDate'
+          :max-date='maxDate'
           :show-day-popover=true>
           <input type="text" name="intexts" :value="'Viewing '+getCurrentShiftMsg()"></input>
         </vc-date-picker>
       </div>
-      <div class="blsch-dp-right" @click="updateShift(1)">&#8594;</div>
+      
+      <div v-if='canUseRight()' class="blsch-dp-right" @click="updateShift(1)">&#8594;</div>
     </div>
     
     <div class="bell-schedule" v-if="getCurrentScheduleName() != 'free'">
@@ -138,6 +139,7 @@ import { printTime, getScheduleFromDay, getPeriod, getFullSchedule, allGrades,
 plusDays } from '@/schedule';
 import { Day, Schedule, Period, getPeriodName, getScheduleName } from '@/schedule/enums';
 import { RegularSchedule, BlockEvenSchedule, BlockOddSchedule } from '@/schedule/schedules';
+import { MDYDate } from '@/schedule/mdy_date'; 
 
 import VCalendar from 'v-calendar';
 
@@ -150,7 +152,8 @@ Vue.use(VCalendar, {
 
 @Component({})
 export default class Home extends Vue {
-
+  private minDate = new Date(2019, 7, 14); 
+  private maxDate = new Date(2020, 4, 31); 
   private minutes: number = 0
   private schedule: Schedule = Schedule.NONE;
   private grade = allGrades[2];
@@ -171,7 +174,7 @@ export default class Home extends Vue {
     }
     this.arrowsUsed = false;
     this.daysShifted = Math.ceil((this.date.valueOf() - new Date().valueOf())/86400000)
-  }
+  } 
 
   getGreeting() {
     if (this.minutes <= 330) { return 'Good late evening.'; }
@@ -194,7 +197,22 @@ export default class Home extends Vue {
     else if (today.weekNumber == shifted.weekNumber) return `this ${shifted.weekdayLong} (${shifted.month}/${shifted.day})`
     else if (today.weekNumber + 1 == shifted.weekNumber) return `next ${shifted.weekdayLong} (${shifted.month}/${shifted.day})`
     else return `${shifted.monthShort} ${shifted.day}`
-  }
+  } 
+  
+  compareDates(first: Date, second: Date) {
+    let firstObj = new MDYDate(first.getMonth(), first.getDate(), first.getFullYear()); 
+    let secondObj = new MDYDate(second.getMonth(), second.getDate(), second.getFullYear()); 
+    
+    return firstObj.firstNonzero_diff(secondObj); 
+  } 
+  
+  canUseLeft() {
+    return this.compareDates(this.date, this.minDate) > 0; 
+  } 
+  
+  canUseRight() {
+    return this.compareDates(this.date, this.maxDate) < 0; 
+  } 
 
   data() {
     return {
