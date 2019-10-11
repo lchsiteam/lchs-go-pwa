@@ -200,6 +200,9 @@ export default class Home extends Vue {
   } 
   
   compareDates(first: Date, second: Date) {
+    console.log(first); 
+    console.log(second); 
+    
     let firstObj = new MDYDate(first.getMonth(), first.getDate(), first.getFullYear()); 
     let secondObj = new MDYDate(second.getMonth(), second.getDate(), first.getFullYear()); 
     
