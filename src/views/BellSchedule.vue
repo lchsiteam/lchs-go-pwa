@@ -20,7 +20,7 @@
         </vc-date-picker>
       </div>
       
-      <div v-if='canUseRight' class="blsch-dp-right" @click="updateShift(1)">&#8594;</div>
+      <div v-if='canUseRight()' class="blsch-dp-right" @click="updateShift(1)">&#8594;</div>
     </div>
     
     <div class="bell-schedule" v-if="getCurrentScheduleName() != 'free'">
