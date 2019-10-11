@@ -203,6 +203,9 @@ export default class Home extends Vue {
     let firstObj = new MDYDate(first.getMonth(), first.getDate(), first.getFullYear()); 
     let secondObj = new MDYDate(second.getMonth(), second.getDate(), first.getFullYear()); 
     
+    console.log(firstObj); 
+    console.log(secondObj); 
+    
     return firstObj.firstNonzero_diff(secondObj); 
   } 
   
