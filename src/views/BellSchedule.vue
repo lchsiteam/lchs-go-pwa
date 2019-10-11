@@ -152,8 +152,8 @@ Vue.use(VCalendar, {
 
 @Component({})
 export default class Home extends Vue {
-  private minDate = new Date('14 Aug 2019 00:00:00 PDT'); 
-  private maxDate = new Date('31 May 2020 11:59:59 PDT'); 
+  private minDate = new Date(2019, 7, 14); 
+  private maxDate = new Date(2020, 4, 31); 
   private minutes: number = 0
   private schedule: Schedule = Schedule.NONE;
   private grade = allGrades[2];
@@ -204,7 +204,7 @@ export default class Home extends Vue {
     console.log(second); 
     
     let firstObj = new MDYDate(first.getMonth(), first.getDate(), first.getFullYear()); 
-    let secondObj = new MDYDate(second.getMonth(), second.getDate(), first.getFullYear()); 
+    let secondObj = new MDYDate(second.getMonth(), second.getDate(), second.getFullYear()); 
     
     console.log(firstObj); 
     console.log(secondObj); 
