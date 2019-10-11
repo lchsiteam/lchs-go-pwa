@@ -21,7 +21,7 @@ export class MDYDate {
         return (this.after(lower) || this.is_same(lower)) && (this.before(upper) || this.is_same(upper));
     }
 
-    public diff(other: MDYDate): number[] {
+    private diff(other: MDYDate): number[] {
         /*
         internal method
         what this basically does is return the result of "subtracting" this.dateList and other.dateList
@@ -37,7 +37,7 @@ export class MDYDate {
         return resultList;
     }
 
-    private firstNonzero_diff(other: MDYDate): number {
+    public firstNonzero_diff(other: MDYDate): number {
         /*
         internal method
         finds the first item of the diff between the two dates that isn't 0
