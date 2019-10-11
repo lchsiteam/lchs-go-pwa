@@ -21,7 +21,7 @@ export class MDYDate {
         return (this.after(lower) || this.is_same(lower)) && (this.before(upper) || this.is_same(upper));
     }
 
-    private diff(other: MDYDate): number[] {
+    public diff(other: MDYDate): number[] {
         /*
         internal method
         what this basically does is return the result of "subtracting" this.dateList and other.dateList
