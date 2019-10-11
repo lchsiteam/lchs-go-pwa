@@ -1,14 +1,28 @@
 <template>
   <div class="bell-schedule-pg">
     <!-- Place the table in the Bell Schedule page for now -->
-    <h3>Schedule: {{getCurrentScheduleName()}}</h3> 
-    <p class="gradeMessage">You are viewing the {{strGrade(grade)}} schedule. To change grades, go to Settings. </p> 
+    <h3>Schedule: {{getCurrentScheduleName()}}</h3>
+    <p class="gradeMessage">You are viewing the {{strGrade(grade)}} schedule. To change grades, go to Settings. </p>
     <!-- Please replace this! -->
     <div class='bell-schedule-datepicker'>
-      <div class="blsch-dp-left" @click="updateShift(-1)">&#8592;</div>
-      <div class="blsch-dp-status" @click="updateShift(-daysShifted)">Viewing <b>{{getCurrentShiftMsg()}}</b></div>
-      <div class="blsch-dp-right" @click="updateShift(1)">&#8594;</div>
+      <div v-if='canUseLeft()' class="blsch-dp-left" @click="updateShift(-1)">&#8592;</div>
+      <div class="blsch-dp-status">
+        <vc-date-picker @input="updateStats(); updateStats()"
+          class='date-picker'
+          v-model="date"
+          value="null"
+          color="red"
+          is-dark
+          :min-date='minDate'
+          :max-date='maxDate'
+          :show-day-popover=true>
+          <input type="text" name="intexts" :value="'Viewing '+getCurrentShiftMsg()"></input>
+        </vc-date-picker>
+      </div>
+      
+      <div v-if='canUseRight()' class="blsch-dp-right" @click="updateShift(1)">&#8594;</div>
     </div>
+    
     <div class="bell-schedule" v-if="getCurrentScheduleName() != 'free'">
       <div class="blsch-period-hd">
         <div class="blsch-period-title">Period</div>
@@ -59,11 +73,11 @@ div.bell-schedule {
   div.blsch-period.selected {
     background: rgba(0, 0, 0, .4) !important;
     transform: scale(1.05);
-  } 
+  }
 }
 
 div.gradeMessage {
-  font-size: 15px; 
+  font-size: 15px;
 }
 
 .bell-schedule-datepicker {
@@ -88,15 +102,36 @@ div.gradeMessage {
     cursor: pointer;
     border-radius: 4px;
     padding: 0 10px;
-    &:hover {
-      background: rgba(0, 0, 0, 0.1);
-    }
+    font-weight: bold;
   }
+}
+
+.date-picker /deep/ input {
+  display: block !important;
+  width: 300px;
+  color: rgba(255, 255, 255, 0.8) !important;
+  background-color: var(--button-menu-color, #2c3e50) !important;
+  background-clip: padding-box !important;
+  border: 0px solid #ffffff !important;
+  transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out !important;
+  text-align: center;
+  padding: .25rem 0rem !important;
+  font-size: 1.0rem !important;
+  line-height: 1.5 !important;
+  border-radius: .4rem !important;
+  box-shadow: 0 4px 16px 8px rgba(0, 0, 0, .15);
+  align: center !important;
+  margin-bottom: 20px
 }
 
 </style>
 
+<script src='https://unpkg.com/vue/dist/vue.js'></script>
+
+<script src='https://unpkg.com/v-calendar@next'></script>
+
 <script lang="ts">
+import { Themes } from '../themes';
 import { Component, Vue } from 'vue-property-decorator';
 import { DateTime, Duration } from 'luxon';
 
@@ -104,25 +139,42 @@ import { printTime, getScheduleFromDay, getPeriod, getFullSchedule, allGrades,
 plusDays } from '@/schedule';
 import { Day, Schedule, Period, getPeriodName, getScheduleName } from '@/schedule/enums';
 import { RegularSchedule, BlockEvenSchedule, BlockOddSchedule } from '@/schedule/schedules';
+import { MDYDate } from '@/schedule/mdy_date'; 
+
+import VCalendar from 'v-calendar';
+
+Vue.use(VCalendar, {
+  componentPrefix: 'vc',
+  data: {
+    date: new Date()
+  }
+});
 
 @Component({})
 export default class Home extends Vue {
-
+  private minDate = new Date(2019, 7, 14); 
+  private maxDate = new Date(2020, 4, 31); 
   private minutes: number = 0
-  private schedule: Schedule = Schedule.NONE; 
-  private grade = allGrades[2]; 
+  private schedule: Schedule = Schedule.NONE;
+  private grade = allGrades[2];
   private currentPeriod = { start: 0, end: 1440, period: Period.NONE };
-
+  private date = new Date();
   public daysShifted = 0;
+  public arrowsUsed = true;
 
-  updateStats() {
-    const currentDate = DateTime.local().setZone("America/Los_Angeles").plus(Duration.fromMillis(this.daysShifted * 86400000)); 
+  public updateStats() {
+    const currentDate = DateTime.local().setZone("America/Los_Angeles").plus(Duration.fromMillis(this.daysShifted * 86400000));
     this.minutes = currentDate.minute + (currentDate.hour * 60)
 
     this.grade = this.$store.state.settings.grade;
     this.schedule = getScheduleFromDay(currentDate.month, currentDate.day, currentDate.year, currentDate.weekday, this.grade);
     this.currentPeriod = getPeriod(this.minutes, this.schedule, this.grade);
-  }
+    if (this.arrowsUsed) {
+      this.date = new Date(new Date().valueOf() + this.daysShifted*86400000)
+    }
+    this.arrowsUsed = false;
+    this.daysShifted = Math.ceil((this.date.valueOf() - new Date().valueOf())/86400000)
+  } 
 
   getGreeting() {
     if (this.minutes <= 330) { return 'Good late evening.'; }
@@ -138,17 +190,39 @@ export default class Home extends Vue {
     const today = DateTime.local().setZone("America/Los_Angeles")
     const shifted = today.plus(Duration.fromMillis(this.daysShifted * 86400000));
 
-    if (this.daysShifted == 0) return "Today"
-    else if (this.daysShifted == 1) return "Tomorrow"
-    else if (this.daysShifted == -1) return "Yesterday"
+    if (this.daysShifted == 0) return `Today (${shifted.month}/${shifted.day})`
+    else if (this.daysShifted == 1) return `Tomorrow (${shifted.month}/${shifted.day})`
+    else if (this.daysShifted == -1) return `Yesterday (${shifted.month}/${shifted.day})`
     else if (today.weekNumber - 1 == shifted.weekNumber) return `last ${shifted.weekdayLong} (${shifted.month}/${shifted.day})`
     else if (today.weekNumber == shifted.weekNumber) return `this ${shifted.weekdayLong} (${shifted.month}/${shifted.day})`
     else if (today.weekNumber + 1 == shifted.weekNumber) return `next ${shifted.weekdayLong} (${shifted.month}/${shifted.day})`
     else return `${shifted.monthShort} ${shifted.day}`
+  } 
+  
+  compareDates(first: Date, second: Date) {
+    let firstObj = new MDYDate(first.getMonth(), first.getDate(), first.getFullYear()); 
+    let secondObj = new MDYDate(second.getMonth(), second.getDate(), second.getFullYear()); 
+    
+    return firstObj.firstNonzero_diff(secondObj); 
+  } 
+  
+  canUseLeft() {
+    return this.compareDates(this.date, this.minDate) > 0; 
+  } 
+  
+  canUseRight() {
+    return this.compareDates(this.date, this.maxDate) < 0; 
+  } 
+
+  data() {
+    return {
+      date: new Date(new Date().valueOf() + this.daysShifted*86400000),
+    }
   }
 
   updateShift(shiftBy: number) {
     this.daysShifted += shiftBy;
+    this.arrowsUsed = true;
     this.updateStats();
   }
 
