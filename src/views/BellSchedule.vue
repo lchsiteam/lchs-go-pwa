@@ -118,7 +118,7 @@ div.gradeMessage {
   font-size: 1.0rem !important;
   line-height: 1.5 !important;
   border-radius: .4rem !important;
-  box-shadow: 0 6px 24px 12px rgba(0, 0, 0, .2);
+  box-shadow: 0 4px 16px 8px rgba(0, 0, 0, .15);
   align: center !important;
   margin-bottom: 20px
 }
