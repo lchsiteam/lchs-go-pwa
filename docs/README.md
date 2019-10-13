@@ -33,6 +33,9 @@ yarn run build
 yarn run lint
 ```
 
+## Project Contributors
+Thank you to all those who help with the LCHS Go project, you can find the credits [here](Contributors.md)
+
 ## 
 ## Project Feedback
 team@lciteam.club
