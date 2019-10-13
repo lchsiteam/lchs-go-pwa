@@ -6,7 +6,8 @@
 
 ![](https://cdn1.imggmi.com/uploads/2019/9/27/b37ee470c043458c3017b207d014ada2-full.png)
 
-## Project setup  (for more commands that might be useful in the setup of this project, refer to the [Useful Commands](UsefulCommands.md) Document
+## Project setup  
+### (for more commands that might be useful in the setup of this project, refer to the [Useful Commands](UsefulCommands.md) Document)
 
 ### Clone the repository
 ```
@@ -32,7 +33,10 @@ yarn run build
 ```
 yarn run lint
 ```
-
+## 
+## Copyright Disclaimer and Privacy Policy
+### As it is necessary to protect both LCHS Go and its users here are links to the [Privacy Policy](PrivacyPolicy.md) and the [Copyright Disclaimer](Disclaimer.md)
+## 
 ## Project Contributors
 Thank you to all those who help with the LCHS Go project, you can find the credits [here](Contributors.md)
 
