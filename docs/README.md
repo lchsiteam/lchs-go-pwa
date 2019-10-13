@@ -6,7 +6,7 @@
 
 ![](https://cdn1.imggmi.com/uploads/2019/9/27/b37ee470c043458c3017b207d014ada2-full.png)
 
-## Project setup
+## Project setup  (for more commands that might be useful in the setup of this project, refer to the [Useful Commands](UsefulCommands.md) Document
 
 ### Clone the repository
 ```
