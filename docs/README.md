@@ -33,10 +33,12 @@ yarn run build
 ```
 yarn run lint
 ```
+
 ## 
 ## Copyright Disclaimer and Privacy Policy
 ### As it is necessary to protect both LCHS Go and its users here are links to the [Privacy Policy](PrivacyPolicy.md) and the [Copyright Disclaimer](Disclaimer.md)
 ## 
+
 ## Project Contributors
 Thank you to all those who help with the LCHS Go project, you can find the credits [here](Contributors.md)
 
@@ -44,3 +46,6 @@ Thank you to all those who help with the LCHS Go project, you can find the credi
 ## Project Feedback
 team@lciteam.club
 Feel free to send us suggestions for features or changes
+
+## 
+### Images displaying the features of our project can be found [here](Images%20for%20Project)
