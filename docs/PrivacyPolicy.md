@@ -1,4 +1,7 @@
 ## Copyright Disclaimer and Privacy Policy
+
+### Note: Copyright Disclaimer can be found [here](Disclaimer.md)
+
 Effective date: May 02, 2019
 
 LCHS Go ("us", "we", or "our") operates the [go.lciteam.club](https://go.lciteam.club) website and the LCHS Go mobile application (hereinafter referred to as the "Service").
