@@ -1,6 +1,6 @@
 ## Good Commands To Have
 
-### PROJECT SETUP COMMANDS ARE NOT HERE!  REFER TO README!
+### PROJECT SETUP COMMANDS ARE NOT HERE!  Project setup commands can be found on the [README](README.md)
 
 ### Deploys a Firebase Project
 ```
