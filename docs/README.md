@@ -2,7 +2,7 @@
 ### [go.lciteam.club](https://go.lciteam.club) or scan [Website QR Code](Images%20for%20Project/QR%20Code%20for%20Website.png) in ["Images for Project"](Images%20for%20Project)
 ### [Chrome Extension](https://chrome.google.com/webstore/detail/lchs-go/cmmaleejnmjplfcnhojldkiejpndakad) or scan [Chrome Extension QR Code](Images%20for%20Project/QR%20Code%20for%20Chrome%20Extension.png) in ["Images for Project"](Images%20for%20Project)
 
-### [LCHS Go](https://go.lciteam.club) is a progressive web app, that also functions as an extension.  It provides the user with information for the LCHS Bell Schedule such as the current period, the time until the next period, and the Bell Schedule for the entire day.  It also lets you look into the future for bell schedules on other days.
+[LCHS Go](https://go.lciteam.club) is a progressive web app, that also functions as an extension.  It provides the user with information for the LCHS Bell Schedule such as the current period, the time until the next period, and the Bell Schedule for the entire day.  It also lets you look into the future for bell schedules on other days.
 
 ![](https://cdn1.imggmi.com/uploads/2019/9/27/b37ee470c043458c3017b207d014ada2-full.png)
 
