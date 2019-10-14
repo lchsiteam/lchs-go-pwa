@@ -16,7 +16,7 @@
           :min-date='minDate'
           :max-date='maxDate'
           :show-day-popover=true>
-          <input type="text" name="intexts" :value="'Viewing '+getCurrentShiftMsg()"></input>
+          <input type="text" name="intexts" :value="'Viewing '+ getCurrentShiftMsg()" disabled></input>
         </vc-date-picker>
       </div>
       
