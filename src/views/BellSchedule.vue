@@ -155,7 +155,7 @@ Vue.use(VCalendar, {
 export default class Home extends Vue {
   private minDate = new Date(2019, 7, 14);
   private maxDate = new Date(2020, 4, 31);
-  private minutes: number = 0; 
+  private minutes: number = 0;
   private schedule: Schedule = Schedule.NONE;
   private grade = allGrades[2];
   private currentPeriod = { start: 0, end: 1440, period: Period.NONE };
@@ -218,7 +218,7 @@ export default class Home extends Vue {
   data() {
     return {
       date: new Date(new Date().valueOf() + this.daysShifted * 86400000),
-    }
+    };
   }
 
   updateShift(shiftBy: number) {
