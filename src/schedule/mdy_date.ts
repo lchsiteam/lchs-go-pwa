@@ -21,6 +21,19 @@ export class MDYDate {
         return (this.after(lower) || this.is_same(lower)) && (this.before(upper) || this.is_same(upper));
     }
 
+    public firstNonzero_diff(other: MDYDate): number {
+        /*
+        internal method
+        finds the first item of the diff between the two dates that isn't 0
+        if there isn't one it will return 0 though. This is just to ensure it returns a number.
+        */
+
+        const diff = this.diff(other);
+        const firstNonzero = diff.find((v) => v !== 0);
+
+        return firstNonzero !== undefined ? firstNonzero : 0;
+    }
+
     private diff(other: MDYDate): number[] {
         /*
         internal method
@@ -35,18 +48,5 @@ export class MDYDate {
         }
 
         return resultList;
-    }
-
-    public firstNonzero_diff(other: MDYDate): number {
-        /*
-        internal method
-        finds the first item of the diff between the two dates that isn't 0
-        if there isn't one it will return 0 though. This is just to ensure it returns a number.
-        */
-
-        const diff = this.diff(other);
-        const firstNonzero = diff.find((v) => v !== 0);
-
-        return firstNonzero !== undefined ? firstNonzero : 0;
     }
 }
