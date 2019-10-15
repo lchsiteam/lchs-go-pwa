@@ -140,42 +140,42 @@ import { printTime, getScheduleFromDay, getPeriod, getFullSchedule, allGrades,
 plusDays } from '@/schedule';
 import { Day, Schedule, Period, getPeriodName, getScheduleName } from '@/schedule/enums';
 import { RegularSchedule, BlockEvenSchedule, BlockOddSchedule } from '@/schedule/schedules';
-import { MDYDate } from '@/schedule/mdy_date'; 
+import { MDYDate } from '@/schedule/mdy_date';
 
 import VCalendar from 'v-calendar';
 
 Vue.use(VCalendar, {
   componentPrefix: 'vc',
   data: {
-    date: new Date()
-  }
+    date: new Date(),
+  },
 });
 
 @Component({})
 export default class Home extends Vue {
-  private minDate = new Date(2019, 7, 14); 
-  private maxDate = new Date(2020, 4, 31); 
-  private minutes: number = 0
+  private minDate = new Date(2019, 7, 14);
+  private maxDate = new Date(2020, 4, 31);
+  private minutes: number = 0; 
   private schedule: Schedule = Schedule.NONE;
   private grade = allGrades[2];
   private currentPeriod = { start: 0, end: 1440, period: Period.NONE };
   private date = new Date();
-  public daysShifted = 0;
-  public arrowsUsed = true;
+  private daysShifted = 0;
+  private arrowsUsed = true;
 
   public updateStats() {
-    const currentDate = DateTime.local().setZone("America/Los_Angeles").plus(Duration.fromMillis(this.daysShifted * 86400000));
-    this.minutes = currentDate.minute + (currentDate.hour * 60)
+    const currentDate = DateTime.local().setZone('America/Los_Angeles').plus(Duration.fromMillis(this.daysShifted * 86400000));
+    this.minutes = currentDate.minute + (currentDate.hour * 60);
 
     this.grade = this.$store.state.settings.grade;
     this.schedule = getScheduleFromDay(currentDate.month, currentDate.day, currentDate.year, currentDate.weekday, this.grade);
     this.currentPeriod = getPeriod(this.minutes, this.schedule, this.grade);
     if (this.arrowsUsed) {
-      this.date = new Date(new Date().valueOf() + this.daysShifted*86400000)
+      this.date = new Date(new Date().valueOf() + this.daysShifted * 86400000);
     }
     this.arrowsUsed = false;
-    this.daysShifted = Math.ceil((this.date.valueOf() - new Date().valueOf())/86400000)
-  } 
+    this.daysShifted = Math.ceil((this.date.valueOf() - new Date().valueOf()) / 86400000);
+  }
 
   getGreeting() {
     if (this.minutes <= 330) { return 'Good late evening.'; }
@@ -188,36 +188,36 @@ export default class Home extends Vue {
   getCurrentShiftMsg() {
     // Stopgap solution for calendar!
     // You must implement the calendar properly!
-    const today = DateTime.local().setZone("America/Los_Angeles")
+    const today = DateTime.local().setZone('America/Los_Angeles');
     const shifted = today.plus(Duration.fromMillis(this.daysShifted * 86400000));
 
-    if (this.daysShifted == 0) return `Today (${shifted.month}/${shifted.day})`
-    else if (this.daysShifted == 1) return `Tomorrow (${shifted.month}/${shifted.day})`
-    else if (this.daysShifted == -1) return `Yesterday (${shifted.month}/${shifted.day})`
-    else if (today.weekNumber - 1 == shifted.weekNumber) return `last ${shifted.weekdayLong} (${shifted.month}/${shifted.day})`
-    else if (today.weekNumber == shifted.weekNumber) return `this ${shifted.weekdayLong} (${shifted.month}/${shifted.day})`
-    else if (today.weekNumber + 1 == shifted.weekNumber) return `next ${shifted.weekdayLong} (${shifted.month}/${shifted.day})`
-    else return `${shifted.monthShort} ${shifted.day}`
-  } 
-  
+    if (this.daysShifted === 0) { return `Today (${shifted.month}/${shifted.day})`; }
+    else if (this.daysShifted === 1) { return `Tomorrow (${shifted.month}/${shifted.day})`; }
+    else if (this.daysShifted === -1) { return `Yesterday (${shifted.month}/${shifted.day})`; }
+    else if (today.weekNumber - 1 === shifted.weekNumber) { return `last ${shifted.weekdayLong} (${shifted.month}/${shifted.day})`; }
+    else if (today.weekNumber === shifted.weekNumber) { return `this ${shifted.weekdayLong} (${shifted.month}/${shifted.day})`; }
+    else if (today.weekNumber + 1 === shifted.weekNumber) { return `next ${shifted.weekdayLong} (${shifted.month}/${shifted.day})`; }
+    else { return `${shifted.monthShort} ${shifted.day}`; }
+  }
+
   compareDates(first: Date, second: Date) {
-    let firstObj = new MDYDate(first.getMonth(), first.getDate(), first.getFullYear()); 
-    let secondObj = new MDYDate(second.getMonth(), second.getDate(), second.getFullYear()); 
-    
-    return firstObj.firstNonzero_diff(secondObj); 
-  } 
-  
+    let firstObj = new MDYDate(first.getMonth(), first.getDate(), first.getFullYear());
+    let secondObj = new MDYDate(second.getMonth(), second.getDate(), second.getFullYear());
+
+    return firstObj.firstNonzero_diff(secondObj);
+  }
+
   canUseLeft() {
-    return this.compareDates(this.date, this.minDate) > 0; 
-  } 
-  
+    return this.compareDates(this.date, this.minDate) > 0;
+  }
+
   canUseRight() {
-    return this.compareDates(this.date, this.maxDate) < 0; 
-  } 
+    return this.compareDates(this.date, this.maxDate) < 0;
+  }
 
   data() {
     return {
-      date: new Date(new Date().valueOf() + this.daysShifted*86400000),
+      date: new Date(new Date().valueOf() + this.daysShifted * 86400000),
     }
   }
 
