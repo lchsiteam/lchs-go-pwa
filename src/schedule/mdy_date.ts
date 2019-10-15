@@ -19,8 +19,8 @@ export class MDYDate {
 
     public between(lower: MDYDate, upper: MDYDate) {
         return (this.after(lower) || this.is_same(lower)) && (this.before(upper) || this.is_same(upper));
-    } 
-    
+    }
+
     public firstNonzero_diff(other: MDYDate): number {
         /*
         internal method
@@ -32,7 +32,7 @@ export class MDYDate {
         const firstNonzero = diff.find((v) => v !== 0);
 
         return firstNonzero !== undefined ? firstNonzero : 0;
-    } 
+    }
 
     private diff(other: MDYDate): number[] {
         /*
