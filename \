@@ -109,7 +109,7 @@ div.gradeMessage {
   display: block !important;
   width: 300px;
   color: rgba(255, 255, 255, 0.8) !important;
-  background-color: var(--button-submenu-color, #2f9768) !important;
+  background-color: var(--button-menu-color, #2c3e50) !important;
   background-clip: padding-box !important;
   border: 0px solid #ffffff !important;
   transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out !important;
@@ -120,9 +120,7 @@ div.gradeMessage {
   border-radius: .4rem !important;
   box-shadow: 0 4px 16px 8px rgba(0, 0, 0, .15);
   align: center !important;
-  margin-bottom: 20px;
-  font-family: 'Niramit', Avenir, sans-serif;
-  font-weight: bold;
+  margin-bottom: 20px
 }
 
 </style>

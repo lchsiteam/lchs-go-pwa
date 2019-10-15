@@ -53,6 +53,7 @@ export const msSpecialDates: any = {
 };
 
 export const hsSpecialDates: any = {
+  '10 - 4 - 2019': Schedule.ASSEMBLY,
 };
 
 export const gradeSpecialDates: any = {
