@@ -86,6 +86,7 @@ div.gradeMessage {
   }
   .blsch-dp-left,
   .blsch-dp-right {
+    font-weight: bold;
     padding: 0 5px;
     cursor: pointer;
     transition: 150ms ease;
