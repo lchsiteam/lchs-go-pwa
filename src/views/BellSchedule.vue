@@ -5,7 +5,7 @@
     <p class="gradeMessage">You are viewing the {{strGrade(grade)}} schedule. To change grades, go to Settings. </p>
     <!-- Please replace this! -->
     <div class='bell-schedule-datepicker'>
-      <div v-if='canUseLeft()' class="blsch-dp-left" @click="updateShift(-1)">🡄</div>
+      <div v-if='canUseLeft()' class="blsch-dp-left" @click="updateShift(-1)">&#8592;</div>
       <div class="blsch-dp-status">
         <vc-date-picker @input="updateStats(); updateStats()"
           class='date-picker'
@@ -19,7 +19,7 @@
           <input type="text" name="intexts" :value="'Viewing '+ getCurrentShiftMsg()" disabled></input>
         </vc-date-picker>
       </div>
-      <div v-if='canUseRight()' class="blsch-dp-right" @click="updateShift(1)">🡆</div>
+      <div v-if='canUseRight()' class="blsch-dp-right" @click="updateShift(1)">&#8594;</div>
     </div>
     
     <div class="bell-schedule" v-if="getCurrentScheduleName() != 'free'">
@@ -86,6 +86,7 @@ div.gradeMessage {
   }
   .blsch-dp-left,
   .blsch-dp-right {
+    font-weight: bold;
     padding: 0 5px;
     cursor: pointer;
     transition: 150ms ease;
@@ -107,8 +108,8 @@ div.gradeMessage {
 
 .date-picker /deep/ input {
   display: block !important;
-  width: 300px;
-  color: rgba(255, 255, 255, 0.8) !important;
+  width: 250px;
+  color: rgba(255, 255, 255, 10) !important;
   background-color: var(--button-submenu-color, #2f9768) !important;
   background-clip: padding-box !important;
   border: 0px solid #ffffff !important;
