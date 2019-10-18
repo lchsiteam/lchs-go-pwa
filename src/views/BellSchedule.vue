@@ -5,7 +5,7 @@
     <p class="gradeMessage">You are viewing the {{strGrade(grade)}} schedule. To change grades, go to Settings. </p>
     <!-- Please replace this! -->
     <div class='bell-schedule-datepicker'>
-      <div v-if='canUseLeft()' class="blsch-dp-left" @click="updateShift(-1)">🡄</div>
+      <div v-if='canUseLeft()' class="blsch-dp-left" @click="updateShift(-1)">&#8592;</div>
       <div class="blsch-dp-status">
         <vc-date-picker @input="updateStats(); updateStats()"
           class='date-picker'
@@ -19,7 +19,7 @@
           <input type="text" name="intexts" :value="'Viewing '+ getCurrentShiftMsg()" disabled></input>
         </vc-date-picker>
       </div>
-      <div v-if='canUseRight()' class="blsch-dp-right" @click="updateShift(1)">🡆</div>
+      <div v-if='canUseRight()' class="blsch-dp-right" @click="updateShift(1)">&#8594;</div>
     </div>
     
     <div class="bell-schedule" v-if="getCurrentScheduleName() != 'free'">
