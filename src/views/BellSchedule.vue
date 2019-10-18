@@ -109,7 +109,7 @@ div.gradeMessage {
 .date-picker /deep/ input {
   display: block !important;
   width: 250px;
-  color: rgba(255, 255, 255, 0.8) !important;
+  color: rgba(255, 255, 255, 10) !important;
   background-color: var(--button-submenu-color, #2f9768) !important;
   background-clip: padding-box !important;
   border: 0px solid #ffffff !important;
