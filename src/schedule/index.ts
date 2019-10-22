@@ -41,11 +41,10 @@ export const schoolSpecialDates: any = {
   '8 - 23 - 2019': Schedule.ASSEMBLY,
   '9 - 2 - 2019': Schedule.NONE,
   '10 - 22 - 2019': Schedule.BLOCK_ODD,
-  '10 - 23 - 2019': Schedule.ASSEMBLY,
+  '10 - 23 - 2019': Schedule.WEIRD_ASSEMBLY,
   '12 - 17 - 2019': Schedule.FINALS_TBD,
   '12 - 18 - 2019': Schedule.FINALS_TBD,
   '12 - 19 - 2019': Schedule.FINALS_TBD,
-  '9 - 11 - 2019': Schedule.WEIRD_ASSEMBLY,
 
   // month - day - year: schedule (something from the Schedule enum)
 };
