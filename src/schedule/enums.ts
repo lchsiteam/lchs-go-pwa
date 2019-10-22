@@ -27,6 +27,8 @@ enum Schedule {
   NONE,
   NOEVENT,
   HSBACKTOSCHOOLNIGHT,
+  WEIRD_ASSEMBELY,
+  WEIRD_ASSEMBELY_78,
 }
 
 enum Day {
@@ -173,6 +175,8 @@ export function getScheduleName(schedule: Schedule) {
       break;
     case Schedule.HSBACKTOSCHOOLNIGHT:
       return 'High School Back to School Night';
+    case Schedule.WEIRD_ASSEMBLY:
+      return 'Assembly Schedule';
     default:
       return 'error';
       break;
