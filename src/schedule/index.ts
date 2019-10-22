@@ -4,7 +4,7 @@
 
 import { MDYDate } from './mdy_date';
 import { Day, Schedule, Period } from './enums';
-import { NoSchoolSchedule, NoEventSchedule, RegularSchedule, BlockOddSchedule, BlockEvenSchedule, SpecialBlockOddSchedule, SpecialBlockEvenSchedule,
+import { NoSchoolSchedule, NoEventSchedule, WeirdAssemblySchedule, WeirdAssemblySchedule78,RegularSchedule, BlockOddSchedule, BlockEvenSchedule, SpecialBlockOddSchedule, SpecialBlockEvenSchedule,
         AssemblySchedule, RegularSchedule78, BlockOddSchedule78, BlockEvenSchedule78, HSBlockOddScheduleFor78,
         HSBlockEvenScheduleFor78, HSSpecialBlockOddScheduleFor78, HSSpecialBlockEvenScheduleFor78,
         AssemblySchedule7, AssemblySchedule8, EarlyReleaseSchedule78, MinimumSchedule, PreFinals3264Schedule, PreFinals2156Schedule,
@@ -43,6 +43,7 @@ export const schoolSpecialDates: any = {
   '12 - 17 - 2019': Schedule.FINALS_TBD,
   '12 - 18 - 2019': Schedule.FINALS_TBD,
   '12 - 19 - 2019': Schedule.FINALS_TBD,
+  '9 - 11 - 2019': Schedule.WEIRD_ASSEMBLY,
 
   // month - day - year: schedule (something from the Schedule enum)
 };
@@ -211,6 +212,22 @@ export function getFullSchedule(schedule: Schedule, grade: number): any {
           break;
         default:
           return AssemblySchedule;
+          break;
+      }
+     case Schedule.WEIRD_ASSEMBLY:
+      switch (grade) {
+        case 7:
+        case 8:
+          return WeirdAssemblySchedule78;
+          break;
+        case 9:
+        case 10:
+        case 11:
+        case 12:
+          return WeirdAssemblySchedule;
+          break;
+        default:
+          return WeirdAssemblySchedule;
           break;
       }
 
