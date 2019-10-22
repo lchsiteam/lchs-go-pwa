@@ -219,7 +219,6 @@ export function getFullSchedule(schedule: Schedule, grade: number): any {
      case Schedule.WEIRD_ASSEMBLY:
       return highSchooler ? WeirdAssemblySchedule : WeirdAssemblySchedule78;
       break;
-     
 
       /*
       if(grade == '9-12') {
