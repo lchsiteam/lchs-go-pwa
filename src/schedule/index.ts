@@ -4,8 +4,8 @@
 
 import { MDYDate } from './mdy_date';
 import { Day, Schedule, Period } from './enums';
-import { NoSchoolSchedule, NoEventSchedule, WeirdAssemblySchedule, WeirdAssemblySchedule78,RegularSchedule, BlockOddSchedule, BlockEvenSchedule, SpecialBlockOddSchedule, SpecialBlockEvenSchedule,
-        AssemblySchedule, RegularSchedule78, BlockOddSchedule78, BlockEvenSchedule78, HSBlockOddScheduleFor78,
+import { NoSchoolSchedule, NoEventSchedule, WeirdAssemblySchedule, WeirdAssemblySchedule78,RegularSchedule, BlockOddSchedule, BlockEvenSchedule, SpecialBlockOddSchedule,
+        SpecialBlockEvenSchedule, AssemblySchedule, RegularSchedule78, BlockOddSchedule78, BlockEvenSchedule78, HSBlockOddScheduleFor78,
         HSBlockEvenScheduleFor78, HSSpecialBlockOddScheduleFor78, HSSpecialBlockEvenScheduleFor78,
         AssemblySchedule7, AssemblySchedule8, EarlyReleaseSchedule78, MinimumSchedule, PreFinals3264Schedule, PreFinals2156Schedule,
         PreFinals1345Schedule, FinalAssemblySchedule78, FinalAssemblySchedule12, Finals34Schedule, Finals15Schedule,
@@ -217,21 +217,9 @@ export function getFullSchedule(schedule: Schedule, grade: number): any {
           break;
       }
      case Schedule.WEIRD_ASSEMBLY:
-      switch (grade) {
-        case 7:
-        case 8:
-          return WeirdAssemblySchedule78;
-          break;
-        case 9:
-        case 10:
-        case 11:
-        case 12:
-          return WeirdAssemblySchedule;
-          break;
-        default:
-          return WeirdAssemblySchedule;
-          break;
-      }
+      return highSchooler ? WeirdAssemblySchedule : WeirdAssemblySchedule78;
+      break;
+     
 
       /*
       if(grade == '9-12') {
