@@ -47,7 +47,7 @@ export const WeirdAssemblySchedule78: any[] = [
   { start: toTime(9, 15), end: toTime(9, 21), period: Period.PERIOD_1_PASSING },
   { start: toTime(9, 21), end: toTime(10, 6), period: Period.PERIOD_6 },
   { start: toTime(10, 6), end: toTime(10, 26), period: Period.BREAK },
-  { start: toTime(10, 6), end: toTime(10, 32), period: Period.BREAK_PASSING },
+  { start: toTime(10, 26), end: toTime(10, 32), period: Period.BREAK_PASSING },
   { start: toTime(10, 32), end: toTime(11, 17), period: Period.PERIOD_2 },
   { start: toTime(11, 17), end: toTime(11, 23), period: Period.PERIOD_2_PASSING },
   { start: toTime(11, 23), end: toTime(12, 8), period: Period.PERIOD_3 },
