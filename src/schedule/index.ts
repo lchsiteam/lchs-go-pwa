@@ -4,8 +4,8 @@
 
 import { MDYDate } from './mdy_date';
 import { Day, Schedule, Period } from './enums';
-import { NoSchoolSchedule, NoEventSchedule, RegularSchedule, BlockOddSchedule, BlockEvenSchedule, SpecialBlockOddSchedule, SpecialBlockEvenSchedule,
-        AssemblySchedule, RegularSchedule78, BlockOddSchedule78, BlockEvenSchedule78, HSBlockOddScheduleFor78,
+import { NoSchoolSchedule, NoEventSchedule, WeirdAssemblySchedule, WeirdAssemblySchedule78,RegularSchedule, BlockOddSchedule, BlockEvenSchedule, SpecialBlockOddSchedule, 
+        SpecialBlockEvenSchedule, AssemblySchedule, RegularSchedule78, BlockOddSchedule78, BlockEvenSchedule78, HSBlockOddScheduleFor78,
         HSBlockEvenScheduleFor78, HSSpecialBlockOddScheduleFor78, HSSpecialBlockEvenScheduleFor78,
         AssemblySchedule7, AssemblySchedule8, EarlyReleaseSchedule78, MinimumSchedule, PreFinals3264Schedule, PreFinals2156Schedule,
         PreFinals1345Schedule, FinalAssemblySchedule78, FinalAssemblySchedule12, Finals34Schedule, Finals15Schedule,
@@ -41,7 +41,7 @@ export const schoolSpecialDates: any = {
   '8 - 23 - 2019': Schedule.ASSEMBLY,
   '9 - 2 - 2019': Schedule.NONE,
   '10 - 22 - 2019': Schedule.BLOCK_ODD,
-  '10 - 23 - 2019': Schedule.ASSEMBLY,
+  '10 - 23 - 2019': Schedule.WEIRD_ASSEMBLY,
   '12 - 17 - 2019': Schedule.FINALS_TBD,
   '12 - 18 - 2019': Schedule.FINALS_TBD,
   '12 - 19 - 2019': Schedule.FINALS_TBD,
@@ -216,6 +216,9 @@ export function getFullSchedule(schedule: Schedule, grade: number): any {
           return AssemblySchedule;
           break;
       }
+     case Schedule.WEIRD_ASSEMBLY:
+      return highSchooler ? WeirdAssemblySchedule : WeirdAssemblySchedule78;
+      break;
 
       /*
       if(grade == '9-12') {
