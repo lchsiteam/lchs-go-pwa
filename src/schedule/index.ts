@@ -4,7 +4,7 @@
 
 import { MDYDate } from './mdy_date';
 import { Day, Schedule, Period } from './enums';
-import { NoSchoolSchedule, NoEventSchedule, WeirdAssemblySchedule, WeirdAssemblySchedule78,RegularSchedule, BlockOddSchedule, BlockEvenSchedule, SpecialBlockOddSchedule, 
+import { NoSchoolSchedule, NoEventSchedule, WeirdAssemblySchedule, WeirdAssemblySchedule78, RegularSchedule, BlockOddSchedule, BlockEvenSchedule, SpecialBlockOddSchedule,
         SpecialBlockEvenSchedule, AssemblySchedule, RegularSchedule78, BlockOddSchedule78, BlockEvenSchedule78, HSBlockOddScheduleFor78,
         HSBlockEvenScheduleFor78, HSSpecialBlockOddScheduleFor78, HSSpecialBlockEvenScheduleFor78,
         AssemblySchedule7, AssemblySchedule8, EarlyReleaseSchedule78, MinimumSchedule, PreFinals3264Schedule, PreFinals2156Schedule,
@@ -47,7 +47,6 @@ export const schoolSpecialDates: any = {
   '12 - 17 - 2019': Schedule.FINALS_TBD,
   '12 - 18 - 2019': Schedule.FINALS_TBD,
   '12 - 19 - 2019': Schedule.FINALS_TBD,
-  
 
   // month - day - year: schedule (something from the Schedule enum)
 };
@@ -94,7 +93,7 @@ export function getScheduleFromDay(month: number, day: number, year: number, wee
   } else {
     // check to see if this date falls in a multi-date exception
     const isSummerSchool = dateObj.between(...summerSchool);
-    const isBlockeSwitched = dateObj.between(...blockSwitch);
+    const isBlockSwitched = dateObj.between(...blockSwitch);
 
     if (isSummerSchool) {
       switch (weekDay) {
@@ -146,6 +145,7 @@ export function getScheduleFromDay(month: number, day: number, year: number, wee
           case Day.THURSDAY:
             shed = Schedule.BLOCK_ODD;
             break;
+          }
         } else {
           switch (weekDay) {
             case Day.SUNDAY:
