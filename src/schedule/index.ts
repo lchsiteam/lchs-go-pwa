@@ -34,6 +34,7 @@ const winterBreak: MDYDate[] = [new MDYDate(12, 20, 2019), new MDYDate(1, 6, 202
 const breaks: any[] = [tgBreak, winterBreak];
 
 const summerSchool: [MDYDate, MDYDate] = [new MDYDate(6, 17, 2019), new MDYDate(7, 19, 2019)];
+const blockSwitch: [MDYDate, MDYDate] = [new MDYDate(11, 11, 2019), new MDYDate(2, 19, 2020)];
 
 export const schoolSpecialDates: any = {
   '8 - 21 - 2019': Schedule.REGULAR,
@@ -93,6 +94,7 @@ export function getScheduleFromDay(month: number, day: number, year: number, wee
   } else {
     // check to see if this date falls in a multi-date exception
     const isSummerSchool = dateObj.between(...summerSchool);
+    const isBlockeSwitched = dateObj.between(...blockSwitch);
 
     if (isSummerSchool) {
       switch (weekDay) {
@@ -127,6 +129,7 @@ export function getScheduleFromDay(month: number, day: number, year: number, wee
       }
 
       if (notBreak) {
+        if (isBlockSwitched) {
         switch (weekDay) {
           case Day.SUNDAY:
           case Day.SATURDAY:
@@ -138,11 +141,29 @@ export function getScheduleFromDay(month: number, day: number, year: number, wee
             shed = Schedule.REGULAR;
             break;
           case Day.WEDNESDAY:
-            shed = Schedule.BLOCK_ODD;
-            break;
-          case Day.THURSDAY:
             shed = Schedule.BLOCK_EVEN;
             break;
+          case Day.THURSDAY:
+            shed = Schedule.BLOCK_ODD;
+            break;
+        } else {
+          switch (weekDay) {
+            case Day.SUNDAY:
+            case Day.SATURDAY:
+              shed = Schedule.NONE;
+              break;
+            case Day.MONDAY:
+            case Day.TUESDAY:
+            case Day.FRIDAY:
+              shed = Schedule.REGULAR;
+              break;
+            case Day.WEDNESDAY:
+              shed = Schedule.BLOCK_ODD;
+              break;
+            case Day.THURSDAY:
+              shed = Schedule.BLOCK_EVEN;
+              break;
+          }
         }
       }
     }
