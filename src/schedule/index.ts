@@ -128,7 +128,6 @@ export function getScheduleFromDay(month: number, day: number, year: number, wee
       }
 
       if (notBreak) {
-        if (isBlockSwitched) {
         switch (weekDay) {
           case Day.SUNDAY:
           case Day.SATURDAY:
@@ -139,24 +138,14 @@ export function getScheduleFromDay(month: number, day: number, year: number, wee
           case Day.FRIDAY:
             shed = Schedule.REGULAR;
             break;
-          case Day.WEDNESDAY:
-            shed = Schedule.BLOCK_EVEN;
-            break;
-          case Day.THURSDAY:
-            shed = Schedule.BLOCK_ODD;
-            break;
-          }
-        } else {
-          switch (weekDay) {
-            case Day.SUNDAY:
-            case Day.SATURDAY:
-              shed = Schedule.NONE;
+          if (isBlockSwitched) {
+            case Day.WEDNESDAY:
+              shed = Schedule.BLOCK_EVEN;
               break;
-            case Day.MONDAY:
-            case Day.TUESDAY:
-            case Day.FRIDAY:
-              shed = Schedule.REGULAR;
+            case Day.THURSDAY:
+              shed = Schedule.BLOCK_ODD;
               break;
+          } else {
             case Day.WEDNESDAY:
               shed = Schedule.BLOCK_ODD;
               break;
