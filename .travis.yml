@@ -18,3 +18,6 @@ deploy:
 branches:
   only:
     - master
+
+notifications:
+  slack: lchsiteam:xtbCx1QK8jkDxBZC5C0Xq9Gm
