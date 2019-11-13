@@ -48,7 +48,10 @@ export default class Home extends Vue {
   public appVersion = `v${process.env.VUE_APP_VERSION} (b${process.env.VUE_APP_COMMIT_COUNT.trim()}#${process.env.VUE_APP_COMMIT_SHASH.trim()})`;
 
   myFunction() {
-    document.getElementById("demo").innerHTML = '<iframe src="https://scratch.mit.edu/projects/344341630/embed" style="position:fixed; top:0;     left:0; bottom:0; right:0; width:100%; height:100%; border:none; margin:0; padding:0; overflow:hidden; z-index:999999;">Your browser doesnt suppor    t iframes</iframe>';
+    let secret document.getElementById("demo");
+    if (secret!=null) {
+      secret.innerHTML = '<iframe src="https://scratch.mit.edu/projects/344341630/embed" style="position:fixed; top:0;     left:0; bottom:0; right:0; width:100%; height:100%; border:none; margin:0; padding:0; overflow:hidden; z-index:999999;">Your browser doesnt suppor    t iframes</iframe>';
+    }
   }
 }
 </script>
