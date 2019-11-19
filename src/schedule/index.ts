@@ -52,6 +52,7 @@ export const schoolSpecialDates: any = {
 };
 
 export const msSpecialDates: any = {
+  '11 - 22 - 2019': Schedule.MINIMUM,
 };
 
 export const hsSpecialDates: any = {
