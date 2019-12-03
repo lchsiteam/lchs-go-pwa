@@ -4,7 +4,7 @@
 
 import { MDYDate } from './mdy_date';
 import { Day, Schedule, Period } from './enums';
-import { NoSchoolSchedule, NoEventSchedule, WeirdAssemblySchedule, WeirdAssemblySchedule78,RegularSchedule, BlockOddSchedule, BlockEvenSchedule, SpecialBlockOddSchedule, 
+import { NoSchoolSchedule, NoEventSchedule, WeirdAssemblySchedule, WeirdAssemblySchedule78, RegularSchedule, BlockOddSchedule, BlockEvenSchedule, SpecialBlockOddSchedule,
         SpecialBlockEvenSchedule, AssemblySchedule, RegularSchedule78, BlockOddSchedule78, BlockEvenSchedule78, HSBlockOddScheduleFor78,
         HSBlockEvenScheduleFor78, HSSpecialBlockOddScheduleFor78, HSSpecialBlockEvenScheduleFor78,
         AssemblySchedule7, AssemblySchedule8, EarlyReleaseSchedule78, MinimumSchedule, PreFinals3264Schedule, PreFinals2156Schedule,
@@ -34,6 +34,7 @@ const winterBreak: MDYDate[] = [new MDYDate(12, 20, 2019), new MDYDate(1, 6, 202
 const breaks: any[] = [tgBreak, winterBreak];
 
 const summerSchool: [MDYDate, MDYDate] = [new MDYDate(6, 17, 2019), new MDYDate(7, 19, 2019)];
+const blockSwitch: [MDYDate, MDYDate] = [new MDYDate(11, 11, 2019), new MDYDate(2, 17, 2020)];
 
 export const schoolSpecialDates: any = {
   '8 - 21 - 2019': Schedule.REGULAR,
@@ -42,14 +43,16 @@ export const schoolSpecialDates: any = {
   '9 - 2 - 2019': Schedule.NONE,
   '10 - 22 - 2019': Schedule.BLOCK_ODD,
   '10 - 23 - 2019': Schedule.WEIRD_ASSEMBLY,
-  '12 - 17 - 2019': Schedule.FINALS_TBD,
-  '12 - 18 - 2019': Schedule.FINALS_TBD,
-  '12 - 19 - 2019': Schedule.FINALS_TBD,
+  '11 - 11 - 2019': Schedule.NONE,
+  '12 - 17 - 2019': Schedule.FINALS_26,
+  '12 - 18 - 2019': Schedule.FINALS_15,
+  '12 - 19 - 2019': Schedule.FINALS_34,
 
   // month - day - year: schedule (something from the Schedule enum)
 };
 
 export const msSpecialDates: any = {
+  '11 - 22 - 2019': Schedule.MINIMUM,
 };
 
 export const hsSpecialDates: any = {
@@ -91,6 +94,7 @@ export function getScheduleFromDay(month: number, day: number, year: number, wee
   } else {
     // check to see if this date falls in a multi-date exception
     const isSummerSchool = dateObj.between(...summerSchool);
+    const isBlockSwitched = dateObj.between(...blockSwitch);
 
     if (isSummerSchool) {
       switch (weekDay) {
@@ -125,6 +129,7 @@ export function getScheduleFromDay(month: number, day: number, year: number, wee
       }
 
       if (notBreak) {
+        if (isBlockSwitched) {
         switch (weekDay) {
           case Day.SUNDAY:
           case Day.SATURDAY:
@@ -136,11 +141,30 @@ export function getScheduleFromDay(month: number, day: number, year: number, wee
             shed = Schedule.REGULAR;
             break;
           case Day.WEDNESDAY:
-            shed = Schedule.BLOCK_ODD;
-            break;
-          case Day.THURSDAY:
             shed = Schedule.BLOCK_EVEN;
             break;
+          case Day.THURSDAY:
+            shed = Schedule.BLOCK_ODD;
+            break;
+          }
+        } else {
+          switch (weekDay) {
+            case Day.SUNDAY:
+            case Day.SATURDAY:
+              shed = Schedule.NONE;
+              break;
+            case Day.MONDAY:
+            case Day.TUESDAY:
+            case Day.FRIDAY:
+              shed = Schedule.REGULAR;
+              break;
+            case Day.WEDNESDAY:
+              shed = Schedule.BLOCK_ODD;
+              break;
+            case Day.THURSDAY:
+              shed = Schedule.BLOCK_EVEN;
+              break;
+          }
         }
       }
     }
