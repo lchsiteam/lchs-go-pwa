@@ -44,6 +44,8 @@ export const schoolSpecialDates: any = {
   '10 - 22 - 2019': Schedule.BLOCK_ODD,
   '10 - 23 - 2019': Schedule.WEIRD_ASSEMBLY,
   '11 - 11 - 2019': Schedule.NONE,
+  '12 - 11 - 2019': Schedule.REGULAR,
+  '12 - 12 - 2019': Schedule.REGULAR,
   '12 - 17 - 2019': Schedule.FINALS_26,
   '12 - 18 - 2019': Schedule.FINALS_15,
   '12 - 19 - 2019': Schedule.FINALS_34,
