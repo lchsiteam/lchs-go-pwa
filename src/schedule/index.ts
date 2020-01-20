@@ -49,6 +49,7 @@ export const schoolSpecialDates: any = {
   '12 - 17 - 2019': Schedule.FINALS_26,
   '12 - 18 - 2019': Schedule.FINALS_15,
   '12 - 19 - 2019': Schedule.FINALS_34,
+  '1 - 20 - 2020': Schedule.NONE
 
   // month - day - year: schedule (something from the Schedule enum)
 };
