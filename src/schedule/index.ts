@@ -26,14 +26,14 @@ export function getCurrentDate(): any {
   };
 }
 
-const summerBreak: any[] = [];
-
 const tgBreak: MDYDate[] = [new MDYDate(11, 25, 2019), new MDYDate(11, 29, 2019)];
-const winterBreak: MDYDate[] = [new MDYDate(12, 20, 2019), new MDYDate(1, 6, 2020)]; // Please don't ever delete these, just comment them out if you have to
+const winterBreak: MDYDate[] = [new MDYDate(12, 20, 2019), new MDYDate(1, 6, 2020)];
+const springBreak: MDYDate[] = [new MDYDate(4, 6, 2020), new MDYDate(4, 10, 2020)]; // Please don't ever delete this, just comment it out if you have to
+const summerBreak: MDYDate[] = [new MDYDate(6, 5, 2020), new MDYDate(6, 15, 2020)];
 
-const breaks: any[] = [tgBreak, winterBreak];
+const breaks: any[] = [tgBreak, winterBreak, springBreak];
 
-const summerSchool: [MDYDate, MDYDate] = [new MDYDate(6, 17, 2019), new MDYDate(7, 19, 2019)];
+const summerSchool: [MDYDate, MDYDate] = [new MDYDate(6, 15, 2020), new MDYDate(7, 16, 2020)];
 const blockSwitch: [MDYDate, MDYDate] = [new MDYDate(11, 11, 2019), new MDYDate(2, 17, 2020)];
 
 export const schoolSpecialDates: any = {
@@ -49,6 +49,16 @@ export const schoolSpecialDates: any = {
   '12 - 17 - 2019': Schedule.FINALS_26,
   '12 - 18 - 2019': Schedule.FINALS_15,
   '12 - 19 - 2019': Schedule.FINALS_34,
+  '1 - 20 - 2020': Schedule.NONE,
+  '1 - 24 - 2020': Schedule.ASSEMBLY,
+  '2 - 14 - 2020': Schedule.NONE,
+  '2 - 17 - 2020': Schedule.NONE,
+  '3 - 27 - 2020': Schedule.ASSEMBLY,
+  '4 - 17 - 2020': Schedule.MINIMUM,
+  '5 - 25 - 2020': Schedule.NONE,
+  '6 - 1 - 2020': Schedule.FINALS_TBD,
+  '6 - 2 - 2020': Schedule.FINALS_TBD,
+  '6 - 3 - 2020': Schedule.FINALS_TBD,
 
   // month - day - year: schedule (something from the Schedule enum)
 };

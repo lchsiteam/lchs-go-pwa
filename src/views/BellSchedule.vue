@@ -129,8 +129,7 @@ div.gradeMessage {
 </style>
 
 <script src='https://unpkg.com/vue/dist/vue.js'></script>
-
-<script src='https://unpkg.com/v-calendar@next'></script>
+<script src='https://unpkg.com/v-calendar'></script>
 
 <script lang="ts">
 import { Themes } from '../themes';
@@ -144,6 +143,7 @@ import { RegularSchedule, BlockEvenSchedule, BlockOddSchedule } from '@/schedule
 import { MDYDate } from '@/schedule/mdy_date';
 
 import VCalendar from 'v-calendar';
+import 'v-calendar/lib/v-calendar.min.css';
 
 Vue.use(VCalendar, {
   componentPrefix: 'vc',
