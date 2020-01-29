@@ -541,3 +541,13 @@ export const HSBackToSchoolNight: any[] = [
   { start: toTime(20, 0), end: toTime(20, 10), period: Period.PERIOD_0 },
   { start: toTime(15, 14), end: toTime(24, 0), period: Period.EVENTNOPE },
 ];
+
+export const CollegeNight: any[] = [
+  { start: toTime(0, 0), end: toTime(18, 0), period: Period.EVENTNOPE },
+  { start: toTime(18, 0), end: toTime(19, 0), period: Period.SPEAKER },
+  { start: toTime(19, 0), end: toTime(19, 5), period: Period.SPEAKER_PASSING },
+  { start: toTime(19, 5), end: toTime(19, 35), period: Period.SESSION_1 },
+  { start: toTime(19, 35), end: toTime(19, 40), period: Period.SESSION_1_PASSING },
+  { start: toTime(19, 40), end: toTime(20, 10), period: Period.SESSION_2 },
+  { start: toTime(20, 10), end: toTime(24, 0), period: Period.EVENTNOPE },
+];
