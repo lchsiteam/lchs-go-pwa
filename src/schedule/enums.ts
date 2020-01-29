@@ -27,6 +27,7 @@ enum Schedule {
   NONE,
   NOEVENT,
   HSBACKTOSCHOOLNIGHT,
+  COLLEGE_NIGHT,
   WEIRD_ASSEMBLY,
 }
 
@@ -71,6 +72,13 @@ enum Period {
   TBD,
   NONE,
   EVENTNOPE,
+  // Start college night
+  SPEAKER,
+  SPEAKER_PASSING,
+  SESSION_1,
+  SESSION_1_PASSING,
+  SESSION_2,
+  // End college night
   DONE,
 }
 
@@ -103,6 +111,13 @@ export function getPeriodName(period: Period) {
   else if (period === Period.TBD) { return 'To Be Determined'; }
   else if (period === Period.NONE) { return 'No School'; }
   else if (period === Period.DONE) { return 'No School'; }
+  // Start college night
+  else if (period === Period.SPEAKER) { return 'Keynote Speaker (auditorium)'; }
+  else if (period === Period.SPEAKER_PASSING) { return 'Passing After Keynote Speaker'; }
+  else if (period === Period.SESSION_1) { return 'Session 1'; }
+  else if (period === Period.SESSION_1_PASSING) { return 'Passing After Session 1'; }
+  else if (period === Period.SESSION_2) { return 'Session 2'; }
+  // End college night
   else if (period === Period.EVENTNOPE) { return 'No Event'; }
   else { return '????'; }
 }
@@ -176,6 +191,8 @@ export function getScheduleName(schedule: Schedule) {
       return 'High School Back to School Night';
     case Schedule.WEIRD_ASSEMBLY:
       return 'Assembly Schedule';
+    case Schedule.COLLEGE_NIGHT:
+      return 'Collegewise';
     default:
       return 'error';
       break;
