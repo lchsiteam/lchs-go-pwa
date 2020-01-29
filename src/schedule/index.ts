@@ -9,7 +9,7 @@ import { NoSchoolSchedule, NoEventSchedule, WeirdAssemblySchedule, WeirdAssembly
         HSBlockEvenScheduleFor78, HSSpecialBlockOddScheduleFor78, HSSpecialBlockEvenScheduleFor78,
         AssemblySchedule7, AssemblySchedule8, EarlyReleaseSchedule78, MinimumSchedule, PreFinals3264Schedule, PreFinals2156Schedule,
         PreFinals1345Schedule, FinalAssemblySchedule78, FinalAssemblySchedule12, Finals34Schedule, Finals15Schedule,
-        Finals26Schedule, FinalsTBDSchedule, SummerSchoolSchedule, HSBackToSchoolNight } from './schedules';
+        Finals26Schedule, FinalsTBDSchedule, SummerSchoolSchedule, HSBackToSchoolNight, CollegeNight } from './schedules';
 
 export const plusDays = 0;
 
@@ -86,6 +86,7 @@ export const gradeSpecialDates: any = {
   },
   13: {
     '9 - 11 - 2019': Schedule.HSBACKTOSCHOOLNIGHT,
+    '1 - 28 - 2020': Schedule.COLLEGE_NIGHT,
   },
 };
 
@@ -234,6 +235,9 @@ export function getFullSchedule(schedule: Schedule, grade: number): any {
     case Schedule.PRE_FINALS_1345:
       return PreFinals1345Schedule;
       break;
+    case Schedule.COLLEGE_NIGHT:
+      return CollegeNight;
+      break;
     case Schedule.ASSEMBLY:
       switch (grade) {
         case 7:
@@ -325,6 +329,11 @@ const periodsFilter = [
   Period.STEP_EVEN,
   Period.HOMEROOM,
   Period.ASSEMBLY,
+  // Start college night
+  Period.SPEAKER,
+  Period.SESSION_1,
+  Period.SESSION_2,
+  // End college night
   Period.TBD,
 ];
 
