@@ -17,6 +17,10 @@ git clone https://github.com/lchsiteam/lchs-go-pwa.git
 ```
 cd lchs-go-pwa
 ```
+### Install [vue]
+```
+npm install -g @vue/cli
+```
 ### Setup [yarn](https://yarnpkg.com/lang/en/)
 ```
 yarn install
