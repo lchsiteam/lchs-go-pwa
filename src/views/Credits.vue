@@ -46,7 +46,7 @@ import { Component, Vue } from 'vue-property-decorator';
 @Component({})
 export default class Home extends Vue {
   public appVersion = `v${process.env.VUE_APP_VERSION} (b${process.env.VUE_APP_COMMIT_COUNT.trim()}#${process.env.VUE_APP_COMMIT_SHASH.trim()})`;
-  
+}
 </script>
 
 <style lang="scss">
