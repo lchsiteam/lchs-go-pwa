@@ -25,8 +25,9 @@
       </div>
       <div class="credit-item-container">
         <div class="credit-item">Ryan King (rking21)</div>
-        <div class="credit-item-role">Core Contributor, Theme Animator</div>
+	      <div class="credit-item-role">Core Contributor, Theme Animator</div>
       </div>
+      <div id='game'></div>
       <div class="credit-item-container">
         <div class="credit-item">Bryan Wang (bwang21)</div>
         <div class="credit-item-role">Core Contributor</div>

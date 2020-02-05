@@ -1,6 +1,6 @@
 <template>
-  <div id="app-container" :style="getCSSColorScheme()" :class="{ toggleOff: !this.$store.state.settings.enableThemeAnimations }">
-    <div id="app">
+  <div id="app-container" :style="getCSSColorScheme()" :class="{ toggleRadial: !this.$store.state.settings.enableRadialGradient, toggleOff: !this.$store.state.settings.enableThemeAnimations }">
+  <div id="app">
       <div id="nav">
         <router-link to="/home">Now</router-link>
         <!-- <router-link to="/today">Today</router-link> -->
@@ -85,6 +85,11 @@ firebase.initializeApp(firebaseConfig);
   100% { background-position: 50% 0%; }
 }
 
+@keyframes AnimatedRadial {
+  0% { background-size: 100% 100%; }
+  50% { background-size: 200% 200%; }
+  100% { background-size: 100% 100%; }
+}
 
 html, body, #app-container {
   height: auto;
@@ -101,8 +106,15 @@ html, body, #app-container {
   animation: AnimatedTheme 20s ease infinite;
 
   &.toggleOff {
-    background-size: 100%;
+    background-size: 100% 100%;
     animation: none;
+  }
+
+  &.toggleRadial {
+    background: radial-gradient(var(--gradient-colors, "#42b983, #2f9768"));
+    background-size: 200%, 200%;
+    background-position: center;
+    animation: AnimatedRadial 10s ease infinite;  
   }
 }
 #app {
