@@ -103,6 +103,7 @@ html, body, #app-container {
 #app-container {
   background: linear-gradient(to bottom, var(--gradient-colors, "#42b983, #2f9768"));
   background-size: 400% 400%;
+  background-image: url("assets/background-test.gif");
   animation: AnimatedTheme 20s ease infinite;
 
   &.toggleOff {
