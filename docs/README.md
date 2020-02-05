@@ -17,7 +17,7 @@ git clone https://github.com/lchsiteam/lchs-go-pwa.git
 ```
 cd lchs-go-pwa
 ```
-### Install [vue]
+### Install [vue](https://vuejs.org/)
 ```
 npm install -g @vue/cli
 ```
