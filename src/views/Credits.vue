@@ -25,7 +25,7 @@
       </div>
       <div class="credit-item-container">
         <div class="credit-item">Ryan King (rking21)</div>
-	      <div class="credit-item-role"><span class="Secret" v-on:click='secretGame()'>Core Contributor,</span> Theme Animator</div>
+	      <div class="credit-item-role">Core Contributor, Theme Animator</div>
       </div>
       <div id='game'></div>
       <div class="credit-item-container">
@@ -46,13 +46,6 @@ import { Component, Vue } from 'vue-property-decorator';
 @Component({})
 export default class Home extends Vue {
   public appVersion = `v${process.env.VUE_APP_VERSION} (b${process.env.VUE_APP_COMMIT_COUNT.trim()}#${process.env.VUE_APP_COMMIT_SHASH.trim()})`;
-
-  secretGame() {
-    let secret = document.getElementById('game');
-    if (secret != null) {
-      secret.innerHTML = '<iframe src="https://scratch.mit.edu/projects/344341630/embed" allowtransparency="true" width="485" height="402" frameborder="0" scrolling="no" allowfullscreen></iframe>';
-    }
-  }
 }
 </script>
 
