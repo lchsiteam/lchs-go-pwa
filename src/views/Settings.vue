@@ -59,15 +59,15 @@
       <div class="settings-row">
         <div class="sr-head">
           <span class="sr-badge-new">NEW</span>
-          <b class="sr-title">Bus Schedule</b>
-          <span class="sr-desc">Show the next bus and the bus schedule.</span>
+          <b class="sr-title">Display Period 0</b>
+          <span class="sr-desc">Show period 0.</span>
         </div>
         <div class="sr-option">
           <div class="ex-selector">
-            <div class="ex-selector-option" @click="updateOptionBL('busSchedule', true)"
-              :class="{selected: this.$store.state.settings.busSchedule}">Enable</div>
-            <div class="ex-selector-option" @click="updateOptionBL('busSchedule', false)"
-              :class="{selected: !this.$store.state.settings.busSchedule}">Disable</div>
+            <div class="ex-selector-option" @click="updateOptionBL('perZero', true)"
+              :class="{selected: this.$store.state.settings.perZero}">Enable</div>
+            <div class="ex-selector-option" @click="updateOptionBL('perZero', false)"
+              :class="{selected: !this.$store.state.settings.perZero}">Disable</div>
           </div>
         </div>
       </div>
