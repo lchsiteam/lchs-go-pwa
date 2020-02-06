@@ -88,4 +88,8 @@ export const Themes = [
     'theme16', 'Pink', '(none)',
     ['#ff69b4', '#ff69b4'], '#ff69b4', '#ff69b4', 'rgba(255, 105, 180, 0.43)',
   ),
+  new LCHSGoTheme(
+    'theme17', 'Wack', '(none)',
+    ['#ffffff', '#000000', '#ffffff', '#000000', '#ffffff', '#000000', '#ffffff', '#000000', '#ffffff', '#000000', '#ffffff', '#000000', '#ffffff', '#000000'], '#7e8896', '#7e8896', 'rgba(126, 136, 150, 0.43)',
+  ),
 ];
