@@ -58,6 +58,21 @@
       </div>
       <div class="settings-row">
         <div class="sr-head">
+          <span class="sr-badge-new">NEW</span>
+          <b class="sr-title">Bus Schedule</b>
+          <span class="sr-desc">Show the next bus and the bus schedule.</span>
+        </div>
+        <div class="sr-option">
+          <div class="ex-selector">
+            <div class="ex-selector-option" @click="updateOptionBL('busSchedule', true)"
+              :class="{selected: this.$store.state.settings.busSchedule}">Enable</div>
+            <div class="ex-selector-option" @click="updateOptionBL('busSchedule', false)"
+              :class="{selected: !this.$store.state.settings.busSchedule}">Disable</div>
+          </div>
+        </div>
+      </div>
+      <div class="settings-row">
+        <div class="sr-head">
           <b class="sr-title">Enable Blinking</b>
           <span class="sr-desc">Toggle fancy blinking animations</span>
         </div>
