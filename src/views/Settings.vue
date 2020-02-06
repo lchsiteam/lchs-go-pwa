@@ -4,7 +4,6 @@
     <div class="settings-rows">
       <div class='settings-row'> 
         <div class='sr-head'>
-          <span class="sr-badge-new">NEW</span>
           <b class='sr-title'>Grade Level</b> 
           <span class='sr-desc'>Change which grade is used for calculating schedules</span> 
         </div> 
@@ -30,7 +29,6 @@
       </div>
       <div class="settings-row">
         <div class="sr-head">
-          <span class="sr-badge-new">NEW</span>
           <b class="sr-title">Enable Theme Animations</b>
           <span class="sr-desc">Toggle fancy color fading</span>
         </div>
@@ -88,13 +86,12 @@
       </div>
       <div class="settings-row">
         <div class="sr-head">
-          <span class="sr-badge-new">NEW</span>
-          <b class="sr-title">Color Theme (beta)</b>
+          <b class="sr-title">Color Theme</b>
           <span class="sr-desc">Change app color scheme. Send an email to team@lciteam.club for suggestions.</span>
         </div>
         <div class="sr-option">
           <select v-model="colorThemeId" @change="updateTheme()" class="grade-select">
-            <option v-for="theme in allThemes" :key="theme.id" :value="theme.id" class="grade-select-item">{{theme.name}}</option>
+            <option v-for="theme in allThemes" :key="theme.id" :value="theme.id" class="grade-select-item" style="color:black;">{{theme.name}}</option>
           </select>
         </div>
       </div>
