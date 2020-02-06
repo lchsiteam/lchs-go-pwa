@@ -91,7 +91,7 @@
         </div>
         <div class="sr-option">
           <select v-model="colorThemeId" @change="updateTheme()" class="grade-select">
-            <option v-for="theme in allThemes" :key="theme.id" :value="theme.id" class="grade-select-item" style="color:black;">{{theme.name}}</option>
+            <option v-for="theme in allThemes" :key="theme.id" :value="theme.id" class="grade-select-item">{{theme.name}}</option>
           </select>
         </div>
       </div>
