@@ -106,17 +106,18 @@ html, body, #app-container {
   background-image: url("assets/background-test.gif");
   animation: AnimatedTheme 20s ease infinite;
 
-  &.toggleOff {
-    background-size: 100% 100%;
-    animation: none;
-  }
-
   &.toggleRadial {
     background: radial-gradient(var(--gradient-colors, "#42b983, #2f9768"));
     background-size: 200%, 200%;
     background-position: center;
     animation: AnimatedRadial 10s ease infinite;  
   }
+
+  &.toggleOff {
+    background-size: 100% 100%;
+    animation: none;
+  }
+
 }
 #app {
   font-family: 'Niramit', Avenir, sans-serif;
