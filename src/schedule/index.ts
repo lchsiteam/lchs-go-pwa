@@ -4,11 +4,11 @@
 
 import { MDYDate } from './mdy_date';
 import { Day, Schedule, Period } from './enums';
-import { NoSchoolSchedule, NoEventSchedule, WeirdAssemblySchedule, WeirdAssemblySchedule78, RegularSchedule, BlockOddSchedule, BlockEvenSchedule, SpecialBlockOddSchedule,
-        SpecialBlockEvenSchedule, AssemblySchedule, RegularSchedule78, BlockOddSchedule78, BlockEvenSchedule78, HSBlockOddScheduleFor78,
-        HSBlockEvenScheduleFor78, HSSpecialBlockOddScheduleFor78, HSSpecialBlockEvenScheduleFor78,
-        AssemblySchedule7, AssemblySchedule8, EarlyReleaseSchedule78, MinimumSchedule, PreFinals3264Schedule, PreFinals2156Schedule,
-        PreFinals1345Schedule, FinalAssemblySchedule78, FinalAssemblySchedule12, Finals34Schedule, Finals15Schedule,
+import { NoSchoolSchedule, NoEventSchedule, WeirdAssemblySchedule, WeirdAssemblySchedule78, RegularSchedule, BlockOddSchedule, BlockEvenSchedule,
+        ReverseBlockOddSchedule, MinimumReverseBlockOddSchedule78, SpecialBlockOddSchedule, SpecialBlockEvenSchedule, AssemblySchedule, RegularSchedule78,
+        BlockOddSchedule78, BlockEvenSchedule78, HSBlockOddScheduleFor78, HSBlockEvenScheduleFor78, HSSpecialBlockOddScheduleFor78,
+        HSSpecialBlockEvenScheduleFor78, AssemblySchedule7, AssemblySchedule8, EarlyReleaseSchedule78, MinimumSchedule, PreFinals3264Schedule,
+        PreFinals2156Schedule, PreFinals1345Schedule, FinalAssemblySchedule78, FinalAssemblySchedule12, Finals34Schedule, Finals15Schedule,
         Finals26Schedule, FinalsTBDSchedule, SummerSchoolSchedule, HSBackToSchoolNight } from './schedules';
 
 export const plusDays = 0;
@@ -65,10 +65,12 @@ export const schoolSpecialDates: any = {
 
 export const msSpecialDates: any = {
   '11 - 22 - 2019': Schedule.MINIMUM,
+  '2 - 13 - 2020': Schedule.MINIMUM_REVERSE_BLOCK_ODD_78,
 };
 
 export const hsSpecialDates: any = {
   '10 - 4 - 2019': Schedule.ASSEMBLY,
+  '2 - 13 - 2020': Schedule.REVERSE_BLOCK_ODD,
 };
 
 export const gradeSpecialDates: any = {
@@ -211,6 +213,12 @@ export function getFullSchedule(schedule: Schedule, grade: number): any {
       break;
     case Schedule.BLOCK_EVEN:
       return highSchooler ? BlockEvenSchedule : BlockEvenSchedule78;
+      break;
+    case Schedule.REVERSE_BLOCK_ODD:
+      return ReverseBlockOddSchedule;
+      break;
+    case Schedule.MINIMUM_REVERSE_BLOCK_ODD_78:
+      return MinimumReverseBlockOddSchedule78;
       break;
     case Schedule.SBAC_BLOCK_ODD:
       return highSchooler ? BlockOddSchedule : HSBlockOddScheduleFor78;
