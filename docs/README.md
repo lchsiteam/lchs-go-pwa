@@ -19,19 +19,19 @@ cd lchs-go-pwa
 ```
 ### Setup [yarn](https://yarnpkg.com/lang/en/)
 ```
-yarn install
+yarn
 ```
 ### Compiles and hot-reloads for development
 ```
-yarn run serve
+yarn serve
 ```
 ### Compiles and minifies for production
 ```
-yarn run build
+yarn build
 ```
 ### Lints and fixes files
 ```
-yarn run lint
+yarn lint
 ```
 
 ## 
