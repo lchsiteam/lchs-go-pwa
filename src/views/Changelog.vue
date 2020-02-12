@@ -2,7 +2,7 @@
   <div id="changelog">
     <div class="cl-readall" @click="$router.push('/home')">RETURN TO HOME</div>
     <div v-for="log in allLogs" :key="log.id" :class="{ 'cl-log-selection': true, 'selected': currentLogId === log.id }" @click="openCurrentLog(log.id)">
-      <span class="cl-log-s-badge" v-if="$store.state.changelog.readUpdates.indexOf(log.id) === -1">NEW</span>
+      <span class="cl-log-s-badge" v-if="log.isNew && $store.state.changelog.readUpdates.indexOf(log.id) === -1">NEW</span>
       <span class="cl-log-s-title">{{log.title}}</span>
     </div>
     <div class="cl-readall" @click="updateAllRead()">MARK ALL AS READ</div>

@@ -67,7 +67,7 @@ export default class Now extends Vue {
     this.currentPeriod = getPeriod(this.minutes, this.schedule, this.grade);
   }
   getUnreadUpdates() {
-    return this.allLogs.filter((entry) => this.$store.state.changelog.readUpdates.indexOf(entry.id) === -1);
+    return this.allLogs.filter((entry) => this.$store.state.changelog.readUpdates.indexOf(entry.id) === -1 && entry.isNew);
   }
   goToChangelog() {
     if (this.$store.state.isExtension) { window.open('/about/changelog', '_blank'); }

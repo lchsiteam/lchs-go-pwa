@@ -3,6 +3,7 @@ export default {
   entries: [
     {
       id: 6,
+      isNew: false,
       isPublic: true,
       title: 'IMPORTANT NOTICE! Also New Aesthetics and Themes',
       author: 'Ryan King',
