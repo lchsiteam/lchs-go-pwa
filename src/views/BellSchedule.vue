@@ -368,9 +368,9 @@ export default class Home extends Vue {
   }
 
   public changeGrade(grade: number) {
-    this.updateOptionBL('grade', this.grade); 
-    
-    this.updateStats(); 
+    this.updateOptionBL('grade', this.grade);
+
+    this.updateStats();
   }
 
   public mounted() {
