@@ -208,7 +208,9 @@ export default class Now extends Vue {
   }
 
   changeGrade(grade: number) {
-    this.updateOptionBL('grade', this.grade);
+    this.updateOptionBL('grade', this.grade); 
+    
+    this.updateStats(); 
   }
   mounted() {
     // correct invalid grade settings if any
