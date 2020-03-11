@@ -56,7 +56,7 @@ import { Changelog } from '../changelog';
 @Component({})
 export default class Now extends Vue {
   public useNextPeriodStartAsEnd = false;    // TODO: Find a better variable name
-  allGrades = allGrades;
+  private allGrades = allGrades;
   private minutes: number = 0;
   private currentDateTime: any;
   private schedule: Schedule = Schedule.NONE;
