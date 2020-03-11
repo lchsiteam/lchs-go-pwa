@@ -56,13 +56,13 @@ import { Changelog } from '../changelog';
 @Component({})
 export default class Now extends Vue {
   public useNextPeriodStartAsEnd = false;    // TODO: Find a better variable name
+  allGrades = allGrades;
   private minutes: number = 0;
   private currentDateTime: any;
   private schedule: Schedule = Schedule.NONE;
   private grade = allGrades[2];
   private currentPeriod = { start: 0, end: 1440, period: Period.NONE };
   private allLogs: any[] = [];
-  allGrades = allGrades;
 
   updateStats() {
     const currentDate = DateTime.local().setZone('America/Los_Angeles').plus(Duration.fromMillis(plusDays * 86400000));
