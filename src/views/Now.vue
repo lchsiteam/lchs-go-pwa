@@ -1,7 +1,11 @@
 <template>
   <div class="now">
     <h3>{{getGreeting()}}. Today is {{getCurrentScheduleName()}}. </h3> 
-    <p class="gradeMessage">You are viewing the {{strGrade(grade)}} schedule. To change grades, go to Settings. </p> 
+    <p class="gradeMessage">You are viewing the</p>
+    <select v-model="grade" @change="changeGrade()" class = "grade-select">
+      <option v-for="grade in allGrades" :key="grade" :value="grade" class = "grade-select-item">{{strGrade(grade)}}</option> 
+    </select>
+    <p class="gradeMessage">schedule.</p>
     <div class="grid-fmr">
       <div class="grid-fmr-helper">CURRENT PERIOD</div>
       <div class="grid-fmr-value">
@@ -52,12 +56,14 @@ import { Changelog } from '../changelog';
 @Component({})
 export default class Now extends Vue {
   public useNextPeriodStartAsEnd = false;    // TODO: Find a better variable name
+  private allGrades = allGrades;
   private minutes: number = 0;
   private currentDateTime: any;
   private schedule: Schedule = Schedule.NONE;
   private grade = allGrades[2];
   private currentPeriod = { start: 0, end: 1440, period: Period.NONE };
   private allLogs: any[] = [];
+
   updateStats() {
     const currentDate = DateTime.local().setZone('America/Los_Angeles').plus(Duration.fromMillis(plusDays * 86400000));
     this.minutes = currentDate.minute + (currentDate.hour * 60);
@@ -202,7 +208,9 @@ export default class Now extends Vue {
   }
 
   changeGrade(grade: number) {
-    this.updateOptionBL('grade', grade);
+    this.updateOptionBL('grade', this.grade);
+
+    this.updateStats();
   }
   mounted() {
     // correct invalid grade settings if any
@@ -298,6 +306,31 @@ a {
   color: rgb(168, 230, 255);
 } 
 .gradeMessage {
-  font-size: 15px; 
+  font-size: 15px;
+  display: inline;
+  padding: 5px;
+}
+select.grade-select {
+  color: #ffffff;
+  background: rgba(0,0,0,.2);
+  padding: 0px;
+  text-decoration-color: white;
+  font-weight: 600;
+  font-family: Niramit,Avenir,sans-serif;
+  border-color:rgba(0,0,0,0);
+  border-width: 1px;
+  border-radius: 3px;
+} 
+option.grade-select-item  {
+color: rgba(255, 255, 255, 0.6);
+
+  background: var(--button-menu-color, #42b983);
+  padding: 5px;
+  text-decoration-color: white;
+  font-weight: 600;
+  font-family: Niramit,Avenir,sans-serif;
+  border-color:rgba(0,0,0,0);
+  border-width: 1px;
+  border-radius: 3px;
 }
 </style>

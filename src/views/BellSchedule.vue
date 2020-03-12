@@ -2,7 +2,11 @@
   <div class="bell-schedule-pg">
     <!-- Place the table in the Bell Schedule page for now -->
     <h3>Schedule: {{getCurrentScheduleName()}}</h3>
-    <p class="gradeMessage">You are viewing the {{strGrade(grade)}} schedule. To change grades, go to Settings. </p>
+    <p class="gradeMessage">You are viewing the</p>
+    <select v-model="grade" @change="changeGrade()" class = "grade-select">
+      <option v-for="grade in allGrades" :key="grade" :value="grade" class = "grade-select-item">{{strGrade(grade)}}</option> 
+    </select>
+    <p class="gradeMessage">schedule.</p>
     <!-- Please replace this! -->
     <div class='bell-schedule-datepicker'>
       <div v-if='canUseLeft()' class="blsch-dp-left" @click="updateShift(-1)">&#8592;</div>
@@ -126,6 +130,35 @@ div.gradeMessage {
   font-weight: bold;
 }
 
+.gradeMessage {
+  font-size: 15px;
+  display: inline;
+  padding: 5px;
+}
+select.grade-select {
+  color: #ffffff;
+  background: rgba(0,0,0,.2);
+  padding: 0px;
+  text-decoration-color: white;
+  font-weight: 600;
+  font-family: Niramit,Avenir,sans-serif;
+  border-color:rgba(0,0,0,0);
+  border-width: 1px;
+  border-radius: 3px;
+} 
+option.grade-select-item  {
+color: rgba(255, 255, 255, 0.6);
+
+  background: var(--button-menu-color, #42b983);
+  padding: 5px;
+  text-decoration-color: white;
+  font-weight: 600;
+  font-family: Niramit,Avenir,sans-serif;
+  border-color:rgba(0,0,0,0);
+  border-width: 1px;
+  border-radius: 3px;
+}
+
 </style>
 
 <script src='https://unpkg.com/vue/dist/vue.js'></script>
@@ -154,6 +187,7 @@ Vue.use(VCalendar, {
 
 @Component({})
 export default class Home extends Vue {
+  private allGrades = allGrades;
   private minDate = new Date(2019, 7, 14);
   private maxDate = new Date(2020, 4, 31);
   private minutes: number = 0;
@@ -334,7 +368,9 @@ export default class Home extends Vue {
   }
 
   public changeGrade(grade: number) {
-    this.updateOptionBL('grade', grade);
+    this.updateOptionBL('grade', this.grade);
+
+    this.updateStats();
   }
 
   public mounted() {
