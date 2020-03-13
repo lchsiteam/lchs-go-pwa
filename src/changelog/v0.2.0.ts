@@ -32,5 +32,18 @@ export default {
         { type: 'call-to-action', text: 'Send an E-Mail!', url: 'mailto:team@lciteam.club' },
       ],
     },
+    {
+      id: 8,
+      isPublic: true,
+      isNew: true,
+      title: 'Check out our chrome extension',
+      author: 'Kai Bredemann',
+      tagline: 'Easy access to the daily schedule without the hassle',
+      content: [
+        { type: 'text', text: 'Tired of going to go.lciteam.club? This extension will let you open LCHS Go in a small popout and see the time remaining of the current period at a quick glance. Download it here:' },
+        { type: 'call-to-action', text: 'Get the Extension!', url: 'https://chrome.google.com/webstore/detail/lchs-go/cmmaleejnmjplfcnhojldkiejpndakad' },
+        { type: 'image', url: require('../assets/lchsgo_screencap_meme.png') },
+      ],
+    },
   ],
 };
