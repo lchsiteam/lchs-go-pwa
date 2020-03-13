@@ -60,6 +60,10 @@ export const schoolSpecialDates: any = {
   '6 - 2 - 2020': Schedule.FINALS_TBD,
   '6 - 3 - 2020': Schedule.FINALS_TBD,
 
+  // COVID-19 closures
+  '3 - 13 - 2020': Schedule.NONE,
+  '3 - 16 - 2020': Schedule.NONE,
+
   // month - day - year: schedule (something from the Schedule enum)
 };
 
