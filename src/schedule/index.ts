@@ -64,6 +64,12 @@ export const schoolSpecialDates: any = {
   '3 - 13 - 2020': Schedule.NONE,
   '3 - 16 - 2020': Schedule.NONE,
 
+  // Remove block schedule during the COVID-19 closures
+  '3 - 18 - 2020': Schedule.REGULAR,
+  '3 - 19 - 2020': Schedule.REGULAR,
+  '3 - 25 - 2020': Schedule.REGULAR,
+  '3 - 26 - 2020': Schedule.REGULAR,
+
   // month - day - year: schedule (something from the Schedule enum)
 };
 
