@@ -53,7 +53,6 @@ export const schoolSpecialDates: any = {
   '1 - 24 - 2020': Schedule.ASSEMBLY,
   '2 - 14 - 2020': Schedule.NONE,
   '2 - 17 - 2020': Schedule.NONE,
-  '3 - 27 - 2020': Schedule.ASSEMBLY,
   '4 - 17 - 2020': Schedule.MINIMUM,
   '5 - 25 - 2020': Schedule.NONE,
   '6 - 1 - 2020': Schedule.FINALS_TBD,
