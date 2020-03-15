@@ -41,7 +41,7 @@ export default {
     },
     {
       id: 2,
-      isPublic: true,
+      isPublic: false,
       isNew: false,
       title: 'Chrome extension finally out!',
       author: 'Kai Bredemann',
