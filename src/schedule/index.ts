@@ -57,13 +57,15 @@ export const schoolSpecialDates: any = {
   '6 - 1 - 2020': Schedule.FINALS_TBD,
   '6 - 2 - 2020': Schedule.FINALS_TBD,
   '6 - 3 - 2020': Schedule.FINALS_TBD,
-
+  
   // COVID-19 closures
   '3 - 13 - 2020': Schedule.NONE,
   '3 - 16 - 2020': Schedule.NONE,
   '4 - 3 - 2020': Schedule.NONE,
   '4 - 13 - 2020': Schedule.NONE,
-
+  '5 - 22 - 2020': Schedule.NONE,
+  '5 - 29 - 2020': Schedule.NONE,
+  
   // Remove block schedule during the COVID-19 closures
   '3 - 18 - 2020': Schedule.REGULAR,
   '3 - 19 - 2020': Schedule.REGULAR,
