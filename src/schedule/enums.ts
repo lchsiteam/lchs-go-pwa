@@ -8,6 +8,8 @@ enum Schedule {
   REGULAR,
   BLOCK_ODD,
   BLOCK_EVEN,
+  REVERSE_BLOCK_ODD,
+  MINIMUM_REVERSE_BLOCK_ODD_78,
   SBAC_BLOCK_ODD,
   SBAC_BLOCK_EVEN,
   SBAC_SPECIAL_BLOCK_ODD,
@@ -27,6 +29,7 @@ enum Schedule {
   NONE,
   NOEVENT,
   HSBACKTOSCHOOLNIGHT,
+  WEIRD_ASSEMBLY,
 }
 
 enum Day {
@@ -117,6 +120,12 @@ export function getScheduleName(schedule: Schedule) {
     case Schedule.BLOCK_EVEN:
       return 'block schedule (2, 4, 6)';
       break;
+    case Schedule.REVERSE_BLOCK_ODD:
+      return 'block schedule (5, 3, 1)';
+      break;
+    case Schedule.MINIMUM_REVERSE_BLOCK_ODD_78:
+      return 'reverse minimum block schedule (5, 3)';
+      break;
     case Schedule.SBAC_BLOCK_ODD:
       return 'SBAC block schedule (1, 3, 5)';
       break;
@@ -173,6 +182,8 @@ export function getScheduleName(schedule: Schedule) {
       break;
     case Schedule.HSBACKTOSCHOOLNIGHT:
       return 'High School Back to School Night';
+    case Schedule.WEIRD_ASSEMBLY:
+      return 'Assembly Schedule';
     default:
       return 'error';
       break;

@@ -9,6 +9,7 @@ const defaultConfig = {
     useMilitaryTime: false,
     enableAnimations: true,
     enableThemeAnimations: true,
+    enableRadialGradient: true,
     showExtraPeriods: false,
     colorTheme: 'theme8',
     grade: 9,

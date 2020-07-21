@@ -17,6 +17,50 @@ export const NoEventSchedule: any[] = [
   { start: toTime(0, 0), end: toTime(24, 0), period: Period.EVENTNOPE },
 ];
 
+export const WeirdAssemblySchedule: any[] = [
+  { start: toTime(0, 0), end: toTime(7, 28), period: Period.NONE },
+  { start: toTime(7, 28), end: toTime(8, 15), period: Period.PERIOD_0 },
+  { start: toTime(8, 15), end: toTime(8, 30), period: Period.PERIOD_0_PASSING },
+  { start: toTime(8, 30), end: toTime(9, 0), period: Period.PERIOD_1 },
+  { start: toTime(9, 0), end: toTime(9, 5), period: Period.PERIOD_1_PASSING },
+  { start: toTime(9, 5), end: toTime(10, 15), period: Period.ASSEMBLY },
+  { start: toTime(10, 6), end: toTime(10, 26), period: Period.BREAK },
+  { start: toTime(10, 26), end: toTime(10, 32), period: Period.BREAK_PASSING },
+  { start: toTime(10, 32), end: toTime(11, 17), period: Period.PERIOD_2 },
+  { start: toTime(11, 17), end: toTime(11, 23), period: Period.PERIOD_2_PASSING },
+  { start: toTime(11, 23), end: toTime(12, 8), period: Period.PERIOD_3 },
+  { start: toTime(12, 8), end: toTime(12, 14), period: Period.PERIOD_3_PASSING },
+  { start: toTime(12, 14), end: toTime(12, 59), period: Period.PERIOD_4 },
+  { start: toTime(12, 59), end: toTime(13, 33), period: Period.LUNCH },
+  { start: toTime(13, 33), end: toTime(13, 39), period: Period.LUNCH_PASSING },
+  { start: toTime(13, 39), end: toTime(14, 24), period: Period.PERIOD_5 },
+  { start: toTime(14, 24), end: toTime(14, 30), period: Period.PERIOD_5_PASSING },
+  { start: toTime(14, 30), end: toTime(15, 15), period: Period.PERIOD_6 },
+  { start: toTime(15, 15), end: toTime(24, 0), period: Period.DONE },
+];
+
+export const WeirdAssemblySchedule78: any[] = [
+  { start: toTime(0, 0), end: toTime(7, 28), period: Period.NONE },
+  { start: toTime(7, 28), end: toTime(8, 15), period: Period.PERIOD_0 },
+  { start: toTime(8, 15), end: toTime(8, 30), period: Period.PERIOD_0_PASSING },
+  { start: toTime(8, 30), end: toTime(9, 15), period: Period.PERIOD_1 },
+  { start: toTime(9, 15), end: toTime(9, 21), period: Period.PERIOD_1_PASSING },
+  { start: toTime(9, 21), end: toTime(10, 6), period: Period.PERIOD_6 },
+  { start: toTime(10, 6), end: toTime(10, 26), period: Period.BREAK },
+  { start: toTime(10, 26), end: toTime(10, 32), period: Period.BREAK_PASSING },
+  { start: toTime(10, 32), end: toTime(11, 17), period: Period.PERIOD_2 },
+  { start: toTime(11, 17), end: toTime(11, 23), period: Period.PERIOD_2_PASSING },
+  { start: toTime(11, 23), end: toTime(12, 8), period: Period.PERIOD_3 },
+  { start: toTime(12, 8), end: toTime(12, 42), period: Period.LUNCH },
+  { start: toTime(12, 42), end: toTime(12, 48), period: Period.LUNCH_PASSING },
+  { start: toTime(12, 48), end: toTime(13, 33), period: Period.PERIOD_4 },
+  { start: toTime(13, 33), end: toTime(13, 39), period: Period.PERIOD_4_PASSING },
+  { start: toTime(13, 39), end: toTime(14, 0), period: Period.PERIOD_5 },
+  { start: toTime(14, 0), end: toTime(14, 5), period: Period.PERIOD_5_PASSING },
+  { start: toTime(14, 5), end: toTime(15, 15), period: Period.ASSEMBLY },
+  { start: toTime(15, 15), end: toTime(24, 0), period: Period.DONE },
+];
+
 export const RegularSchedule: any[] = [
   { start: toTime(0, 0), end: toTime(7, 28), period: Period.NONE },
   { start: toTime(7, 28), end: toTime(8, 24), period: Period.PERIOD_0 },
@@ -67,6 +111,33 @@ export const BlockEvenSchedule: any[] = [
   { start: toTime(13, 24), end: toTime(13, 29), period: Period.LUNCH_PASSING },
   { start: toTime(13, 29), end: toTime(15, 13), period: Period.PERIOD_6 },
   { start: toTime(15, 13), end: toTime(24, 0), period: Period.DONE },
+];
+
+// reverse odd block schedules
+export const ReverseBlockOddSchedule: any[] = [
+  { start: toTime(0, 0), end: toTime(7, 28), period: Period.NONE },
+  { start: toTime(7, 28), end: toTime(8, 24), period: Period.PERIOD_0 },
+  { start: toTime(8, 24), end: toTime(8, 30), period: Period.PERIOD_0_PASSING },
+  { start: toTime(8, 30), end: toTime(10, 14), period: Period.PERIOD_5 },
+  { start: toTime(10, 14), end: toTime(10, 24), period: Period.BREAK },
+  { start: toTime(10, 24), end: toTime(10, 29), period: Period.BREAK_PASSING },
+  { start: toTime(10, 29), end: toTime(12, 13), period: Period.PERIOD_3 },
+  { start: toTime(12, 13), end: toTime(12, 19), period: Period.PERIOD_3_PASSING },
+  { start: toTime(12, 19), end: toTime(12, 54), period: Period.STEP_ODD },
+  { start: toTime(12, 54), end: toTime(13, 24), period: Period.LUNCH },
+  { start: toTime(13, 24), end: toTime(13, 29), period: Period.LUNCH_PASSING },
+  { start: toTime(13, 29), end: toTime(15, 13), period: Period.PERIOD_1 },
+  { start: toTime(15, 13), end: toTime(24, 0), period: Period.DONE },
+];
+export const MinimumReverseBlockOddSchedule78: any[] = [
+  { start: toTime(0, 0), end: toTime(7, 28), period: Period.NONE },
+  { start: toTime(7, 28), end: toTime(8, 24), period: Period.PERIOD_0 },
+  { start: toTime(8, 24), end: toTime(8, 30), period: Period.PERIOD_0_PASSING },
+  { start: toTime(8, 30), end: toTime(10, 14), period: Period.PERIOD_5 },
+  { start: toTime(10, 14), end: toTime(10, 24), period: Period.BREAK },
+  { start: toTime(10, 24), end: toTime(10, 29), period: Period.BREAK_PASSING },
+  { start: toTime(10, 29), end: toTime(12, 13), period: Period.PERIOD_3 },
+  { start: toTime(12, 13), end: toTime(24, 0), period: Period.DONE },
 ];
 
 // special sbac 3, 1, 5 block
@@ -477,7 +548,6 @@ export const SummerSchoolSchedule: any[] = [
   { start: toTime(10, 20), end: toTime(13, 0), period: Period.PERIOD_2 },
   { start: toTime(13, 0), end: toTime(24, 0), period: Period.DONE },
 ];
-
 
 export const HSBackToSchoolNight: any[] = [
   { start: toTime(0, 0), end: toTime(17, 45), period: Period.EVENTNOPE },

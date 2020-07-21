@@ -1,7 +1,11 @@
 <template>
   <div class="now">
     <h3>{{getGreeting()}}. Today is {{getCurrentScheduleName()}}. </h3> 
-    <p class="gradeMessage">You are viewing the {{strGrade(grade)}} schedule. To change grades, go to Settings. </p> 
+    <p class="gradeMessage">You are viewing the</p>
+    <select v-model="grade" @change="changeGrade()" class = "grade-select">
+      <option v-for="grade in allGrades" :key="grade" :value="grade" class = "grade-select-item">{{strGrade(grade)}}</option> 
+    </select>
+    <p class="gradeMessage">schedule.</p>
     <div class="grid-fmr">
       <div class="grid-fmr-helper">CURRENT PERIOD</div>
       <div class="grid-fmr-value">
@@ -45,21 +49,23 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
 import { DateTime, Duration } from 'luxon';
-import { printTime, getScheduleFromDay, getPeriod, getUpcomingPeriod, allGrades, plus_days } from '@/schedule';
+import { printTime, getScheduleFromDay, getPeriod, getUpcomingPeriod, allGrades, plusDays } from '@/schedule';
 import { Day, Schedule, Period, getPeriodName, getScheduleName } from '@/schedule/enums';
 import { RegularSchedule, BlockEvenSchedule, BlockOddSchedule } from '@/schedule/schedules';
 import { Changelog } from '../changelog';
 @Component({})
 export default class Now extends Vue {
   public useNextPeriodStartAsEnd = false;    // TODO: Find a better variable name
+  private allGrades = allGrades;
   private minutes: number = 0;
   private currentDateTime: any;
   private schedule: Schedule = Schedule.NONE;
   private grade = allGrades[2];
   private currentPeriod = { start: 0, end: 1440, period: Period.NONE };
   private allLogs: any[] = [];
+
   updateStats() {
-    const currentDate = DateTime.local().setZone('America/Los_Angeles').plus(Duration.fromMillis(plus_days * 86400000));
+    const currentDate = DateTime.local().setZone('America/Los_Angeles').plus(Duration.fromMillis(plusDays * 86400000));
     this.minutes = currentDate.minute + (currentDate.hour * 60);
     this.currentDateTime = currentDate;
     this.grade = this.$store.state.settings.grade;
@@ -67,7 +73,7 @@ export default class Now extends Vue {
     this.currentPeriod = getPeriod(this.minutes, this.schedule, this.grade);
   }
   getUnreadUpdates() {
-    return this.allLogs.filter((entry) => this.$store.state.changelog.readUpdates.indexOf(entry.id) === -1);
+    return this.allLogs.filter((entry) => this.$store.state.changelog.readUpdates.indexOf(entry.id) === -1 && entry.isNew);
   }
   goToChangelog() {
     if (this.$store.state.isExtension) { window.open('/about/changelog', '_blank'); }
@@ -132,13 +138,13 @@ export default class Now extends Vue {
   }
 
   getCurrentTime12() {
-    let end_string = 'AM';
+    let endString = 'AM';
     let hours = Math.floor(this.minutes / 60);
-    let new_hours = (hours % 12 === 0 ? 12 : hours % 12);     // Show 12:00 AM instead of 00:00 AM
+    let newHours = (hours % 12 === 0 ? 12 : hours % 12);     // Show 12:00 AM instead of 00:00 AM
     if (hours >= 12) {
-      end_string = 'PM';
+      endString = 'PM';
     }
-    return `${new_hours + ':' + ('0000' + (this.minutes % 60)).substr(-2)} ${end_string}`;
+    return `${newHours + ':' + ('0000' + (this.minutes % 60)).substr(-2)} ${endString}`;
   }
 
   getCurrentTime() {
@@ -150,13 +156,13 @@ export default class Now extends Vue {
     }
   }
   getCertainTime12(time: number) {
-    let end_string = 'AM';
+    let endString = 'AM';
     let hours = Math.floor(time / 60);
-    let new_hours = (hours % 12 === 0 ? 12 : hours % 12);     // Show 12:00 AM instead of 00:00 AM
+    let newHours = (hours % 12 === 0 ? 12 : hours % 12);     // Show 12:00 AM instead of 00:00 AM
     if (hours >= 12 && hours <= 23) {
-      end_string = 'PM';
+      endString = 'PM';
     }
-    return `${new_hours + ':' + ('0000' + (time % 60)).substr(-2)} ${end_string}`;
+    return `${newHours + ':' + ('0000' + (time % 60)).substr(-2)} ${endString}`;
   }
   getCertainTime24(time: number) {
     return ('0000' + Math.floor(time / 60)).substr(-2) + ':' + ('0000' + (time % 60)).substr(-2);
@@ -175,15 +181,15 @@ export default class Now extends Vue {
   }
 
   getCurrentTimeParts12() {
-    let end_string = 'AM';
+    let endString = 'AM';
     let hours = Math.floor(this.minutes / 60);
-    let new_hours = (hours % 12 === 0 ? 12 : hours % 12);     // Show 12:00 AM instead of 00:00 AM
+    let newHours = (hours % 12 === 0 ? 12 : hours % 12);     // Show 12:00 AM instead of 00:00 AM
     if (hours >= 12) {
-      end_string = 'PM';
+      endString = 'PM';
     }
     return {
-      hr: new_hours,
-      min: `${('0000' + (this.minutes % 60)).substr(-2)} ${end_string}`,
+      hr: newHours,
+      min: `${('0000' + (this.minutes % 60)).substr(-2)} ${endString}`,
     };
   }
 
@@ -202,7 +208,9 @@ export default class Now extends Vue {
   }
 
   changeGrade(grade: number) {
-    this.updateOptionBL('grade', grade);
+    this.updateOptionBL('grade', this.grade);
+
+    this.updateStats();
   }
   mounted() {
     // correct invalid grade settings if any
@@ -298,6 +306,31 @@ a {
   color: rgb(168, 230, 255);
 } 
 .gradeMessage {
-  font-size: 15px; 
+  font-size: 15px;
+  display: inline;
+  padding: 5px;
+}
+select.grade-select {
+  color: #ffffff;
+  background: rgba(0,0,0,.2);
+  padding: 0px;
+  text-decoration-color: white;
+  font-weight: 600;
+  font-family: Niramit,Avenir,sans-serif;
+  border-color:rgba(0,0,0,0);
+  border-width: 1px;
+  border-radius: 3px;
+} 
+option.grade-select-item  {
+color: rgba(255, 255, 255, 0.6);
+
+  background: var(--button-menu-color, #42b983);
+  padding: 5px;
+  text-decoration-color: white;
+  font-weight: 600;
+  font-family: Niramit,Avenir,sans-serif;
+  border-color:rgba(0,0,0,0);
+  border-width: 1px;
+  border-radius: 3px;
 }
 </style>

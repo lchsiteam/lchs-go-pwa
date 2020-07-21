@@ -4,6 +4,7 @@ export default {
     {
       id: 5,
       isPublic: true,
+      isNew: false,
       title: '7/8 Schedules and New Settings',
       author: 'Bryan Wang',
       tagline: 'Not just for high schoolers anymore! ',
@@ -15,6 +16,7 @@ export default {
     {
       id: 4,
       isPublic: true,
+      isNew: false,
       title: 'Special Day Schedules and Background Animations',
       author: 'Ryan King',
       tagline: 'Fading animation option for background!',
@@ -25,6 +27,7 @@ export default {
     {
       id: 3,
       isPublic: false,
+      isNew: false,
       title: 'CRITICAL: Web Apps Won\'t Update On iOS',
       author: 'Kevin Mo',
       tagline: 'Issue: LCHS Go does not update versions of LCHS Go that have been added as home screen apps.',
@@ -38,7 +41,8 @@ export default {
     },
     {
       id: 2,
-      isPublic: true,
+      isPublic: false,
+      isNew: false,
       title: 'Chrome extension finally out!',
       author: 'Kai Bredemann',
       tagline: 'Easy access to the daily schedule without the hassle',
@@ -51,6 +55,7 @@ export default {
     {
       id: 1,
       isPublic: false,
+      isNew: false,
       title: 'Update: Introducing the Settings Page',
       author: 'Kevin Mo',
       tagline: 'The beginning of a new era for customization',
