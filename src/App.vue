@@ -146,7 +146,7 @@ export default class App extends Vue {
 
     // Otherwise, we need to ask the user for permission
     else if (Notification.permission !== 'denied') {
-      Notification.requestPermission().then((permission) =>  {
+      Notification.requestPermission().then((permission) => {
         // If the user accepts, let's create a notification
         if (permission === 'granted') {
           let notification = new Notification('LCHS Go', {
