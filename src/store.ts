@@ -6,7 +6,7 @@ Vue.use(Vuex);
 
 const defaultConfig = {
   settings: {
-    notificationsOn: false,
+    notificationsOn: true,
     notificationSent: false,
     useMilitaryTime: false,
     enableAnimations: true,
