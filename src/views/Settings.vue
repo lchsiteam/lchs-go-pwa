@@ -176,7 +176,7 @@ export default class Home extends Vue {
     }
 
     else if (Notification.permission === 'denied') {
-      alert('You have blocked notifications for this website, you must click on the "i" next to your address bar and set notifications to "allow"');
+      alert('You have blocked notifications for this website. In order to enable popup notifications, you must click on the "i" next to your address bar and set notifications to "allow"');
     }
 
     // Let's check whether notification permissions have already been granted
@@ -212,7 +212,7 @@ export default class Home extends Vue {
           temp.updateOptionBL('notificationsOn', true);
         }
         else {
-          alert('You must click allow, in order to enable desktop notifications. \n(If you don\'t want notifications, you can disable them in settings to avoid this popup)');
+          alert('In order to enable popup notifications, you must click allow. \n(If you don\'t want notifications, you can disable them in settings to avoid this popup)');
           temp.notificationsStatus = false;
         }
       });
