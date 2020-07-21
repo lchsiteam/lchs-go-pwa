@@ -63,7 +63,7 @@ export default class Now extends Vue {
   private grade = allGrades[2];
   private currentPeriod = { start: 0, end: 1440, period: Period.NONE };
   private allLogs: any[] = [];
-  //private notificationsStatus = this.$store.state.settings.notificationsOn;
+  // private notificationsStatus = this.$store.state.settings.notificationsOn;
 
   updateStats() {
     const currentDate = DateTime.local().setZone('America/Los_Angeles').plus(Duration.fromMillis(plusDays * 86400000));
@@ -279,7 +279,7 @@ export default class Now extends Vue {
         }
       });
 
-    // At last, if the user has denied notifications, and you 
+    // At last, if the user has denied notifications, and you
     // want to be respectful there is no need to bother them any more.
     }
   }*/
@@ -306,8 +306,8 @@ export default class Now extends Vue {
 
     setInterval(this.updateStats, 5000);
     this.updateStats();
-    //setInterval(this.sendNotifications, 5000);
-    //this.sendNotifications();
+    // setInterval(this.sendNotifications, 5000);
+    // this.sendNotifications();
     Changelog.forEach((version) => {
       this.allLogs = this.allLogs.concat(version.entries);
     });

@@ -138,7 +138,7 @@ export default class Home extends Vue {
   grade = allGrades[2];
   allGrades = allGrades;
   allThemes: any[] = [];
-  
+
   strGrade(grade: any){
     if (grade < 13) {
       grade = String(grade);
@@ -151,9 +151,9 @@ export default class Home extends Vue {
 
   getNotifStatus() {
     // A way to refrence this boolean expression as a single variable
-    //if (!(Notification.permission === "granted") && (this.$store.state.settings.notificationsOn)) {this.notifyMe()}
+    // if (!(Notification.permission === "granted") && (this.$store.state.settings.notificationsOn)) {this.notifyMe()}
     console.log('test');
-    return (Notification.permission === "granted") && (this.$store.state.settings.notificationsOn)
+    return (Notification.permission === 'granted') && (this.$store.state.settings.notificationsOn);
   }
 
   updateOptionBL(name: string, value: any): void {
@@ -167,57 +167,57 @@ export default class Home extends Vue {
   updateGrade() {
     this.updateOptionBL('grade', this.grade);
   }
-  
+
   notifyMe() {
     // Let's check if the browser supports notifications
-    var temp = this;
-    if (!("Notification" in window)) {
-      alert("This browser does not support desktop notification");
+    let temp = this;
+    if (!('Notification' in window)) {
+      alert('This browser does not support desktop notification');
     }
 
-    else if (Notification.permission === "denied") {
+    else if (Notification.permission === 'denied') {
       alert('You have blocked notifications for this website, you must click on the "i" next to your address bar and set notifications to "allow"');
     }
 
     // Let's check whether notification permissions have already been granted
-    else if (Notification.permission === "granted") {
+    else if (Notification.permission === 'granted') {
       // If it's okay let's create a notification
-      var notification = new Notification("LCHS Go", {
-        body: "Notifications are now on!",
-        badge: "https://go.lciteam.club/favicon.ico",
-        icon: "https://go.lciteam.club/favicon.ico",
+      let notification = new Notification('LCHS Go', {
+        body: 'Notifications are now on!',
+        badge: 'https://go.lciteam.club/favicon.ico',
+        icon: 'https://go.lciteam.club/favicon.ico',
         vibrate: [200, 100, 200],
         silent: false,
-        tag: String(this.$store.state.settings.numberOfClicks)
+        tag: String(this.$store.state.settings.numberOfClicks),
       });
-      temp.notificationsStatus = true
-      temp.updateOptionBL('notificationsOn', true)
+      temp.notificationsStatus = true;
+      temp.updateOptionBL('notificationsOn', true);
     }
 
     // Otherwise, we need to ask the user for permission
     else {
-      Notification.requestPermission().then(function (permission) {
+      Notification.requestPermission().then((permission) =>  {
         // If the user accepts, let's create a notification
-        if (permission === "granted") {
-          var notification = new Notification("LCHS Go", {
-            body: "Notifications are now on!",
-            badge: "https://go.lciteam.club/favicon.ico",
-            icon: "https://go.lciteam.club/favicon.ico",
+        if (permission === 'granted') {
+          let notification = new Notification('LCHS Go', {
+            body: 'Notifications are now on!',
+            badge: 'https://go.lciteam.club/favicon.ico',
+            icon: 'https://go.lciteam.club/favicon.ico',
             vibrate: [200, 100, 200],
             silent: false,
-            tag: String(temp.$store.state.settings.numberOfClicks)
+            tag: String(temp.$store.state.settings.numberOfClicks),
           });
-          temp.notificationsStatus = true
-          // console.log('test')
-          temp.updateOptionBL('notificationsOn', true)
+          temp.notificationsStatus = true;
+          // console.log('test');
+          temp.updateOptionBL('notificationsOn', true);
         }
         else {
-          alert("You must click allow, in order to enable desktop notifications. \n(If you don't want notifications, you can disable them in settings to avoid this popup)");
+          alert('You must click allow, in order to enable desktop notifications. \n(If you don\'t want notifications, you can disable them in settings to avoid this popup)');
           temp.notificationsStatus = false;
         }
       });
 
-    // At last, if the user has denied notifications, and you 
+    // At last, if the user has denied notifications, and you
     // want to be respectful there is no need to bother them any more.
     }
   }
