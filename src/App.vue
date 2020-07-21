@@ -161,7 +161,7 @@ export default class App extends Vue {
           temp.updateOptionBL('notificationsOn', true)
         }
         else {
-          alert("You must click allow, in order to enable desktop notifications. \n(If you don't want notifications, you can disable them in settings to avoid this popup)");
+          alert("In order to enable popup notifications, you must click allow. \n(If you don't want notifications, you can disable them in settings to avoid this popup)");
           temp.notificationsStatus = false
         }
       });
