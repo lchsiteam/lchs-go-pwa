@@ -63,7 +63,6 @@ export default class Now extends Vue {
   private grade = allGrades[2];
   private currentPeriod = { start: 0, end: 1440, period: Period.NONE };
   private allLogs: any[] = [];
-  private notificationSent = false;
   private notificationsStatus = this.$store.state.settings.notificationsOn;
 
   updateStats() {
@@ -76,14 +75,15 @@ export default class Now extends Vue {
   }
 
   sendNotifications() {
-    if ((this.minutes === this.currentPeriod.start) && (!this.notificationSent)) {
-      this.notificationSent = true;
+    console.log("test");
+    if ((this.minutes === this.currentPeriod.start) && (!this.$store.state.settings.notificationSent)) {
+      this.$store.state.settings.notificationSent = true;
       // console.log("send");
       this.createNotification("Period over, your next class will start soon!")
     }
     else {
       if (this.minutes !== this.currentPeriod.start) {
-        this.notificationSent = false;
+        this.$store.state.settings.notificationSent = false;
       }
     }
     if (!(Notification.permission === "granted") && (this.$store.state.settings.notificationsOn)) {
