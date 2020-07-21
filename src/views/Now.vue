@@ -63,6 +63,8 @@ export default class Now extends Vue {
   private grade = allGrades[2];
   private currentPeriod = { start: 0, end: 1440, period: Period.NONE };
   private allLogs: any[] = [];
+  private notificationSent = false;
+  private notificationsStatus = this.$store.state.settings.notificationsOn;
 
   updateStats() {
     const currentDate = DateTime.local().setZone('America/Los_Angeles').plus(Duration.fromMillis(plusDays * 86400000));
@@ -72,6 +74,37 @@ export default class Now extends Vue {
     this.schedule = getScheduleFromDay(currentDate.month, currentDate.day, currentDate.year, currentDate.weekday, this.grade);
     this.currentPeriod = getPeriod(this.minutes, this.schedule, this.grade);
   }
+
+  sendNotifications() {
+    if ((this.minutes === this.currentPeriod.start) && (!this.notificationSent)) {
+      this.notificationSent = true;
+      // console.log("send");
+      this.createNotification("Period over, your next class will start soon!")
+    }
+    else {
+      if (this.minutes !== this.currentPeriod.start) {
+        this.notificationSent = false;
+      }
+    }
+    if (!(Notification.permission === "granted") && (this.$store.state.settings.notificationsOn)) {
+      this.notifyMe();
+    }
+  }
+
+  createNotification(message: String) {
+    //console.log(this.$store.state.settings.notificationsOn);
+    if ((Notification.permission === "granted") && (this.$store.state.settings.notificationsOn)) {
+      // If it's okay let's create a notification
+      var tempNotif = new Notification("LCHS Go", {
+        body: String(message),
+        badge: "https://go.lciteam.club/favicon.ico",
+        icon: "https://go.lciteam.club/favicon.ico",
+        vibrate: [200, 100, 200],
+        silent: false
+      });
+    }
+  }
+
   getUnreadUpdates() {
     return this.allLogs.filter((entry) => this.$store.state.changelog.readUpdates.indexOf(entry.id) === -1 && entry.isNew);
   }
@@ -155,6 +188,7 @@ export default class Now extends Vue {
       return this.getCurrentTime24();
     }
   }
+
   getCertainTime12(time: number) {
     let endString = 'AM';
     let hours = Math.floor(time / 60);
@@ -203,6 +237,54 @@ export default class Now extends Vue {
     }
   }
 
+  notifyMe() {
+    // Let's check if the browser supports notifications
+    var temp = this;
+    if (!("Notification" in window)) {
+      alert("This browser does not support desktop notification");
+    }
+
+    // Let's check whether notification permissions have already been granted
+    else if (Notification.permission === "granted") {
+      // If it's okay let's create a notification
+      var notification = new Notification("LCHS Go", {
+        body: "Notifications are now on!",
+        badge: "https://go.lciteam.club/favicon.ico",
+        icon: "https://go.lciteam.club/favicon.ico",
+        vibrate: [200, 100, 200],
+        silent: false
+      });
+      temp.notificationsStatus = true
+      temp.updateOptionBL('notificationsOn', true)
+    }
+
+    // Otherwise, we need to ask the user for permission
+    else if (Notification.permission !== "denied") {
+      Notification.requestPermission().then(function (permission) {
+        // If the user accepts, let's create a notification
+        if (permission === "granted") {
+          var notification = new Notification("LCHS Go", {
+            body: "Notifications are now on!",
+            badge: "https://go.lciteam.club/favicon.ico",
+            icon: "https://go.lciteam.club/favicon.ico",
+            vibrate: [200, 100, 200],
+            silent: false
+          });
+          temp.notificationsStatus = true
+          console.log('tst')
+          temp.updateOptionBL('notificationsOn', true)
+        }
+        else {
+          alert("You must click allow, in order to enable desktop notifications. \n(If you don't want notifications, you can disable them in settings to avoid this popup)");
+          temp.notificationsStatus = false
+        }
+      });
+
+    // At last, if the user has denied notifications, and you 
+    // want to be respectful there is no need to bother them any more.
+    }
+  }
+
   updateOptionBL(name: string, value: any): void {
     this.$store.commit('UPDATE_SETTING', { name, value });
   }
@@ -225,6 +307,8 @@ export default class Now extends Vue {
 
     setInterval(this.updateStats, 5000);
     this.updateStats();
+    setInterval(this.sendNotifications, 5000);
+    this.sendNotifications();
     Changelog.forEach((version) => {
       this.allLogs = this.allLogs.concat(version.entries);
     });

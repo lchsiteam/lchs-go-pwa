@@ -13,7 +13,21 @@
             <option v-for="grade in allGrades" :key="grade" :value="grade" class = "grade-select-item">{{strGrade(grade)}}</option> 
           </select>
         </div> 
-      </div> 
+      </div>
+      <div class="settings-row">
+        <div class="sr-head">
+          <b class="sr-title">Desktop Notifications</b>
+          <span class="sr-desc">Enable or disable desktop notifications</span>
+        </div>
+        <div class="sr-option">
+          <div class="ex-selector">
+            <div class="ex-selector-option" @click="notifyMe();"
+              :class="{selected: this.$store.state.settings.notificationsOn}">Enabled</div>
+            <div class="ex-selector-option" @click="updateOptionBL('notificationsOn', false)"
+              :class="{selected: !(this.$store.state.settings.notificationsOn)}">Disabled</div>
+          </div>
+        </div>
+      </div>
       <div class="settings-row">
         <div class="sr-head">
           <b class="sr-title">Time Display</b>
@@ -120,10 +134,11 @@ import { allGrades } from '@/schedule';
 export default class Home extends Vue {
   public appVersion = `v${process.env.VUE_APP_VERSION} (b${process.env.VUE_APP_COMMIT_COUNT.trim()}#${process.env.VUE_APP_COMMIT_SHASH.trim()})`;
   colorThemeId = this.$store.state.settings.colorTheme;
+  notificationsStatus = this.$store.state.settings.notificationsOn;
   grade = allGrades[2];
   allGrades = allGrades;
   allThemes: any[] = [];
-
+  
   strGrade(grade: any){
     if (grade < 13) {
       grade = String(grade);
@@ -132,6 +147,13 @@ export default class Home extends Vue {
       grade = 'Event';
     }
     return grade;
+  }
+
+  getNotifStatus() {
+    // A way to refrence this boolean expression as a single variable
+    //if (!(Notification.permission === "granted") && (this.$store.state.settings.notificationsOn)) {this.notifyMe()}
+    console.log('test');
+    return (Notification.permission === "granted") && (this.$store.state.settings.notificationsOn)
   }
 
   updateOptionBL(name: string, value: any): void {
@@ -144,6 +166,54 @@ export default class Home extends Vue {
 
   updateGrade() {
     this.updateOptionBL('grade', this.grade);
+  }
+  
+  notifyMe() {
+    // Let's check if the browser supports notifications
+    var temp = this;
+    if (!("Notification" in window)) {
+      alert("This browser does not support desktop notification");
+    }
+
+    // Let's check whether notification permissions have already been granted
+    else if (Notification.permission === "granted") {
+      // If it's okay let's create a notification
+      var notification = new Notification("LCHS Go", {
+        body: "Notifications are now on!",
+        badge: "https://go.lciteam.club/favicon.ico",
+        icon: "https://go.lciteam.club/favicon.ico",
+        vibrate: [200, 100, 200],
+        silent: false
+      });
+      temp.notificationsStatus = true
+      temp.updateOptionBL('notificationsOn', true)
+    }
+
+    // Otherwise, we need to ask the user for permission
+    else if (Notification.permission !== "denied") {
+      Notification.requestPermission().then(function (permission) {
+        // If the user accepts, let's create a notification
+        if (permission === "granted") {
+          var notification = new Notification("LCHS Go", {
+            body: "Notifications are now on!",
+            badge: "https://go.lciteam.club/favicon.ico",
+            icon: "https://go.lciteam.club/favicon.ico",
+            vibrate: [200, 100, 200],
+            silent: false
+          });
+          temp.notificationsStatus = true
+          // console.log('test')
+          temp.updateOptionBL('notificationsOn', true)
+        }
+        else {
+          alert("You must click allow, in order to enable desktop notifications. \n(If you don't want notifications, you can disable them in settings to avoid this popup)");
+          temp.notificationsStatus = false;
+        }
+      });
+
+    // At last, if the user has denied notifications, and you 
+    // want to be respectful there is no need to bother them any more.
+    }
   }
 
   mounted() {
