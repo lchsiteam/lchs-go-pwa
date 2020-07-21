@@ -22,9 +22,9 @@
         <div class="sr-option">
           <div class="ex-selector">
             <div class="ex-selector-option" @click="notifyMe();"
-              :class="{selected: this.$store.state.settings.notificationsOn}">Enabled</div>
+              :class="{selected: this.$store.state.settings.notificationsOn}">Enable</div>
             <div class="ex-selector-option" @click="updateOptionBL('notificationsOn', false)"
-              :class="{selected: !(this.$store.state.settings.notificationsOn)}">Disabled</div>
+              :class="{selected: !(this.$store.state.settings.notificationsOn)}">Disable</div>
           </div>
         </div>
       </div>
@@ -187,7 +187,8 @@ export default class Home extends Vue {
         badge: "https://go.lciteam.club/favicon.ico",
         icon: "https://go.lciteam.club/favicon.ico",
         vibrate: [200, 100, 200],
-        silent: false
+        silent: false,
+        tag: String(this.$store.state.settings.numberOfClicks)
       });
       temp.notificationsStatus = true
       temp.updateOptionBL('notificationsOn', true)
@@ -203,7 +204,8 @@ export default class Home extends Vue {
             badge: "https://go.lciteam.club/favicon.ico",
             icon: "https://go.lciteam.club/favicon.ico",
             vibrate: [200, 100, 200],
-            silent: false
+            silent: false,
+            tag: String(temp.$store.state.settings.numberOfClicks)
           });
           temp.notificationsStatus = true
           // console.log('test')
@@ -220,6 +222,11 @@ export default class Home extends Vue {
     }
   }
 
+  updateStats() {
+    console.log(this.$store.state.settings.numberOfClicks);
+    this.$store.state.settings.numberOfClicks = this.$store.state.settings.numberOfClicks + 1;
+  }
+
   mounted() {
     // this part is to prevent invalid grade values
     this.grade = this.$store.state.settings.grade;
@@ -229,6 +236,9 @@ export default class Home extends Vue {
 
       this.updateGrade();
     }
+
+    setInterval(this.updateStats, 1000);
+    this.updateStats();
 
     this.allThemes = Themes;
   }
