@@ -14,7 +14,7 @@
     -->
     <router-view></router-view>
     <p>Have feature suggestions? Send us a quick email at <a class="a" href="mailto:team@lciteam.club">team@lciteam.club</a>.</p>
-    <p>We have a Chrome Extention, too! Install it <a class="a" href="https://chrome.google.com/webstore/detail/lchs-go/cmmaleejnmjplfcnhojldkiejpndakad" target="_blank">here</a>.</p>
+    <div class="extention-message">We have a Chrome Extention, too! Install it <a class="a" href="https://chrome.google.com/webstore/detail/lchs-go/cmmaleejnmjplfcnhojldkiejpndakad" target="_blank">here</a>.</div>
   </div>
 </template>
 
@@ -78,5 +78,8 @@ export default Vue.extend({
 
 a.a {
   color: rgb(168, 230, 255);
+}
+.extention-message {
+  font-size:20px;
 }
 </style>
