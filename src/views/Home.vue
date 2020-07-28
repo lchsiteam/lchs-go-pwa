@@ -14,6 +14,7 @@
     -->
     <router-view></router-view>
     <p>Have feature suggestions? Send us a quick email at <a class="a" href="mailto:team@lciteam.club">team@lciteam.club</a>.</p>
+    <p>We have a Chrome Extention, too! Install it <a class="a" href="https://chrome.google.com/webstore/detail/lchs-go/cmmaleejnmjplfcnhojldkiejpndakad" target="_blank">here</a>.</p>
   </div>
 </template>
 
