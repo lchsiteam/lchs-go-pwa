@@ -140,13 +140,21 @@ export default class Home extends Vue {
   allThemes: any[] = [];
 
   strGrade(grade: any){
-    if (grade < 13) {
-      grade = String(grade);
-      grade = grade.concat('th Grade');
-    } else if (grade === 13) {
-      grade = 'Event';
-    }
-    return grade;
+  if (grade < 13 && grade > 3) {
+    grade = String(grade);
+    grade = grade.concat('th Grade');
+  } else if (grade === 0) {
+    grade = 'K/Pre K';
+  } else if (grade === 1) {
+    grade = '1st Grade';
+  } else if (grade === 2) {
+    grade = '2nd Grade';
+  } else if (grade === 3) {
+    grade = '3rd Grade';
+  } else if (grade === 13) {
+    grade = 'Event';
+  }
+  return grade;
   }
 
   getNotifStatus() {
