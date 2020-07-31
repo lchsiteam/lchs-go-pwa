@@ -2,7 +2,35 @@ export default {
   title: 'v0.2.0',
   entries: [
     {
+      id: 8,
+      isPublic: true,
+      isNew: true,
+      title: 'Check out our chrome extension',
+      author: 'Kai Bredemann',
+      tagline: 'Easy access to the daily schedule without the hassle',
+      content: [
+        { type: 'text', text: 'Tired of going to go.lciteam.club? This extension will let you open LCHS Go in a small popout and see the time remaining of the current period at a quick glance. Download it here:' },
+        { type: 'call-to-action', text: 'Get the Extension!', url: 'https://chrome.google.com/webstore/detail/lchs-go/cmmaleejnmjplfcnhojldkiejpndakad' },
+        { type: 'image', url: require('../assets/lchsgo_screencap_meme.png') },
+      ],
+    },
+    {
+      id: 7,
+      isNew: true,
+      isPublic: true,
+      title: 'New Radial Themes',
+      author: 'Ryan King',
+      tagline: 'LCHS Go now has a fresh new theme option!' ,
+      content: [
+        { type: 'text', text: 'LCHS Go now has a new theme option that we\'ve dubbed "radial gradient"!'},
+        { type: 'text', text: 'This new option works with any theme from our selection and can be activated by going to settings and toggling "Gradient Type" to "Radial".' },
+        { type: 'text', text: 'As always, let us know what you think of this new theme option by emailing us.'},
+        { type: 'call-to-action', text: 'Send an E-Mail!', url: 'mailto:team@lciteam.club' },
+      ],
+    },
+    {
       id: 6,
+      isNew: false,
       isPublic: true,
       title: 'IMPORTANT NOTICE! Also New Aesthetics and Themes',
       author: 'Ryan King',
@@ -17,6 +45,5 @@ export default {
         { type: 'text', text: 'In addition, there is a new "Dynamic Theme", that will change color, depending on the time of day, it can be found in the theme select menu, under settings, like all the other themes.'},
       ],
     },
-
   ],
 };
