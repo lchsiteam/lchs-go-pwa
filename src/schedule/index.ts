@@ -37,74 +37,18 @@ const summerSchool: [MDYDate, MDYDate] = [new MDYDate(6, 15, 2020), new MDYDate(
 const blockSwitch: [MDYDate, MDYDate] = [new MDYDate(11, 11, 2019), new MDYDate(2, 17, 2020)];
 
 export const schoolSpecialDates: any = {
-<<<<<<< HEAD
   '8 - 19 - 2020': Schedule.REGULAR,
   '8 - 20 - 2020': Schedule.REGULAR,
   '8 - 26 - 2020': Schedule.REGULAR,
   '8 - 27 - 2020': Schedule.REGULAR,
-=======
-  '8 - 21 - 2019': Schedule.REGULAR,
-  '8 - 22 - 2019': Schedule.REGULAR,
-  '8 - 23 - 2019': Schedule.ASSEMBLY,
-  '9 - 2 - 2019': Schedule.NONE,
-  '10 - 22 - 2019': Schedule.BLOCK_ODD,
-  '10 - 23 - 2019': Schedule.WEIRD_ASSEMBLY,
-  '11 - 11 - 2019': Schedule.NONE,
-  '12 - 11 - 2019': Schedule.REGULAR,
-  '12 - 12 - 2019': Schedule.REGULAR,
-  '12 - 17 - 2019': Schedule.FINALS_26,
-  '12 - 18 - 2019': Schedule.FINALS_15,
-  '12 - 19 - 2019': Schedule.FINALS_34,
-  '1 - 20 - 2020': Schedule.NONE,
-  '1 - 24 - 2020': Schedule.ASSEMBLY,
-  '2 - 14 - 2020': Schedule.NONE,
-  '2 - 17 - 2020': Schedule.NONE,
-  '5 - 25 - 2020': Schedule.NONE,
-  '6 - 1 - 2020': Schedule.REGULAR,
-  // '6 - 2 - 2020': Schedule.FINALS_TBD,
-  // '6 - 3 - 2020': Schedule.FINALS_TBD,
 
-  // COVID-19 closures
-  '3 - 13 - 2020': Schedule.NONE,
-  '3 - 16 - 2020': Schedule.NONE,
-  '4 - 3 - 2020': Schedule.NONE,
-  '4 - 13 - 2020': Schedule.NONE,
-  '5 - 22 - 2020': Schedule.NONE,
-  '5 - 29 - 2020': Schedule.NONE,
-
-  // Remove block schedule during the COVID-19 closures
-  '3 - 18 - 2020': Schedule.REGULAR,
-  '3 - 19 - 2020': Schedule.REGULAR,
-  '3 - 25 - 2020': Schedule.REGULAR,
-  '3 - 26 - 2020': Schedule.REGULAR,
-  '4 - 1 - 2020': Schedule.REGULAR,
-  '4 - 2 - 2020': Schedule.REGULAR,
-  '4 - 15 - 2020': Schedule.REGULAR,
-  '4 - 16 - 2020': Schedule.REGULAR,
-  '4 - 22 - 2020': Schedule.REGULAR,
-  '4 - 23 - 2020': Schedule.REGULAR,
-  '4 - 29 - 2020': Schedule.REGULAR,
-  '4 - 30 - 2020': Schedule.REGULAR,
-  '5 - 6 - 2020': Schedule.REGULAR,
-  '5 - 7 - 2020': Schedule.REGULAR,
-  '5 - 13 - 2020': Schedule.REGULAR,
-  '5 - 14 - 2020': Schedule.REGULAR,
-  '5 - 20 - 2020': Schedule.REGULAR,
-  '5 - 21 - 2020': Schedule.REGULAR,
-  '5 - 27 - 2020': Schedule.REGULAR,
-  '5 - 28 - 2020': Schedule.REGULAR,
->>>>>>> d80b17d9660d34d1ebc74a4120d0aff979df7035
   // month - day - year: schedule (something from the Schedule enum)
 };
 
 export const msSpecialDates: any = {
-  '11 - 22 - 2019': Schedule.MINIMUM,
-  '2 - 13 - 2020': Schedule.MINIMUM_REVERSE_BLOCK_ODD_78,
 };
 
 export const hsSpecialDates: any = {
-  '10 - 4 - 2019': Schedule.ASSEMBLY,
-  '2 - 13 - 2020': Schedule.REVERSE_BLOCK_ODD,
 };
 
 export const gradeSpecialDates: any = {
