@@ -21,6 +21,11 @@
 <script lang="ts">
 import Vue from 'vue';
 export default Vue.extend({
+  // methods: {
+  //   supportsExtension() {
+  //     return Boolean(window.chrome) && !navigator.userAgent.match(/(iPad)|(iPhone)|(iPod)|(android)|(webOS)|(Blackberry)/i);
+  //   },
+  // },
   beforeRouteEnter(to, from, next) {
     next((vm) => {
       let isExtension = from.query.utm_source === 'extension' || to.query.utm_source === 'extension';
