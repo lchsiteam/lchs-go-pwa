@@ -18,7 +18,6 @@
     "prefer-const": false,
     "one-line": false,
     "max-line-length": false,
-    "no-console": false,
     "no-shadowed-variable": false
   }
 }
