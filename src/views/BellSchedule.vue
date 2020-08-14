@@ -354,6 +354,7 @@ export default class Home extends Vue {
         Period.GROUP_B,
         Period.RECESS,
         Period.RECESS_PE,
+        Period.PREP,
       ].indexOf(period) !== -1 || this.$store.state.settings.showExtraPeriods;
     });
   }
