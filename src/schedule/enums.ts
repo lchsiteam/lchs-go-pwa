@@ -8,6 +8,8 @@ enum Schedule {
   REGULAR,
   BLOCK_ODD,
   BLOCK_EVEN,
+  REVERSE_BLOCK_ODD,
+  MINIMUM_REVERSE_BLOCK_ODD_78,
   SBAC_BLOCK_ODD,
   SBAC_BLOCK_EVEN,
   SBAC_SPECIAL_BLOCK_ODD,
@@ -27,6 +29,7 @@ enum Schedule {
   NONE,
   NOEVENT,
   HSBACKTOSCHOOLNIGHT,
+  WEIRD_ASSEMBLY,
 }
 
 enum Day {
@@ -70,6 +73,17 @@ enum Period {
   TBD,
   NONE,
   EVENTNOPE,
+  OFFICE,
+  SMALL_GROUP,
+  // Elementary Periods
+  ARRIVAL,
+  ARRIVAL_A,
+  ARRIVAL_B,
+  GROUP_A,
+  GROUP_B,
+  RECESS,
+  RECESS_PE,
+  PREP,
   DONE,
 }
 
@@ -100,9 +114,22 @@ export function getPeriodName(period: Period) {
   else if (period === Period.PERIOD_6) { return 'Period 6'; }
   else if (period === Period.PERIOD_6_PASSING) { return 'Passing after Period 6'; }
   else if (period === Period.TBD) { return 'To Be Determined'; }
+  else if (period === Period.EVENTNOPE) { return 'No Event'; }
+  else if (period === Period.OFFICE) { return 'Office Hours / Prep'; }
+  else if (period === Period.SMALL_GROUP) { return 'Small Group Experience'; }
+
+  // Elementary School Periods
+  else if (period === Period.ARRIVAL) { return 'Arrival'; }
+  else if (period === Period.ARRIVAL_A) { return 'Group A Arrival'; }
+  else if (period === Period.ARRIVAL_B) { return 'Group B Arrival'; }
+  else if (period === Period.GROUP_A) { return 'Group A'; }
+  else if (period === Period.GROUP_B) { return 'Group B'; }
+  else if (period === Period.RECESS) { return 'Recess'; }
+  else if (period === Period.RECESS_PE) { return 'Recess or PE'; }
+  else if (period === Period.PREP) { return 'Teacher Prep'; }
+
   else if (period === Period.NONE) { return 'No School'; }
   else if (period === Period.DONE) { return 'No School'; }
-  else if (period === Period.EVENTNOPE) { return 'No Event'; }
   else { return '????'; }
 }
 
@@ -116,6 +143,12 @@ export function getScheduleName(schedule: Schedule) {
       break;
     case Schedule.BLOCK_EVEN:
       return 'block schedule (2, 4, 6)';
+      break;
+    case Schedule.REVERSE_BLOCK_ODD:
+      return 'block schedule (5, 3, 1)';
+      break;
+    case Schedule.MINIMUM_REVERSE_BLOCK_ODD_78:
+      return 'reverse minimum block schedule (5, 3)';
       break;
     case Schedule.SBAC_BLOCK_ODD:
       return 'SBAC block schedule (1, 3, 5)';
@@ -173,6 +206,8 @@ export function getScheduleName(schedule: Schedule) {
       break;
     case Schedule.HSBACKTOSCHOOLNIGHT:
       return 'High School Back to School Night';
+    case Schedule.WEIRD_ASSEMBLY:
+      return 'Assembly Schedule';
     default:
       return 'error';
       break;

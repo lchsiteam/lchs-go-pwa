@@ -1,7 +1,11 @@
 <template>
   <div class="now">
     <h3>{{getGreeting()}}. Today is {{getCurrentScheduleName()}}. </h3> 
-    <p class="gradeMessage">You are viewing the {{strGrade(grade)}} schedule. To change grades, go to Settings. </p> 
+    <p class="gradeMessage">You are viewing the</p>
+    <select v-model="grade" @change="changeGrade()" class = "grade-select">
+      <option v-for="grade in allGrades" :key="grade" :value="grade" class = "grade-select-item">{{strGrade(grade)}}</option> 
+    </select>
+    <p class="gradeMessage">schedule.</p>
     <div class="grid-fmr">
       <div class="grid-fmr-helper">CURRENT PERIOD</div>
       <div class="grid-fmr-value">
@@ -52,12 +56,15 @@ import { Changelog } from '../changelog';
 @Component({})
 export default class Now extends Vue {
   public useNextPeriodStartAsEnd = false;    // TODO: Find a better variable name
+  private allGrades = allGrades;
   private minutes: number = 0;
   private currentDateTime: any;
   private schedule: Schedule = Schedule.NONE;
   private grade = allGrades[2];
   private currentPeriod = { start: 0, end: 1440, period: Period.NONE };
   private allLogs: any[] = [];
+  // private notificationsStatus = this.$store.state.settings.notificationsOn;
+
   updateStats() {
     const currentDate = DateTime.local().setZone('America/Los_Angeles').plus(Duration.fromMillis(plusDays * 86400000));
     this.minutes = currentDate.minute + (currentDate.hour * 60);
@@ -66,8 +73,40 @@ export default class Now extends Vue {
     this.schedule = getScheduleFromDay(currentDate.month, currentDate.day, currentDate.year, currentDate.weekday, this.grade);
     this.currentPeriod = getPeriod(this.minutes, this.schedule, this.grade);
   }
+  /*
+  sendNotifications() {
+    console.log(this.$store.state.settings.notificationSent);
+    if ((this.minutes === this.currentPeriod.start) && (!this.$store.state.settings.notificationSent)) {
+      this.$store.state.settings.notificationSent = true;
+      // console.log("send");
+      this.createNotification("Period over, your next class will start soon!")
+    }
+    else {
+      if (this.minutes !== this.currentPeriod.start) {
+        this.$store.state.settings.notificationSent = false;
+      }
+    }
+    if (!(Notification.permission === "granted") && (this.$store.state.settings.notificationsOn)) {
+      this.notifyMe();
+    }
+  }*/
+
+  /*createNotification(message: String) {
+    //console.log(this.$store.state.settings.notificationsOn);
+    if ((Notification.permission === "granted") && (this.$store.state.settings.notificationsOn)) {
+      // If it's okay let's create a notification
+      var tempNotif = new Notification("LCHS Go", {
+        body: String(message),
+        badge: "https://go.lciteam.club/favicon.ico",
+        icon: "https://go.lciteam.club/favicon.ico",
+        vibrate: [200, 100, 200],
+        silent: false
+      });
+    }
+  }*/
+
   getUnreadUpdates() {
-    return this.allLogs.filter((entry) => this.$store.state.changelog.readUpdates.indexOf(entry.id) === -1);
+    return this.allLogs.filter((entry) => this.$store.state.changelog.readUpdates.indexOf(entry.id) === -1 && entry.isNew);
   }
   goToChangelog() {
     if (this.$store.state.isExtension) { window.open('/about/changelog', '_blank'); }
@@ -77,13 +116,21 @@ export default class Now extends Vue {
     return this.getUnreadUpdates().length > 0;
   }
   strGrade(grade: any){
-    if (grade < 13) {
+  if (grade < 13 && grade > 3) {
       grade = String(grade);
       grade = grade.concat('th Grade');
+    } else if (grade === 0) {
+      grade = 'K/Pre K';
+    } else if (grade === 1) {
+      grade = '1st Grade';
+    } else if (grade === 2) {
+      grade = '2nd Grade';
+    } else if (grade === 3) {
+      grade = '3rd Grade';
     } else if (grade === 13) {
       grade = 'Event';
     }
-    return grade;
+  return grade;
   }
   // Don't put the period (the punctuation mark one) here. It is supplied in the place where this function is called.
   getGreeting() {
@@ -149,6 +196,7 @@ export default class Now extends Vue {
       return this.getCurrentTime24();
     }
   }
+
   getCertainTime12(time: number) {
     let endString = 'AM';
     let hours = Math.floor(time / 60);
@@ -197,12 +245,61 @@ export default class Now extends Vue {
     }
   }
 
+  /*notifyMe() {
+    // Let's check if the browser supports notifications
+    var temp = this;
+    if (!("Notification" in window)) {
+      alert("This browser does not support desktop notification");
+    }
+
+    // Let's check whether notification permissions have already been granted
+    else if (Notification.permission === "granted") {
+      // If it's okay let's create a notification
+      var notification = new Notification("LCHS Go", {
+        body: "Notifications are now on!",
+        badge: "https://go.lciteam.club/favicon.ico",
+        icon: "https://go.lciteam.club/favicon.ico",
+        vibrate: [200, 100, 200],
+        silent: false
+      });
+      temp.notificationsStatus = true
+      temp.updateOptionBL('notificationsOn', true)
+    }
+
+    // Otherwise, we need to ask the user for permission
+    else if (Notification.permission !== "denied") {
+      Notification.requestPermission().then(function (permission) {
+        // If the user accepts, let's create a notification
+        if (permission === "granted") {
+          var notification = new Notification("LCHS Go", {
+            body: "Notifications are now on!",
+            badge: "https://go.lciteam.club/favicon.ico",
+            icon: "https://go.lciteam.club/favicon.ico",
+            vibrate: [200, 100, 200],
+            silent: false
+          });
+          temp.notificationsStatus = true
+          temp.updateOptionBL('notificationsOn', true)
+        }
+        else {
+          alert("You must click allow, in order to enable desktop notifications. \n(If you don't want notifications, you can disable them in settings to avoid this popup)");
+          temp.notificationsStatus = false
+        }
+      });
+
+    // At last, if the user has denied notifications, and you
+    // want to be respectful there is no need to bother them any more.
+    }
+  }*/
+
   updateOptionBL(name: string, value: any): void {
     this.$store.commit('UPDATE_SETTING', { name, value });
   }
 
   changeGrade(grade: number) {
-    this.updateOptionBL('grade', grade);
+    this.updateOptionBL('grade', this.grade);
+
+    this.updateStats();
   }
   mounted() {
     // correct invalid grade settings if any
@@ -217,6 +314,8 @@ export default class Now extends Vue {
 
     setInterval(this.updateStats, 5000);
     this.updateStats();
+    // setInterval(this.sendNotifications, 5000);
+    // this.sendNotifications();
     Changelog.forEach((version) => {
       this.allLogs = this.allLogs.concat(version.entries);
     });
@@ -298,6 +397,31 @@ a {
   color: rgb(168, 230, 255);
 } 
 .gradeMessage {
-  font-size: 15px; 
+  font-size: 15px;
+  display: inline;
+  padding: 5px;
+}
+select.grade-select {
+  color: #ffffff;
+  background: rgba(0,0,0,.2);
+  padding: 0px;
+  text-decoration-color: white;
+  font-weight: 600;
+  font-family: Niramit,Avenir,sans-serif;
+  border-color:rgba(0,0,0,0);
+  border-width: 1px;
+  border-radius: 3px;
+} 
+option.grade-select-item  {
+color: rgba(255, 255, 255, 0.6);
+
+  background: var(--button-menu-color, #42b983);
+  padding: 5px;
+  text-decoration-color: white;
+  font-weight: 600;
+  font-family: Niramit,Avenir,sans-serif;
+  border-color:rgba(0,0,0,0);
+  border-width: 1px;
+  border-radius: 3px;
 }
 </style>
