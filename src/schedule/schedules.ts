@@ -645,7 +645,7 @@ export const ElementaryRegularSchedule0: any[] = [  // Kindergarden and TK
   { start: toTime(11, 5), end: toTime(11, 55), period: Period.PREP },
   { start: toTime(11, 55), end: toTime(12, 5), period: Period.ARRIVAL_B },
   { start: toTime(12, 5), end: toTime(13, 5), period: Period.GROUP_B },
-  { start: toTime(13, 5), end: toTime(13, 35), period: Period.RECESS },
+  { start: toTime(13, 5), end: toTime(13, 35), period: Period.RECESS_PE },
   { start: toTime(13, 35), end: toTime(15, 0), period: Period.GROUP_B },
   { start: toTime(15, 0), end: toTime(24, 0), period: Period.DONE },
 ];
