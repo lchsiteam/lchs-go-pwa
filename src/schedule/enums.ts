@@ -73,6 +73,17 @@ enum Period {
   TBD,
   NONE,
   EVENTNOPE,
+  OFFICE,
+  SMALL_GROUP,
+  // Elementary Periods
+  ARRIVAL,
+  ARRIVAL_A,
+  ARRIVAL_B,
+  GROUP_A,
+  GROUP_B,
+  RECESS,
+  RECESS_PE,
+  PREP,
   DONE,
 }
 
@@ -103,9 +114,22 @@ export function getPeriodName(period: Period) {
   else if (period === Period.PERIOD_6) { return 'Period 6'; }
   else if (period === Period.PERIOD_6_PASSING) { return 'Passing after Period 6'; }
   else if (period === Period.TBD) { return 'To Be Determined'; }
+  else if (period === Period.EVENTNOPE) { return 'No Event'; }
+  else if (period === Period.OFFICE) { return 'Office Hours / Prep'; }
+  else if (period === Period.SMALL_GROUP) { return 'Small Group Experience'; }
+
+  // Elementary School Periods
+  else if (period === Period.ARRIVAL) { return 'Arrival'; }
+  else if (period === Period.ARRIVAL_A) { return 'Group A Arrival'; }
+  else if (period === Period.ARRIVAL_B) { return 'Group B Arrival'; }
+  else if (period === Period.GROUP_A) { return 'Group A'; }
+  else if (period === Period.GROUP_B) { return 'Group B'; }
+  else if (period === Period.RECESS) { return 'Recess'; }
+  else if (period === Period.RECESS_PE) { return 'Recess or PE'; }
+  else if (period === Period.PREP) { return 'Teacher Prep'; }
+
   else if (period === Period.NONE) { return 'No School'; }
   else if (period === Period.DONE) { return 'No School'; }
-  else if (period === Period.EVENTNOPE) { return 'No Event'; }
   else { return '????'; }
 }
 

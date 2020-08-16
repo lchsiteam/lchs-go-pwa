@@ -35,7 +35,7 @@
       <div class="blsch-period-container" v-for="period of getFullSchedule()" :key="period.period">
         <div class="blsch-period" :class="{ selected: daysShifted == 0 && currentPeriod.period === period.period }">
           <div class="blsch-period-title">{{getPeriodName(period.period)}}</div>
-          <div class="blsch-period-start">{{getCertainTime(period.start)}}</div>
+          <div class="blsch-period-start">{{getCertainTime(period.start)}}</div>  
           <div class="blsch-period-end">{{getCertainTime(period.end)}}</div>
         </div>
       </div>
@@ -188,8 +188,8 @@ Vue.use(VCalendar, {
 @Component({})
 export default class Home extends Vue {
   private allGrades = allGrades;
-  private minDate = new Date(2019, 7, 14);
-  private maxDate = new Date(2020, 4, 31);
+  private minDate = new Date(2020, 7, 1);
+  private maxDate = new Date(2021, 4, 31);
   private minutes: number = 0;
   private schedule: Schedule = Schedule.NONE;
   private grade = allGrades[2];
@@ -307,9 +307,17 @@ export default class Home extends Vue {
     return this.currentPeriod.end - this.minutes >= 120 ? 'hr.' : 'min.';
   }
   strGrade(grade: any){
-    if (grade < 13) {
+    if (grade < 13 && grade > 3) {
       grade = String(grade);
       grade = grade.concat('th Grade');
+    } else if (grade === 0) {
+      grade = 'TK/K';
+    } else if (grade === 1) {
+      grade = '1st Grade';
+    } else if (grade === 2) {
+      grade = '2nd Grade';
+    } else if (grade === 3) {
+      grade = '3rd Grade';
     } else if (grade === 13) {
       grade = 'Event';
     }
@@ -337,6 +345,16 @@ export default class Home extends Vue {
         Period.HOMEROOM,
         Period.ASSEMBLY,
         Period.TBD,
+        Period.OFFICE,
+        Period.SMALL_GROUP,
+        Period.ARRIVAL,
+        Period.ARRIVAL_A,
+        Period.ARRIVAL_B,
+        Period.GROUP_A,
+        Period.GROUP_B,
+        Period.RECESS,
+        Period.RECESS_PE,
+        Period.PREP,
       ].indexOf(period) !== -1 || this.$store.state.settings.showExtraPeriods;
     });
   }

@@ -16,12 +16,22 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
 import { Themes } from './themes';
-import { DateTime } from 'luxon';
+import { DateTime, Duration } from 'luxon';
 import firebase from 'firebase';
 import firebaseui from 'firebaseui';
+import { printTime, getScheduleFromDay, getPeriod, getUpcomingPeriod, allGrades, plusDays } from '@/schedule';
+import { Day, Schedule, Period, getPeriodName, getScheduleName } from '@/schedule/enums';
 
 @Component({})
 export default class App extends Vue {
+  private minutes: number = 0;
+  private currentPeriod = { start: 0, end: 1440, period: Period.NONE };
+  private notificationsStatus = this.$store.state.settings.notificationsOn;
+  private schedule: Schedule = Schedule.NONE;
+  private grade = allGrades[2];
+  private currentDateTime: any;
+  private uniqueMinute: number = 0;
+
   getCurrentColorScheme() {
     return this.getColorSchemeFromId(this.$store.state.settings.colorTheme);
   }
@@ -60,6 +70,114 @@ export default class App extends Vue {
       '--gradient-count': themeGradient.gradientColors.length,
     };
   }
+
+  updateStats() {
+    const currentDate = DateTime.local().setZone('America/Los_Angeles').plus(Duration.fromMillis(plusDays * 86400000));
+    this.minutes = currentDate.minute + (currentDate.hour * 60);
+    this.uniqueMinute = currentDate.minute + (currentDate.hour * 60) + (currentDate.ordinal * 60 * 24) + (currentDate.year * 365 * 60 * 24);
+    this.currentDateTime = currentDate;
+    this.grade = this.$store.state.settings.grade;
+    this.schedule = getScheduleFromDay(currentDate.month, currentDate.day, currentDate.year, currentDate.weekday, this.grade);
+    this.currentPeriod = getPeriod(this.minutes, this.schedule, this.grade);
+  }
+
+  sendNotifications() {
+    // console.log(this.uniqueMinute);
+    // console.log(this.minutes);
+    // console.log(this.currentPeriod.start);
+    // console.log(this.$store.state.settings.notificationSent);
+    if ((this.minutes === this.currentPeriod.start) && (!this.$store.state.settings.notificationSent)) {
+      this.$store.state.settings.notificationSent = true;
+      // console.log("send");
+      this.createNotification('Period over, your next class will start soon!');
+    }
+    else {
+      if (this.minutes !== this.currentPeriod.start) {
+        this.$store.state.settings.notificationSent = false;
+      }
+    }
+    if (Notification.permission === 'denied') {
+      this.$store.state.settings.notificationsOn = false;
+    }
+    else if (!(Notification.permission === 'granted') && (this.$store.state.settings.notificationsOn)) {
+      this.notifyMe();
+    }
+  }
+
+  createNotification(message: string) {
+    // console.log(this.$store.state.settings.notificationsOn);
+    if ((Notification.permission === 'granted') && (this.$store.state.settings.notificationsOn)) {
+      // If it's okay let's create a notification
+      let tempNotif = new Notification('LCHS Go', {
+        body: String(message),
+        badge: 'https://go.lciteam.club/favicon.ico',
+        icon: 'https://go.lciteam.club/favicon.ico',
+        vibrate: [200, 100, 200],
+        silent: false,
+        tag: String(this.uniqueMinute),
+      });
+    }
+  }
+
+  updateOptionBL(name: string, value: any): void {
+    this.$store.commit('UPDATE_SETTING', { name, value });
+  }
+
+  notifyMe() {
+    // Let's check if the browser supports notifications
+    let temp = this;
+    if (!('Notification' in window)) {
+      alert('This browser does not support desktop notification');
+    }
+
+    // Let's check whether notification permissions have already been granted
+    else if (Notification.permission === 'granted') {
+      // If it's okay let's create a notification
+      let notification = new Notification('LCHS Go', {
+        body: 'Notifications are now on!',
+        badge: 'https://go.lciteam.club/favicon.ico',
+        icon: 'https://go.lciteam.club/favicon.ico',
+        vibrate: [200, 100, 200],
+        silent: false,
+      });
+      temp.notificationsStatus = true;
+      temp.updateOptionBL('notificationsOn', true);
+    }
+
+    // Otherwise, we need to ask the user for permission
+    else if (Notification.permission !== 'denied') {
+      Notification.requestPermission().then((permission) => {
+        // If the user accepts, let's create a notification
+        if (permission === 'granted') {
+          let notification = new Notification('LCHS Go', {
+            body: 'Notifications are now on!',
+            badge: 'https://go.lciteam.club/favicon.ico',
+            icon: 'https://go.lciteam.club/favicon.ico',
+            vibrate: [200, 100, 200],
+            silent: false,
+          });
+          temp.notificationsStatus = true;
+          temp.updateOptionBL('notificationsOn', true);
+        }
+        else {
+          alert('You must click allow, in order to enable desktop notifications. \n(If you don\'t want notifications, you can disable them in settings to avoid this popup)');
+          temp.notificationsStatus = false;
+        }
+      });
+
+    // At last, if the user has denied notifications, and you
+    // want to be respectful there is no need to bother them any more.
+    }
+  }
+
+  mounted() {
+    console.log('test');
+    setInterval(this.updateStats, 5000);
+    this.updateStats();
+    setInterval(this.sendNotifications, 5000);
+    this.sendNotifications();
+  }
+
 }
 
   // Your web app's Firebase configuration

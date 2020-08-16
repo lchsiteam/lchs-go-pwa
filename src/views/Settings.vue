@@ -13,7 +13,21 @@
             <option v-for="grade in allGrades" :key="grade" :value="grade" class = "grade-select-item">{{strGrade(grade)}}</option> 
           </select>
         </div> 
-      </div> 
+      </div>
+      <div class="settings-row">
+        <div class="sr-head">
+          <b class="sr-title">Desktop Notifications</b>
+          <span class="sr-desc">Enable or disable desktop notifications</span>
+        </div>
+        <div class="sr-option">
+          <div class="ex-selector">
+            <div class="ex-selector-option" @click="notifyMe();"
+              :class="{selected: this.$store.state.settings.notificationsOn}">Enable</div>
+            <div class="ex-selector-option" @click="updateOptionBL('notificationsOn', false)"
+              :class="{selected: !(this.$store.state.settings.notificationsOn)}">Disable</div>
+          </div>
+        </div>
+      </div>
       <div class="settings-row">
         <div class="sr-head">
           <b class="sr-title">Time Display</b>
@@ -120,18 +134,34 @@ import { allGrades } from '@/schedule';
 export default class Home extends Vue {
   public appVersion = `v${process.env.VUE_APP_VERSION} (b${process.env.VUE_APP_COMMIT_COUNT.trim()}#${process.env.VUE_APP_COMMIT_SHASH.trim()})`;
   colorThemeId = this.$store.state.settings.colorTheme;
+  notificationsStatus = this.$store.state.settings.notificationsOn;
   grade = allGrades[2];
   allGrades = allGrades;
   allThemes: any[] = [];
 
   strGrade(grade: any){
-    if (grade < 13) {
-      grade = String(grade);
-      grade = grade.concat('th Grade');
-    } else if (grade === 13) {
-      grade = 'Event';
-    }
-    return grade;
+  if (grade < 13 && grade > 3) {
+    grade = String(grade);
+    grade = grade.concat('th Grade');
+  } else if (grade === 0) {
+    grade = 'K/Pre K';
+  } else if (grade === 1) {
+    grade = '1st Grade';
+  } else if (grade === 2) {
+    grade = '2nd Grade';
+  } else if (grade === 3) {
+    grade = '3rd Grade';
+  } else if (grade === 13) {
+    grade = 'Event';
+  }
+  return grade;
+  }
+
+  getNotifStatus() {
+    // A way to refrence this boolean expression as a single variable
+    // if (!(Notification.permission === "granted") && (this.$store.state.settings.notificationsOn)) {this.notifyMe()}
+    // console.log('test');
+    return (Notification.permission === 'granted') && (this.$store.state.settings.notificationsOn);
   }
 
   updateOptionBL(name: string, value: any): void {
@@ -146,6 +176,65 @@ export default class Home extends Vue {
     this.updateOptionBL('grade', this.grade);
   }
 
+  notifyMe() {
+    // Let's check if the browser supports notifications
+    let temp = this;
+    if (!('Notification' in window)) {
+      alert('This browser does not support desktop notification');
+    }
+
+    else if (Notification.permission === 'denied') {
+      alert('You have blocked notifications for this website. In order to enable popup notifications, you must click on the "i" next to your address bar and set notifications to "allow"');
+    }
+
+    // Let's check whether notification permissions have already been granted
+    else if (Notification.permission === 'granted') {
+      // If it's okay let's create a notification
+      let notification = new Notification('LCHS Go', {
+        body: 'Notifications are now on!',
+        badge: 'https://go.lciteam.club/favicon.ico',
+        icon: 'https://go.lciteam.club/favicon.ico',
+        vibrate: [200, 100, 200],
+        silent: false,
+        tag: String(this.$store.state.settings.numberOfClicks),
+      });
+      temp.notificationsStatus = true;
+      temp.updateOptionBL('notificationsOn', true);
+    }
+
+    // Otherwise, we need to ask the user for permission
+    else {
+      Notification.requestPermission().then((permission) => {
+        // If the user accepts, let's create a notification
+        if (permission === 'granted') {
+          let notification = new Notification('LCHS Go', {
+            body: 'Notifications are now on!',
+            badge: 'https://go.lciteam.club/favicon.ico',
+            icon: 'https://go.lciteam.club/favicon.ico',
+            vibrate: [200, 100, 200],
+            silent: false,
+            tag: String(temp.$store.state.settings.numberOfClicks),
+          });
+          temp.notificationsStatus = true;
+          // console.log('test');
+          temp.updateOptionBL('notificationsOn', true);
+        }
+        else {
+          alert('In order to enable popup notifications, you must click allow. \n(If you don\'t want notifications, you can disable them in settings to avoid this popup)');
+          temp.notificationsStatus = false;
+        }
+      });
+
+    // At last, if the user has denied notifications, and you
+    // want to be respectful there is no need to bother them any more.
+    }
+  }
+
+  updateStats() {
+    console.log(this.$store.state.settings.numberOfClicks);
+    this.$store.state.settings.numberOfClicks = this.$store.state.settings.numberOfClicks + 1;
+  }
+
   mounted() {
     // this part is to prevent invalid grade values
     this.grade = this.$store.state.settings.grade;
@@ -155,6 +244,9 @@ export default class Home extends Vue {
 
       this.updateGrade();
     }
+
+    setInterval(this.updateStats, 1000);
+    this.updateStats();
 
     this.allThemes = Themes;
   }
