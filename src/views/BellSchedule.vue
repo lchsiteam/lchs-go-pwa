@@ -311,7 +311,7 @@ export default class Home extends Vue {
       grade = String(grade);
       grade = grade.concat('th Grade');
     } else if (grade === 0) {
-      grade = 'K/Pre K';
+      grade = 'TK/K';
     } else if (grade === 1) {
       grade = '1st Grade';
     } else if (grade === 2) {
@@ -354,6 +354,7 @@ export default class Home extends Vue {
         Period.GROUP_B,
         Period.RECESS,
         Period.RECESS_PE,
+        Period.PREP,
       ].indexOf(period) !== -1 || this.$store.state.settings.showExtraPeriods;
     });
   }

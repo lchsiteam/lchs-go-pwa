@@ -120,7 +120,7 @@ export default class Now extends Vue {
       grade = String(grade);
       grade = grade.concat('th Grade');
     } else if (grade === 0) {
-      grade = 'K/Pre K';
+      grade = 'TK/K';
     } else if (grade === 1) {
       grade = '1st Grade';
     } else if (grade === 2) {
