@@ -120,7 +120,6 @@ const ui = new firebaseui.auth.AuthUI(firebase.auth());
 // The start method will wait until the DOM is loaded.
 ui.start('#firebaseui-auth-container', uiConfig);
 function handleUIError(error: any) {
-  console.log(error);
   return Promise.reject(error);
 }
 /* Google Sign In */

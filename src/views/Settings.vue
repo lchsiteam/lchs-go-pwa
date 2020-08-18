@@ -231,7 +231,6 @@ export default class Home extends Vue {
   }
 
   updateStats() {
-    console.log(this.$store.state.settings.numberOfClicks);
     this.$store.state.settings.numberOfClicks = this.$store.state.settings.numberOfClicks + 1;
   }
 
