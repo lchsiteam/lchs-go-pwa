@@ -14,13 +14,18 @@
     -->
     <router-view></router-view>
     <p>Have feature suggestions? Send us a quick email at <a class="a" href="mailto:team@lciteam.club">team@lciteam.club</a>.</p>
-    <div class="extension-message">We have a Chrome Extension, too! Install it <a class="a" href="https://chrome.google.com/webstore/detail/lchs-go/cmmaleejnmjplfcnhojldkiejpndakad" target="_blank">here</a>.</div>
+    <div class="extension-message">We have a Chrome Extension too! Install it <a class="a" href="https://chrome.google.com/webstore/detail/lchs-go/cmmaleejnmjplfcnhojldkiejpndakad" target="_blank">here</a>.</div>
   </div>
 </template>
 
 <script lang="ts">
 import Vue from 'vue';
 export default Vue.extend({
+  // methods: {
+  //   supportsExtension() {
+  //     return Boolean(window.chrome) && !navigator.userAgent.match(/(iPad)|(iPhone)|(iPod)|(android)|(webOS)|(Blackberry)/i);
+  //   },
+  // },
   beforeRouteEnter(to, from, next) {
     next((vm) => {
       let isExtension = from.query.utm_source === 'extension' || to.query.utm_source === 'extension';
@@ -80,6 +85,6 @@ a.a {
   color: rgb(168, 230, 255);
 }
 .extension-message {
-  font-size:20px;
+  font-size:18px;
 }
 </style>

@@ -160,7 +160,7 @@ export default class Home extends Vue {
   getNotifStatus() {
     // A way to refrence this boolean expression as a single variable
     // if (!(Notification.permission === "granted") && (this.$store.state.settings.notificationsOn)) {this.notifyMe()}
-    console.log('test');
+    // console.log('test');
     return (Notification.permission === 'granted') && (this.$store.state.settings.notificationsOn);
   }
 
