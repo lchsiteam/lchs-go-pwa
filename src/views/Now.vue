@@ -49,7 +49,7 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
 import { DateTime, Duration } from 'luxon';
-import { printTime, getScheduleFromDay, getPeriod, getUpcomingPeriod, allGrades, plusDays } from '@/schedule';
+import { printTime, getScheduleFromDay, getPeriod, getUpcomingPeriod, allGrades, plusDays, plusMins } from '@/schedule';
 import { Day, Schedule, Period, getPeriodName, getScheduleName } from '@/schedule/enums';
 import { RegularSchedule, BlockEvenSchedule, BlockOddSchedule } from '@/schedule/schedules';
 import { Changelog } from '../changelog';
@@ -66,7 +66,7 @@ export default class Now extends Vue {
   // private notificationsStatus = this.$store.state.settings.notificationsOn;
 
   updateStats() {
-    const currentDate = DateTime.local().setZone('America/Los_Angeles').plus(Duration.fromMillis(plusDays * 86400000));
+    const currentDate = DateTime.local().setZone('America/Los_Angeles').plus(Duration.fromMillis(plusDays * 86400000 + plusMins * 60 * 1000));
     this.minutes = currentDate.minute + (currentDate.hour * 60);
     this.currentDateTime = currentDate;
     this.grade = this.$store.state.settings.grade;
