@@ -657,7 +657,7 @@ export const ElementaryRegularSchedule12: any[] = [
   { start: toTime(9, 20), end: toTime(11, 5), period: Period.GROUP_A },
   { start: toTime(11, 5), end: toTime(11, 55), period: Period.PREP },
   { start: toTime(11, 55), end: toTime(12, 5), period: Period.ARRIVAL_B },
-  { start: toTime(12, 5), end: toTime(13, 5), period: Period.GROUP_B },
+  { start: toTime(12, 5), end: toTime(13, 0), period: Period.GROUP_B },
   { start: toTime(13, 0), end: toTime(13, 20), period: Period.RECESS },
   { start: toTime(13, 20), end: toTime(15, 0), period: Period.GROUP_B },
   { start: toTime(15, 0), end: toTime(24, 0), period: Period.DONE },
@@ -670,9 +670,9 @@ export const ElementaryRegularSchedule34: any[] = [
   { start: toTime(9, 45), end: toTime(11, 5), period: Period.GROUP_A },
   { start: toTime(11, 5), end: toTime(11, 55), period: Period.PREP },
   { start: toTime(11, 55), end: toTime(12, 5), period: Period.ARRIVAL_B },
-  { start: toTime(12, 5), end: toTime(13, 5), period: Period.GROUP_B },
+  { start: toTime(12, 5), end: toTime(13, 25), period: Period.GROUP_B },
   { start: toTime(13, 25), end: toTime(13, 45), period: Period.RECESS },
-  { start: toTime(13, 35), end: toTime(15, 0), period: Period.GROUP_B },
+  { start: toTime(13, 45), end: toTime(15, 0), period: Period.GROUP_B },
   { start: toTime(15, 0), end: toTime(24, 0), period: Period.DONE },
 ];
 export const ElementaryRegularSchedule56: any[] = [
@@ -683,8 +683,8 @@ export const ElementaryRegularSchedule56: any[] = [
   { start: toTime(10, 10), end: toTime(11, 5), period: Period.GROUP_A },
   { start: toTime(11, 5), end: toTime(11, 55), period: Period.PREP },
   { start: toTime(11, 55), end: toTime(12, 5), period: Period.ARRIVAL_B },
-  { start: toTime(12, 5), end: toTime(13, 5), period: Period.GROUP_B },
+  { start: toTime(12, 5), end: toTime(13, 50), period: Period.GROUP_B },
   { start: toTime(13, 50), end: toTime(14, 10), period: Period.RECESS },
-  { start: toTime(13, 35), end: toTime(15, 0), period: Period.GROUP_B },
+  { start: toTime(14, 10), end: toTime(15, 0), period: Period.GROUP_B },
   { start: toTime(15, 0), end: toTime(24, 0), period: Period.DONE },
 ];
