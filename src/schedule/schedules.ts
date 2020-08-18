@@ -665,7 +665,7 @@ export const ElementaryRegularSchedule12: any[] = [
 export const ElementaryRegularSchedule34: any[] = [
   { start: toTime(0, 0), end: toTime(8, 0), period: Period.NONE },
   { start: toTime(8, 0), end: toTime(8, 10), period: Period.ARRIVAL_A },
-  { start: toTime(8, 10), end: toTime(9, 10), period: Period.GROUP_A },
+  { start: toTime(8, 10), end: toTime(9, 25), period: Period.GROUP_A },
   { start: toTime(9, 25), end: toTime(9, 45), period: Period.RECESS },
   { start: toTime(9, 45), end: toTime(11, 5), period: Period.GROUP_A },
   { start: toTime(11, 5), end: toTime(11, 55), period: Period.PREP },
@@ -678,7 +678,7 @@ export const ElementaryRegularSchedule34: any[] = [
 export const ElementaryRegularSchedule56: any[] = [
   { start: toTime(0, 0), end: toTime(8, 0), period: Period.NONE },
   { start: toTime(8, 0), end: toTime(8, 10), period: Period.ARRIVAL_A },
-  { start: toTime(8, 10), end: toTime(9, 10), period: Period.GROUP_A },
+  { start: toTime(8, 10), end: toTime(9, 50), period: Period.GROUP_A },
   { start: toTime(9, 50), end: toTime(10, 10), period: Period.RECESS },
   { start: toTime(10, 10), end: toTime(11, 5), period: Period.GROUP_A },
   { start: toTime(11, 5), end: toTime(11, 55), period: Period.PREP },
