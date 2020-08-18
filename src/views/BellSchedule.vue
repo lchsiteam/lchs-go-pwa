@@ -33,7 +33,7 @@
         <div class="blsch-period-end">End</div>
       </div>
       <div class="blsch-period-container" v-for="period of getFullSchedule()" :key="period.period">
-        <div class="blsch-period" :class="{ selected: daysShifted == 0 && currentPeriod.period === period.period }">
+        <div class="blsch-period" :class="{ selected: selected(period) }">
           <div class="blsch-period-title">{{getPeriodName(period.period)}}</div>
           <div class="blsch-period-start">{{getCertainTime(period.start)}}</div>  
           <div class="blsch-period-end">{{getCertainTime(period.end)}}</div>
@@ -170,7 +170,7 @@ import { Component, Vue } from 'vue-property-decorator';
 import { DateTime, Duration } from 'luxon';
 
 import { printTime, getScheduleFromDay, getPeriod, getFullSchedule, allGrades,
-plusDays } from '@/schedule';
+plusDays, plusMins } from '@/schedule';
 import { Day, Schedule, Period, getPeriodName, getScheduleName } from '@/schedule/enums';
 import { RegularSchedule, BlockEvenSchedule, BlockOddSchedule } from '@/schedule/schedules';
 import { MDYDate } from '@/schedule/mdy_date';
@@ -199,7 +199,9 @@ export default class Home extends Vue {
   private arrowsUsed = true;
 
   public updateStats() {
-    const currentDate = DateTime.local().setZone('America/Los_Angeles').plus(Duration.fromMillis(this.daysShifted * 86400000));
+    // console.log(plusDays);
+
+    const currentDate = DateTime.local().setZone('America/Los_Angeles').plus(Duration.fromMillis((this.daysShifted + plusDays) * 86400000 + plusMins * 60 * 1000));
     this.minutes = currentDate.minute + (currentDate.hour * 60);
 
     this.grade = this.$store.state.settings.grade;
@@ -210,6 +212,10 @@ export default class Home extends Vue {
     }
     this.arrowsUsed = false;
     this.daysShifted = Math.ceil((this.date.valueOf() - new Date().valueOf()) / 86400000);
+  }
+
+  selected(period: any) {
+    return this.daysShifted === 0 && this.currentPeriod === period;
   }
 
   getGreeting() {
