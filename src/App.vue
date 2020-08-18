@@ -31,6 +31,7 @@ export default class App extends Vue {
   private grade = allGrades[2];
   private currentDateTime: any;
   private uniqueMinute: number = 0;
+  private nextPeriod = { start: 0, end: 1440, period: Period.NONE };
 
   getCurrentColorScheme() {
     return this.getColorSchemeFromId(this.$store.state.settings.colorTheme);
@@ -79,20 +80,20 @@ export default class App extends Vue {
     this.grade = this.$store.state.settings.grade;
     this.schedule = getScheduleFromDay(currentDate.month, currentDate.day, currentDate.year, currentDate.weekday, this.grade);
     this.currentPeriod = getPeriod(this.minutes, this.schedule, this.grade);
+    this.nextPeriod = getUpcomingPeriod(this.minutes, this.currentDateTime, this.schedule, this.grade);
   }
 
   sendNotifications() {
     // console.log(this.uniqueMinute);
-    // console.log(this.minutes);
-    // console.log(this.currentPeriod.start);
+    console.log(this.minutes);
+    console.log(this.nextPeriod.start);
     // console.log(this.$store.state.settings.notificationSent);
-    if ((this.minutes === this.currentPeriod.start) && (!this.$store.state.settings.notificationSent)) {
+    if ((this.minutes === this.nextPeriod.start-this.$store.state.settings.startTime) && (!this.$store.state.settings.notificationSent)) {
       this.$store.state.settings.notificationSent = true;
-      // console.log("send");
       this.createNotification('Period over, your next class will start soon!');
     }
     else {
-      if (this.minutes !== this.currentPeriod.start) {
+      if (this.minutes !== this.nextPeriod.start-this.$store.state.settings.startTime) {
         this.$store.state.settings.notificationSent = false;
       }
     }
@@ -171,7 +172,6 @@ export default class App extends Vue {
   }
 
   mounted() {
-    console.log('test');
     setInterval(this.updateStats, 5000);
     this.updateStats();
     setInterval(this.sendNotifications, 5000);
