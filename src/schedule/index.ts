@@ -11,8 +11,8 @@ import { NoSchoolSchedule, NoEventSchedule, WeirdAssemblySchedule, WeirdAssembly
         PreFinals2156Schedule, PreFinals1345Schedule, FinalAssemblySchedule78, FinalAssemblySchedule12, Finals34Schedule, Finals15Schedule,
         Finals26Schedule, FinalsTBDSchedule, SummerSchoolSchedule, HSBackToSchoolNight, ElementaryRegularSchedule, ElementaryRegularSchedule0, ElementaryRegularSchedule12, ElementaryRegularSchedule34, ElementaryRegularSchedule56 } from './schedules';
 
-export const plusDays = 0; 
-export const plusMins = 0; 
+export const plusDays = 0;
+export const plusMins = 0;
 
 export const allGrades = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13];
 

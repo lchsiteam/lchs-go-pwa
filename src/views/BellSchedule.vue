@@ -199,7 +199,7 @@ export default class Home extends Vue {
   private arrowsUsed = true;
 
   public updateStats() {
-    //console.log(plusDays); 
+    // console.log(plusDays);
 
     const currentDate = DateTime.local().setZone('America/Los_Angeles').plus(Duration.fromMillis((this.daysShifted + plusDays) * 86400000 + plusMins * 60 * 1000));
     this.minutes = currentDate.minute + (currentDate.hour * 60);
@@ -212,10 +212,10 @@ export default class Home extends Vue {
     }
     this.arrowsUsed = false;
     this.daysShifted = Math.ceil((this.date.valueOf() - new Date().valueOf()) / 86400000);
-  } 
+  }
 
   selected(period: any) {
-    return this.daysShifted == 0 && this.currentPeriod == period; 
+    return this.daysShifted === 0 && this.currentPeriod === period;
   }
 
   getGreeting() {
