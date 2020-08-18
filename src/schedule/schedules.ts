@@ -628,7 +628,7 @@ export const HSBackToSchoolNight: any[] = [
  *
  */
 export const ElementaryRegularSchedule: any[] = [  // Default Schedule (No Recess)
-  { start: toTime(0, 0), end: toTime(7, 40), period: Period.NONE },
+  { start: toTime(0, 0), end: toTime(8, 0), period: Period.NONE },
   { start: toTime(8, 0), end: toTime(8, 10), period: Period.ARRIVAL_A },
   { start: toTime(8, 10), end: toTime(11, 5), period: Period.GROUP_A },
   { start: toTime(11, 5), end: toTime(11, 55), period: Period.PREP },
@@ -637,7 +637,7 @@ export const ElementaryRegularSchedule: any[] = [  // Default Schedule (No Reces
   { start: toTime(15, 0), end: toTime(24, 0), period: Period.DONE },
 ];
 export const ElementaryRegularSchedule0: any[] = [  // Kindergarden and TK
-  { start: toTime(0, 0), end: toTime(7, 40), period: Period.NONE },
+  { start: toTime(0, 0), end: toTime(8, 0), period: Period.NONE },
   { start: toTime(8, 0), end: toTime(8, 10), period: Period.ARRIVAL_A },
   { start: toTime(8, 10), end: toTime(9, 10), period: Period.GROUP_A },
   { start: toTime(9, 10), end: toTime(9, 40), period: Period.RECESS_PE },
@@ -650,7 +650,7 @@ export const ElementaryRegularSchedule0: any[] = [  // Kindergarden and TK
   { start: toTime(15, 0), end: toTime(24, 0), period: Period.DONE },
 ];
 export const ElementaryRegularSchedule12: any[] = [
-  { start: toTime(0, 0), end: toTime(7, 40), period: Period.NONE },
+  { start: toTime(0, 0), end: toTime(8, 0), period: Period.NONE },
   { start: toTime(8, 0), end: toTime(8, 10), period: Period.ARRIVAL_A },
   { start: toTime(8, 10), end: toTime(9, 0), period: Period.GROUP_A },
   { start: toTime(9, 0), end: toTime(9, 20), period: Period.RECESS },
@@ -663,7 +663,7 @@ export const ElementaryRegularSchedule12: any[] = [
   { start: toTime(15, 0), end: toTime(24, 0), period: Period.DONE },
 ];
 export const ElementaryRegularSchedule34: any[] = [
-  { start: toTime(0, 0), end: toTime(7, 40), period: Period.NONE },
+  { start: toTime(0, 0), end: toTime(8, 0), period: Period.NONE },
   { start: toTime(8, 0), end: toTime(8, 10), period: Period.ARRIVAL_A },
   { start: toTime(8, 10), end: toTime(9, 10), period: Period.GROUP_A },
   { start: toTime(9, 25), end: toTime(9, 45), period: Period.RECESS },
@@ -676,7 +676,7 @@ export const ElementaryRegularSchedule34: any[] = [
   { start: toTime(15, 0), end: toTime(24, 0), period: Period.DONE },
 ];
 export const ElementaryRegularSchedule56: any[] = [
-  { start: toTime(0, 0), end: toTime(7, 40), period: Period.NONE },
+  { start: toTime(0, 0), end: toTime(8, 0), period: Period.NONE },
   { start: toTime(8, 0), end: toTime(8, 10), period: Period.ARRIVAL_A },
   { start: toTime(8, 10), end: toTime(9, 10), period: Period.GROUP_A },
   { start: toTime(9, 50), end: toTime(10, 10), period: Period.RECESS },
