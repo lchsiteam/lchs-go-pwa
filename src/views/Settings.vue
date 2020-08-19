@@ -232,8 +232,6 @@ export default class Home extends Vue {
   seeorhide = "see";
   startorend = "both";
   allTimes = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-  startTime = this.allTimes[0];
-  endTime = this.allTimes[0];
 
   strGrade(grade: any){
   if (grade < 13 && grade > 3) {
@@ -290,11 +288,11 @@ export default class Home extends Vue {
   }
 
   updateStartTime() {
-    this.updateOptionBL('startTime', this.startTime);
+    this.updateOptionBL('startTime', this.startTimeAmount);
   }
 
   updateEndTime() {
-    this.updateOptionBL('endTime', this.endTime);
+    this.updateOptionBL('endTime', this.endTimeAmount);
   }
 
   notifyMe() {
@@ -358,6 +356,8 @@ export default class Home extends Vue {
   mounted() {
     // this part is to prevent invalid grade values
     this.grade = this.$store.state.settings.grade;
+    this.endTimeAmount = this.$store.state.settings.endTime;
+    this.startTimeAmount = this.$store.state.settings.startTime;
 
     if (allGrades.indexOf(this.grade) === -1) {
       this.grade = allGrades[2];

@@ -85,15 +85,28 @@ export default class App extends Vue {
 
   sendNotifications() {
     // console.log(this.uniqueMinute);
-    console.log(this.minutes);
-    console.log(this.nextPeriod.start);
+    // console.log(this.minutes);
+    //console.log(this.nextPeriod.start);
+    //console.log(this.currentPeriod.period);
+    //console.log(getPeriodName(this.nextPeriod.period));
+    // console.log(getPeriodName(this.nextPeriod.period));
     // console.log(this.$store.state.settings.notificationSent);
-    if ((this.minutes === this.nextPeriod.start-this.$store.state.settings.startTime) && (!this.$store.state.settings.notificationSent)) {
+    //console.log(this.$store.state.settings.startTime);
+    //console.log(this.$store.state.settings.endTime);
+    console.log(this.minutes);
+    console.log(this.nextPeriod.start-this.$store.state.settings.startTime);
+    console.log(this.currentPeriod.end-this.$store.state.settings.endTime);
+    console.log(!this.$store.state.settings.notificationSent);
+    if ((this.minutes === this.nextPeriod.start-this.$store.state.settings.startTime) && (!this.$store.state.settings.notificationSent) && (this.$store.state.settings.startorend != 'end')) {
       this.$store.state.settings.notificationSent = true;
-      this.createNotification('Period over, your next class will start soon!');
+      this.createNotification('Attention: ' + getPeriodName(this.nextPeriod.period) + ' is starting in ' + this.$store.state.settings.startTime + ' minute(s)');
+    }
+    else if ((this.minutes === this.currentPeriod.end-this.$store.state.settings.endTime) && (!this.$store.state.settings.notificationSent) && (this.$store.state.settings.startorend != 'start')){
+      this.$store.state.settings.notificationSent = true;
+      this.createNotification('Attention: ' + getPeriodName(this.currentPeriod.period) + ' is ending in ' + this.$store.state.settings.endTime + ' minute(s)');
     }
     else {
-      if (this.minutes !== this.nextPeriod.start-this.$store.state.settings.startTime) {
+      if ((this.minutes !== this.nextPeriod.start-this.$store.state.settings.startTime) && (this.minutes === this.currentPeriod.end-this.$store.state.settings.endTime)) {
         this.$store.state.settings.notificationSent = false;
       }
     }
