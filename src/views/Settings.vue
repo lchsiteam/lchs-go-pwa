@@ -303,7 +303,7 @@ export default class Home extends Vue {
     }
 
     else if (Notification.permission === 'denied') {
-      alert('You have blocked notifications for this website. In order to enable popup notifications, you must click on the "i" next to your address bar and set notifications to "allow"');
+      alert('You have blocked notifications for this website. In order to enable popup notifications, you must click on the lock symbol next to your address bar and set notifications to "allow"');
     }
 
     // Let's check whether notification permissions have already been granted
