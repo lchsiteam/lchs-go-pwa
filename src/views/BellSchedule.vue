@@ -356,11 +356,18 @@ export default class Home extends Vue {
         Period.ARRIVAL,
         Period.ARRIVAL_A,
         Period.ARRIVAL_B,
-        Period.GROUP_A,
-        Period.GROUP_B,
         Period.RECESS,
         Period.RECESS_PE,
         Period.PREP,
+        Period.SMALL_GROUP_P0,
+        Period.SMALL_GROUP_P1,
+        Period.SMALL_GROUP_P2,
+        Period.SMALL_GROUP_P3,
+        Period.SMALL_GROUP_P4,
+        Period.SMALL_GROUP_P5,
+        Period.SMALL_GROUP_P6,
+        Period.SMALL_GROUP_CLUBS,
+        Period.SMALL_GROUP_WELLNESS,
       ].indexOf(period) !== -1 || this.$store.state.settings.showExtraPeriods;
     });
   }

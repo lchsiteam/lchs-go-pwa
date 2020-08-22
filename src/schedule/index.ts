@@ -490,8 +490,6 @@ export function getPeriod(time: number, schedule: Schedule, grade: number): any 
 }
 
 const periodsFilter = [
-  Period.OFFICE,
-  Period.SMALL_GROUP,
   Period.PERIOD_0,
   Period.PERIOD_1,
   Period.PERIOD_2,
@@ -506,12 +504,23 @@ const periodsFilter = [
   Period.HOMEROOM,
   Period.ASSEMBLY,
   Period.TBD,
+  Period.OFFICE,
+  Period.SMALL_GROUP,
   Period.ARRIVAL,
-  Period.GROUP_A,
+  Period.ARRIVAL_A,
+  Period.ARRIVAL_B,
   Period.RECESS,
   Period.RECESS_PE,
   Period.PREP,
-  Period.GROUP_B,
+  Period.SMALL_GROUP_P0,
+  Period.SMALL_GROUP_P1,
+  Period.SMALL_GROUP_P2,
+  Period.SMALL_GROUP_P3,
+  Period.SMALL_GROUP_P4,
+  Period.SMALL_GROUP_P5,
+  Period.SMALL_GROUP_P6,
+  Period.SMALL_GROUP_CLUBS,
+  Period.SMALL_GROUP_WELLNESS,
 ];
 
 export function getUpcomingPeriod(time: number, dateTime: any, schedule: Schedule, grade: number, pAllow = periodsFilter): any {
