@@ -128,7 +128,7 @@ export default class App extends Vue {
       this.createNotification('Attention: ' + getPeriodName(this.currentPeriod.period) + ' is ending in ' + this.$store.state.settings.endTime + ' minute(s)', this.currentPeriod);
     }
     else {
-      if ((this.minutes !== this.nextPeriod.start-this.$store.state.settings.startTime) && (this.minutes !== this.currentPeriod.end-this.$store.state.settings.endTime)) {
+      if ((this.minutes !== this.nextPeriod.start-this.$store.state.settings.startTime) && (this.minutes !== this.currentPeriod.end-this.$store.state.settings.endTime) && (this.minutes !== this.previousPeriod.end-this.$store.state.settings.endTime) && (this.minutes === this.currentPeriod.start-this.$store.state.settings.startTime)) {
         this.$store.state.settings.notificationSent = false;
       }
     }
