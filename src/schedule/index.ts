@@ -4,7 +4,8 @@
 
 import { MDYDate } from './mdy_date';
 import { Day, Schedule, Period } from './enums';
-import { NoSchoolSchedule, NoEventSchedule, WeirdAssemblySchedule, WeirdAssemblySchedule78, RegularSchedule, BlockOddSchedule, BlockEvenSchedule,
+import { NoSchoolSchedule, NoEventSchedule, WeirdAssemblySchedule, WeirdAssemblySchedule78, RegularSchedule,  BlockOddSchedule, BlockEvenSchedule,
+        SmallGroups12, SmallGroups34, SmallGroups56, SmallGroupsWellnessClubs, SmallGroups0Clubs,
         ReverseBlockOddSchedule, MinimumReverseBlockOddSchedule78, SpecialBlockOddSchedule, SpecialBlockEvenSchedule, AssemblySchedule, RegularSchedule78,
         BlockOddSchedule78, BlockEvenSchedule78, HSBlockOddScheduleFor78, HSBlockEvenScheduleFor78, HSSpecialBlockOddScheduleFor78,
         HSSpecialBlockEvenScheduleFor78, AssemblySchedule7, AssemblySchedule8, EarlyReleaseSchedule78, MinimumSchedule, PreFinals3264Schedule,
@@ -36,6 +37,7 @@ const breaks: any[] = [tgBreak, winterBreak, springBreak, summerBreak];
 
 const summerSchool: [MDYDate, MDYDate] = [new MDYDate(6, 15, 2020), new MDYDate(7, 16, 2020)];
 const blockSwitch: [MDYDate, MDYDate] = [new MDYDate(11, 11, 2019), new MDYDate(2, 17, 2020)];
+const noGroups: [MDYDate, MDYDate] = [new MDYDate(8, 17, 2020), new MDYDate(8, 28, 2020)];
 
 export const schoolSpecialDates: any = {
   '8 - 19 - 2020': Schedule.REGULAR,
@@ -110,6 +112,7 @@ export function getScheduleFromDay(month: number, day: number, year: number, wee
     // check to see if this date falls in a multi-date exception
     const isSummerSchool = dateObj.between(...summerSchool);
     const isBlockSwitched = dateObj.between(...blockSwitch);
+    const isNotGroups = dateObj.between(...noGroups);
 
     if (isSummerSchool) {
       switch (weekDay) {
@@ -170,7 +173,7 @@ export function getScheduleFromDay(month: number, day: number, year: number, wee
             }
             break;
           }
-        } else {
+        } else if (isNotGroups) {
           switch (weekDay) {
             case Day.SUNDAY:
             case Day.SATURDAY:
@@ -193,6 +196,48 @@ export function getScheduleFromDay(month: number, day: number, year: number, wee
                 shed = Schedule.REGULAR;
               } else {
                 shed = Schedule.BLOCK_EVEN;
+              }
+              break;
+          }
+        } else {
+          switch (weekDay) { // This switch is for small groups
+            case Day.SUNDAY:
+            case Day.SATURDAY:
+              shed = Schedule.NONE;
+              break;
+            case Day.MONDAY:
+              if (highSchooler === 1) {
+                shed = Schedule.REGULAR;
+              } else {
+                shed = Schedule.SMALL_GROUPS_12;
+              }
+              break;
+            case Day.TUESDAY:
+              if (highSchooler === 1) {
+                shed = Schedule.REGULAR;
+              } else {
+                shed = Schedule.SMALL_GROUPS_34;
+              }
+              break;
+            case Day.FRIDAY:
+              if (highSchooler === 1) {
+                shed = Schedule.REGULAR;
+              } else {
+                shed = Schedule.SMALL_GROUPS_56;
+              }
+              break;
+            case Day.WEDNESDAY:
+              if (highSchooler === 1) {
+                shed = Schedule.REGULAR;
+              } else {
+                shed = Schedule.BLOCK_GROUPS_WELLNESS_CLUBS;
+              }
+              break;
+            case Day.THURSDAY:
+              if (highSchooler === 1) {
+                shed = Schedule.REGULAR;
+              } else {
+                shed = Schedule.BLOCK_GROUPS_0_CLUBS;
               }
               break;
           }
@@ -258,6 +303,16 @@ export function getFullSchedule(schedule: Schedule, grade: number): any {
         return NoSchoolSchedule;
       }
       break;
+    case Schedule.SMALL_GROUPS_12:
+      return SmallGroups12;
+    case Schedule.SMALL_GROUPS_34:
+      return SmallGroups34;
+    case Schedule.SMALL_GROUPS_56:
+      return SmallGroups56;
+    case Schedule.BLOCK_GROUPS_WELLNESS_CLUBS:
+      return SmallGroupsWellnessClubs;
+    case Schedule.BLOCK_GROUPS_0_CLUBS:
+      return SmallGroups0Clubs;
     case Schedule.BLOCK_ODD:
       if (highSchooler === 1) {
         return ElementaryRegularSchedule;
@@ -435,8 +490,6 @@ export function getPeriod(time: number, schedule: Schedule, grade: number): any 
 }
 
 const periodsFilter = [
-  Period.OFFICE,
-  Period.SMALL_GROUP,
   Period.PERIOD_0,
   Period.PERIOD_1,
   Period.PERIOD_2,
@@ -451,12 +504,23 @@ const periodsFilter = [
   Period.HOMEROOM,
   Period.ASSEMBLY,
   Period.TBD,
+  Period.OFFICE,
+  Period.SMALL_GROUP,
   Period.ARRIVAL,
-  Period.GROUP_A,
+  Period.ARRIVAL_A,
+  Period.ARRIVAL_B,
   Period.RECESS,
   Period.RECESS_PE,
   Period.PREP,
-  Period.GROUP_B,
+  Period.SMALL_GROUP_P0,
+  Period.SMALL_GROUP_P1,
+  Period.SMALL_GROUP_P2,
+  Period.SMALL_GROUP_P3,
+  Period.SMALL_GROUP_P4,
+  Period.SMALL_GROUP_P5,
+  Period.SMALL_GROUP_P6,
+  Period.SMALL_GROUP_CLUBS,
+  Period.SMALL_GROUP_WELLNESS,
 ];
 
 export function getUpcomingPeriod(time: number, dateTime: any, schedule: Schedule, grade: number, pAllow = periodsFilter): any {
