@@ -30,6 +30,12 @@ enum Schedule {
   NOEVENT,
   HSBACKTOSCHOOLNIGHT,
   WEIRD_ASSEMBLY,
+  // Small Group Schedules
+  SMALL_GROUPS_12,
+  SMALL_GROUPS_34,
+  SMALL_GROUPS_56,
+  BLOCK_GROUPS_0_CLUBS,
+  BLOCK_GROUPS_WELLNESS_CLUBS,
 }
 
 enum Day {
@@ -75,6 +81,16 @@ enum Period {
   EVENTNOPE,
   OFFICE,
   SMALL_GROUP,
+  SMALL_GROUP_PASSING,
+  SMALL_GROUP_P0,
+  SMALL_GROUP_P1,
+  SMALL_GROUP_P2,
+  SMALL_GROUP_P3,
+  SMALL_GROUP_P4,
+  SMALL_GROUP_P5,
+  SMALL_GROUP_P6,
+  SMALL_GROUP_CLUBS,
+  SMALL_GROUP_WELLNESS,
   // Elementary Periods
   ARRIVAL,
   ARRIVAL_A,
@@ -116,7 +132,16 @@ export function getPeriodName(period: Period) {
   else if (period === Period.TBD) { return 'To Be Determined'; }
   else if (period === Period.EVENTNOPE) { return 'No Event'; }
   else if (period === Period.OFFICE) { return 'Office Hours / Prep'; }
-  else if (period === Period.SMALL_GROUP) { return 'Small Group Experience'; }
+  else if (period === Period.SMALL_GROUP_P0) { return 'Small Groups Period 0 or Clubs'; }
+  else if (period === Period.SMALL_GROUP_P1) { return 'Small Group Period 1'; }
+  else if (period === Period.SMALL_GROUP_P2) { return 'Small Group Period 2'; }
+  else if (period === Period.SMALL_GROUP_P3) { return 'Small Group Period 3'; }
+  else if (period === Period.SMALL_GROUP_P4) { return 'Small Group Period 4'; }
+  else if (period === Period.SMALL_GROUP_P5) { return 'Small Group Period 5'; }
+  else if (period === Period.SMALL_GROUP_P6) { return 'Small Group Period 6'; }
+  else if (period === Period.SMALL_GROUP_WELLNESS) { return 'Small Group Wellness Wendsday'; }
+  else if (period === Period.SMALL_GROUP_CLUBS) { return 'Small Groups and Clubs'; }
+  else if (period === Period.SMALL_GROUP_PASSING) { return 'Passing Between Small Groups'; }
 
   // Elementary School Periods
   else if (period === Period.ARRIVAL) { return 'Arrival'; }
@@ -137,6 +162,21 @@ export function getScheduleName(schedule: Schedule) {
   switch (schedule) {
     case Schedule.REGULAR:
       return 'regular schedule';
+      break;
+    case Schedule.SMALL_GROUPS_12:
+      return 'regular schedule (1, 2)';
+      break;
+    case Schedule.SMALL_GROUPS_34:
+      return 'regular schedule (3, 4)';
+      break;
+    case Schedule.SMALL_GROUPS_56:
+      return 'regular schedule (5, 6)';
+      break;
+    case Schedule.BLOCK_GROUPS_0_CLUBS:
+      return 'block schedule (2, 4, 6, 0, Clubs)';
+      break;
+    case Schedule.BLOCK_GROUPS_WELLNESS_CLUBS:
+      return 'block schedule (1, 3, 5, Wellness Wednesday, Clubs)';
       break;
     case Schedule.BLOCK_ODD:
       return 'block schedule (1, 3, 5)';

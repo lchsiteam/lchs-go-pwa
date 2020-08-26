@@ -365,7 +365,7 @@ export default class Home extends Vue {
       this.updateGrade();
     }
 
-    setInterval(this.updateStats, 1000);
+    setInterval(this.updateStats, 5000);
     this.updateStats();
 
     this.allThemes = Themes;
