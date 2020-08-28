@@ -30,22 +30,6 @@
         <button class="sub-nav-item" @click='toggleShow'>Click here to {{ this.seeorhide }} advanced notification settings</button>
         <div class="settings-rows" v-if='show'>
           <!-- hidden section-->
-          <div class="settings-row">
-            <div class="sr-head">
-              <b class="sr-title">Audio or Popup Notifications</b>
-              <span class="sr-desc">Choose whether you want audio notifications, popup notifications, or both</span>
-            </div>
-            <div class="sr-option">
-              <div class="ex-selector">
-                <div class="ex-selector-option" @click="updateOptionBL('popuporaudio', 'both')"
-                  :class="{selected: (this.$store.state.settings.popuporaudio=='both')}">Both</div>
-                <div class="ex-selector-option" @click="updateOptionBL('popuporaudio', 'popup')"
-                  :class="{selected: (this.$store.state.settings.popuporaudio=='popup')}">Popup only</div>
-                <div class="ex-selector-option" @click="updateOptionBL('popuporaudio', 'audio')"
-                  :class="{selected: (this.$store.state.settings.popuporaudio=='audio')}">Audio only</div>
-              </div>
-            </div>
-          </div>
           <div class='settings-row'> 
             <div class='sr-head'>
               <span class="sr-badge-new">NEW</span>
