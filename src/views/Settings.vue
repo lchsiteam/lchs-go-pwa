@@ -23,7 +23,7 @@
           <div class="ex-selector">
             <div class="ex-selector-option" @click="notifyMe();"
               :class="{selected: this.$store.state.settings.notificationsOn}">Enable</div>
-            <div class="ex-selector-option" @click="updateOptionBL('notificationsOn', false)"
+            <div class="ex-selector-option" @click="updateOptionBL('notificationsOn', false); showOff()"
               :class="{selected: !(this.$store.state.settings.notificationsOn)}">Disable</div>
           </div>
         </div>
@@ -244,13 +244,21 @@ export default class Home extends Vue {
   }
 
   toggleShow() {
-    this.show = !this.show; 
-    if (this.seeorhide==="see") {
-      this.seeorhide = "hide";
+    if (this.$store.state.settings.notificationsOn) {
+      this.show = !this.show;
+      if (this.seeorhide === "see") {
+        this.seeorhide = "hide";
+      } else {
+        this.seeorhide = "see";
+      }
     } else {
-      this.seeorhide = "see";
+      alert('Notifications must be on to edit advanced notification settings.');
     }
-  } 
+  }
+
+  showOff() {
+    this.show = false;
+  }
 
   getNotifStatus() {
     // A way to refrence this boolean expression as a single variable
@@ -302,6 +310,7 @@ export default class Home extends Vue {
         tag: String(this.$store.state.settings.numberOfClicks),
       });
       temp.notificationsStatus = true;
+      temp.show = true;
       temp.updateOptionBL('notificationsOn', true);
     }
 
