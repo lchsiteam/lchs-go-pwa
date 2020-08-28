@@ -23,8 +23,80 @@
           <div class="ex-selector">
             <div class="ex-selector-option" @click="notifyMe();"
               :class="{selected: this.$store.state.settings.notificationsOn}">Enable</div>
-            <div class="ex-selector-option" @click="updateOptionBL('notificationsOn', false)"
+            <div class="ex-selector-option" @click="updateOptionBL('notificationsOn', false); showOff()"
               :class="{selected: !(this.$store.state.settings.notificationsOn)}">Disable</div>
+          </div>
+        </div>
+        <button class="sub-nav-item" @click='toggleShow'>Click here to {{ this.seeorhide }} advanced notification settings</button>
+        <div class="settings-rows" v-if='show'>
+          <!-- hidden section-->
+          <div class='settings-row'> 
+            <div class='sr-head'>
+              <span class="sr-badge-new">NEW</span>
+              <b class='sr-title'>Warning time before period START</b> 
+              <span class='sr-desc'>How many minutes before the start of the period should we notify you that the start of the period is coming?</span> 
+            </div> 
+            <div class='sr-option'>
+              <select v-model="startTimeAmount" @change="updateStartTime()" class = "grade-select">
+                <option v-for="time in allTimes" :key="time" :value="time" class = "grade-select-item">{{strTime(time)}}</option> 
+              </select>
+            </div> 
+          </div>
+          <div class='settings-row'> 
+            <div class='sr-head'>
+              <span class="sr-badge-new">NEW</span>
+              <b class='sr-title'>Warning time before period END</b> 
+              <span class='sr-desc'>How many minutes before the end of the period should we notify you that the end of the period is coming?</span> 
+            </div> 
+            <div class='sr-option'>
+              <select v-model="endTimeAmount" @change="updateEndTime()" class = "grade-select">
+                <option v-for="time in allTimes" :key="time" :value="time" class = "grade-select-item">{{strTime(time)}}</option> 
+              </select>
+            </div> 
+          </div>
+          <div class="settings-row">
+            <div class="sr-head">
+              <b class="sr-title">Display Zero Period</b>
+              <span class="sr-desc">Whether or not to disable notifications for zero period. (Disable this if you don't have a zero period)</span>
+            </div>
+            <div class="sr-option">
+              <div class="ex-selector">
+                <div class="ex-selector-option" @click="updateOptionBL('zeroEnabled', true)"
+                  :class="{selected: this.$store.state.settings.zeroEnabled}">Notify for zero period</div>
+                <div class="ex-selector-option" @click="updateOptionBL('zeroEnabled', false)"
+                  :class="{selected: !this.$store.state.settings.zeroEnabled}">Do not notify for zero period</div>
+              </div>
+            </div>
+          </div>
+          <div class="settings-row">
+            <div class="sr-head">
+              <b class="sr-title">Display 6th Period</b>
+              <span class="sr-desc">Whether or not to disable notifications for 6th period. (Disable this if you don't have a 6th period)</span>
+            </div>
+            <div class="sr-option">
+              <div class="ex-selector">
+                <div class="ex-selector-option" @click="updateOptionBL('sixthEnabled', true)"
+                  :class="{selected: this.$store.state.settings.sixthEnabled}">Notify for 6th period</div>
+                <div class="ex-selector-option" @click="updateOptionBL('sixthEnabled', false)"
+                  :class="{selected: !this.$store.state.settings.sixthEnabled}">Do not notify for 6th period</div>
+              </div>
+            </div>
+          </div>
+          <div class="settings-row">
+            <div class="sr-head">
+              <b class="sr-title">Disable Notifications For Start OR End of Period</b>
+              <span class="sr-desc">Choose if you want notifications for both the start and end of period, or just one of them. NOTE: IF YOU DON'T WANT NOTIFICATIONS AT ALL, YOU CAN DISABLE THEM ABOVE. (this is not the setting for that).</span>
+            </div>
+            <div class="sr-option">
+              <div class="ex-selector">
+                <div class="ex-selector-option" @click="updateOptionBL('startorend', 'both')"
+                  :class="{selected: (this.$store.state.settings.startorend=='both')}">Both</div>
+                <div class="ex-selector-option" @click="updateOptionBL('startorend', 'start')"
+                  :class="{selected: (this.$store.state.settings.startorend=='start')}">Notify at start of period</div>
+                <div class="ex-selector-option" @click="updateOptionBL('startorend', 'end')"
+                  :class="{selected: (this.$store.state.settings.startorend=='end')}">Notify at end of period</div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -134,10 +206,16 @@ import { allGrades } from '@/schedule';
 export default class Home extends Vue {
   public appVersion = `v${process.env.VUE_APP_VERSION} (b${process.env.VUE_APP_COMMIT_COUNT.trim()}#${process.env.VUE_APP_COMMIT_SHASH.trim()})`;
   colorThemeId = this.$store.state.settings.colorTheme;
+  startTimeAmount = this.$store.state.settings.startTime;
+  endTimeAmount = this.$store.state.settings.endTime;
   notificationsStatus = this.$store.state.settings.notificationsOn;
   grade = allGrades[2];
   allGrades = allGrades;
   allThemes: any[] = [];
+  show = false; 
+  seeorhide = "see";
+  startorend = "both";
+  allTimes = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
   strGrade(grade: any){
   if (grade < 13 && grade > 3) {
@@ -155,6 +233,31 @@ export default class Home extends Vue {
     grade = 'Event';
   }
   return grade;
+  }
+
+  strTime(time: any) {
+    if (time == 1) {
+      return (time.toString() + ' minute');
+    } else {
+      return (time.toString() + ' minutes');
+    }
+  }
+
+  toggleShow() {
+    if (this.$store.state.settings.notificationsOn) {
+      this.show = !this.show;
+      if (this.seeorhide === "see") {
+        this.seeorhide = "hide";
+      } else {
+        this.seeorhide = "see";
+      }
+    } else {
+      alert('Notifications must be on to edit advanced notification settings.');
+    }
+  }
+
+  showOff() {
+    this.show = false;
   }
 
   getNotifStatus() {
@@ -176,6 +279,14 @@ export default class Home extends Vue {
     this.updateOptionBL('grade', this.grade);
   }
 
+  updateStartTime() {
+    this.updateOptionBL('startTime', this.startTimeAmount);
+  }
+
+  updateEndTime() {
+    this.updateOptionBL('endTime', this.endTimeAmount);
+  }
+
   notifyMe() {
     // Let's check if the browser supports notifications
     let temp = this;
@@ -184,7 +295,7 @@ export default class Home extends Vue {
     }
 
     else if (Notification.permission === 'denied') {
-      alert('You have blocked notifications for this website. In order to enable popup notifications, you must click on the "i" next to your address bar and set notifications to "allow"');
+      alert('You have blocked notifications for this website. In order to enable popup notifications, you must click on the lock symbol next to your address bar and set notifications to "allow"');
     }
 
     // Let's check whether notification permissions have already been granted
@@ -199,6 +310,7 @@ export default class Home extends Vue {
         tag: String(this.$store.state.settings.numberOfClicks),
       });
       temp.notificationsStatus = true;
+      temp.show = true;
       temp.updateOptionBL('notificationsOn', true);
     }
 
@@ -237,6 +349,8 @@ export default class Home extends Vue {
   mounted() {
     // this part is to prevent invalid grade values
     this.grade = this.$store.state.settings.grade;
+    this.endTimeAmount = this.$store.state.settings.endTime;
+    this.startTimeAmount = this.$store.state.settings.startTime;
 
     if (allGrades.indexOf(this.grade) === -1) {
       this.grade = allGrades[2];
@@ -356,6 +470,29 @@ color: rgba(255, 255, 255, 0.6);
   border-width: 1px;
   border-radius: 3px;
 
+}
+
+.sub-nav-item {
+  background-color: transparent;
+  border-radius: 2px;
+  font-size: 14px;
+  display: inline-block;
+  text-decoration: none;
+  color: #fff;
+  text-transform: uppercase;
+  font-weight: 700;
+  margin: 0 5px;
+  padding: 6px 16px;
+  transition: 150ms ease;
+
+  &:hover {
+    background-color: var(--button-hover-color, rgba(#2f9768, .4));
+  }
+
+  &.router-link-exact-active {
+    background-color: var(--button-submenu-color, #2f9768);
+    box-shadow: 0 0 8px 4px rgba(100, 100, 100, .1);
+  }
 }
 
 </style>

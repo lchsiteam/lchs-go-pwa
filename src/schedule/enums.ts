@@ -131,7 +131,7 @@ export function getPeriodName(period: Period) {
   else if (period === Period.PERIOD_6_PASSING) { return 'Passing after Period 6'; }
   else if (period === Period.TBD) { return 'To Be Determined'; }
   else if (period === Period.EVENTNOPE) { return 'No Event'; }
-  else if (period === Period.OFFICE) { return 'Office Hours / Prep'; }
+  else if (period === Period.OFFICE) { return 'Office Hours'; }
   else if (period === Period.SMALL_GROUP_P0) { return 'Small Groups Period 0 or Clubs'; }
   else if (period === Period.SMALL_GROUP_P1) { return 'Small Group Period 1'; }
   else if (period === Period.SMALL_GROUP_P2) { return 'Small Group Period 2'; }

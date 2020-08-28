@@ -37,7 +37,7 @@ const breaks: any[] = [tgBreak, winterBreak, springBreak, summerBreak];
 
 const summerSchool: [MDYDate, MDYDate] = [new MDYDate(6, 15, 2020), new MDYDate(7, 16, 2020)];
 const blockSwitch: [MDYDate, MDYDate] = [new MDYDate(11, 11, 2019), new MDYDate(2, 17, 2020)];
-const noGroups: [MDYDate, MDYDate] = [new MDYDate(8, 17, 2020), new MDYDate(8, 28, 2020)];
+const noGroups: [MDYDate, MDYDate] = [new MDYDate(8, 17, 2020), new MDYDate(8, 17, 2021)];
 
 export const schoolSpecialDates: any = {
   '8 - 19 - 2020': Schedule.REGULAR,
@@ -484,12 +484,13 @@ export function getFullSchedule(schedule: Schedule, grade: number): any {
   }
 }
 
-export function getPeriod(time: number, schedule: Schedule, grade: number): any {
+export function getPeriod(time: number, schedule: Schedule, grade: number, pAllow = allFilter): any {
   const fullSchedule = getFullSchedule(schedule, grade);
-  return fullSchedule.find((p: any) => (p.start <= time && p.end > time));
+  return fullSchedule.find((p: any) => (p.start <= time && p.end > time) && pAllow.indexOf(p.period) !== -1);
 }
 
-const periodsFilter = [
+
+export const periodsFilter = [
   Period.PERIOD_0,
   Period.PERIOD_1,
   Period.PERIOD_2,
@@ -523,6 +524,120 @@ const periodsFilter = [
   Period.SMALL_GROUP_WELLNESS,
 ];
 
+export const excludeZero = [
+  Period.OFFICE,
+  Period.SMALL_GROUP,
+  Period.PERIOD_1,
+  Period.PERIOD_2,
+  Period.PERIOD_3,
+  Period.PERIOD_4,
+  Period.PERIOD_5,
+  Period.PERIOD_6,
+  Period.LUNCH,
+  Period.BREAK,
+  Period.STEP_ODD,
+  Period.STEP_EVEN,
+  Period.HOMEROOM,
+  Period.ASSEMBLY,
+  Period.TBD,
+  Period.ARRIVAL,
+  Period.GROUP_A,
+  Period.RECESS,
+  Period.RECESS_PE,
+  Period.PREP,
+  Period.GROUP_B,
+];
+
+export const excludeSix = [
+  Period.OFFICE,
+  Period.SMALL_GROUP,
+  Period.PERIOD_0,
+  Period.PERIOD_1,
+  Period.PERIOD_2,
+  Period.PERIOD_3,
+  Period.PERIOD_4,
+  Period.PERIOD_5,
+  Period.LUNCH,
+  Period.BREAK,
+  Period.STEP_ODD,
+  Period.STEP_EVEN,
+  Period.HOMEROOM,
+  Period.ASSEMBLY,
+  Period.TBD,
+  Period.ARRIVAL,
+  Period.GROUP_A,
+  Period.RECESS,
+  Period.RECESS_PE,
+  Period.PREP,
+  Period.GROUP_B,
+];
+
+export const excludeZeroAndSix = [
+  Period.OFFICE,
+  Period.SMALL_GROUP,
+  Period.PERIOD_1,
+  Period.PERIOD_2,
+  Period.PERIOD_3,
+  Period.PERIOD_4,
+  Period.PERIOD_5,
+  Period.LUNCH,
+  Period.BREAK,
+  Period.STEP_ODD,
+  Period.STEP_EVEN,
+  Period.HOMEROOM,
+  Period.ASSEMBLY,
+  Period.TBD,
+  Period.ARRIVAL,
+  Period.GROUP_A,
+  Period.RECESS,
+  Period.RECESS_PE,
+  Period.PREP,
+  Period.GROUP_B,
+];
+
+export const allFilter = [
+  Period.PERIOD_0,
+  Period.PERIOD_0_PASSING,
+  Period.PERIOD_1,
+  Period.PERIOD_1_PASSING,
+  Period.PERIOD_2,
+  Period.PERIOD_2_PASSING,
+  Period.BREAK,
+  Period.BREAK_PASSING,
+  Period.PERIOD_3,
+  Period.PERIOD_3_PASSING,
+  Period.LUNCH,
+  Period.LUNCH_PASSING,
+  Period.STEP_ODD,
+  Period.STEP_EVEN,
+  Period.STEP_PASSING,
+  Period.HOMEROOM,
+  Period.HOMEROOM_PASSING,
+  Period.ASSEMBLY,
+  Period.ASSEMBLY_PASSING,
+  Period.PERIOD_4,
+  Period.PERIOD_4_PASSING,
+  Period.PERIOD_5,
+  Period.PERIOD_5_PASSING,
+  Period.PERIOD_6,
+  Period.PERIOD_6_PASSING,
+  Period.TBD,
+  Period.NONE,
+  Period.EVENTNOPE,
+  Period.OFFICE,
+  Period.SMALL_GROUP,
+  // Elementary Periods
+  Period.ARRIVAL,
+  Period.ARRIVAL_A,
+  Period.ARRIVAL_B,
+  Period.GROUP_A,
+  Period.GROUP_B,
+  Period.RECESS,
+  Period.RECESS_PE,
+  Period.PREP,
+  Period.DONE,
+]
+
 export function getUpcomingPeriod(time: number, dateTime: any, schedule: Schedule, grade: number, pAllow = periodsFilter): any {
   const fullSchedule = getFullSchedule(schedule, grade);
   const result = fullSchedule.find((p: any) => (p.start > time && pAllow.indexOf(p.period) !== -1));
@@ -546,6 +661,17 @@ export function getUpcomingPeriod(time: number, dateTime: any, schedule: Schedul
     // TODO: replace Period.NONE with something else
     return { start: 0, end: 1440, period: Period.NONE, daysSince };
   }
+}
+
+export function getPreviousPeriod(time: number, dateTime: any, schedule: Schedule, grade: number, pAllow = periodsFilter): any {
+  const fullSchedule = getFullSchedule(schedule, grade);
+  let result = fullSchedule.find((p: any) => (p.end <= time && pAllow.indexOf(p.period) !== -1));
+  for (let index=0; index<fullSchedule.length; index++) {
+    if ((fullSchedule[index].end > result.end) && (fullSchedule[index].end <= time) && (pAllow.indexOf(fullSchedule[index].period) !== -1)) {
+      result = fullSchedule[index];
+    }
+  }
+  if (result) { return result; }
 }
 
 // This works so far, not touching.

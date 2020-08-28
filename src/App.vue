@@ -19,7 +19,7 @@ import { Themes } from './themes';
 import { DateTime, Duration } from 'luxon';
 import firebase from 'firebase';
 import firebaseui from 'firebaseui';
-import { printTime, getScheduleFromDay, getPeriod, getUpcomingPeriod, allGrades, plusDays } from '@/schedule';
+import { printTime, getScheduleFromDay, getPeriod, getUpcomingPeriod, getPreviousPeriod, allGrades, plusDays, periodsFilter, allFilter, excludeZeroAndSix, excludeZero, excludeSix } from '@/schedule';
 import { Day, Schedule, Period, getPeriodName, getScheduleName } from '@/schedule/enums';
 
 @Component({})
@@ -31,6 +31,9 @@ export default class App extends Vue {
   private grade = allGrades[2];
   private currentDateTime: any;
   private uniqueMinute: number = 0;
+  private nextPeriod = { start: 0, end: 1440, period: Period.NONE };
+  private previousPeriod = { start: 0, end: 1440, period: Period.NONE };
+  private filter = periodsFilter;
 
   getCurrentColorScheme() {
     return this.getColorSchemeFromId(this.$store.state.settings.colorTheme);
@@ -77,22 +80,55 @@ export default class App extends Vue {
     this.uniqueMinute = currentDate.minute + (currentDate.hour * 60) + (currentDate.ordinal * 60 * 24) + (currentDate.year * 365 * 60 * 24);
     this.currentDateTime = currentDate;
     this.grade = this.$store.state.settings.grade;
+    // keep in mind, App.vue's implementation of this.currentPeriod, uses a filtered period list
     this.schedule = getScheduleFromDay(currentDate.month, currentDate.day, currentDate.year, currentDate.weekday, this.grade);
-    this.currentPeriod = getPeriod(this.minutes, this.schedule, this.grade);
+    this.currentPeriod = getPeriod(this.minutes, this.schedule, this.grade, this.filter);
+    this.nextPeriod = getUpcomingPeriod(this.minutes, this.currentDateTime, this.schedule, this.grade, this.filter);
+    this.previousPeriod = getPreviousPeriod(this.minutes, this.currentDateTime, this.schedule, this.grade, this.filter);
+  }
+
+  updateFilter() {
+    if (this.$store.state.settings.sixthEnabled) {
+      if (this.$store.state.settings.zeroEnabled) {
+        this.filter = periodsFilter;
+      } else {
+        this.filter = excludeZero;
+      }
+    } else if (this.$store.state.settings.zeroEnabled) {
+      this.filter = excludeSix;
+    } else {
+      this.filter = excludeZeroAndSix;
+    }
   }
 
   sendNotifications() {
     // console.log(this.uniqueMinute);
     // console.log(this.minutes);
-    // console.log(this.currentPeriod.start);
+    //console.log(this.nextPeriod.start);
+    //console.log(this.currentPeriod.period);
+    //console.log(getPeriodName(this.nextPeriod.period));
+    // console.log(getPeriodName(this.nextPeriod.period));
     // console.log(this.$store.state.settings.notificationSent);
-    if ((this.minutes === this.currentPeriod.start) && (!this.$store.state.settings.notificationSent)) {
+    //console.log(this.$store.state.settings.startTime);
+    //console.log(this.$store.state.settings.endTime);
+    if (((this.minutes === this.previousPeriod.end-this.$store.state.settings.endTime) && (!this.$store.state.settings.notificationSent) && (this.$store.state.settings.startorend != 'start')) && (this.$store.state.settings.endTime === 0)) {
       this.$store.state.settings.notificationSent = true;
-      // console.log("send");
-      this.createNotification('Period over, your next class will start soon!');
+      this.createNotification('Attention: ' + getPeriodName(this.previousPeriod.period) + ' is ending in ' + this.$store.state.settings.endTime + ' minute(s)', this.previousPeriod);
+    }
+    else if (((this.minutes === this.currentPeriod.start-this.$store.state.settings.startTime) && (!this.$store.state.settings.notificationSent) && (this.$store.state.settings.startorend != 'end')) && (this.$store.state.settings.startTime === 0)) {
+      this.$store.state.settings.notificationSent = true;
+      this.createNotification('Attention: ' + getPeriodName(this.currentPeriod.period) + ' is starting in ' + this.$store.state.settings.startTime + ' minute(s)', this.currentPeriod);
+    }
+    else if ((this.minutes === this.nextPeriod.start-this.$store.state.settings.startTime) && (!this.$store.state.settings.notificationSent) && (this.$store.state.settings.startorend != 'end')) {
+      this.$store.state.settings.notificationSent = true;
+      this.createNotification('Attention: ' + getPeriodName(this.nextPeriod.period) + ' is starting in ' + this.$store.state.settings.startTime + ' minute(s)', this.nextPeriod);
+    }
+    else if ((this.minutes === this.currentPeriod.end-this.$store.state.settings.endTime) && (!this.$store.state.settings.notificationSent) && (this.$store.state.settings.startorend != 'start')){
+      this.$store.state.settings.notificationSent = true;
+      this.createNotification('Attention: ' + getPeriodName(this.currentPeriod.period) + ' is ending in ' + this.$store.state.settings.endTime + ' minute(s)', this.currentPeriod);
     }
     else {
-      if (this.minutes !== this.currentPeriod.start) {
+      if ((this.minutes !== this.nextPeriod.start-this.$store.state.settings.startTime) && (this.minutes !== this.currentPeriod.end-this.$store.state.settings.endTime) && (this.minutes !== this.previousPeriod.end-this.$store.state.settings.endTime) && (this.minutes !== this.currentPeriod.start-this.$store.state.settings.startTime)) {
         this.$store.state.settings.notificationSent = false;
       }
     }
@@ -104,10 +140,11 @@ export default class App extends Vue {
     }
   }
 
-  createNotification(message: string) {
+  createNotification(message: string, period: any) {
     // console.log(this.$store.state.settings.notificationsOn);
     if ((Notification.permission === 'granted') && (this.$store.state.settings.notificationsOn)) {
       // If it's okay let's create a notification
+      console.log('testing');
       let tempNotif = new Notification('LCHS Go', {
         body: String(message),
         badge: 'https://go.lciteam.club/favicon.ico',
@@ -171,7 +208,6 @@ export default class App extends Vue {
   }
 
   mounted() {
-    console.log('test');
     setInterval(this.updateStats, 5000);
     this.updateStats();
     setInterval(this.sendNotifications, 5000);
