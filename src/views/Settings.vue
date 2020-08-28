@@ -23,29 +23,13 @@
           <div class="ex-selector">
             <div class="ex-selector-option" @click="notifyMe();"
               :class="{selected: this.$store.state.settings.notificationsOn}">Enable</div>
-            <div class="ex-selector-option" @click="updateOptionBL('notificationsOn', false)"
+            <div class="ex-selector-option" @click="updateOptionBL('notificationsOn', false); showOff()"
               :class="{selected: !(this.$store.state.settings.notificationsOn)}">Disable</div>
           </div>
         </div>
         <button class="sub-nav-item" @click='toggleShow'>Click here to {{ this.seeorhide }} advanced notification settings</button>
         <div class="settings-rows" v-if='show'>
           <!-- hidden section-->
-          <div class="settings-row">
-            <div class="sr-head">
-              <b class="sr-title">Audio or Popup Notifications</b>
-              <span class="sr-desc">Choose whether you want audio notifications, popup notifications, or both</span>
-            </div>
-            <div class="sr-option">
-              <div class="ex-selector">
-                <div class="ex-selector-option" @click="updateOptionBL('popuporaudio', 'both')"
-                  :class="{selected: (this.$store.state.settings.popuporaudio=='both')}">Both</div>
-                <div class="ex-selector-option" @click="updateOptionBL('popuporaudio', 'popup')"
-                  :class="{selected: (this.$store.state.settings.popuporaudio=='popup')}">Popup only</div>
-                <div class="ex-selector-option" @click="updateOptionBL('popuporaudio', 'audio')"
-                  :class="{selected: (this.$store.state.settings.popuporaudio=='audio')}">Audio only</div>
-              </div>
-            </div>
-          </div>
           <div class='settings-row'> 
             <div class='sr-head'>
               <span class="sr-badge-new">NEW</span>
@@ -260,13 +244,21 @@ export default class Home extends Vue {
   }
 
   toggleShow() {
-    this.show = !this.show; 
-    if (this.seeorhide==="see") {
-      this.seeorhide = "hide";
+    if (this.$store.state.settings.notificationsOn) {
+      this.show = !this.show;
+      if (this.seeorhide === "see") {
+        this.seeorhide = "hide";
+      } else {
+        this.seeorhide = "see";
+      }
     } else {
-      this.seeorhide = "see";
+      alert('Notifications must be on to edit advanced notification settings.');
     }
-  } 
+  }
+
+  showOff() {
+    this.show = false;
+  }
 
   getNotifStatus() {
     // A way to refrence this boolean expression as a single variable
@@ -318,6 +310,7 @@ export default class Home extends Vue {
         tag: String(this.$store.state.settings.numberOfClicks),
       });
       temp.notificationsStatus = true;
+      temp.show = true;
       temp.updateOptionBL('notificationsOn', true);
     }
 
