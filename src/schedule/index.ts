@@ -37,7 +37,7 @@ const breaks: any[] = [tgBreak, winterBreak, springBreak, summerBreak];
 
 const summerSchool: [MDYDate, MDYDate] = [new MDYDate(6, 15, 2020), new MDYDate(7, 16, 2020)];
 const blockSwitch: [MDYDate, MDYDate] = [new MDYDate(11, 11, 2019), new MDYDate(2, 17, 2020)];
-const noGroups: [MDYDate, MDYDate] = [new MDYDate(8, 17, 2020), new MDYDate(8, 28, 2020)];
+const noGroups: [MDYDate, MDYDate] = [new MDYDate(8, 17, 2020), new MDYDate(8, 17, 2021)];
 
 export const schoolSpecialDates: any = {
   '8 - 19 - 2020': Schedule.REGULAR,
