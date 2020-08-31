@@ -2,7 +2,11 @@
   <div class="bell-schedule-pg">
     <!-- Place the table in the Bell Schedule page for now -->
     <h3>Schedule: {{getCurrentScheduleName()}}</h3>
-    <p class="gradeMessage">You are viewing the {{strGrade(grade)}} schedule. To change grades, go to Settings. </p>
+    <p class="gradeMessage">You are viewing the</p>
+    <select v-model="grade" @change="changeGrade()" class = "grade-select">
+      <option v-for="grade in allGrades" :key="grade" :value="grade" class = "grade-select-item">{{strGrade(grade)}}</option> 
+    </select>
+    <p class="gradeMessage">schedule.</p>
     <!-- Please replace this! -->
     <div class='bell-schedule-datepicker'>
       <div v-if='canUseLeft()' class="blsch-dp-left" @click="updateShift(-1)">&#8592;</div>
@@ -29,9 +33,9 @@
         <div class="blsch-period-end">End</div>
       </div>
       <div class="blsch-period-container" v-for="period of getFullSchedule()" :key="period.period">
-        <div class="blsch-period" :class="{ selected: daysShifted == 0 && currentPeriod.period === period.period }">
+        <div class="blsch-period" :class="{ selected: selected(period) }">
           <div class="blsch-period-title">{{getPeriodName(period.period)}}</div>
-          <div class="blsch-period-start">{{getCertainTime(period.start)}}</div>
+          <div class="blsch-period-start">{{getCertainTime(period.start)}}</div>  
           <div class="blsch-period-end">{{getCertainTime(period.end)}}</div>
         </div>
       </div>
@@ -126,6 +130,35 @@ div.gradeMessage {
   font-weight: bold;
 }
 
+.gradeMessage {
+  font-size: 15px;
+  display: inline;
+  padding: 5px;
+}
+select.grade-select {
+  color: #ffffff;
+  background: rgba(0,0,0,.2);
+  padding: 0px;
+  text-decoration-color: white;
+  font-weight: 600;
+  font-family: Niramit,Avenir,sans-serif;
+  border-color:rgba(0,0,0,0);
+  border-width: 1px;
+  border-radius: 3px;
+} 
+option.grade-select-item  {
+color: rgba(255, 255, 255, 0.6);
+
+  background: var(--button-menu-color, #42b983);
+  padding: 5px;
+  text-decoration-color: white;
+  font-weight: 600;
+  font-family: Niramit,Avenir,sans-serif;
+  border-color:rgba(0,0,0,0);
+  border-width: 1px;
+  border-radius: 3px;
+}
+
 </style>
 
 <script src='https://unpkg.com/vue/dist/vue.js'></script>
@@ -137,7 +170,7 @@ import { Component, Vue } from 'vue-property-decorator';
 import { DateTime, Duration } from 'luxon';
 
 import { printTime, getScheduleFromDay, getPeriod, getFullSchedule, allGrades,
-plusDays } from '@/schedule';
+plusDays, plusMins } from '@/schedule';
 import { Day, Schedule, Period, getPeriodName, getScheduleName } from '@/schedule/enums';
 import { RegularSchedule, BlockEvenSchedule, BlockOddSchedule } from '@/schedule/schedules';
 import { MDYDate } from '@/schedule/mdy_date';
@@ -154,8 +187,9 @@ Vue.use(VCalendar, {
 
 @Component({})
 export default class Home extends Vue {
-  private minDate = new Date(2019, 7, 14);
-  private maxDate = new Date(2020, 4, 31);
+  private allGrades = allGrades;
+  private minDate = new Date(2020, 7, 1);
+  private maxDate = new Date(2021, 4, 31);
   private minutes: number = 0;
   private schedule: Schedule = Schedule.NONE;
   private grade = allGrades[2];
@@ -165,7 +199,9 @@ export default class Home extends Vue {
   private arrowsUsed = true;
 
   public updateStats() {
-    const currentDate = DateTime.local().setZone('America/Los_Angeles').plus(Duration.fromMillis(this.daysShifted * 86400000));
+    // console.log(plusDays);
+
+    const currentDate = DateTime.local().setZone('America/Los_Angeles').plus(Duration.fromMillis((this.daysShifted + plusDays) * 86400000 + plusMins * 60 * 1000));
     this.minutes = currentDate.minute + (currentDate.hour * 60);
 
     this.grade = this.$store.state.settings.grade;
@@ -176,6 +212,10 @@ export default class Home extends Vue {
     }
     this.arrowsUsed = false;
     this.daysShifted = Math.ceil((this.date.valueOf() - new Date().valueOf()) / 86400000);
+  }
+
+  selected(period: any) {
+    return this.daysShifted === 0 && this.currentPeriod === period;
   }
 
   getGreeting() {
@@ -273,9 +313,17 @@ export default class Home extends Vue {
     return this.currentPeriod.end - this.minutes >= 120 ? 'hr.' : 'min.';
   }
   strGrade(grade: any){
-    if (grade < 13) {
+    if (grade < 13 && grade > 3) {
       grade = String(grade);
       grade = grade.concat('th Grade');
+    } else if (grade === 0) {
+      grade = 'TK/K';
+    } else if (grade === 1) {
+      grade = '1st Grade';
+    } else if (grade === 2) {
+      grade = '2nd Grade';
+    } else if (grade === 3) {
+      grade = '3rd Grade';
     } else if (grade === 13) {
       grade = 'Event';
     }
@@ -303,6 +351,23 @@ export default class Home extends Vue {
         Period.HOMEROOM,
         Period.ASSEMBLY,
         Period.TBD,
+        Period.OFFICE,
+        Period.SMALL_GROUP,
+        Period.ARRIVAL,
+        Period.ARRIVAL_A,
+        Period.ARRIVAL_B,
+        Period.RECESS,
+        Period.RECESS_PE,
+        Period.PREP,
+        Period.SMALL_GROUP_P0,
+        Period.SMALL_GROUP_P1,
+        Period.SMALL_GROUP_P2,
+        Period.SMALL_GROUP_P3,
+        Period.SMALL_GROUP_P4,
+        Period.SMALL_GROUP_P5,
+        Period.SMALL_GROUP_P6,
+        Period.SMALL_GROUP_CLUBS,
+        Period.SMALL_GROUP_WELLNESS,
       ].indexOf(period) !== -1 || this.$store.state.settings.showExtraPeriods;
     });
   }
@@ -334,7 +399,9 @@ export default class Home extends Vue {
   }
 
   public changeGrade(grade: number) {
-    this.updateOptionBL('grade', grade);
+    this.updateOptionBL('grade', this.grade);
+
+    this.updateStats();
   }
 
   public mounted() {

@@ -6,13 +6,21 @@ Vue.use(Vuex);
 
 const defaultConfig = {
   settings: {
+    numberOfClicks: 0,
+    notificationsOn: true,
+    notificationSent: false,
     useMilitaryTime: false,
     enableAnimations: true,
     enableThemeAnimations: true,
     enableRadialGradient: true,
     showExtraPeriods: false,
+    sixthEnabled: true,
+    zeroEnabled: true,
     colorTheme: 'theme8',
+    startorend: 'both',
     grade: 9,
+    startTime: 3,
+    endTime: 2,
     idInput: '',
     gradeInput: [],
   },
