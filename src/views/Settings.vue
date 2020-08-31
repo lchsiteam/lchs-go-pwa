@@ -215,7 +215,7 @@ export default class Home extends Vue {
   show = false; 
   seeorhide = "see";
   startorend = "both";
-  allTimes = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+  allTimes = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
   strGrade(grade: any){
   if (grade < 13 && grade > 3) {
