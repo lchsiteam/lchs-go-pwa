@@ -4,7 +4,6 @@
     <div class="settings-rows">
       <div class='settings-row'> 
         <div class='sr-head'>
-          <span class="sr-badge-new">NEW</span>
           <b class='sr-title'>Grade Level</b> 
           <span class='sr-desc'>Change which grade is used for calculating schedules</span> 
         </div> 
@@ -27,14 +26,18 @@
               :class="{selected: !(this.$store.state.settings.notificationsOn)}">Disable</div>
           </div>
         </div>
-        <button class="sub-nav-item" @click='toggleShow'>Click here to {{ this.seeorhide }} advanced notification settings</button>
+        <div class="sr-option">
+          <div class="ex-selector">
+            <div class="ex-selector-option" @click='toggleShow'>Click here to {{ this.seeorhide }} advanced notification settings</div>
+          </div>
+        </div>
         <div class="settings-rows" v-if='show'>
           <!-- hidden section-->
           <div class='settings-row'> 
             <div class='sr-head'>
               <span class="sr-badge-new">NEW</span>
               <b class='sr-title'>Warning time before period START</b> 
-              <span class='sr-desc'>How many minutes before the start of the period should we notify you that the start of the period is coming?</span> 
+              <span class='sr-desc'>How many minutes before the start of a period should we notify you that the period is starting?</span> 
             </div> 
             <div class='sr-option'>
               <select v-model="startTimeAmount" @change="updateStartTime()" class = "grade-select">
@@ -46,7 +49,7 @@
             <div class='sr-head'>
               <span class="sr-badge-new">NEW</span>
               <b class='sr-title'>Warning time before period END</b> 
-              <span class='sr-desc'>How many minutes before the end of the period should we notify you that the end of the period is coming?</span> 
+              <span class='sr-desc'>How many minutes before the end of a period should we notify you that the period is ending?</span> 
             </div> 
             <div class='sr-option'>
               <select v-model="endTimeAmount" @change="updateEndTime()" class = "grade-select">
@@ -57,7 +60,7 @@
           <div class="settings-row">
             <div class="sr-head">
               <b class="sr-title">Display Zero Period</b>
-              <span class="sr-desc">Whether or not to disable notifications for zero period. (Disable this if you don't have a zero period)</span>
+              <span class="sr-desc">Enable or disable notifications for zero period. (Disable this if you don't have a zero period)</span>
             </div>
             <div class="sr-option">
               <div class="ex-selector">
@@ -71,7 +74,7 @@
           <div class="settings-row">
             <div class="sr-head">
               <b class="sr-title">Display 6th Period</b>
-              <span class="sr-desc">Whether or not to disable notifications for 6th period. (Disable this if you don't have a 6th period)</span>
+              <span class="sr-desc">Enable or disable notifications for 6th period. (Disable this if you don't have a 6th period)</span>
             </div>
             <div class="sr-option">
               <div class="ex-selector">
@@ -84,8 +87,8 @@
           </div>
           <div class="settings-row">
             <div class="sr-head">
-              <b class="sr-title">Disable Notifications For Start OR End of Period</b>
-              <span class="sr-desc">Choose if you want notifications for both the start and end of period, or just one of them. NOTE: IF YOU DON'T WANT NOTIFICATIONS AT ALL, YOU CAN DISABLE THEM ABOVE. (this is not the setting for that).</span>
+              <b class="sr-title">Enable Notifications For Start OR End of Period</b>
+              <span class="sr-desc">Choose if you want notifications for both the start and end of a period, or just one of them. (If you don't want notifications at all, you can disable them above)</span>
             </div>
             <div class="sr-option">
               <div class="ex-selector">
@@ -116,7 +119,6 @@
       </div>
       <div class="settings-row">
         <div class="sr-head">
-          <span class="sr-badge-new">NEW</span>
           <b class="sr-title">Enable Theme Animations</b>
           <span class="sr-desc">Toggle fancy color fading</span>
         </div>
@@ -131,7 +133,6 @@
       </div>
       <div class="settings-row">
         <div class="sr-head">
-          <span class="sr-badge-new">NEW</span>
           <b class="sr-title">Gradient Type</b>
           <span class="sr-desc">Switch between linear and radial color blend</span>
         </div>
@@ -161,7 +162,7 @@
       <div class="settings-row">
         <div class="sr-head">
           <b class="sr-title">Show Hidden Periods</b>
-          <span class="sr-desc">Show passing periods and times outside school on bell schedule</span>
+          <span class="sr-desc">Show passing periods and times outside school on the bell schedule</span>
         </div>
         <div class="sr-option">
           <div class="ex-selector">
@@ -174,9 +175,8 @@
       </div>
       <div class="settings-row">
         <div class="sr-head">
-          <span class="sr-badge-new">NEW</span>
-          <b class="sr-title">Color Theme (beta)</b>
-          <span class="sr-desc">Change app color scheme. Send an email to team@lciteam.club for suggestions.</span>
+          <b class="sr-title">Color Theme</b>
+          <span class="sr-desc">Change the app's color scheme. Send an email to team@lciteam.club for suggestions.</span>
         </div>
         <div class="sr-option">
           <select v-model="colorThemeId" @change="updateTheme()" class="grade-select">
