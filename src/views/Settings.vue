@@ -26,7 +26,11 @@
               :class="{selected: !(this.$store.state.settings.notificationsOn)}">Disable</div>
           </div>
         </div>
-        <button class="sub-nav-item" @click='toggleShow'>Click here to {{ this.seeorhide }} advanced notification settings</button>
+        <div class="sr-option">
+          <div class="ex-selector">
+            <div class="ex-selector-option" @click='toggleShow'>Click here to {{ this.seeorhide }} advanced notification settings</div>
+          </div>
+        </div>
         <div class="settings-rows" v-if='show'>
           <!-- hidden section-->
           <div class='settings-row'> 
