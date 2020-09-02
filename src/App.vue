@@ -102,15 +102,6 @@ export default class App extends Vue {
   }
 
   sendNotifications() {
-    // console.log(this.uniqueMinute);
-    // console.log(this.minutes);
-    //console.log(this.nextPeriod.start);
-    //console.log(this.currentPeriod.period);
-    //console.log(getPeriodName(this.nextPeriod.period));
-    // console.log(getPeriodName(this.nextPeriod.period));
-    // console.log(this.$store.state.settings.notificationSent);
-    //console.log(this.$store.state.settings.startTime);
-    //console.log(this.$store.state.settings.endTime);
     if (((this.minutes === this.previousPeriod.end-this.$store.state.settings.endTime) && (!this.$store.state.settings.notificationSent) && (this.$store.state.settings.startorend != 'start')) && (this.$store.state.settings.endTime === 0)) {
       this.$store.state.settings.notificationSent = true;
       this.createNotification('Attention: ' + getPeriodName(this.previousPeriod.period) + ' is ending in ' + this.$store.state.settings.endTime + ' minute(s)', this.previousPeriod);
