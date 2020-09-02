@@ -4,7 +4,6 @@
     <div class="settings-rows">
       <div class='settings-row'> 
         <div class='sr-head'>
-          <span class="sr-badge-new">NEW</span>
           <b class='sr-title'>Grade Level</b> 
           <span class='sr-desc'>Change which grade is used for calculating schedules</span> 
         </div> 
@@ -116,7 +115,6 @@
       </div>
       <div class="settings-row">
         <div class="sr-head">
-          <span class="sr-badge-new">NEW</span>
           <b class="sr-title">Enable Theme Animations</b>
           <span class="sr-desc">Toggle fancy color fading</span>
         </div>
@@ -131,7 +129,6 @@
       </div>
       <div class="settings-row">
         <div class="sr-head">
-          <span class="sr-badge-new">NEW</span>
           <b class="sr-title">Gradient Type</b>
           <span class="sr-desc">Switch between linear and radial color blend</span>
         </div>
@@ -174,7 +171,6 @@
       </div>
       <div class="settings-row">
         <div class="sr-head">
-          <span class="sr-badge-new">NEW</span>
           <b class="sr-title">Color Theme (beta)</b>
           <span class="sr-desc">Change app color scheme. Send an email to team@lciteam.club for suggestions.</span>
         </div>
