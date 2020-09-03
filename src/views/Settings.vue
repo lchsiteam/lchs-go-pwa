@@ -211,10 +211,10 @@ export default class Home extends Vue {
   grade = allGrades[2];
   allGrades = allGrades;
   allThemes: any[] = [];
-  show = false; 
-  seeorhide = "See";
-  startorend = "both";
-  allTimes = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+  show = false;
+  seeorhide = 'See';
+  startorend = 'both';
+  allTimes = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
   strGrade(grade: any){
   if (grade < 13 && grade > 3) {
@@ -235,7 +235,7 @@ export default class Home extends Vue {
   }
 
   strTime(time: any) {
-    if (time == 1) {
+    if (time === 1) {
       return (time.toString() + ' minute');
     } else {
       return (time.toString() + ' minutes');
@@ -245,10 +245,10 @@ export default class Home extends Vue {
   toggleShow() {
     if (this.$store.state.settings.notificationsOn) {
       this.show = !this.show;
-      if (this.seeorhide === "See") {
-        this.seeorhide = "Hide";
+      if (this.seeorhide === 'See') {
+        this.seeorhide = 'Hide';
       } else {
-        this.seeorhide = "See";
+        this.seeorhide = 'See';
       }
     }
   }
