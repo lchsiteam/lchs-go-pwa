@@ -46,6 +46,7 @@ export default class App extends Vue {
   getCSSColorScheme() {
     let themeGradient;
     const currentColorScheme = this.getCurrentColorScheme();
+    // If dynamic theme selected, set theme based on time
     if (this.$store.state.settings.colorTheme === 'theme15') {
       const currentDate = DateTime.local().setZone('America/Los_Angeles');
       if (currentDate.hour >= 21 && currentDate.hour <= 4) {
@@ -80,7 +81,7 @@ export default class App extends Vue {
     this.uniqueMinute = currentDate.minute + (currentDate.hour * 60) + (currentDate.ordinal * 60 * 24) + (currentDate.year * 365 * 60 * 24);
     this.currentDateTime = currentDate;
     this.grade = this.$store.state.settings.grade;
-    // keep in mind, App.vue's implementation of this.currentPeriod, uses a filtered period list
+    // keep in mind, App.vue's implementation of this.currentPeriod uses a filtered period list
     this.schedule = getScheduleFromDay(currentDate.month, currentDate.day, currentDate.year, currentDate.weekday, this.grade);
     this.currentPeriod = getPeriod(this.minutes, this.schedule, this.grade, this.filter);
     this.nextPeriod = getUpcomingPeriod(this.minutes, this.currentDateTime, this.schedule, this.grade, this.filter);
@@ -118,11 +119,10 @@ export default class App extends Vue {
       this.createNotification(getPeriodName(this.currentPeriod.period) + ' is ending in ' + this.$store.state.settings.endTime + this.pluralMinutes(this.$store.state.settings.endTime), this.currentPeriod);
       this.$store.state.settings.notificationSent = true;
     }
-    else {
-      if ((this.minutes !== this.nextPeriod.start - this.$store.state.settings.startTime) && (this.minutes !== this.currentPeriod.end - this.$store.state.settings.endTime) && (this.minutes !== this.previousPeriod.end - this.$store.state.settings.endTime) && (this.minutes !== this.currentPeriod.start - this.$store.state.settings.startTime)) {
-        this.$store.state.settings.notificationSent = false;
-      }
+    else if ((this.minutes !== this.nextPeriod.start - this.$store.state.settings.startTime) && (this.minutes !== this.currentPeriod.end - this.$store.state.settings.endTime) && (this.minutes !== this.previousPeriod.end - this.$store.state.settings.endTime) && (this.minutes !== this.currentPeriod.start - this.$store.state.settings.startTime)) {
+      this.$store.state.settings.notificationSent = false;
     }
+
     if (Notification.permission === 'denied') {
       this.$store.state.settings.notificationsOn = false;
     }
@@ -193,9 +193,6 @@ export default class App extends Vue {
           temp.notificationsStatus = false;
         }
       });
-
-    // At last, if the user has denied notifications, and you
-    // want to be respectful, there is no need to bother them any more.
     }
   }
 

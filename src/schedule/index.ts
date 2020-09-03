@@ -265,7 +265,6 @@ export function getFullSchedule(schedule: Schedule, grade: number): any {
     highSchooler = 0;
   }
 
-  // TODO: Add more schedules
   switch (schedule) {
     case Schedule.NONE:
       return NoSchoolSchedule;
@@ -665,6 +664,7 @@ export function getUpcomingPeriod(time: number, dateTime: any, schedule: Schedul
 export function getPreviousPeriod(time: number, dateTime: any, schedule: Schedule, grade: number, pAllow = periodsFilter): any {
   const fullSchedule = getFullSchedule(schedule, grade);
   let result = fullSchedule.find((p: any) => (p.end <= time && pAllow.indexOf(p.period) !== -1));
+  // tslint:disable-next-line:prefer-for-of
   for (let index = 0; index < fullSchedule.length; index++) {
     if ((fullSchedule[index].end > result.end) && (fullSchedule[index].end <= time) && (pAllow.indexOf(fullSchedule[index].period) !== -1)) {
       result = fullSchedule[index];
