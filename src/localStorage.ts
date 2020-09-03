@@ -12,7 +12,7 @@ const checkLocalStorage = (defaultConfig: any) => {
         localStorage.setItem(key, JSON.stringify(Object.assign(defaultConfig[key], JSON.parse(result))));
       }
     } catch (e) {
-      console.error(e);
+      // console.error(e);
     }
   });
 };
