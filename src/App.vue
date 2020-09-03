@@ -126,7 +126,7 @@ export default class App extends Vue {
     if (Notification.permission === 'denied') {
       this.$store.state.settings.notificationsOn = false;
     }
-    else if (!(Notification.permission === 'granted') && (this.$store.state.settings.notificationsOn)) {
+    else if (Notification.permission !== 'granted' && this.$store.state.settings.notificationsOn) {
       this.notifyMe();
     }
   }
