@@ -44,6 +44,7 @@ export const schoolSpecialDates: any = {
   '8 - 20 - 2020': Schedule.REGULAR,
   '8 - 26 - 2020': Schedule.REGULAR,
   '8 - 27 - 2020': Schedule.REGULAR,
+  '9 - 7 - 2020': Schedule.NONE,
 
   // month - day - year: schedule (something from the Schedule enum)
 };
@@ -82,6 +83,7 @@ export const gradeSpecialDates: any = {
   12: {
   },
   13: {
+    '9 - 9 - 2020': Schedule.HSBACKTOSCHOOLNIGHT,
   },
 };
 
