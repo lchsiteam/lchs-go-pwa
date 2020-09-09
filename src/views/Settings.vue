@@ -15,6 +15,7 @@
       </div>
       <div class="settings-row">
         <div class="sr-head">
+          <span class="sr-badge-new">NEW</span>
           <b class="sr-title">Desktop Notifications</b>
           <span class="sr-desc">Enable or disable desktop notifications</span>
         </div>
@@ -26,16 +27,15 @@
               :class="{selected: !(this.$store.state.settings.notificationsOn)}">Disable</div>
           </div>
         </div>
-        <div class="sr-option">
+        <div class="sr-option" v-if='this.$store.state.settings.notificationsOn'>
           <div class="ex-selector">
-            <div class="ex-selector-option" @click='toggleShow'>Click here to {{ this.seeorhide }} advanced notification settings</div>
+            <div class="ex-selector-option" @click='toggleShow'>{{ this.seeorhide }} advanced notification settings</div>
           </div>
         </div>
         <div class="settings-rows" v-if='show'>
           <!-- hidden section-->
           <div class='settings-row'> 
             <div class='sr-head'>
-              <span class="sr-badge-new">NEW</span>
               <b class='sr-title'>Warning time before period START</b> 
               <span class='sr-desc'>How many minutes before the start of a period should we notify you that the period is starting?</span> 
             </div> 
@@ -47,7 +47,6 @@
           </div>
           <div class='settings-row'> 
             <div class='sr-head'>
-              <span class="sr-badge-new">NEW</span>
               <b class='sr-title'>Warning time before period END</b> 
               <span class='sr-desc'>How many minutes before the end of a period should we notify you that the period is ending?</span> 
             </div> 
@@ -212,10 +211,10 @@ export default class Home extends Vue {
   grade = allGrades[2];
   allGrades = allGrades;
   allThemes: any[] = [];
-  show = false; 
-  seeorhide = "see";
-  startorend = "both";
-  allTimes = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+  show = false;
+  seeorhide = 'See';
+  startorend = 'both';
+  allTimes = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
   strGrade(grade: any){
   if (grade < 13 && grade > 3) {
@@ -236,7 +235,7 @@ export default class Home extends Vue {
   }
 
   strTime(time: any) {
-    if (time == 1) {
+    if (time === 1) {
       return (time.toString() + ' minute');
     } else {
       return (time.toString() + ' minutes');
@@ -246,11 +245,11 @@ export default class Home extends Vue {
   toggleShow() {
     if (this.$store.state.settings.notificationsOn) {
       this.show = !this.show;
-      if (this.seeorhide === "see") {
-        this.seeorhide = "hide";
+      if (this.seeorhide === 'See') {
+        this.seeorhide = 'Hide';
       } else {
-        this.seeorhide = "see";
-      }
+        this.seeorhide = 'See';
+      } 
     } else {
       alert('Notifications must be on to edit advanced notification settings.');
     }
