@@ -249,7 +249,9 @@ export default class Home extends Vue {
         this.seeorhide = 'Hide';
       } else {
         this.seeorhide = 'See';
-      }
+      } 
+    } else {
+      alert('Notifications must be on to edit advanced notification settings.');
     }
   }
 
