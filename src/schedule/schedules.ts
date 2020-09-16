@@ -232,7 +232,7 @@ export const BlockEvenSchedule: any[] = [
 
 export const BlockOddSchedule: any[] = [
   { start: toTime(0, 0), end: toTime(7, 40), period: Period.NONE },
-  { start: toTime(7, 40), end: toTime(8, 25), period: Period.PERIOD_0 },
+  { start: toTime(7, 45), end: toTime(8, 25), period: Period.PERIOD_0 },
   { start: toTime(8, 20), end: toTime(8, 30), period: Period.PERIOD_0_PASSING },
   { start: toTime(8, 30), end: toTime(9, 55), period: Period.PERIOD_1 },
   { start: toTime(9, 55), end: toTime(10, 5), period: Period.PERIOD_1_PASSING },
@@ -246,7 +246,7 @@ export const BlockOddSchedule: any[] = [
 ];
 export const BlockEvenSchedule: any[] = [
   { start: toTime(0, 0), end: toTime(7, 40), period: Period.NONE },
-  { start: toTime(7, 40), end: toTime(8, 25), period: Period.PERIOD_0 },
+  { start: toTime(7, 45), end: toTime(8, 25), period: Period.PERIOD_0 },
   { start: toTime(8, 20), end: toTime(8, 30), period: Period.PERIOD_0_PASSING },
   { start: toTime(8, 30), end: toTime(9, 55), period: Period.PERIOD_2 },
   { start: toTime(9, 55), end: toTime(10, 5), period: Period.PERIOD_2_PASSING },
