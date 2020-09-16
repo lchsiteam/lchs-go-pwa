@@ -46,6 +46,7 @@ export default class App extends Vue {
   getCSSColorScheme() {
     let themeGradient;
     const currentColorScheme = this.getCurrentColorScheme();
+    // If dynamic theme selected, set theme based on time
     if (this.$store.state.settings.colorTheme === 'theme15') {
       const currentDate = DateTime.local().setZone('America/Los_Angeles');
       if (currentDate.hour >= 21 && currentDate.hour <= 4) {
@@ -80,7 +81,7 @@ export default class App extends Vue {
     this.uniqueMinute = currentDate.minute + (currentDate.hour * 60) + (currentDate.ordinal * 60 * 24) + (currentDate.year * 365 * 60 * 24);
     this.currentDateTime = currentDate;
     this.grade = this.$store.state.settings.grade;
-    // keep in mind, App.vue's implementation of this.currentPeriod, uses a filtered period list
+    // keep in mind, App.vue's implementation of this.currentPeriod uses a filtered period list
     this.schedule = getScheduleFromDay(currentDate.month, currentDate.day, currentDate.year, currentDate.weekday, this.grade);
     this.currentPeriod = getPeriod(this.minutes, this.schedule, this.grade, this.filter);
     this.nextPeriod = getUpcomingPeriod(this.minutes, this.currentDateTime, this.schedule, this.grade, this.filter);
@@ -102,33 +103,36 @@ export default class App extends Vue {
   }
 
   sendNotifications() {
-    if (((this.minutes === this.previousPeriod.end-this.$store.state.settings.endTime) && (!this.$store.state.settings.notificationSent) && (this.$store.state.settings.startorend != 'start')) && (this.$store.state.settings.endTime === 0)) {
+    if (((this.minutes === this.previousPeriod.end - this.$store.state.settings.endTime) && (!this.$store.state.settings.notificationSent) && (this.$store.state.settings.startorend !== 'start')) && (this.$store.state.settings.endTime === 0)) {
+      this.createNotification(getPeriodName(this.previousPeriod.period) + ' is ending in ' + this.$store.state.settings.endTime + this.pluralMinutes(this.$store.state.settings.endTime), this.previousPeriod);
       this.$store.state.settings.notificationSent = true;
-      this.createNotification(getPeriodName(this.previousPeriod.period) + ' is ending in ' + this.$store.state.settings.endTime + ' minute(s)', this.previousPeriod);
     }
-    else if (((this.minutes === this.currentPeriod.start-this.$store.state.settings.startTime) && (!this.$store.state.settings.notificationSent) && (this.$store.state.settings.startorend != 'end')) && (this.$store.state.settings.startTime === 0)) {
+    else if (((this.minutes === this.currentPeriod.start - this.$store.state.settings.startTime) && (!this.$store.state.settings.notificationSent) && (this.$store.state.settings.startorend !== 'end')) && (this.$store.state.settings.startTime === 0)) {
+      this.createNotification(getPeriodName(this.currentPeriod.period) + ' is starting in ' + this.$store.state.settings.startTime + this.pluralMinutes(this.$store.state.settings.endTime), this.currentPeriod);
       this.$store.state.settings.notificationSent = true;
-      this.createNotification(getPeriodName(this.currentPeriod.period) + ' is starting in ' + this.$store.state.settings.startTime + ' minute(s)', this.currentPeriod);
     }
-    else if ((this.minutes === this.nextPeriod.start-this.$store.state.settings.startTime) && (!this.$store.state.settings.notificationSent) && (this.$store.state.settings.startorend != 'end')) {
+    else if ((this.minutes === this.nextPeriod.start - this.$store.state.settings.startTime) && (!this.$store.state.settings.notificationSent) && (this.$store.state.settings.startorend !== 'end')) {
+      this.createNotification(getPeriodName(this.nextPeriod.period) + ' is starting in ' + this.$store.state.settings.startTime + this.pluralMinutes(this.$store.state.settings.endTime), this.nextPeriod);
       this.$store.state.settings.notificationSent = true;
-      this.createNotification(getPeriodName(this.nextPeriod.period) + ' is starting in ' + this.$store.state.settings.startTime + ' minute(s)', this.nextPeriod);
     }
-    else if ((this.minutes === this.currentPeriod.end-this.$store.state.settings.endTime) && (!this.$store.state.settings.notificationSent) && (this.$store.state.settings.startorend != 'start')){
+    else if ((this.minutes === this.currentPeriod.end - this.$store.state.settings.endTime) && (!this.$store.state.settings.notificationSent) && (this.$store.state.settings.startorend !== 'start')){
+      this.createNotification(getPeriodName(this.currentPeriod.period) + ' is ending in ' + this.$store.state.settings.endTime + this.pluralMinutes(this.$store.state.settings.endTime), this.currentPeriod);
       this.$store.state.settings.notificationSent = true;
-      this.createNotification(getPeriodName(this.currentPeriod.period) + ' is ending in ' + this.$store.state.settings.endTime + ' minute(s)', this.currentPeriod);
     }
-    else {
-      if ((this.minutes !== this.nextPeriod.start-this.$store.state.settings.startTime) && (this.minutes !== this.currentPeriod.end-this.$store.state.settings.endTime) && (this.minutes !== this.previousPeriod.end-this.$store.state.settings.endTime) && (this.minutes !== this.currentPeriod.start-this.$store.state.settings.startTime)) {
-        this.$store.state.settings.notificationSent = false;
-      }
+    else if ((this.minutes !== this.nextPeriod.start - this.$store.state.settings.startTime) && (this.minutes !== this.currentPeriod.end - this.$store.state.settings.endTime) && (this.minutes !== this.previousPeriod.end - this.$store.state.settings.endTime) && (this.minutes !== this.currentPeriod.start - this.$store.state.settings.startTime)) {
+      this.$store.state.settings.notificationSent = false;
     }
+
     if (Notification.permission === 'denied') {
       this.$store.state.settings.notificationsOn = false;
     }
-    else if (!(Notification.permission === 'granted') && (this.$store.state.settings.notificationsOn)) {
+    else if (Notification.permission !== 'granted' && this.$store.state.settings.notificationsOn) {
       this.notifyMe();
     }
+  }
+
+  pluralMinutes(remainingMinutes: number) {
+    return (remainingMinutes === 1) ? ' minute' : ' minutes';
   }
 
   createNotification(message: string, period: any) {
@@ -189,9 +193,6 @@ export default class App extends Vue {
           temp.notificationsStatus = false;
         }
       });
-
-    // At last, if the user has denied notifications, and you
-    // want to be respectful, there is no need to bother them any more.
     }
   }
 
