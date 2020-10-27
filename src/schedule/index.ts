@@ -37,13 +37,14 @@ const breaks: any[] = [tgBreak, winterBreak, springBreak, summerBreak];
 
 const summerSchool: [MDYDate, MDYDate] = [new MDYDate(6, 15, 2020), new MDYDate(7, 16, 2020)];
 const blockSwitch: [MDYDate, MDYDate] = [new MDYDate(11, 11, 2019), new MDYDate(2, 17, 2020)];
-const noGroups: [MDYDate, MDYDate] = [new MDYDate(8, 17, 2020), new MDYDate(8, 28, 2020)];
+const noGroups: [MDYDate, MDYDate] = [new MDYDate(8, 17, 2020), new MDYDate(8, 17, 2021)];
 
 export const schoolSpecialDates: any = {
   '8 - 19 - 2020': Schedule.REGULAR,
   '8 - 20 - 2020': Schedule.REGULAR,
   '8 - 26 - 2020': Schedule.REGULAR,
   '8 - 27 - 2020': Schedule.REGULAR,
+  '9 - 7 - 2020': Schedule.NONE,
 
   // month - day - year: schedule (something from the Schedule enum)
 };
@@ -82,6 +83,7 @@ export const gradeSpecialDates: any = {
   12: {
   },
   13: {
+    '9 - 9 - 2020': Schedule.HSBACKTOSCHOOLNIGHT,
   },
 };
 
@@ -265,7 +267,6 @@ export function getFullSchedule(schedule: Schedule, grade: number): any {
     highSchooler = 0;
   }
 
-  // TODO: Add more schedules
   switch (schedule) {
     case Schedule.NONE:
       return NoSchoolSchedule;
@@ -489,7 +490,6 @@ export function getPeriod(time: number, schedule: Schedule, grade: number, pAllo
   return fullSchedule.find((p: any) => (p.start <= time && p.end > time) && pAllow.indexOf(p.period) !== -1);
 }
 
-
 export const periodsFilter = [
   Period.PERIOD_0,
   Period.PERIOD_1,
@@ -636,7 +636,7 @@ export const allFilter = [
   Period.RECESS_PE,
   Period.PREP,
   Period.DONE,
-]
+];
 
 export function getUpcomingPeriod(time: number, dateTime: any, schedule: Schedule, grade: number, pAllow = periodsFilter): any {
   const fullSchedule = getFullSchedule(schedule, grade);
@@ -666,7 +666,8 @@ export function getUpcomingPeriod(time: number, dateTime: any, schedule: Schedul
 export function getPreviousPeriod(time: number, dateTime: any, schedule: Schedule, grade: number, pAllow = periodsFilter): any {
   const fullSchedule = getFullSchedule(schedule, grade);
   let result = fullSchedule.find((p: any) => (p.end <= time && pAllow.indexOf(p.period) !== -1));
-  for (let index=0; index<fullSchedule.length; index++) {
+  // tslint:disable-next-line:prefer-for-of
+  for (let index = 0; index < fullSchedule.length; index++) {
     if ((fullSchedule[index].end > result.end) && (fullSchedule[index].end <= time) && (pAllow.indexOf(fullSchedule[index].period) !== -1)) {
       result = fullSchedule[index];
     }

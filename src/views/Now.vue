@@ -15,7 +15,7 @@
         </div>
       </div>
     </div>
-    <div class="grid-fmr" @click="useNextPeriodStartAsEnd = !useNextPeriodStartAsEnd" style="cursor: pointer;">
+    <div class="grid-fmr" @click="untilNext = !untilNext" style="cursor: pointer;">
       <div class="grid-fmr-helper">REMAINING TIME</div>
       <div class="grid-fmr-value">
         <div>
@@ -28,7 +28,7 @@
         <div class="cd-txt-h">({{Math.round(getCurrentPercentage() * 100)}}% completed)</div>
       </div>
       <div class="grid-fmr-absmode">
-        <span v-if="useNextPeriodStartAsEnd">UNTIL NEXT (BETA)</span>
+        <span v-if="untilNext">UNTIL NEXT</span>
         <span v-else>PERIOD END</span>
       </div>
     </div>
@@ -55,7 +55,7 @@ import { RegularSchedule, BlockEvenSchedule, BlockOddSchedule } from '@/schedule
 import { Changelog } from '../changelog';
 @Component({})
 export default class Now extends Vue {
-  public useNextPeriodStartAsEnd = false;    // TODO: Find a better variable name
+  public untilNext = false;
   private allGrades = allGrades;
   private minutes: number = 0;
   private currentDateTime: any;
@@ -156,7 +156,7 @@ export default class Now extends Vue {
     return getUpcomingPeriod(this.minutes, this.currentDateTime, this.schedule, this.grade);
   }
   getPeriodEnd() {
-    if (this.useNextPeriodStartAsEnd) {
+    if (this.untilNext) {
       return this.getUpcomingPeriod().start + ((this.getUpcomingPeriod().daysSince || 0) * 1440);
     } else { return this.currentPeriod.end; }
   }
@@ -167,7 +167,7 @@ export default class Now extends Vue {
     return this.getPeriodEnd() - this.minutes >= 120 ? 'hr.' : 'min.';
   }
   getUntilNextName() {
-    if (!this.useNextPeriodStartAsEnd) {
+    if (!this.untilNext) {
       return this.currentPeriod.period === Period.DONE ? 'today ends' : 'period ends';
     } else {
       const nextPeriod = this.getUpcomingPeriod();
