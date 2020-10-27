@@ -9,6 +9,8 @@ const defaultConfig = {
     numberOfClicks: 0,
     notificationsOn: true,
     notificationSent: false,
+    audioPlayed: false,
+    audioOn: false,
     useMilitaryTime: false,
     enableAnimations: true,
     enableThemeAnimations: true,
