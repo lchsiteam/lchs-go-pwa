@@ -59,6 +59,7 @@ enum Period {
   PERIOD_2_PASSING,
   BREAK,
   BREAK_PASSING,
+  STUDY,
   PERIOD_3,
   PERIOD_3_PASSING,
   LUNCH,
@@ -112,6 +113,7 @@ export function getPeriodName(period: Period) {
   else if (period === Period.PERIOD_2_PASSING) { return 'Passing after Period 2'; }
   else if (period === Period.BREAK) { return 'Break'; }
   else if (period === Period.BREAK_PASSING) { return 'Passing After Break'; }
+  else if (period === Period.STUDY) {return 'Study Period';}
   else if (period === Period.PERIOD_3) { return 'Period 3'; }
   else if (period === Period.PERIOD_3_PASSING) { return 'Passing After Period 3'; }
   else if (period === Period.LUNCH) { return 'Lunch'; }
