@@ -8,9 +8,9 @@ import { NoSchoolSchedule, NoEventSchedule, WeirdAssemblySchedule, WeirdAssembly
         SmallGroups12, SmallGroups34, SmallGroups56, SmallGroupsWellnessClubs, SmallGroups0Clubs,
         ReverseBlockOddSchedule, MinimumReverseBlockOddSchedule78, SpecialBlockOddSchedule, SpecialBlockEvenSchedule, AssemblySchedule, RegularSchedule78,
         BlockOddSchedule78, BlockEvenSchedule78, HSBlockOddScheduleFor78, HSBlockEvenScheduleFor78, HSSpecialBlockOddScheduleFor78,
-        HSSpecialBlockEvenScheduleFor78, AssemblySchedule7, AssemblySchedule8, EarlyReleaseSchedule78, MinimumSchedule, PreFinals3264Schedule,
-        PreFinals2156Schedule, PreFinals1345Schedule, FinalAssemblySchedule78, FinalAssemblySchedule12, Finals34Schedule, Finals15Schedule,
-        Finals26Schedule, FinalsTBDSchedule, SummerSchoolSchedule, HSBackToSchoolNight, ElementaryRegularSchedule, ElementaryRegularSchedule0, ElementaryRegularSchedule12, ElementaryRegularSchedule34, ElementaryRegularSchedule56 } from './schedules';
+        HSSpecialBlockEvenScheduleFor78, AssemblySchedule7, AssemblySchedule8, EarlyReleaseSchedule78, MinimumSchedule, /*PreFinals3264Schedule,
+        PreFinals2156Schedule, PreFinals1345Schedule*/ FinalAssemblySchedule78, FinalAssemblySchedule12, Finals34Schedule, Finals15Schedule,
+        Finals26Schedule, /*FinalsTBDSchedule*/ SummerSchoolSchedule, HSBackToSchoolNight, ElementaryRegularSchedule, ElementaryRegularSchedule0, ElementaryRegularSchedule12, ElementaryRegularSchedule34, ElementaryRegularSchedule56 } from './schedules';
 
 export const plusDays = 0;
 export const plusMins = 0;
@@ -28,8 +28,8 @@ export function getCurrentDate(): any {
   };
 }
 
-const tgBreak: MDYDate[] = [new MDYDate(11, 25, 2019), new MDYDate(11, 29, 2019)];
-const winterBreak: MDYDate[] = [new MDYDate(12, 20, 2019), new MDYDate(1, 6, 2020)];
+const tgBreak: MDYDate[] = [new MDYDate(11, 23, 2019), new MDYDate(11, 27, 2019)];
+const winterBreak: MDYDate[] = [new MDYDate(12, 21, 2019), new MDYDate(1, 4, 2020)];
 const springBreak: MDYDate[] = [new MDYDate(4, 6, 2020), new MDYDate(4, 10, 2020)]; // Please don't ever delete this, just comment it out if you have to
 const summerBreak: MDYDate[] = [new MDYDate(7, 17, 2020), new MDYDate(8, 16, 2020)];
 
@@ -47,6 +47,10 @@ export const schoolSpecialDates: any = {
   '9 - 7 - 2020': Schedule.NONE,
   '11 - 10 - 2020': Schedule.BLOCK_ODD,
   '11 - 11 - 2020': Schedule.NONE,
+  '12 - 16 - 2020': Schedule.FINALS_26,
+  '12 - 17 - 2020': Schedule.FINALS_15,
+  '12 - 18 - 2020': Schedule.FINALS_34,
+  
 
   // month - day - year: schedule (something from the Schedule enum)
 };
@@ -389,7 +393,7 @@ export function getFullSchedule(schedule: Schedule, grade: number): any {
       }
       break;
     // pre-finals schedules are the same across all grades, hence there are no switches/ternary operators
-    case Schedule.PRE_FINALS_3264:
+    /*case Schedule.PRE_FINALS_3264:
       return PreFinals3264Schedule;
       break;
     case Schedule.PRE_FINALS_2156:
@@ -398,6 +402,7 @@ export function getFullSchedule(schedule: Schedule, grade: number): any {
     case Schedule.PRE_FINALS_1345:
       return PreFinals1345Schedule;
       break;
+      */
     case Schedule.ASSEMBLY:
       switch (grade) {
         case 0:
@@ -458,14 +463,14 @@ export function getFullSchedule(schedule: Schedule, grade: number): any {
         return FinalAssemblySchedule78;
       }
       break;
-    case Schedule.FINALS_34:
-      return Finals34Schedule;
+    case Schedule.FINALS_26:
+      return Finals26Schedule;
       break;
     case Schedule.FINALS_15:
       return Finals15Schedule;
       break;
-    case Schedule.FINALS_26:
-      return Finals26Schedule;
+    case Schedule.FINALS_34:
+      return Finals34Schedule;
       break;
     case Schedule.FINALS_TBD:
       return FinalsTBDSchedule;
@@ -502,6 +507,7 @@ export const periodsFilter = [
   Period.PERIOD_6,
   Period.LUNCH,
   Period.BREAK,
+  Period.STUDY, //for finals week
   Period.STEP_ODD,
   Period.STEP_EVEN,
   Period.HOMEROOM,
@@ -537,6 +543,7 @@ export const excludeZero = [
   Period.PERIOD_6,
   Period.LUNCH,
   Period.BREAK,
+  Period.STUDY,
   Period.STEP_ODD,
   Period.STEP_EVEN,
   Period.HOMEROOM,
@@ -561,6 +568,7 @@ export const excludeSix = [
   Period.PERIOD_5,
   Period.LUNCH,
   Period.BREAK,
+  Period.STUDY,
   Period.STEP_ODD,
   Period.STEP_EVEN,
   Period.HOMEROOM,
@@ -584,6 +592,7 @@ export const excludeZeroAndSix = [
   Period.PERIOD_5,
   Period.LUNCH,
   Period.BREAK,
+  Period.STUDY,
   Period.STEP_ODD,
   Period.STEP_EVEN,
   Period.HOMEROOM,
@@ -606,6 +615,7 @@ export const allFilter = [
   Period.PERIOD_2_PASSING,
   Period.BREAK,
   Period.BREAK_PASSING,
+  Period.STUDY,
   Period.PERIOD_3,
   Period.PERIOD_3_PASSING,
   Period.LUNCH,
