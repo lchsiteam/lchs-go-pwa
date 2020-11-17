@@ -50,7 +50,6 @@ export const schoolSpecialDates: any = {
   '12 - 16 - 2020': Schedule.FINALS_26,
   '12 - 17 - 2020': Schedule.FINALS_15,
   '12 - 18 - 2020': Schedule.FINALS_34,
-  
 
   // month - day - year: schedule (something from the Schedule enum)
 };
@@ -472,11 +471,6 @@ export function getFullSchedule(schedule: Schedule, grade: number): any {
     case Schedule.FINALS_34:
       return Finals34Schedule;
       break;
-    case Schedule.FINALS_TBD:
-      return FinalsTBDSchedule;
-      break;
-    // Hypothetically, this would also be used to convey a 9-12 early release day. However, 9-12
-    // doesn't seem to have any.
     case Schedule.EARLY_RELEASE:
       return EarlyReleaseSchedule78;
       break;
@@ -507,7 +501,7 @@ export const periodsFilter = [
   Period.PERIOD_6,
   Period.LUNCH,
   Period.BREAK,
-  Period.STUDY, //for finals week
+  Period.STUDY, // for finals week
   Period.STEP_ODD,
   Period.STEP_EVEN,
   Period.HOMEROOM,

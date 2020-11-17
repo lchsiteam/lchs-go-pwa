@@ -556,7 +556,7 @@ export const EarlyReleaseSchedule78: any[] = [
 *
 * Pre-Finals Schedule 2019 - 2020
 *
-*/ 
+*/
 
 /*
 
@@ -659,11 +659,11 @@ export const MinimumSchedule: any[] = [
   { start: toTime(13, 3), end: toTime(24, 0), period: Period.DONE },
 ];
 
-//finals for 2020 - 2021
+// finals for 2020 - 2021
 export const Finals26Schedule: any[] = [
   { start: toTime(0, 0), end: toTime(8, 30), period: Period.NONE },
-  { start: toTime(8, 30), end: toTime(10, 05), period: Period.STUDY_PERIOD }, //create study period 
-  { start: toTime(10, 05), end: toTime(11, 25), period: Period.PERIOD_2 },
+  { start: toTime(8, 30), end: toTime(10, 5), period: Period.STUDY },
+  { start: toTime(10, 5), end: toTime(11, 25), period: Period.PERIOD_2 },
   { start: toTime(11, 25), end: toTime(11, 55), period: Period.LUNCH },
   { start: toTime(12, 0), end: toTime(13, 20), period: Period.PERIOD_6 },
   { start: toTime(13, 30), end: toTime(14, 15), period: Period.OFFICE },
@@ -673,8 +673,8 @@ export const Finals26Schedule: any[] = [
 
 export const Finals15Schedule: any[] = [
   { start: toTime(0, 0), end: toTime(8, 30), period: Period.NONE },
-  { start: toTime(8, 30), end: toTime(10, 05), period: Period.STUDY_PERIOD }, //create study period 
-  { start: toTime(10, 05), end: toTime(11, 25), period: Period.PERIOD_1 },
+  { start: toTime(8, 30), end: toTime(10, 5), period: Period.STUDY },
+  { start: toTime(10, 5), end: toTime(11, 25), period: Period.PERIOD_1 },
   { start: toTime(11, 25), end: toTime(11, 55), period: Period.LUNCH },
   { start: toTime(12, 0), end: toTime(13, 20), period: Period.PERIOD_5 },
   { start: toTime(13, 30), end: toTime(14, 15), period: Period.OFFICE },
@@ -684,24 +684,15 @@ export const Finals15Schedule: any[] = [
 
 export const Finals34Schedule: any[] = [
   { start: toTime(0, 0), end: toTime(8, 30), period: Period.NONE },
-  { start: toTime(8, 30), end: toTime(10, 05), period: Period.STUDY_PERIOD }, //create study period 
-  { start: toTime(10, 05), end: toTime(11, 25), period: Period.PERIOD_3 },
+  { start: toTime(8, 30), end: toTime(10, 5), period: Period.STUDY },
+  { start: toTime(10, 5), end: toTime(11, 25), period: Period.PERIOD_3 },
   { start: toTime(11, 25), end: toTime(11, 55), period: Period.LUNCH },
   { start: toTime(12, 0), end: toTime(13, 20), period: Period.PERIOD_4 },
   { start: toTime(13, 30), end: toTime(14, 15), period: Period.OFFICE },
   { start: toTime(14, 15), end: toTime(15, 15), period: Period.PREP },
   { start: toTime(15, 15), end: toTime(24, 0), period: Period.NONE },
 ];
-//end of finals 2020 - 2021
-
-export const FinalsTBDSchedule: any[] = [
-  { start: toTime(0, 0), end: toTime(8, 30), period: Period.NONE },
-  { start: toTime(8, 30), end: toTime(10, 35), period: Period.TBD },
-  { start: toTime(10, 35), end: toTime(10, 55), period: Period.BREAK },
-  { start: toTime(10, 55), end: toTime(11, 0), period: Period.BREAK_PASSING },
-  { start: toTime(11, 0), end: toTime(13, 5), period: Period.TBD },
-  { start: toTime(13, 5), end: toTime(24, 0), period: Period.DONE },
-];
+// end of finals 2020 - 2021
 
 export const SummerSchoolSchedule: any[] = [
   { start: toTime(0, 0), end: toTime(7, 39), period: Period.NONE },

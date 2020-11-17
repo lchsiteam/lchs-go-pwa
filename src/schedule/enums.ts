@@ -22,6 +22,7 @@ enum Schedule {
   FINALS_34,
   FINALS_15,
   FINALS_26,
+  STUDY,
   FINALS_TBD,
   ASSEMBLY,
   MINIMUM,
@@ -113,7 +114,7 @@ export function getPeriodName(period: Period) {
   else if (period === Period.PERIOD_2_PASSING) { return 'Passing after Period 2'; }
   else if (period === Period.BREAK) { return 'Break'; }
   else if (period === Period.BREAK_PASSING) { return 'Passing After Break'; }
-  else if (period === Period.STUDY) {return 'Study Period';}
+  else if (period === Period.STUDY) {return 'Study Period'; }
   else if (period === Period.PERIOD_3) { return 'Period 3'; }
   else if (period === Period.PERIOD_3_PASSING) { return 'Passing After Period 3'; }
   else if (period === Period.LUNCH) { return 'Lunch'; }
