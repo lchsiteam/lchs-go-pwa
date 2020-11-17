@@ -499,9 +499,9 @@ export const periodsFilter = [
   Period.PERIOD_4,
   Period.PERIOD_5,
   Period.PERIOD_6,
+  Period.STUDY, // for finals week
   Period.LUNCH,
   Period.BREAK,
-  Period.STUDY, // for finals week
   Period.STEP_ODD,
   Period.STEP_EVEN,
   Period.HOMEROOM,
@@ -529,6 +529,7 @@ export const periodsFilter = [
 export const excludeZero = [
   Period.OFFICE,
   Period.SMALL_GROUP,
+  Period.STUDY, // for finals week
   Period.PERIOD_1,
   Period.PERIOD_2,
   Period.PERIOD_3,
@@ -554,6 +555,7 @@ export const excludeZero = [
 export const excludeSix = [
   Period.OFFICE,
   Period.SMALL_GROUP,
+  Period.STUDY, // for finals week
   Period.PERIOD_0,
   Period.PERIOD_1,
   Period.PERIOD_2,
@@ -579,6 +581,7 @@ export const excludeSix = [
 export const excludeZeroAndSix = [
   Period.OFFICE,
   Period.SMALL_GROUP,
+  Period.STUDY, // for finals week
   Period.PERIOD_1,
   Period.PERIOD_2,
   Period.PERIOD_3,
