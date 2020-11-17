@@ -552,6 +552,14 @@ export const EarlyReleaseSchedule78: any[] = [
   { start: toTime(12, 41), end: toTime(24, 0), period: Period.DONE },
 ];
 
+/*
+*
+* Pre-Finals Schedule 2019 - 2020
+*
+*/ 
+
+/*
+
 export const PreFinals3264Schedule: any[] = [
   { start: toTime(0, 0), end: toTime(8, 30), period: Period.NONE },
   { start: toTime(8, 30), end: toTime(10, 35), period: Period.PERIOD_3 },
@@ -593,6 +601,8 @@ export const PreFinals1345Schedule: any[] = [
   { start: toTime(13, 8), end: toTime(15, 13), period: Period.PERIOD_5 },
   { start: toTime(15, 13), end: toTime(24, 0), period: Period.DONE },
 ];
+
+*/
 
 export const FinalAssemblySchedule78: any[] = [
   { start: toTime(0, 0), end: toTime(7, 28), period: Period.NONE },
@@ -649,32 +659,40 @@ export const MinimumSchedule: any[] = [
   { start: toTime(13, 3), end: toTime(24, 0), period: Period.DONE },
 ];
 
-export const Finals34Schedule: any[] = [
+//finals for 2020 - 2021
+export const Finals26Schedule: any[] = [
   { start: toTime(0, 0), end: toTime(8, 30), period: Period.NONE },
-  { start: toTime(8, 30), end: toTime(10, 35), period: Period.PERIOD_3 },
-  { start: toTime(10, 35), end: toTime(10, 55), period: Period.BREAK },
-  { start: toTime(10, 55), end: toTime(11, 0), period: Period.BREAK_PASSING },
-  { start: toTime(11, 0), end: toTime(13, 5), period: Period.PERIOD_4 },
-  { start: toTime(13, 5), end: toTime(24, 0), period: Period.DONE },
+  { start: toTime(8, 30), end: toTime(10, 05), period: Period.STUDY_PERIOD }, //create study period 
+  { start: toTime(10, 05), end: toTime(11, 25), period: Period.PERIOD_2 },
+  { start: toTime(11, 25), end: toTime(11, 55), period: Period.LUNCH },
+  { start: toTime(12, 0), end: toTime(13, 20), period: Period.PERIOD_6 },
+  { start: toTime(13, 30), end: toTime(14, 15), period: Period.OFFICE },
+  { start: toTime(14, 15), end: toTime(15, 15), period: Period.PREP },
+  { start: toTime(15, 15), end: toTime(24, 0), period: Period.NONE },
 ];
 
 export const Finals15Schedule: any[] = [
   { start: toTime(0, 0), end: toTime(8, 30), period: Period.NONE },
-  { start: toTime(8, 30), end: toTime(10, 35), period: Period.PERIOD_1 },
-  { start: toTime(10, 35), end: toTime(10, 55), period: Period.BREAK },
-  { start: toTime(10, 55), end: toTime(11, 0), period: Period.BREAK_PASSING },
-  { start: toTime(11, 0), end: toTime(13, 5), period: Period.PERIOD_5 },
-  { start: toTime(13, 5), end: toTime(24, 0), period: Period.DONE },
+  { start: toTime(8, 30), end: toTime(10, 05), period: Period.STUDY_PERIOD }, //create study period 
+  { start: toTime(10, 05), end: toTime(11, 25), period: Period.PERIOD_1 },
+  { start: toTime(11, 25), end: toTime(11, 55), period: Period.LUNCH },
+  { start: toTime(12, 0), end: toTime(13, 20), period: Period.PERIOD_5 },
+  { start: toTime(13, 30), end: toTime(14, 15), period: Period.OFFICE },
+  { start: toTime(14, 15), end: toTime(15, 15), period: Period.PREP },
+  { start: toTime(15, 15), end: toTime(24, 0), period: Period.NONE },
 ];
 
-export const Finals26Schedule: any[] = [
+export const Finals34Schedule: any[] = [
   { start: toTime(0, 0), end: toTime(8, 30), period: Period.NONE },
-  { start: toTime(8, 30), end: toTime(10, 35), period: Period.PERIOD_2 },
-  { start: toTime(10, 35), end: toTime(10, 55), period: Period.BREAK },
-  { start: toTime(10, 55), end: toTime(11, 0), period: Period.BREAK_PASSING },
-  { start: toTime(11, 0), end: toTime(13, 5), period: Period.PERIOD_6 },
-  { start: toTime(13, 5), end: toTime(24, 0), period: Period.DONE },
+  { start: toTime(8, 30), end: toTime(10, 05), period: Period.STUDY_PERIOD }, //create study period 
+  { start: toTime(10, 05), end: toTime(11, 25), period: Period.PERIOD_3 },
+  { start: toTime(11, 25), end: toTime(11, 55), period: Period.LUNCH },
+  { start: toTime(12, 0), end: toTime(13, 20), period: Period.PERIOD_4 },
+  { start: toTime(13, 30), end: toTime(14, 15), period: Period.OFFICE },
+  { start: toTime(14, 15), end: toTime(15, 15), period: Period.PREP },
+  { start: toTime(15, 15), end: toTime(24, 0), period: Period.NONE },
 ];
+//end of finals 2020 - 2021
 
 export const FinalsTBDSchedule: any[] = [
   { start: toTime(0, 0), end: toTime(8, 30), period: Period.NONE },
