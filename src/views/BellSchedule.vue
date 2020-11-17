@@ -344,6 +344,7 @@ export default class Home extends Vue {
         Period.PERIOD_4,
         Period.PERIOD_5,
         Period.PERIOD_6,
+        Period.STUDY,
         Period.LUNCH,
         Period.BREAK,
         Period.STEP_ODD,

@@ -499,7 +499,7 @@ export const periodsFilter = [
   Period.PERIOD_4,
   Period.PERIOD_5,
   Period.PERIOD_6,
-  Period.STUDY, // for finals week
+  Period.STUDY,
   Period.LUNCH,
   Period.BREAK,
   Period.STEP_ODD,

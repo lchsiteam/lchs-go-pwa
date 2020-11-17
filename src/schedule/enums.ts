@@ -22,7 +22,6 @@ enum Schedule {
   FINALS_34,
   FINALS_15,
   FINALS_26,
-  STUDY,
   FINALS_TBD,
   ASSEMBLY,
   MINIMUM,
