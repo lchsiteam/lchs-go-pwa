@@ -47,17 +47,20 @@ export const schoolSpecialDates: any = {
   '9 - 7 - 2020': Schedule.NONE,
   '11 - 10 - 2020': Schedule.BLOCK_ODD,
   '11 - 11 - 2020': Schedule.NONE,
-  '12 - 16 - 2020': Schedule.FINALS_26,
-  '12 - 17 - 2020': Schedule.FINALS_15,
-  '12 - 18 - 2020': Schedule.FINALS_34,
 
   // month - day - year: schedule (something from the Schedule enum)
 };
 
 export const msSpecialDates: any = {
+  '12 - 16 - 2020': Schedule.FINALS_26,
+  '12 - 17 - 2020': Schedule.FINALS_15,
+  '12 - 18 - 2020': Schedule.FINALS_34,
 };
 
 export const hsSpecialDates: any = {
+  '12 - 16 - 2020': Schedule.FINALS_26,
+  '12 - 17 - 2020': Schedule.FINALS_15,
+  '12 - 18 - 2020': Schedule.FINALS_34,
 };
 
 export const gradeSpecialDates: any = {
@@ -462,14 +465,38 @@ export function getFullSchedule(schedule: Schedule, grade: number): any {
         return FinalAssemblySchedule78;
       }
       break;
+    case Schedule.FINALS_34:
+      if (highSchooler === 1) {
+        return ElementaryRegularSchedule;
+      } else if (highSchooler === 2) {
+        return  Finals34Schedule;
+      } else if (highSchooler === 3) {
+        return Finals34Schedule;
+      } else {
+        return NoSchoolSchedule;
+      }
+      break;
     case Schedule.FINALS_26:
-      return Finals26Schedule;
+      if (highSchooler === 1) {
+        return ElementaryRegularSchedule;
+      } else if (highSchooler === 2) {
+        return  Finals26Schedule;
+      } else if (highSchooler === 3) {
+        return Finals26Schedule;
+      } else {
+        return NoSchoolSchedule;
+      }
       break;
     case Schedule.FINALS_15:
-      return Finals15Schedule;
-      break;
-    case Schedule.FINALS_34:
-      return Finals34Schedule;
+      if (highSchooler === 1) {
+        return ElementaryRegularSchedule;
+      } else if (highSchooler === 2) {
+        return  Finals15Schedule;
+      } else if (highSchooler === 3) {
+        return Finals15Schedule;
+      } else {
+        return NoSchoolSchedule;
+      }
       break;
     case Schedule.EARLY_RELEASE:
       return EarlyReleaseSchedule78;
