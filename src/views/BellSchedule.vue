@@ -170,7 +170,7 @@ import { Component, Vue } from 'vue-property-decorator';
 import { DateTime, Duration } from 'luxon';
 
 import { printTime, getScheduleFromDay, getPeriod, getFullSchedule, allGrades,
-plusDays, plusMins } from '@/schedule';
+plusDays, plusMins, periodsFilter, allFilter } from '@/schedule';
 import { Day, Schedule, Period, getPeriodName, getScheduleName } from '@/schedule/enums';
 import { RegularSchedule, BlockEvenSchedule, BlockOddSchedule } from '@/schedule/schedules';
 import { MDYDate } from '@/schedule/mdy_date';
@@ -197,6 +197,7 @@ export default class Home extends Vue {
   private date = new Date();
   private daysShifted = 0;
   private arrowsUsed = true;
+  private filter = periodsFilter;
 
   public updateStats() {
     // console.log(plusDays);
@@ -336,39 +337,7 @@ export default class Home extends Vue {
     return getFullSchedule(this.schedule, grade).filter(({period}: any) => {
       // Dirty solution for filtering schedule.
       // TODO: Move this elsewhere.
-      return [
-        Period.PERIOD_0,
-        Period.PERIOD_1,
-        Period.PERIOD_2,
-        Period.PERIOD_3,
-        Period.PERIOD_4,
-        Period.PERIOD_5,
-        Period.PERIOD_6,
-        Period.LUNCH,
-        Period.BREAK,
-        Period.STEP_ODD,
-        Period.STEP_EVEN,
-        Period.HOMEROOM,
-        Period.ASSEMBLY,
-        Period.TBD,
-        Period.OFFICE,
-        Period.SMALL_GROUP,
-        Period.ARRIVAL,
-        Period.ARRIVAL_A,
-        Period.ARRIVAL_B,
-        Period.RECESS,
-        Period.RECESS_PE,
-        Period.PREP,
-        Period.SMALL_GROUP_P0,
-        Period.SMALL_GROUP_P1,
-        Period.SMALL_GROUP_P2,
-        Period.SMALL_GROUP_P3,
-        Period.SMALL_GROUP_P4,
-        Period.SMALL_GROUP_P5,
-        Period.SMALL_GROUP_P6,
-        Period.SMALL_GROUP_CLUBS,
-        Period.SMALL_GROUP_WELLNESS,
-      ].indexOf(period) !== -1 || this.$store.state.settings.showExtraPeriods;
+      return this.filter.indexOf(period) !== -1 || this.$store.state.settings.showExtraPeriods;
     });
   }
 
