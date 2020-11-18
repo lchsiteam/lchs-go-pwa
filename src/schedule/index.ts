@@ -28,8 +28,8 @@ export function getCurrentDate(): any {
   };
 }
 
-const tgBreak: MDYDate[] = [new MDYDate(11, 23, 2019), new MDYDate(11, 27, 2019)];
-const winterBreak: MDYDate[] = [new MDYDate(12, 21, 2019), new MDYDate(1, 4, 2020)];
+const tgBreak: MDYDate[] = [new MDYDate(11, 23, 2020), new MDYDate(11, 27, 2020)];
+const winterBreak: MDYDate[] = [new MDYDate(12, 21, 2020), new MDYDate(1, 4, 2020)];
 const springBreak: MDYDate[] = [new MDYDate(4, 6, 2020), new MDYDate(4, 10, 2020)]; // Please don't ever delete this, just comment it out if you have to
 const summerBreak: MDYDate[] = [new MDYDate(7, 17, 2020), new MDYDate(8, 16, 2020)];
 
