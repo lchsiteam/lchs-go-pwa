@@ -4,7 +4,7 @@
     <h3>Schedule: {{getCurrentScheduleName()}}</h3>
     <p class="gradeMessage">You are viewing the</p>
     <select v-model="grade" @change="changeGrade()" class = "grade-select">
-      <option v-for="grade in allGrades" :key="grade" :value="grade" class = "grade-select-item">{{strGrade(grade)}}</option> 
+      <option v-for="grade in allGrades" :key="grade" :value="grade" class = "grade-select-item">{{strGrade(grade)}}</option>
     </select>
     <p class="gradeMessage">schedule.</p>
     <!-- Please replace this! -->
@@ -20,12 +20,12 @@
           :min-date='minDate'
           :max-date='maxDate'
           :show-day-popover=true>
-          <input type="text" name="intexts" :value="'Viewing '+ getCurrentShiftMsg()" disabled></input>
+          <input type="text" name="intexts" :value="'Viewing '+ getCurrentShiftMsg()" disabled>
         </vc-date-picker>
       </div>
       <div v-if='canUseRight()' class="blsch-dp-right" @click="updateShift(1)">&#8594;</div>
     </div>
-    
+
     <div class="bell-schedule" v-if="getCurrentScheduleName() != 'free'">
       <div class="blsch-period-hd">
         <div class="blsch-period-title">Period</div>
@@ -35,7 +35,7 @@
       <div class="blsch-period-container" v-for="period of getFullSchedule()" :key="period.period">
         <div class="blsch-period" :class="{ selected: selected(period) }">
           <div class="blsch-period-title">{{getPeriodName(period.period)}}</div>
-          <div class="blsch-period-start">{{getCertainTime(period.start)}}</div>  
+          <div class="blsch-period-start">{{getCertainTime(period.start)}}</div>
           <div class="blsch-period-end">{{getCertainTime(period.end)}}</div>
         </div>
       </div>
@@ -145,7 +145,7 @@ select.grade-select {
   border-color:rgba(0,0,0,0);
   border-width: 1px;
   border-radius: 3px;
-} 
+}
 option.grade-select-item  {
 color: rgba(255, 255, 255, 0.6);
 
