@@ -1,5 +1,5 @@
-[![Chrome Web Store](https://img.shields.io/chrome-web-store/v/feenpiocjbdeildiipipmdemeihpplco.svg)](https://chrome.google.com/webstore/detail/lchs-go/feenpiocjbdeildiipipmdemeihpplco)
-[![Chrome Web Store](https://img.shields.io/chrome-web-store/stars/feenpiocjbdeildiipipmdemeihpplco.svg)](https://chrome.google.com/webstore/detail/lchs-go/feenpiocjbdeildiipipmdemeihpplco)
+[![Chrome Web Store](https://img.shields.io/chrome-web-store/v/cmmaleejnmjplfcnhojldkiejpndakad.svg)](https://chrome.google.com/webstore/detail/lchs-go/cmmaleejnmjplfcnhojldkiejpndakad)
+[![Chrome Web Store](https://img.shields.io/chrome-web-store/stars/cmmaleejnmjplfcnhojldkiejpndakad.svg)](https://chrome.google.com/webstore/detail/lchs-go/cmmaleejnmjplfcnhojldkiejpndakad)
 # LCHS-Go Github
 ### [go.lciteam.club](https://go.lciteam.club) or scan [Website QR Code](Images%20for%20Project/QR%20Code%20for%20Website.png) in ["Images for Project"](Images%20for%20Project)
 ### [Chrome Extension](https://chrome.google.com/webstore/detail/lchs-go/cmmaleejnmjplfcnhojldkiejpndakad) or scan [Chrome Extension QR Code](Images%20for%20Project/QR%20Code%20for%20Chrome%20Extension.png) in ["Images for Project"](Images%20for%20Project)
