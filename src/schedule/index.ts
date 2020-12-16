@@ -48,7 +48,6 @@ export const schoolSpecialDates: any = {
   '11 - 10 - 2020': Schedule.BLOCK_ODD,
   '11 - 11 - 2020': Schedule.NONE,
 
-
   // month - day - year: schedule (something from the Schedule enum)
 };
 
