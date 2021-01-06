@@ -57,10 +57,6 @@ export const msSpecialDates: any = {
   '12 - 16 - 2020': Schedule.FINALS_26,
   '12 - 17 - 2020': Schedule.FINALS_15,
   '12 - 18 - 2020': Schedule.FINALS_34,
-  '1 - 6 - 2021': Schedule.REGULAR,
-  '1 - 7 - 2021': Schedule.REGULAR,
-  '1 - 13 - 2021': Schedule.REGULAR,
-  '1 - 14 - 2021': Schedule.REGULAR,
 };
 
 export const hsSpecialDates: any = {
@@ -69,10 +65,6 @@ export const hsSpecialDates: any = {
   '12 - 16 - 2020': Schedule.FINALS_26,
   '12 - 17 - 2020': Schedule.FINALS_15,
   '12 - 18 - 2020': Schedule.FINALS_34,
-  '1 - 6 - 2021': Schedule.REGULAR,
-  '1 - 7 - 2021': Schedule.REGULAR,
-  '1 - 13 - 2021': Schedule.REGULAR,
-  '1 - 14 - 2021': Schedule.REGULAR,
 };
 
 export const gradeSpecialDates: any = {
