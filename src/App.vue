@@ -241,6 +241,11 @@ html, body, #app-container {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+ -ms-overflow-style: none;
+  scrollbar-width: none;
+  }
+  body::-webkit-scrollbar {
+  display: none;
 }
 
 #app-container {
@@ -280,11 +285,11 @@ html, body, #app-container {
     padding: 16px 30px;
     font-weight: bold;
     color: rgba(255, 255, 255, 0.6);
-    border-radius: 4px;
+    border-radius: 10px;
     text-decoration: none;
     vertical-align: middle;
     margin: 8px;
-    box-shadow: 0 4px 16px 8px rgba(0, 0, 0, .15);
+    box-shadow: 0 10px 16px 8px rgba(0, 0, 0, .15);
     transition: 150ms ease;
 
     &:before {
@@ -295,7 +300,7 @@ html, body, #app-container {
       height: 24px;
       width: 8px;
       border-radius: 4px;
-      background-color: #1c1e20;
+      background-color: #00ffff00;
       vertical-align: middle;
       transition: 150ms ease;
     }
