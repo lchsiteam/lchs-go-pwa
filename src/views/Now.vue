@@ -345,7 +345,7 @@ export default class Now extends Vue {
   border-radius: 15px;
   padding: 6px 10px;
   background-color: rgba(0, 0, 0, .1);
-  border: 1px solid rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.2);
   position: relative;
   .grid-fmr-absmode {
     position: absolute;
