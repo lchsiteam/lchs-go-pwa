@@ -342,15 +342,17 @@ export default class Now extends Vue {
 .grid-fmr {
   text-align: left;
   margin: 10px auto;
+  border-radius: 15px;
   padding: 6px 10px;
   background-color: rgba(0, 0, 0, .1);
-  border: 1px solid rgba(0, 0, 0, .3);
+  border: 1px solid rgba(255, 255, 255, 0.2);
   position: relative;
   .grid-fmr-absmode {
     position: absolute;
     top: 0;
     right: 0;
     padding: 6px 12px;
+    border-radius: 10px 15px 10px 10px;
     background-color: rgba(0, 0, 0, .1);
     color: rgba(255, 255, 255, 0.7);
     font-size: 12px;
@@ -359,7 +361,7 @@ export default class Now extends Vue {
   }
   &:hover > .grid-fmr-absmode {
     background-color: rgba(0, 0, 0, .15);
-    color: rgba(255, 255, 255, 0.9);
+    color: rgba(255, 255, 255, 0.1);
   }
 }
 .grid-fmr-helper {
@@ -410,7 +412,7 @@ select.grade-select {
   font-family: Niramit,Avenir,sans-serif;
   border-color:rgba(0,0,0,0);
   border-width: 1px;
-  border-radius: 3px;
+  border-radius: 7px;
 } 
 option.grade-select-item  {
 color: rgba(255, 255, 255, 0.6);
