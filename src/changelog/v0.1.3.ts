@@ -3,7 +3,7 @@ export default {
   entries: [
     {
       id: 5,
-      isPublic: true,
+      isPublic: false,
       isNew: false,
       title: '7/8 Schedules and New Settings',
       author: 'Bryan Wang',
@@ -15,7 +15,7 @@ export default {
     },
     {
       id: 4,
-      isPublic: true,
+      isPublic: false,
       isNew: false,
       title: 'Special Day Schedules and Background Animations',
       author: 'Ryan King',
