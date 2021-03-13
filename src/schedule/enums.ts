@@ -136,7 +136,7 @@ enum Period {
 
 export function getPeriodName(period: Period) {
   //Hybrid and Virtuals
-  if (period === Period.PERIOD_0) { return 'Period 0 Online'; }
+  if (period === Period.PERIOD_0_O) { return 'Period 0 Online'; }
   else if (period === Period.PERIOD_1_O) { return 'Period 1 Online'; }
   else if (period === Period.PERIOD_2_O) { return 'Period 2 Online'; }
   else if (period === Period.PERIOD_3_O) { return 'Period 3 Online'; }
