@@ -190,7 +190,7 @@ export function getScheduleFromDay(month: number, day: number, year: number, wee
             }
             break;
           }
-        } else if (isHybrid && highSchooler === 1) {
+        } else if (isHybrid && highSchooler === 3) {
           switch (weekDay) {
             case Day.SUNDAY:
             case Day.SATURDAY:
