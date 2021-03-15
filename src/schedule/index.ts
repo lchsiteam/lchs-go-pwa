@@ -4,7 +4,7 @@
 
 import { MDYDate } from './mdy_date';
 import { Day, Schedule, Period } from './enums';
-import { HybridVirtualDay, CohortABlockOdd, CohortABlockEven, CohortBBlockOdd, CohortBBlockEven,/* <--- hybrid and virtual days*/ NoSchoolSchedule, NoEventSchedule, WeirdAssemblySchedule, WeirdAssemblySchedule78, RegularSchedule,  BlockOddSchedule, BlockEvenSchedule,
+import { HybridVirtualDay, CohortABlockOdd, CohortABlockEven, CohortBBlockOdd, CohortBBlockEven, /* <--- hybrid and virtual days*/ NoSchoolSchedule, NoEventSchedule, WeirdAssemblySchedule, WeirdAssemblySchedule78, RegularSchedule,  BlockOddSchedule, BlockEvenSchedule,
         SmallGroups12, SmallGroups34, SmallGroups56, SmallGroupsWellnessClubs, SmallGroups0Clubs,
         ReverseBlockOddSchedule, MinimumReverseBlockOddSchedule78, SpecialBlockOddSchedule, SpecialBlockEvenSchedule, AssemblySchedule, RegularSchedule78,
         BlockOddSchedule78, BlockEvenSchedule78, HSBlockOddScheduleFor78, HSBlockEvenScheduleFor78, HSSpecialBlockOddScheduleFor78,
@@ -242,8 +242,6 @@ export function getScheduleFromDay(month: number, day: number, year: number, wee
         }
       }
     }
-  
-
   return shed;
 }
 
@@ -274,18 +272,18 @@ export function getFullSchedule(schedule: Schedule, grade: number): any {
       return HSBackToSchoolNight;
       break;
     // start hybrid and virtual
-      
+
     case Schedule.ONLINE:
-      return HybridVirtualDay
+      return HybridVirtualDay;
     case Schedule.COHORT_A_ODD:
-      return CohortABlockOdd
+      return CohortABlockOdd;
     case Schedule.COHORT_A_EVEN:
-      return CohortABlockEven
+      return CohortABlockEven;
     case Schedule.COHORT_B_ODD:
-      return CohortBBlockOdd
+      return CohortBBlockOdd;
     case Schedule.COHORT_B_EVEN:
-      return CohortBBlockEven
-      
+      return CohortBBlockEven;
+
     // stop hybrid and virtual
     case Schedule.REGULAR:
       if (highSchooler === 1) {
