@@ -300,7 +300,7 @@ export function getFullSchedule(schedule: Schedule, grade: number): any {
           case 3:
           case 4:
             return ElementaryRegularSchedule34;
-            break;https://go.lcitest.quincystrange.com/home/schedule
+            break;
           case 5:
           case 6:
             return ElementaryRegularSchedule56;
