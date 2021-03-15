@@ -5,13 +5,13 @@
 // and each period
 
 enum Schedule {
-  //Hybrid and Virtual
+  // Hybrid and Virtual
   ONLINE,
   COHORT_A_ODD,
   COHORT_A_EVEN,
   COHORT_B_ODD,
   COHORT_B_EVEN,
-  //Normal Schedules
+  // Normal Schedules
   REGULAR,
   BLOCK_ODD,
   BLOCK_EVEN,
@@ -81,7 +81,7 @@ enum Period {
   G_G_LUNCH,
   PERIOD_OFFICE_HOURS_A,
   PERIOD_OFFICE_HOURS_B,
-  //Normal Schedules
+  // Normal Schedules
   PERIOD_0,
   PERIOD_0_PASSING,
   PERIOD_1,
@@ -136,7 +136,7 @@ enum Period {
 }
 
 export function getPeriodName(period: Period) {
-  //Hybrid and Virtuals
+  // Hybrid and Virtuals
   if (period === Period.PERIOD_0_O) { return 'Period 0 Online'; }
   else if (period === Period.PERIOD_1_O) { return 'Period 1 Online'; }
   else if (period === Period.PERIOD_2_O) { return 'Period 2 Online'; }
@@ -159,7 +159,7 @@ export function getPeriodName(period: Period) {
   else if (period === Period.G_G_LUNCH) { return 'Grab & Go Lunch'; }
   else if (period === Period.PERIOD_OFFICE_HOURS_A) { return 'Office Hours / Period 0 Cohort A'; }
   else if (period === Period.PERIOD_OFFICE_HOURS_B) { return 'Office Hours / Period 0 Cohort B'; }
-  //Normal Schedules
+  // Normal Schedules
   else if (period === Period.PERIOD_0) { return 'Period 0'; }
   else if (period === Period.PERIOD_0_PASSING) { return 'Passing After Period 0'; }
   else if (period === Period.PERIOD_1) { return 'Period 1'; }
@@ -217,7 +217,7 @@ export function getPeriodName(period: Period) {
 
 export function getScheduleName(schedule: Schedule) {
   switch (schedule) {
-      //Hybrid and Virtuals
+      // Hybrid and Virtuals
     case Schedule.ONLINE:
       return 'Normal Virtual Day';
       break;
@@ -233,7 +233,7 @@ export function getScheduleName(schedule: Schedule) {
     case Schedule.COHORT_B_EVEN:
       return 'Block EVEN (Cohort B in person)';
       break;
-      //Normal Schedules
+      // Normal Schedules
     case Schedule.REGULAR:
       return 'regular schedule';
       break;
