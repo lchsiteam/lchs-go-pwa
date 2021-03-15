@@ -197,19 +197,19 @@ export function getScheduleFromDay(month: number, day: number, year: number, wee
               shed = Schedule.NONE;
               break;
             case Day.MONDAY:
-              shed = ONLINE;
+              shed = Schedule.ONLINE;
               break;
             case Day.TUESDAY:
-              shed = COHORT_A_ODD;
+              shed = Schedule.COHORT_A_ODD;
               break;
             case Day.WEDNESDAY:
-              shed = COHORT_A_EVEN;
+              shed = Schedule.COHORT_A_EVEN;
               break;
             case Day.THURSDAY:
-              shed = COHORT_B_ODD;
+              shed = Schedule.COHORT_B_ODD;
               break;
             case Day.FRIDAY:
-              shed = COHORT_B_EVEN;
+              shed = Schedule.COHORT_B_EVEN;
               break;
           }
         } else {
