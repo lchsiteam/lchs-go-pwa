@@ -82,18 +82,17 @@ export const RegularSchedule: any[] = [ // Has no small groups
   { start: toTime(15, 15), end: toTime(24, 0), period: Period.DONE },
 ];
 
-
 /**
  *
  *
  *
- * Hybrid Schedule 
+ * Hybrid Schedule
  *
  *
  *
  */
 
-//O is online, A is cohort A, B is cohort B
+// O is online, A is cohort A, B is cohort B
 export const HybridVirtualDay: any[] = [ // Has no small groups
   { start: toTime(0, 0), end: toTime(7, 40), period: Period.NONE },
   { start: toTime(7, 40), end: toTime(8, 20), period: Period.PERIOD_0_O },
