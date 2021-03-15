@@ -242,7 +242,7 @@ export function getScheduleFromDay(month: number, day: number, year: number, wee
         }
       }
     }
-  }
+  
 
   return shed;
 }
