@@ -58,7 +58,7 @@ enum Day {
 // Passing break is defined here as the
 // short break after a certain period/block
 enum Period {
-  //Hybrid and Virtual - O is online, A is Cohort A, B is Cohort B
+  // Hybrid and Virtual - O is online, A is Cohort A, B is Cohort B
   PERIOD_0_O,
   PERIOD_1_O,
   PERIOD_2_O,
