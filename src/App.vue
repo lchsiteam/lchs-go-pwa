@@ -94,7 +94,7 @@ export default class App extends Vue {
         this.filter = periodsFilter;
       } else {
         this.filter = excludeZero;
-      
+      }
     } else if (this.$store.state.settings.zeroEnabled) {
       this.filter = excludeSix;
     } else {
