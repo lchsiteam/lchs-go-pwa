@@ -280,7 +280,7 @@ html, body, #app-container {
   max-width: 600px;
   margin: 0 auto;
   padding-bottom: 40px;
-  background-image: url("./assets/beauty.gif");
+  background-image: url("./assets/Beauty.gif");
 }
 
 #nav {
