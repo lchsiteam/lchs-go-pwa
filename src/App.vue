@@ -269,6 +269,7 @@ html, body, #app-container {
     background-size: 100% 100%;
     animation: none;
   }
+  background-image: url("./assets/Beauty.gif");
 
 }
 #app {
@@ -280,7 +281,6 @@ html, body, #app-container {
   max-width: 600px;
   margin: 0 auto;
   padding-bottom: 40px;
-  background-image: url("./assets/Beauty.gif");
 }
 
 #nav {
