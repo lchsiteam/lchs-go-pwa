@@ -222,6 +222,11 @@ firebase.initializeApp(firebaseConfig);
 
 <style lang="scss">
 
+@font-face {
+  font-family: 'Niramit', Avenir, sans-serif;
+  src: url(/src/assets/Upsidedown-Regular.ttf);
+}
+
 @keyframes AnimatedTheme {
   0% { background-position: 50% 0%; }
   50% { background-position: 51% 100%; }
