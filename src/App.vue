@@ -224,7 +224,7 @@ firebase.initializeApp(firebaseConfig);
 
 @font-face {
   font-family: upsidedown;
-  src: url(./assets/Upsidedown-Regular.ttf);
+  src: url(./assets/UpsidedownNoNumbers-Regular.ttf);
 }
 
 @keyframes AnimatedTheme {
