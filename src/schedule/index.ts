@@ -69,6 +69,8 @@ export const hsSpecialDates: any = {
   '12 - 16 - 2020': Schedule.FINALS_26,
   '12 - 17 - 2020': Schedule.FINALS_15,
   '12 - 18 - 2020': Schedule.FINALS_34,
+  '3 - 31 - 2021': Schedule.REGULAR,
+  '4 - 1 - 2021': Schedule.REGULAR,
 };
 
 export const gradeSpecialDates: any = {
