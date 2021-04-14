@@ -223,7 +223,7 @@ firebase.initializeApp(firebaseConfig);
 <style lang="scss">
 
 @font-face {
-  font-family: upsidedown;
+  font-family: 'Niramit', Avenir, sans-serif;
   src: url(/src/assets/Upsidedown-Regular.ttf);
 }
 
@@ -272,7 +272,7 @@ html, body, #app-container {
 
 }
 #app {
-  font-family: upsidedown;
+  font-family: 'Niramit', Avenir, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
