@@ -5,6 +5,13 @@
 // and each period
 
 enum Schedule {
+  // Hybrid and Virtual
+  ONLINE,
+  COHORT_A_ODD,
+  COHORT_A_EVEN,
+  COHORT_B_ODD,
+  COHORT_B_EVEN,
+  // Normal Schedules
   REGULAR,
   BLOCK_ODD,
   BLOCK_EVEN,
@@ -51,6 +58,30 @@ enum Day {
 // Passing break is defined here as the
 // short break after a certain period/block
 enum Period {
+  // Hybrid and Virtual - O is online, A is Cohort A, B is Cohort B
+  PERIOD_0_O,
+  PERIOD_1_O,
+  PERIOD_2_O,
+  PERIOD_3_O,
+  PERIOD_4_O,
+  PERIOD_5_O,
+  PERIOD_6_O,
+  PERIOD_1_A,
+  PERIOD_2_A,
+  PERIOD_3_A,
+  PERIOD_4_A,
+  PERIOD_5_A,
+  PERIOD_6_A,
+  PERIOD_1_B,
+  PERIOD_2_B,
+  PERIOD_3_B,
+  PERIOD_4_B,
+  PERIOD_5_B,
+  PERIOD_6_B,
+  G_G_LUNCH,
+  PERIOD_OFFICE_HOURS_A,
+  PERIOD_OFFICE_HOURS_B,
+  // Normal Schedules
   PERIOD_0,
   PERIOD_0_PASSING,
   PERIOD_1,
@@ -59,6 +90,7 @@ enum Period {
   PERIOD_2_PASSING,
   BREAK,
   BREAK_PASSING,
+  STUDY,
   PERIOD_3,
   PERIOD_3_PASSING,
   LUNCH,
@@ -104,7 +136,31 @@ enum Period {
 }
 
 export function getPeriodName(period: Period) {
-  if (period === Period.PERIOD_0) { return 'Period 0'; }
+  // Hybrid and Virtuals
+  if (period === Period.PERIOD_0_O) { return 'Period 0 Online'; }
+  else if (period === Period.PERIOD_1_O) { return 'Period 1 Online'; }
+  else if (period === Period.PERIOD_2_O) { return 'Period 2 Online'; }
+  else if (period === Period.PERIOD_3_O) { return 'Period 3 Online'; }
+  else if (period === Period.PERIOD_4_O) { return 'Period 4 Online'; }
+  else if (period === Period.PERIOD_5_O) { return 'Period 5 Online'; }
+  else if (period === Period.PERIOD_6_O) { return 'Period 6 Online'; }
+  else if (period === Period.PERIOD_1_A) { return 'Period 1 Cohort A In Person'; }
+  else if (period === Period.PERIOD_2_A) { return 'Period 2 Cohort A In Person'; }
+  else if (period === Period.PERIOD_3_A) { return 'Period 3 Cohort A In Person'; }
+  else if (period === Period.PERIOD_4_A) { return 'Period 4 Cohort A In Person'; }
+  else if (period === Period.PERIOD_5_A) { return 'Period 5 Cohort A In Person'; }
+  else if (period === Period.PERIOD_6_A) { return 'Period 6 Cohort A In Person'; }
+  else if (period === Period.PERIOD_1_B) { return 'Period 1 Cohort B In Person'; }
+  else if (period === Period.PERIOD_2_B) { return 'Period 2 Cohort B In Person'; }
+  else if (period === Period.PERIOD_3_B) { return 'Period 3 Cohort B In Person'; }
+  else if (period === Period.PERIOD_4_B) { return 'Period 4 Cohort B In Person'; }
+  else if (period === Period.PERIOD_5_B) { return 'Period 5 Cohort B In Person'; }
+  else if (period === Period.PERIOD_6_B) { return 'Period 6 Cohort B In Person'; }
+  else if (period === Period.G_G_LUNCH) { return 'Grab & Go Lunch'; }
+  else if (period === Period.PERIOD_OFFICE_HOURS_A) { return 'Office Hours / Period 0 Cohort A'; }
+  else if (period === Period.PERIOD_OFFICE_HOURS_B) { return 'Office Hours / Period 0 Cohort B'; }
+  // Normal Schedules
+  else if (period === Period.PERIOD_0) { return 'Period 0'; }
   else if (period === Period.PERIOD_0_PASSING) { return 'Passing After Period 0'; }
   else if (period === Period.PERIOD_1) { return 'Period 1'; }
   else if (period === Period.PERIOD_1_PASSING) { return 'Passing After Period 1'; }
@@ -112,6 +168,7 @@ export function getPeriodName(period: Period) {
   else if (period === Period.PERIOD_2_PASSING) { return 'Passing after Period 2'; }
   else if (period === Period.BREAK) { return 'Break'; }
   else if (period === Period.BREAK_PASSING) { return 'Passing After Break'; }
+  else if (period === Period.STUDY) {return 'Study Period'; }
   else if (period === Period.PERIOD_3) { return 'Period 3'; }
   else if (period === Period.PERIOD_3_PASSING) { return 'Passing After Period 3'; }
   else if (period === Period.LUNCH) { return 'Lunch'; }
@@ -160,6 +217,23 @@ export function getPeriodName(period: Period) {
 
 export function getScheduleName(schedule: Schedule) {
   switch (schedule) {
+      // Hybrid and Virtuals
+    case Schedule.ONLINE:
+      return 'Normal Virtual Day';
+      break;
+    case Schedule.COHORT_A_ODD:
+      return 'Block Odd (Cohort A in person)';
+      break;
+    case Schedule.COHORT_A_EVEN:
+      return 'Block EVEN (Cohort A in person)';
+      break;
+    case Schedule.COHORT_B_ODD:
+      return 'Block Odd (Cohort B in person)';
+      break;
+    case Schedule.COHORT_B_EVEN:
+      return 'Block EVEN (Cohort B in person)';
+      break;
+      // Normal Schedules
     case Schedule.REGULAR:
       return 'regular schedule';
       break;
