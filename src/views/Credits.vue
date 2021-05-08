@@ -33,7 +33,7 @@
         <div class="credit-item-role">Core Contributor</div>
       </div>
       <div class="credit-item-container">
-        <div class="credit-item">Ean Jeffries (ejeffries22)</div>
+        <div class="credit-item">Eliza Jeffries (ejeffries22)</div>
         <div class="credit-item-role">Core Contributor</div>
       </div>
     </div>

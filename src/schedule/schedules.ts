@@ -86,6 +86,106 @@ export const RegularSchedule: any[] = [ // Has no small groups
  *
  *
  *
+ * Hybrid Schedule
+ *
+ *
+ *
+ */
+
+// O is online, A is cohort A, B is cohort B
+export const HybridVirtualDay: any[] = [ // Has no small groups
+  { start: toTime(0, 0), end: toTime(7, 40), period: Period.NONE },
+  { start: toTime(7, 40), end: toTime(8, 20), period: Period.PERIOD_0_O },
+  { start: toTime(8, 20), end: toTime(8, 25), period: Period.PERIOD_0_PASSING },
+  { start: toTime(8, 25), end: toTime(9, 5), period: Period.PERIOD_1_O },
+  { start: toTime(9, 5), end: toTime(9, 15), period: Period.PERIOD_1_PASSING },
+  { start: toTime(9, 15), end: toTime(9, 58), period: Period.PERIOD_2_O },
+  { start: toTime(9, 58), end: toTime(10, 5), period: Period.PERIOD_2_PASSING },
+  { start: toTime(10, 5), end: toTime(10, 45), period: Period.PERIOD_3_O },
+  { start: toTime(10, 45), end: toTime(10, 55), period: Period.PERIOD_3_PASSING },
+  { start: toTime(10, 55), end: toTime(11, 35), period: Period.PERIOD_4_O },
+  { start: toTime(11, 35), end: toTime(12, 5), period: Period.LUNCH },
+  { start: toTime(12, 5), end: toTime(12, 45), period: Period.PERIOD_5_O },
+  { start: toTime(12, 45), end: toTime(12, 55), period: Period.PERIOD_5_PASSING },
+  { start: toTime(12, 55), end: toTime(13, 35), period: Period.PERIOD_6_O },
+  { start: toTime(13, 35), end: toTime(13, 45), period: Period.PERIOD_6_PASSING },
+  { start: toTime(13, 45), end: toTime(14, 45), period: Period.OFFICE },
+  { start: toTime(14, 45), end: toTime(15, 15), period: Period.PREP },
+  { start: toTime(15, 15), end: toTime(24, 0), period: Period.DONE },
+];
+export const CohortABlockOdd: any[] = [ // Has no small groups
+  { start: toTime(0, 0), end: toTime(7, 40), period: Period.NONE },
+  { start: toTime(7, 40), end: toTime(8, 20), period: Period.PERIOD_0_O },
+  { start: toTime(8, 20), end: toTime(8, 30), period: Period.PERIOD_0_PASSING },
+  { start: toTime(8, 30), end: toTime(9, 55), period: Period.PERIOD_1_A },
+  { start: toTime(9, 55), end: toTime(10, 2), period: Period.PERIOD_1_PASSING },
+  { start: toTime(10, 2), end: toTime(11, 22), period: Period.PERIOD_3_A },
+  { start: toTime(11, 22), end: toTime(11, 33), period: Period.BREAK },
+  { start: toTime(11, 33), end: toTime(11, 40), period: Period.BREAK_PASSING },
+  { start: toTime(11, 40), end: toTime(13, 0), period: Period.PERIOD_5_A },
+  { start: toTime(13, 0), end: toTime(13, 30), period: Period.G_G_LUNCH},
+  { start: toTime(13, 30), end: toTime(13, 35), period: Period.OFFICE },
+  { start: toTime(13, 35), end: toTime(14, 15), period: Period.PERIOD_OFFICE_HOURS_A },
+  { start: toTime(14, 15), end: toTime(14, 40), period: Period.OFFICE },
+  { start: toTime(14, 40), end: toTime(15, 20), period: Period.PREP },
+  { start: toTime(15, 20), end: toTime(24, 0), period: Period.DONE },
+];
+export const CohortABlockEven: any[] = [ // Has no small groups
+  { start: toTime(0, 0), end: toTime(7, 40), period: Period.NONE },
+  { start: toTime(7, 40), end: toTime(8, 20), period: Period.PERIOD_0_O },
+  { start: toTime(8, 20), end: toTime(8, 30), period: Period.PERIOD_0_PASSING },
+  { start: toTime(8, 30), end: toTime(9, 55), period: Period.PERIOD_2_A },
+  { start: toTime(9, 55), end: toTime(10, 2), period: Period.PERIOD_2_PASSING },
+  { start: toTime(10, 2), end: toTime(11, 22), period: Period.PERIOD_4_A },
+  { start: toTime(11, 22), end: toTime(11, 33), period: Period.BREAK },
+  { start: toTime(11, 33), end: toTime(11, 40), period: Period.BREAK_PASSING },
+  { start: toTime(11, 40), end: toTime(13, 0), period: Period.PERIOD_6_A },
+  { start: toTime(13, 0), end: toTime(13, 30), period: Period.G_G_LUNCH},
+  { start: toTime(13, 30), end: toTime(13, 35), period: Period.OFFICE },
+  { start: toTime(13, 35), end: toTime(14, 15), period: Period.PERIOD_OFFICE_HOURS_A },
+  { start: toTime(14, 15), end: toTime(14, 40), period: Period.OFFICE },
+  { start: toTime(14, 40), end: toTime(15, 20), period: Period.PREP },
+  { start: toTime(15, 20), end: toTime(24, 0), period: Period.DONE },
+];
+export const CohortBBlockOdd: any[] = [ // Has no small groups
+  { start: toTime(0, 0), end: toTime(7, 40), period: Period.NONE },
+  { start: toTime(7, 40), end: toTime(8, 20), period: Period.PERIOD_0_O },
+  { start: toTime(8, 20), end: toTime(8, 30), period: Period.PERIOD_0_PASSING },
+  { start: toTime(8, 30), end: toTime(9, 55), period: Period.PERIOD_1_B },
+  { start: toTime(9, 55), end: toTime(10, 2), period: Period.PERIOD_1_PASSING },
+  { start: toTime(10, 2), end: toTime(11, 22), period: Period.PERIOD_3_B },
+  { start: toTime(11, 22), end: toTime(11, 33), period: Period.BREAK },
+  { start: toTime(11, 33), end: toTime(11, 40), period: Period.BREAK_PASSING },
+  { start: toTime(11, 40), end: toTime(13, 0), period: Period.PERIOD_5_B },
+  { start: toTime(13, 0), end: toTime(13, 30), period: Period.G_G_LUNCH},
+  { start: toTime(13, 30), end: toTime(13, 35), period: Period.OFFICE },
+  { start: toTime(13, 35), end: toTime(14, 15), period: Period.PERIOD_OFFICE_HOURS_B },
+  { start: toTime(14, 15), end: toTime(14, 40), period: Period.OFFICE },
+  { start: toTime(14, 40), end: toTime(15, 20), period: Period.PREP },
+  { start: toTime(15, 20), end: toTime(24, 0), period: Period.DONE },
+];
+export const CohortBBlockEven: any[] = [ // Has no small groups
+  { start: toTime(0, 0), end: toTime(7, 40), period: Period.NONE },
+  { start: toTime(7, 40), end: toTime(8, 20), period: Period.PERIOD_0_O },
+  { start: toTime(8, 20), end: toTime(8, 30), period: Period.PERIOD_0_PASSING },
+  { start: toTime(8, 30), end: toTime(9, 55), period: Period.PERIOD_2_B },
+  { start: toTime(9, 55), end: toTime(10, 2), period: Period.PERIOD_2_PASSING },
+  { start: toTime(10, 2), end: toTime(11, 22), period: Period.PERIOD_4_B },
+  { start: toTime(11, 22), end: toTime(11, 33), period: Period.BREAK },
+  { start: toTime(11, 33), end: toTime(11, 40), period: Period.BREAK_PASSING },
+  { start: toTime(11, 40), end: toTime(13, 0), period: Period.PERIOD_6_B },
+  { start: toTime(13, 0), end: toTime(13, 30), period: Period.G_G_LUNCH},
+  { start: toTime(13, 30), end: toTime(13, 35), period: Period.OFFICE },
+  { start: toTime(13, 35), end: toTime(14, 15), period: Period.PERIOD_OFFICE_HOURS_B },
+  { start: toTime(14, 15), end: toTime(14, 40), period: Period.OFFICE },
+  { start: toTime(14, 40), end: toTime(15, 20), period: Period.PREP },
+  { start: toTime(15, 20), end: toTime(24, 0), period: Period.DONE },
+];
+
+/**
+ *
+ *
+ *
  * Small Group Schedule
  *
  *
@@ -664,8 +764,9 @@ export const Finals26Schedule: any[] = [
   { start: toTime(0, 0), end: toTime(8, 30), period: Period.NONE },
   { start: toTime(8, 30), end: toTime(10, 5), period: Period.STUDY },
   { start: toTime(10, 5), end: toTime(11, 25), period: Period.PERIOD_2 },
-  { start: toTime(11, 25), end: toTime(11, 55), period: Period.LUNCH },
+  { start: toTime(11, 25), end: toTime(12, 0), period: Period.LUNCH },
   { start: toTime(12, 0), end: toTime(13, 20), period: Period.PERIOD_6 },
+  { start: toTime(13, 20), end: toTime(13, 30), period: Period.PERIOD_6_PASSING },
   { start: toTime(13, 30), end: toTime(14, 15), period: Period.OFFICE },
   { start: toTime(14, 15), end: toTime(15, 15), period: Period.PREP },
   { start: toTime(15, 15), end: toTime(24, 0), period: Period.NONE },
@@ -675,8 +776,9 @@ export const Finals15Schedule: any[] = [
   { start: toTime(0, 0), end: toTime(8, 30), period: Period.NONE },
   { start: toTime(8, 30), end: toTime(10, 5), period: Period.STUDY },
   { start: toTime(10, 5), end: toTime(11, 25), period: Period.PERIOD_1 },
-  { start: toTime(11, 25), end: toTime(11, 55), period: Period.LUNCH },
+  { start: toTime(11, 25), end: toTime(12, 0), period: Period.LUNCH },
   { start: toTime(12, 0), end: toTime(13, 20), period: Period.PERIOD_5 },
+  { start: toTime(13, 20), end: toTime(13, 30), period: Period.PERIOD_5_PASSING },
   { start: toTime(13, 30), end: toTime(14, 15), period: Period.OFFICE },
   { start: toTime(14, 15), end: toTime(15, 15), period: Period.PREP },
   { start: toTime(15, 15), end: toTime(24, 0), period: Period.NONE },
@@ -686,8 +788,9 @@ export const Finals34Schedule: any[] = [
   { start: toTime(0, 0), end: toTime(8, 30), period: Period.NONE },
   { start: toTime(8, 30), end: toTime(10, 5), period: Period.STUDY },
   { start: toTime(10, 5), end: toTime(11, 25), period: Period.PERIOD_3 },
-  { start: toTime(11, 25), end: toTime(11, 55), period: Period.LUNCH },
+  { start: toTime(11, 25), end: toTime(12, 0), period: Period.LUNCH },
   { start: toTime(12, 0), end: toTime(13, 20), period: Period.PERIOD_4 },
+  { start: toTime(13, 20), end: toTime(13, 30), period: Period.PERIOD_4_PASSING },
   { start: toTime(13, 30), end: toTime(14, 15), period: Period.OFFICE },
   { start: toTime(14, 15), end: toTime(15, 15), period: Period.PREP },
   { start: toTime(15, 15), end: toTime(24, 0), period: Period.NONE },
