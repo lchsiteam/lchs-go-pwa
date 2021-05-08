@@ -110,7 +110,7 @@ div.gradeMessage {
   }
 }
 
-.date-picker /deep/ input {
+.date-picker ::ng-deep input {
   display: block !important;
   width: 250px;
   color: rgba(255, 255, 255, 10) !important;
