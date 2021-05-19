@@ -144,18 +144,18 @@ export function getPeriodName(period: Period) {
   else if (period === Period.PERIOD_4_O) { return 'Period 4 Online'; }
   else if (period === Period.PERIOD_5_O) { return 'Period 5 Online'; }
   else if (period === Period.PERIOD_6_O) { return 'Period 6 Online'; }
-  else if (period === Period.PERIOD_1_A) { return 'Period 1 Cohort A In Person'; }
-  else if (period === Period.PERIOD_2_A) { return 'Period 2 Cohort A In Person'; }
-  else if (period === Period.PERIOD_3_A) { return 'Period 3 Cohort A In Person'; }
-  else if (period === Period.PERIOD_4_A) { return 'Period 4 Cohort A In Person'; }
-  else if (period === Period.PERIOD_5_A) { return 'Period 5 Cohort A In Person'; }
-  else if (period === Period.PERIOD_6_A) { return 'Period 6 Cohort A In Person'; }
-  else if (period === Period.PERIOD_1_B) { return 'Period 1 Cohort B In Person'; }
-  else if (period === Period.PERIOD_2_B) { return 'Period 2 Cohort B In Person'; }
-  else if (period === Period.PERIOD_3_B) { return 'Period 3 Cohort B In Person'; }
-  else if (period === Period.PERIOD_4_B) { return 'Period 4 Cohort B In Person'; }
-  else if (period === Period.PERIOD_5_B) { return 'Period 5 Cohort B In Person'; }
-  else if (period === Period.PERIOD_6_B) { return 'Period 6 Cohort B In Person'; }
+  else if (period === Period.PERIOD_1_A) { return 'Period 1 In Person'; }
+  else if (period === Period.PERIOD_2_A) { return 'Period 2 In Person'; }
+  else if (period === Period.PERIOD_3_A) { return 'Period 3 In Person'; }
+  else if (period === Period.PERIOD_4_A) { return 'Period 4 In Person'; }
+  else if (period === Period.PERIOD_5_A) { return 'Period 5 In Person'; }
+  else if (period === Period.PERIOD_6_A) { return 'Period 6 In Person'; }
+  else if (period === Period.PERIOD_1_B) { return 'Period 1 In Person'; }
+  else if (period === Period.PERIOD_2_B) { return 'Period 2 In Person'; }
+  else if (period === Period.PERIOD_3_B) { return 'Period 3 In Person'; }
+  else if (period === Period.PERIOD_4_B) { return 'Period 4 In Person'; }
+  else if (period === Period.PERIOD_5_B) { return 'Period 5 In Person'; }
+  else if (period === Period.PERIOD_6_B) { return 'Period 6 In Person'; }
   else if (period === Period.G_G_LUNCH) { return 'Grab & Go Lunch'; }
   else if (period === Period.PERIOD_OFFICE_HOURS_A) { return 'Office Hours / Period 0 Cohort A'; }
   else if (period === Period.PERIOD_OFFICE_HOURS_B) { return 'Office Hours / Period 0 Cohort B'; }
