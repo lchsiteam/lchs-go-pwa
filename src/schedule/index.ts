@@ -4,7 +4,7 @@
 
 import { MDYDate } from './mdy_date';
 import { Day, Schedule, Period } from './enums';
-import { HybridVirtualDay, CohortABlockOdd, CohortABlockEven, CohortBBlockOdd, CohortBBlockEven, /* <--- hybrid and virtual days*/ NoSchoolSchedule, NoEventSchedule, WeirdAssemblySchedule, WeirdAssemblySchedule78, RegularSchedule,  BlockOddSchedule, BlockEvenSchedule,
+import { HybridVirtualDay, CohortABlockOdd, CohortABlockEven, CohortBBlockOdd, CohortBBlockEven, InPersonBlockOdd, InPersonBlockEven, /* <--- hybrid and virtual days*/ NoSchoolSchedule, NoEventSchedule, WeirdAssemblySchedule, WeirdAssemblySchedule78, RegularSchedule,  BlockOddSchedule, BlockEvenSchedule,
         SmallGroups12, SmallGroups34, SmallGroups56, SmallGroupsWellnessClubs, SmallGroups0Clubs,
         ReverseBlockOddSchedule, MinimumReverseBlockOddSchedule78, SpecialBlockOddSchedule, SpecialBlockEvenSchedule, AssemblySchedule, RegularSchedule78,
         BlockOddSchedule78, BlockEvenSchedule78, HSBlockOddScheduleFor78, HSBlockEvenScheduleFor78, HSSpecialBlockOddScheduleFor78,
@@ -37,7 +37,8 @@ const breaks: any[] = [tgBreak, winterBreak, springBreak, summerBreak];
 
 const summerSchool: [MDYDate, MDYDate] = [new MDYDate(6, 3, 2021), new MDYDate(8, 16, 2021)];
 const blockSwitch: [MDYDate, MDYDate] = [new MDYDate(11, 11, 2019), new MDYDate(2, 17, 2020)];
-const hybrid: [MDYDate, MDYDate] = [new MDYDate(4, 12, 2021), new MDYDate(6, 2, 2021)];
+const hybrid: [MDYDate, MDYDate] = [new MDYDate(4, 12, 2021), new MDYDate(5, 1, 2021)];
+const combined: [MDYDate, MDYDate] = [new MDYDate(5, 3, 2021), new MDYDate(6, 2, 2021)]
 
 export const schoolSpecialDates: any = {
   '8 - 19 - 2020': Schedule.REGULAR,
@@ -133,6 +134,7 @@ export function getScheduleFromDay(month: number, day: number, year: number, wee
     const isSummerSchool = dateObj.between(...summerSchool);
     const isBlockSwitched = dateObj.between(...blockSwitch);
     const isHybrid = dateObj.between(...hybrid);
+    const isCombined = dateObj.between(...combined)
 
     if (isSummerSchool) {
       switch (weekDay) {
@@ -215,6 +217,24 @@ export function getScheduleFromDay(month: number, day: number, year: number, wee
               shed = Schedule.COHORT_B_EVEN;
               break;
           }
+        } else if (isCombined && highSchooler === 3 || isCombined && highSchooler === 2) {
+          switch (weekDay) {
+            case Day.SUNDAY:
+            case Day.SATURDAY:
+              shed = Schedule.NONE;
+              break;
+            case Day.MONDAY:
+              shed = Schedule.ONLINE;
+              break;
+            case Day.TUESDAY:
+            case Day.THURSDAY:
+              shed = Schedule.IN_PERSON_ODD;
+              break;
+            case Day.WEDNESDAY:
+            case Day.FRIDAY:
+              shed = Schedule.IN_PERSON_EVEN;
+              break;
+          }
         } else {
           switch (weekDay) {
             case Day.SUNDAY:
@@ -286,6 +306,10 @@ export function getFullSchedule(schedule: Schedule, grade: number): any {
       return CohortBBlockOdd;
     case Schedule.COHORT_B_EVEN:
       return CohortBBlockEven;
+    case Schedule.IN_PERSON_ODD:
+      return InPersonBlockOdd;
+    case Schedule.IN_PERSON_EVEN:
+      return InPersonBlockEven;
 
     // stop hybrid and virtual
     case Schedule.REGULAR:
@@ -573,9 +597,16 @@ export const periodsFilter = [
   Period.PERIOD_4_B,
   Period.PERIOD_5_B,
   Period.PERIOD_6_B,
+  Period.PERIOD_1_I,
+  Period.PERIOD_2_I,
+  Period.PERIOD_3_I,
+  Period.PERIOD_4_I,
+  Period.PERIOD_5_I,
+  Period.PERIOD_6_I,
   Period.G_G_LUNCH,
   Period.PERIOD_OFFICE_HOURS_A,
   Period.PERIOD_OFFICE_HOURS_B,
+  Period.PERIOD_OFFICE_HOURS_I,
 ];
 
 export const excludeZero = [
@@ -620,9 +651,16 @@ export const excludeZero = [
   Period.PERIOD_4_B,
   Period.PERIOD_5_B,
   Period.PERIOD_6_B,
+  Period.PERIOD_1_I,
+  Period.PERIOD_2_I,
+  Period.PERIOD_3_I,
+  Period.PERIOD_4_I,
+  Period.PERIOD_5_I,
+  Period.PERIOD_6_I,
   Period.G_G_LUNCH,
   Period.PERIOD_OFFICE_HOURS_A,
   Period.PERIOD_OFFICE_HOURS_B,
+  Period.PERIOD_OFFICE_HOURS_I,
 ];
 
 export const excludeSix = [
@@ -664,9 +702,15 @@ export const excludeSix = [
   Period.PERIOD_3_B,
   Period.PERIOD_4_B,
   Period.PERIOD_5_B,
+  Period.PERIOD_1_I,
+  Period.PERIOD_2_I,
+  Period.PERIOD_3_I,
+  Period.PERIOD_4_I,
+  Period.PERIOD_5_I,
   Period.G_G_LUNCH,
   Period.PERIOD_OFFICE_HOURS_A,
   Period.PERIOD_OFFICE_HOURS_B,
+  Period.PERIOD_OFFICE_HOURS_I,
 ];
 
 export const excludeZeroAndSix = [
@@ -708,9 +752,15 @@ export const excludeZeroAndSix = [
   Period.PERIOD_3_B,
   Period.PERIOD_4_B,
   Period.PERIOD_5_B,
+  Period.PERIOD_1_I,
+  Period.PERIOD_2_I,
+  Period.PERIOD_3_I,
+  Period.PERIOD_4_I,
+  Period.PERIOD_5_I,
   Period.G_G_LUNCH,
   Period.PERIOD_OFFICE_HOURS_A,
   Period.PERIOD_OFFICE_HOURS_B,
+  Period.PERIOD_OFFICE_HOURS_I,
 ];
 
 export const allFilter = [
@@ -772,9 +822,16 @@ export const allFilter = [
   Period.PERIOD_4_B,
   Period.PERIOD_5_B,
   Period.PERIOD_6_B,
+  Period.PERIOD_1_I,
+  Period.PERIOD_2_I,
+  Period.PERIOD_3_I,
+  Period.PERIOD_4_I,
+  Period.PERIOD_5_I,
+  Period.PERIOD_6_I,
   Period.G_G_LUNCH,
   Period.PERIOD_OFFICE_HOURS_A,
   Period.PERIOD_OFFICE_HOURS_B,
+  Period.PERIOD_OFFICE_HOURS_I,
   Period.PREP,
   Period.DONE,
 ];
