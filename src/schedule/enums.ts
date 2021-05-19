@@ -89,6 +89,7 @@ enum Period {
   G_G_LUNCH,
   PERIOD_OFFICE_HOURS_A,
   PERIOD_OFFICE_HOURS_B,
+  PERIOD_OFFICE_HOURS_I,
   // Normal Schedules
   PERIOD_0,
   PERIOD_0_PASSING,
@@ -173,6 +174,7 @@ export function getPeriodName(period: Period) {
   else if (period === Period.G_G_LUNCH) { return 'Grab & Go Lunch'; }
   else if (period === Period.PERIOD_OFFICE_HOURS_A) { return 'Office Hours / Period 0 Cohort A'; }
   else if (period === Period.PERIOD_OFFICE_HOURS_B) { return 'Office Hours / Period 0 Cohort B'; }
+  else if (period === Period.PERIOD_OFFICE_HOURS_I) { return 'Office Hours / Period 0 In Person'; }
   // Normal Schedules
   else if (period === Period.PERIOD_0) { return 'Period 0'; }
   else if (period === Period.PERIOD_0_PASSING) { return 'Passing After Period 0'; }
