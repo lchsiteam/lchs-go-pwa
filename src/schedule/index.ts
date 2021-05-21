@@ -38,7 +38,7 @@ const breaks: any[] = [tgBreak, winterBreak, springBreak, summerBreak];
 const summerSchool: [MDYDate, MDYDate] = [new MDYDate(6, 3, 2021), new MDYDate(8, 16, 2021)];
 const blockSwitch: [MDYDate, MDYDate] = [new MDYDate(11, 11, 2019), new MDYDate(2, 17, 2020)];
 const hybrid: [MDYDate, MDYDate] = [new MDYDate(4, 12, 2021), new MDYDate(5, 1, 2021)];
-const combined: [MDYDate, MDYDate] = [new MDYDate(5, 3, 2021), new MDYDate(6, 2, 2021)]
+const combined: [MDYDate, MDYDate] = [new MDYDate(5, 3, 2021), new MDYDate(6, 2, 2021)];
 
 export const schoolSpecialDates: any = {
   '8 - 19 - 2020': Schedule.REGULAR,
@@ -134,7 +134,7 @@ export function getScheduleFromDay(month: number, day: number, year: number, wee
     const isSummerSchool = dateObj.between(...summerSchool);
     const isBlockSwitched = dateObj.between(...blockSwitch);
     const isHybrid = dateObj.between(...hybrid);
-    const isCombined = dateObj.between(...combined)
+    const isCombined = dateObj.between(...combined);
 
     if (isSummerSchool) {
       switch (weekDay) {
