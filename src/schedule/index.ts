@@ -54,7 +54,7 @@ export const schoolSpecialDates: any = {
   '4 - 12 - 2021': Schedule.NONE,
   '5 - 31 - 2021': Schedule.NONE,
   '5 - 31 - 2021': Schedule.NONE,
-  '6 - 3 - 2021': Schedule.REGULAR,
+  '6 - 3 - 2021': Schedule.ONLINE,
 
   // month - day - year: schedule (something from the Schedule enum)
 };
