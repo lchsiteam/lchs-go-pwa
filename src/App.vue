@@ -104,23 +104,39 @@ export default class App extends Vue {
 
   sendNotifications() {
     if (((this.minutes === this.previousPeriod.end - this.$store.state.settings.endTime) && (!this.$store.state.settings.notificationSent) && (this.$store.state.settings.startorend !== 'start')) && (this.$store.state.settings.endTime === 0)) {
+      this.playSound('Ding.wav');
       this.createNotification(getPeriodName(this.previousPeriod.period) + ' is ending in ' + this.$store.state.settings.endTime + this.pluralMinutes(this.$store.state.settings.endTime), this.previousPeriod);
       this.$store.state.settings.notificationSent = true;
     }
     else if (((this.minutes === this.currentPeriod.start - this.$store.state.settings.startTime) && (!this.$store.state.settings.notificationSent) && (this.$store.state.settings.startorend !== 'end')) && (this.$store.state.settings.startTime === 0)) {
+      this.playSound('Ding.wav');
       this.createNotification(getPeriodName(this.currentPeriod.period) + ' is starting in ' + this.$store.state.settings.startTime + this.pluralMinutes(this.$store.state.settings.endTime), this.currentPeriod);
       this.$store.state.settings.notificationSent = true;
     }
     else if ((this.minutes === this.nextPeriod.start - this.$store.state.settings.startTime) && (!this.$store.state.settings.notificationSent) && (this.$store.state.settings.startorend !== 'end')) {
+      this.playSound('Ding.wav');
       this.createNotification(getPeriodName(this.nextPeriod.period) + ' is starting in ' + this.$store.state.settings.startTime + this.pluralMinutes(this.$store.state.settings.endTime), this.nextPeriod);
       this.$store.state.settings.notificationSent = true;
     }
     else if ((this.minutes === this.currentPeriod.end - this.$store.state.settings.endTime) && (!this.$store.state.settings.notificationSent) && (this.$store.state.settings.startorend !== 'start')){
+      this.playSound('Ding.wav');
       this.createNotification(getPeriodName(this.currentPeriod.period) + ' is ending in ' + this.$store.state.settings.endTime + this.pluralMinutes(this.$store.state.settings.endTime), this.currentPeriod);
       this.$store.state.settings.notificationSent = true;
     }
     else if ((this.minutes !== this.nextPeriod.start - this.$store.state.settings.startTime) && (this.minutes !== this.currentPeriod.end - this.$store.state.settings.endTime) && (this.minutes !== this.previousPeriod.end - this.$store.state.settings.endTime) && (this.minutes !== this.currentPeriod.start - this.$store.state.settings.startTime)) {
       this.$store.state.settings.notificationSent = false;
+    }
+
+    if ((this.minutes === this.previousPeriod.end) && (!this.$store.state.settings.notificationSent) && (this.$store.state.settings.startorend !== 'start') && (!this.$store.state.settings.audioPlayed)) {
+      this.playSound('Dong2.wav');
+      this.$store.state.settings.audioPlayed = true;
+    }
+    else if ((this.minutes === this.currentPeriod.start) && (!this.$store.state.settings.notificationSent) && (this.$store.state.settings.startorend !== 'end') && (!this.$store.state.settings.audioPlayed)) {
+      this.playSound('Dong2.wav');
+      this.$store.state.settings.audioPlayed = true;
+    }
+    else if ((this.minutes !== this.previousPeriod.end) && (this.minutes !== this.currentPeriod.start)) {
+      this.$store.state.settings.audioPlayed = false;
     }
 
     if (Notification.permission === 'denied') {
@@ -145,6 +161,13 @@ export default class App extends Vue {
         silent: false,
         tag: String(this.uniqueMinute),
       });
+    }
+  }
+
+  playSound(file: string) {
+    if (this.$store.state.settings.audioOn === true) {
+      let audio = new Audio('/sounds/' + file);
+      audio.play();
     }
   }
 
