@@ -15,8 +15,6 @@
           class='date-picker'
           v-model="date"
           value="null"
-          color="red"
-          is-dark
           :min-date='minDate'
           :max-date='maxDate'
           :show-day-popover=true>
@@ -110,7 +108,7 @@ div.gradeMessage {
   }
 }
 
-.date-picker /deep/ input {
+input[name="intexts"] {
   display: block !important;
   width: 250px;
   color: rgba(255, 255, 255, 10) !important;
