@@ -45,6 +45,8 @@ enum Schedule {
   SMALL_GROUPS_56,
   BLOCK_GROUPS_0_CLUBS,
   BLOCK_GROUPS_WELLNESS_CLUBS,
+  // Events
+  REGISTRATION,
 }
 
 enum Day {
@@ -142,6 +144,9 @@ enum Period {
   RECESS_PE,
   PREP,
   DONE,
+  // Events
+  ORIENTATION,
+  REGISTRATION,
 }
 
 export function getPeriodName(period: Period) {
@@ -228,6 +233,10 @@ export function getPeriodName(period: Period) {
 
   else if (period === Period.NONE) { return 'No School'; }
   else if (period === Period.DONE) { return 'No School'; }
+  
+   // Events
+  else if (period === Period.ORIENTATION) { return 'Welcome to High School Orientation (in LCHS Auditorium)'; }
+  else if (period === Period.REGISTRATION) { return 'Ninth Grade Registration'; }
   else { return '????'; }
 }
 
@@ -344,6 +353,8 @@ export function getScheduleName(schedule: Schedule) {
       return 'High School Back to School Night';
     case Schedule.WEIRD_ASSEMBLY:
       return 'Assembly Schedule';
+    case Schedule.REGISTRATION:
+      return 'Ninth Grade Registration Schedule'
     default:
       return 'error';
       break;
