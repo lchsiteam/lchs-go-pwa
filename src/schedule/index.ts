@@ -35,7 +35,7 @@ const summerBreak: MDYDate[] = [new MDYDate(6, 4, 2021), new MDYDate(8, 15, 2021
 
 const breaks: any[] = [tgBreak, winterBreak, springBreak, summerBreak];
 
-const summerSchool: [MDYDate, MDYDate] = [new MDYDate(6, 14, 2021), new MDYDate(7, 16, 2021)];
+const summerSchool: [MDYDate, MDYDate] = [new MDYDate(6, 14, 2021), new MDYDate(8, 16, 2021)];
 const blockSwitch: [MDYDate, MDYDate] = [new MDYDate(11, 11, 2019), new MDYDate(2, 17, 2020)];
 const hybrid: [MDYDate, MDYDate] = [new MDYDate(4, 12, 2021), new MDYDate(5, 1, 2021)];
 const combined: [MDYDate, MDYDate] = [new MDYDate(5, 3, 2021), new MDYDate(6, 2, 2021)];
