@@ -17,13 +17,6 @@ export const NoEventSchedule: any[] = [
   { start: toTime(0, 0), end: toTime(24, 0), period: Period.EVENTNOPE },
 ];
 
-export const NinthRegistrationSchedule: any[] = [
-  { start: toTime(0, 0), end: toTime(8, 0), period: Period.NONE },
-  { start: toTime(8, 0), end: toTime(9, 0), period: Period.ORIENTATION },
-  { start: toTime(9, 0), end: toTime(11, 0), period: Period.REGISTRATION },
-  { start: toTime(11, 0), end: toTime(24, 0), period: Period.DONE },
-];
-
 export const WeirdAssemblySchedule: any[] = [
   { start: toTime(0, 0), end: toTime(7, 28), period: Period.NONE },
   { start: toTime(7, 28), end: toTime(8, 15), period: Period.PERIOD_0 },
