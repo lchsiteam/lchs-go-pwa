@@ -181,40 +181,6 @@ export const CohortBBlockEven: any[] = [ // Has no small groups
   { start: toTime(14, 40), end: toTime(15, 20), period: Period.PREP },
   { start: toTime(15, 20), end: toTime(24, 0), period: Period.DONE },
 ];
-export const InPersonBlockOdd: any[] = [ // Has no small groups
-  { start: toTime(0, 0), end: toTime(7, 40), period: Period.NONE },
-  { start: toTime(7, 40), end: toTime(8, 20), period: Period.PERIOD_0_O },
-  { start: toTime(8, 20), end: toTime(8, 30), period: Period.PERIOD_0_PASSING },
-  { start: toTime(8, 30), end: toTime(9, 55), period: Period.PERIOD_1_I },
-  { start: toTime(9, 55), end: toTime(10, 2), period: Period.PERIOD_1_PASSING },
-  { start: toTime(10, 2), end: toTime(11, 22), period: Period.PERIOD_3_I },
-  { start: toTime(11, 22), end: toTime(11, 33), period: Period.BREAK },
-  { start: toTime(11, 33), end: toTime(11, 40), period: Period.BREAK_PASSING },
-  { start: toTime(11, 40), end: toTime(13, 0), period: Period.PERIOD_5_I },
-  { start: toTime(13, 0), end: toTime(13, 30), period: Period.G_G_LUNCH},
-  { start: toTime(13, 30), end: toTime(13, 35), period: Period.OFFICE },
-  { start: toTime(13, 35), end: toTime(14, 15), period: Period.PERIOD_OFFICE_HOURS_I },
-  { start: toTime(14, 15), end: toTime(14, 40), period: Period.OFFICE },
-  { start: toTime(14, 40), end: toTime(15, 20), period: Period.PREP },
-  { start: toTime(15, 20), end: toTime(24, 0), period: Period.DONE },
-];
-export const InPersonBlockEven: any[] = [ // Has no small groups
-  { start: toTime(0, 0), end: toTime(7, 40), period: Period.NONE },
-  { start: toTime(7, 40), end: toTime(8, 20), period: Period.PERIOD_0_O },
-  { start: toTime(8, 20), end: toTime(8, 30), period: Period.PERIOD_0_PASSING },
-  { start: toTime(8, 30), end: toTime(9, 55), period: Period.PERIOD_2_I },
-  { start: toTime(9, 55), end: toTime(10, 2), period: Period.PERIOD_2_PASSING },
-  { start: toTime(10, 2), end: toTime(11, 22), period: Period.PERIOD_4_I },
-  { start: toTime(11, 22), end: toTime(11, 33), period: Period.BREAK },
-  { start: toTime(11, 33), end: toTime(11, 40), period: Period.BREAK_PASSING },
-  { start: toTime(11, 40), end: toTime(13, 0), period: Period.PERIOD_6_I },
-  { start: toTime(13, 0), end: toTime(13, 30), period: Period.G_G_LUNCH},
-  { start: toTime(13, 30), end: toTime(13, 35), period: Period.OFFICE },
-  { start: toTime(13, 35), end: toTime(14, 15), period: Period.PERIOD_OFFICE_HOURS_I },
-  { start: toTime(14, 15), end: toTime(14, 40), period: Period.OFFICE },
-  { start: toTime(14, 40), end: toTime(15, 20), period: Period.PREP },
-  { start: toTime(15, 20), end: toTime(24, 0), period: Period.DONE },
-];
 
 /**
  *
