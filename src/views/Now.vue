@@ -1,9 +1,9 @@
 <template>
   <div class="now">
-    <h3>{{getGreeting()}}. Today is {{getCurrentScheduleName()}}. </h3> 
+    <h3>{{getGreeting()}}. Today is {{getCurrentScheduleName()}}. </h3>
     <p class="gradeMessage">You are viewing the</p>
     <select v-model="grade" @change="changeGrade()" class = "grade-select">
-      <option v-for="grade in allGrades" :key="grade" :value="grade" class = "grade-select-item">{{strGrade(grade)}}</option> 
+      <option v-for="grade in allGrades" :key="grade" :value="grade" class = "grade-select-item">{{strGrade(grade)}}</option>
     </select>
     <p class="gradeMessage">schedule.</p>
     <div class="grid-fmr">
@@ -40,8 +40,8 @@
       </div>
     </div>
     <div class='grid-fmr grid-fmr-mini-click' v-if="shouldShowUpdateLog()" @click='goToChangelog()'>
-      <div class="grid-fmr-helper">UNREAD UPDATES</div> 
-      <div v-for='entry in getUnreadUpdates()' :key='entry.id'>○ {{entry.title}}</div> 
+      <div class="grid-fmr-helper">UNREAD UPDATES</div>
+      <div v-for='entry in getUnreadUpdates()' :key='entry.id'>○ {{entry.title}}</div>
     </div>
   </div>
 </template>
@@ -72,6 +72,7 @@ export default class Now extends Vue {
     this.grade = this.$store.state.settings.grade;
     this.schedule = getScheduleFromDay(currentDate.month, currentDate.day, currentDate.year, currentDate.weekday, this.grade);
     this.currentPeriod = getPeriod(this.minutes, this.schedule, this.grade);
+    this.setTitle();
   }
   /*
   sendNotifications() {
@@ -111,6 +112,14 @@ export default class Now extends Vue {
   goToChangelog() {
     if (this.$store.state.isExtension) { window.open('/about/changelog', '_blank'); }
     else { this.$router.push('about/changelog'); }
+  }
+  setTitle() {
+    // Set the tab's title depending on hours
+    if (this.getFormattedTimeUntilNext()[0] !== 0) {
+      document.title = this.getFormattedTimeUntilNext()[0].toString() + 'hr. ' + this.getFormattedTimeUntilNext()[1].toString() + 'min. | LCHS Go';
+    } else {
+      document.title = this.getFormattedTimeUntilNext()[1].toString() + 'min. | LCHS Go';
+    }
   }
   shouldShowUpdateLog() {
     return this.getUnreadUpdates().length > 0;
@@ -397,7 +406,7 @@ export default class Now extends Vue {
 }
 a {
   color: rgb(168, 230, 255);
-} 
+}
 .gradeMessage {
   font-size: 15px;
   display: inline;
@@ -413,7 +422,7 @@ select.grade-select {
   border-color:rgba(0,0,0,0);
   border-width: 1px;
   border-radius: 7px;
-} 
+}
 option.grade-select-item  {
 color: rgba(255, 255, 255, 0.6);
 
