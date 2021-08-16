@@ -15,8 +15,6 @@
           class='date-picker'
           v-model="date"
           value="null"
-          color="red"
-          is-dark
           :min-date='minDate'
           :max-date='maxDate'
           :show-day-popover=true>
@@ -110,7 +108,7 @@ div.gradeMessage {
   }
 }
 
-.date-picker /deep/ input {
+input[name="intexts"] {
   display: block !important;
   width: 250px;
   color: rgba(255, 255, 255, 10) !important;
@@ -189,7 +187,7 @@ Vue.use(VCalendar, {
 export default class Home extends Vue {
   private allGrades = allGrades;
   private minDate = new Date(2020, 7, 1);
-  private maxDate = new Date(2021, 4, 31);
+  private maxDate = new Date(2022, 6, 4);
   private minutes: number = 0;
   private schedule: Schedule = Schedule.NONE;
   private grade = allGrades[2];
