@@ -150,7 +150,7 @@ export function getScheduleFromDay(month: number, day: number, year: number, wee
         case Day.WEDNESDAY:
         case Day.THURSDAY:
         case Day.FRIDAY:
-          shed = Schedule.REGULAR;
+          shed = Schedule.SUMMER_SCHOOL;
           break;
       }
     } else if (grade === 13) {
