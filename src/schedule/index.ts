@@ -1,4 +1,4 @@
-R// Original Author: Kai Bredemann
+// Original Author: Kai Bredemann
 // Editor: Kevin Mo
 // Copyright (c) iTeam 2019
 
