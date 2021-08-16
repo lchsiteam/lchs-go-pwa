@@ -10,7 +10,7 @@ import { HybridVirtualDay, CohortABlockOdd, CohortABlockEven, CohortBBlockOdd, C
         BlockOddSchedule78, BlockEvenSchedule78, HSBlockOddScheduleFor78, HSBlockEvenScheduleFor78, HSSpecialBlockOddScheduleFor78,
         HSSpecialBlockEvenScheduleFor78, AssemblySchedule7, AssemblySchedule8, EarlyReleaseSchedule78, MinimumSchedule, /*PreFinals3264Schedule,
         PreFinals2156Schedule, PreFinals1345Schedule*/ FinalAssemblySchedule78, FinalAssemblySchedule12, Finals34Schedule, Finals15Schedule,
-        Finals26Schedule, /*FinalsTBDSchedule*/ SummerSchoolSchedule, HSBackToSchoolNight, ElementaryRegularSchedule, ElementaryRegularSchedule0, ElementaryRegularSchedule12, ElementaryRegularSchedule34, ElementaryRegularSchedule56, NinthRegistrationSchedule } from './schedules';
+        Finals26Schedule, /*FinalsTBDSchedule*/ SummerSchoolSchedule, HSBackToSchoolNight, ElementaryRegularSchedule, ElementaryRegularSchedule0, ElementaryRegularSchedule12, ElementaryRegularSchedule34, ElementaryRegularSchedule56 } from './schedules';
 
 export const plusDays = 0;
 export const plusMins = 0;
@@ -96,7 +96,6 @@ export const gradeSpecialDates: any = {
   8: {
   },
   9: {
-     '8 - 10 - 2021': Schedule.REGISTRATION,
   },
   10: {
   },
@@ -150,7 +149,7 @@ export function getScheduleFromDay(month: number, day: number, year: number, wee
         case Day.WEDNESDAY:
         case Day.THURSDAY:
         case Day.FRIDAY:
-          shed = Schedule.REGULAR;
+          shed = Schedule.SUMMER_SCHOOL;
           break;
       }
     } else if (grade === 13) {
@@ -537,9 +536,6 @@ export function getFullSchedule(schedule: Schedule, grade: number): any {
     case Schedule.SUMMER_SCHOOL:
       return SummerSchoolSchedule;
       break;
-    case Schedule.REGISTRATION:
-      return NinthRegistrationSchedule;
-      break;
     default:
       return NoSchoolSchedule;
       break;
@@ -613,9 +609,6 @@ export const periodsFilter = [
   Period.PERIOD_OFFICE_HOURS_A,
   Period.PERIOD_OFFICE_HOURS_B,
   Period.PERIOD_OFFICE_HOURS_I,
-  // Event (Delete if after 8/10/21)
-  Period.ORIENTATION,
-  Period.REGISTRATION,
 ];
 
 export const excludeZero = [
@@ -670,9 +663,6 @@ export const excludeZero = [
   Period.PERIOD_OFFICE_HOURS_A,
   Period.PERIOD_OFFICE_HOURS_B,
   Period.PERIOD_OFFICE_HOURS_I,
-  // Event (Delete if after 8/10/21)
-  Period.ORIENTATION,
-  Period.REGISTRATION,
 ];
 
 export const excludeSix = [
@@ -723,9 +713,6 @@ export const excludeSix = [
   Period.PERIOD_OFFICE_HOURS_A,
   Period.PERIOD_OFFICE_HOURS_B,
   Period.PERIOD_OFFICE_HOURS_I,
-  // Event (Delete if after 8/10/21)
-  Period.ORIENTATION,
-  Period.REGISTRATION,
 ];
 
 export const excludeZeroAndSix = [
@@ -776,9 +763,6 @@ export const excludeZeroAndSix = [
   Period.PERIOD_OFFICE_HOURS_A,
   Period.PERIOD_OFFICE_HOURS_B,
   Period.PERIOD_OFFICE_HOURS_I,
-  // Event (Delete if after 8/10/21)
-  Period.ORIENTATION,
-  Period.REGISTRATION,
 ];
 
 export const allFilter = [
@@ -852,9 +836,6 @@ export const allFilter = [
   Period.PERIOD_OFFICE_HOURS_I,
   Period.PREP,
   Period.DONE,
-  // Event (Delete if after 8/10/21)
-  Period.ORIENTATION,
-  Period.REGISTRATION,
 ];
 
 export function getUpcomingPeriod(time: number, dateTime: any, schedule: Schedule, grade: number, pAllow = periodsFilter): any {
