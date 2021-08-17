@@ -335,7 +335,7 @@ export function getFullSchedule(schedule: Schedule, grade: number): any {
             break;
         }
       }else if (highSchooler === 2) {
-        return RegularSchedule;
+        return RegularSchedule78;
       }else if (highSchooler === 3) {
         return RegularSchedule;
       }else {
