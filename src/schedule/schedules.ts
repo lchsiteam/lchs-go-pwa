@@ -336,7 +336,7 @@ export const SmallGroups0Clubs: any[] = [
  *
  */
 
-/*
+
 export const BlockOddSchedule: any[] = [
   { start: toTime(0, 0), end: toTime(7, 28), period: Period.NONE },
   { start: toTime(7, 28), end: toTime(8, 24), period: Period.PERIOD_0 },
@@ -368,8 +368,8 @@ export const BlockEvenSchedule: any[] = [
   { start: toTime(13, 29), end: toTime(15, 13), period: Period.PERIOD_6 },
   { start: toTime(15, 13), end: toTime(24, 0), period: Period.DONE },
 ];
-*/
 
+/*
 export const BlockOddSchedule: any[] = [
   { start: toTime(0, 0), end: toTime(7, 45), period: Period.NONE },
   { start: toTime(7, 45), end: toTime(8, 25), period: Period.PERIOD_0 },
@@ -398,7 +398,7 @@ export const BlockEvenSchedule: any[] = [
   { start: toTime(14, 25), end: toTime(15, 15), period: Period.PREP },
   { start: toTime(15, 15), end: toTime(24, 0), period: Period.DONE },
 ];
-
+*/
 // reverse odd block schedules
 export const ReverseBlockOddSchedule: any[] = [
   { start: toTime(0, 0), end: toTime(7, 28), period: Period.NONE },
