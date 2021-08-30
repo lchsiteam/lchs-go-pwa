@@ -233,7 +233,7 @@ export function getPeriodName(period: Period) {
 
   else if (period === Period.NONE) { return 'No School'; }
   else if (period === Period.DONE) { return 'No School'; }
-  
+
    // Events
   else if (period === Period.ORIENTATION) { return 'Welcome to High School Orientation (in LCHS Auditorium)'; }
   else if (period === Period.REGISTRATION) { return 'Ninth Grade Registration'; }
@@ -354,7 +354,7 @@ export function getScheduleName(schedule: Schedule) {
     case Schedule.WEIRD_ASSEMBLY:
       return 'Assembly Schedule';
     case Schedule.REGISTRATION:
-      return 'Ninth Grade Registration Schedule'
+      return 'Ninth Grade Registration Schedule';
     default:
       return 'error';
       break;

@@ -336,7 +336,6 @@ export const SmallGroups0Clubs: any[] = [
  *
  */
 
-
 export const BlockOddSchedule: any[] = [
   { start: toTime(0, 0), end: toTime(7, 28), period: Period.NONE },
   { start: toTime(7, 28), end: toTime(8, 24), period: Period.PERIOD_0 },
