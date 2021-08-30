@@ -16,8 +16,6 @@
     "firebaseui": "^4.8.0",
     "lodash.debounce": "^4.0.8",
     "luxon": "^1.26.0",
-    "qr.vue": "0.0.1",
-    "qrcode.vue": "^3.2.2",
     "register-service-worker": "^1.7.2",
     "v-calendar": "^0.9.7",
     "vue": "^2.6.12",
