@@ -17,6 +17,7 @@ const defaultConfig = {
     sixthEnabled: true,
     zeroEnabled: true,
     colorTheme: 'theme8',
+    customColors: ['#A7f932'],
     startorend: 'both',
     grade: 9,
     startTime: 3,

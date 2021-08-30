@@ -2,16 +2,25 @@
   <div class="settings">
     <h2>App Settings</h2>
     <div class="settings-rows">
-      <div class='settings-row'> 
-        <div class='sr-head'>
-          <b class='sr-title'>Grade Level</b> 
-          <span class='sr-desc'>Change which grade is used for calculating schedules</span> 
-        </div> 
-        <div class='sr-option'>
-          <select v-model="grade" @change="updateGrade()" class = "grade-select">
-            <option v-for="grade in allGrades" :key="grade" :value="grade" class = "grade-select-item">{{strGrade(grade)}}</option> 
+      <div class="settings-row">
+        <div class="sr-head">
+          <b class="sr-title">Grade Level</b>
+          <span class="sr-desc"
+            >Change which grade is used for calculating schedules</span
+          >
+        </div>
+        <div class="sr-option">
+          <select v-model="grade" @change="updateGrade()" class="grade-select">
+            <option
+              v-for="grade in allGrades"
+              :key="grade"
+              :value="grade"
+              class="grade-select-item"
+            >
+              {{strGrade(grade)}}
+            </option>
           </select>
-        </div> 
+        </div>
       </div>
       <div class="settings-row">
         <div class="sr-head">
@@ -21,82 +30,172 @@
         </div>
         <div class="sr-option">
           <div class="ex-selector">
-            <div class="ex-selector-option" @click="notifyMe();"
-              :class="{selected: this.$store.state.settings.notificationsOn}">Enable</div>
-            <div class="ex-selector-option" @click="updateOptionBL('notificationsOn', false); showOff()"
-              :class="{selected: !(this.$store.state.settings.notificationsOn)}">Disable</div>
+            <div
+              class="ex-selector-option"
+              @click="notifyMe();"
+              :class="{selected: this.$store.state.settings.notificationsOn}"
+            >
+              Enable
+            </div>
+            <div
+              class="ex-selector-option"
+              @click="updateOptionBL('notificationsOn', false); showOff()"
+              :class="{selected: !(this.$store.state.settings.notificationsOn)}"
+            >
+              Disable
+            </div>
           </div>
         </div>
-        <div class="sr-option" v-if='this.$store.state.settings.notificationsOn'>
+        <div
+          class="sr-option"
+          v-if="this.$store.state.settings.notificationsOn"
+        >
           <div class="ex-selector">
-            <div class="ex-selector-option" @click='toggleShow'>{{ this.seeorhide }} advanced notification settings</div>
+            <div class="ex-selector-option" @click="toggleShow">
+              {{ this.seeorhide }} advanced notification settings
+            </div>
           </div>
         </div>
-        <div class="settings-rows" v-if='show'>
+        <div class="settings-rows" v-if="show">
           <!-- hidden section-->
-          <div class='settings-row'> 
-            <div class='sr-head'>
-              <b class='sr-title'>Warning time before period START</b> 
-              <span class='sr-desc'>How many minutes before the start of a period should we notify you that the period is starting?</span> 
-            </div> 
-            <div class='sr-option'>
-              <select v-model="startTimeAmount" @change="updateStartTime()" class = "grade-select">
-                <option v-for="time in allTimes" :key="time" :value="time" class = "grade-select-item">{{strTime(time)}}</option> 
+          <div class="settings-row">
+            <div class="sr-head">
+              <b class="sr-title">Warning time before period START</b>
+              <span class="sr-desc"
+                >How many minutes before the start of a period should we notify
+                you that the period is starting?</span
+              >
+            </div>
+            <div class="sr-option">
+              <select
+                v-model="startTimeAmount"
+                @change="updateStartTime()"
+                class="grade-select"
+              >
+                <option
+                  v-for="time in allTimes"
+                  :key="time"
+                  :value="time"
+                  class="grade-select-item"
+                >
+                  {{strTime(time)}}
+                </option>
               </select>
-            </div> 
+            </div>
           </div>
-          <div class='settings-row'> 
-            <div class='sr-head'>
-              <b class='sr-title'>Warning time before period END</b> 
-              <span class='sr-desc'>How many minutes before the end of a period should we notify you that the period is ending?</span> 
-            </div> 
-            <div class='sr-option'>
-              <select v-model="endTimeAmount" @change="updateEndTime()" class = "grade-select">
-                <option v-for="time in allTimes" :key="time" :value="time" class = "grade-select-item">{{strTime(time)}}</option> 
+          <div class="settings-row">
+            <div class="sr-head">
+              <b class="sr-title">Warning time before period END</b>
+              <span class="sr-desc"
+                >How many minutes before the end of a period should we notify
+                you that the period is ending?</span
+              >
+            </div>
+            <div class="sr-option">
+              <select
+                v-model="endTimeAmount"
+                @change="updateEndTime()"
+                class="grade-select"
+              >
+                <option
+                  v-for="time in allTimes"
+                  :key="time"
+                  :value="time"
+                  class="grade-select-item"
+                >
+                  {{strTime(time)}}
+                </option>
               </select>
-            </div> 
+            </div>
           </div>
           <div class="settings-row">
             <div class="sr-head">
               <b class="sr-title">Display Zero Period</b>
-              <span class="sr-desc">Enable or disable notifications for zero period. (Disable this if you don't have a zero period)</span>
+              <span class="sr-desc"
+                >Enable or disable notifications for zero period. (Disable this
+                if you don't have a zero period)</span
+              >
             </div>
             <div class="sr-option">
               <div class="ex-selector">
-                <div class="ex-selector-option" @click="updateOptionBL('zeroEnabled', true)"
-                  :class="{selected: this.$store.state.settings.zeroEnabled}">Notify for zero period</div>
-                <div class="ex-selector-option" @click="updateOptionBL('zeroEnabled', false)"
-                  :class="{selected: !this.$store.state.settings.zeroEnabled}">Do not notify for zero period</div>
+                <div
+                  class="ex-selector-option"
+                  @click="updateOptionBL('zeroEnabled', true)"
+                  :class="{selected: this.$store.state.settings.zeroEnabled}"
+                >
+                  Notify for zero period
+                </div>
+                <div
+                  class="ex-selector-option"
+                  @click="updateOptionBL('zeroEnabled', false)"
+                  :class="{selected: !this.$store.state.settings.zeroEnabled}"
+                >
+                  Do not notify for zero period
+                </div>
               </div>
             </div>
           </div>
           <div class="settings-row">
             <div class="sr-head">
               <b class="sr-title">Display 6th Period</b>
-              <span class="sr-desc">Enable or disable notifications for 6th period. (Disable this if you don't have a 6th period)</span>
+              <span class="sr-desc"
+                >Enable or disable notifications for 6th period. (Disable this
+                if you don't have a 6th period)</span
+              >
             </div>
             <div class="sr-option">
               <div class="ex-selector">
-                <div class="ex-selector-option" @click="updateOptionBL('sixthEnabled', true)"
-                  :class="{selected: this.$store.state.settings.sixthEnabled}">Notify for 6th period</div>
-                <div class="ex-selector-option" @click="updateOptionBL('sixthEnabled', false)"
-                  :class="{selected: !this.$store.state.settings.sixthEnabled}">Do not notify for 6th period</div>
+                <div
+                  class="ex-selector-option"
+                  @click="updateOptionBL('sixthEnabled', true)"
+                  :class="{selected: this.$store.state.settings.sixthEnabled}"
+                >
+                  Notify for 6th period
+                </div>
+                <div
+                  class="ex-selector-option"
+                  @click="updateOptionBL('sixthEnabled', false)"
+                  :class="{selected: !this.$store.state.settings.sixthEnabled}"
+                >
+                  Do not notify for 6th period
+                </div>
               </div>
             </div>
           </div>
           <div class="settings-row">
             <div class="sr-head">
-              <b class="sr-title">Enable Notifications For Start OR End of Period</b>
-              <span class="sr-desc">Choose if you want notifications for both the start and end of a period, or just one of them. (If you don't want notifications at all, you can disable them above)</span>
+              <b class="sr-title"
+                >Enable Notifications For Start OR End of Period</b
+              >
+              <span class="sr-desc"
+                >Choose if you want notifications for both the start and end of
+                a period, or just one of them. (If you don't want notifications
+                at all, you can disable them above)</span
+              >
             </div>
             <div class="sr-option">
               <div class="ex-selector">
-                <div class="ex-selector-option" @click="updateOptionBL('startorend', 'both')"
-                  :class="{selected: (this.$store.state.settings.startorend=='both')}">Both</div>
-                <div class="ex-selector-option" @click="updateOptionBL('startorend', 'start')"
-                  :class="{selected: (this.$store.state.settings.startorend=='start')}">Notify at start of period</div>
-                <div class="ex-selector-option" @click="updateOptionBL('startorend', 'end')"
-                  :class="{selected: (this.$store.state.settings.startorend=='end')}">Notify at end of period</div>
+                <div
+                  class="ex-selector-option"
+                  @click="updateOptionBL('startorend', 'both')"
+                  :class="{selected: (this.$store.state.settings.startorend=='both')}"
+                >
+                  Both
+                </div>
+                <div
+                  class="ex-selector-option"
+                  @click="updateOptionBL('startorend', 'start')"
+                  :class="{selected: (this.$store.state.settings.startorend=='start')}"
+                >
+                  Notify at start of period
+                </div>
+                <div
+                  class="ex-selector-option"
+                  @click="updateOptionBL('startorend', 'end')"
+                  :class="{selected: (this.$store.state.settings.startorend=='end')}"
+                >
+                  Notify at end of period
+                </div>
               </div>
             </div>
           </div>
@@ -109,10 +208,20 @@
         </div>
         <div class="sr-option">
           <div class="ex-selector">
-            <div class="ex-selector-option" @click="updateOptionBL('useMilitaryTime', false)"
-              :class="{selected: !this.$store.state.settings.useMilitaryTime}">12h</div>
-            <div class="ex-selector-option" @click="updateOptionBL('useMilitaryTime', true)"
-              :class="{selected: this.$store.state.settings.useMilitaryTime}">24h</div>
+            <div
+              class="ex-selector-option"
+              @click="updateOptionBL('useMilitaryTime', false)"
+              :class="{selected: !this.$store.state.settings.useMilitaryTime}"
+            >
+              12h
+            </div>
+            <div
+              class="ex-selector-option"
+              @click="updateOptionBL('useMilitaryTime', true)"
+              :class="{selected: this.$store.state.settings.useMilitaryTime}"
+            >
+              24h
+            </div>
           </div>
         </div>
       </div>
@@ -123,24 +232,46 @@
         </div>
         <div class="sr-option">
           <div class="ex-selector">
-            <div class="ex-selector-option" @click="updateOptionBL('enableThemeAnimations', true)"
-              :class="{selected: this.$store.state.settings.enableThemeAnimations}">Enable</div>
-            <div class="ex-selector-option" @click="updateOptionBL('enableThemeAnimations', false)"
-              :class="{selected: !this.$store.state.settings.enableThemeAnimations}">Disable</div>
+            <div
+              class="ex-selector-option"
+              @click="updateOptionBL('enableThemeAnimations', true)"
+              :class="{selected: this.$store.state.settings.enableThemeAnimations}"
+            >
+              Enable
+            </div>
+            <div
+              class="ex-selector-option"
+              @click="updateOptionBL('enableThemeAnimations', false)"
+              :class="{selected: !this.$store.state.settings.enableThemeAnimations}"
+            >
+              Disable
+            </div>
           </div>
         </div>
       </div>
       <div class="settings-row">
         <div class="sr-head">
           <b class="sr-title">Gradient Type</b>
-          <span class="sr-desc">Switch between linear and radial color blend</span>
+          <span class="sr-desc"
+            >Switch between linear and radial color blend</span
+          >
         </div>
         <div class="sr-option">
           <div class="ex-selector">
-            <div class="ex-selector-option" @click="updateOptionBL('enableRadialGradient', true)"
-              :class="{selected: this.$store.state.settings.enableRadialGradient}">Linear</div>
-            <div class="ex-selector-option" @click="updateOptionBL('enableRadialGradient', false)"
-              :class="{selected: !this.$store.state.settings.enableRadialGradient}">Radial</div>
+            <div
+              class="ex-selector-option"
+              @click="updateOptionBL('enableRadialGradient', true)"
+              :class="{selected: this.$store.state.settings.enableRadialGradient}"
+            >
+              Linear
+            </div>
+            <div
+              class="ex-selector-option"
+              @click="updateOptionBL('enableRadialGradient', false)"
+              :class="{selected: !this.$store.state.settings.enableRadialGradient}"
+            >
+              Radial
+            </div>
           </div>
         </div>
       </div>
@@ -151,48 +282,163 @@
         </div>
         <div class="sr-option">
           <div class="ex-selector">
-            <div class="ex-selector-option" @click="updateOptionBL('enableAnimations', true)"
-              :class="{selected: this.$store.state.settings.enableAnimations}">Enable</div>
-            <div class="ex-selector-option" @click="updateOptionBL('enableAnimations', false)"
-              :class="{selected: !this.$store.state.settings.enableAnimations}">Disable</div>
+            <div
+              class="ex-selector-option"
+              @click="updateOptionBL('enableAnimations', true)"
+              :class="{selected: this.$store.state.settings.enableAnimations}"
+            >
+              Enable
+            </div>
+            <div
+              class="ex-selector-option"
+              @click="updateOptionBL('enableAnimations', false)"
+              :class="{selected: !this.$store.state.settings.enableAnimations}"
+            >
+              Disable
+            </div>
           </div>
         </div>
       </div>
       <div class="settings-row">
         <div class="sr-head">
           <b class="sr-title">Show Hidden Periods</b>
-          <span class="sr-desc">Show passing periods and times outside school on the bell schedule</span>
+          <span class="sr-desc"
+            >Show passing periods and times outside school on the bell
+            schedule</span
+          >
         </div>
         <div class="sr-option">
           <div class="ex-selector">
-            <div class="ex-selector-option" @click="updateOptionBL('showExtraPeriods', true)"
-              :class="{selected: this.$store.state.settings.showExtraPeriods}">Show</div>
-            <div class="ex-selector-option" @click="updateOptionBL('showExtraPeriods', false)"
-              :class="{selected: !this.$store.state.settings.showExtraPeriods}">Hide</div>
+            <div
+              class="ex-selector-option"
+              @click="updateOptionBL('showExtraPeriods', true)"
+              :class="{selected: this.$store.state.settings.showExtraPeriods}"
+            >
+              Show
+            </div>
+            <div
+              class="ex-selector-option"
+              @click="updateOptionBL('showExtraPeriods', false)"
+              :class="{selected: !this.$store.state.settings.showExtraPeriods}"
+            >
+              Hide
+            </div>
           </div>
         </div>
       </div>
       <div class="settings-row">
         <div class="sr-head">
           <b class="sr-title">Color Theme</b>
-          <span class="sr-desc">Change the app's color scheme. Send an email to team@lciteam.club for suggestions.</span>
+          <span class="sr-desc"
+            >Change the app's color scheme. Send an email to team@lciteam.club
+            for suggestions.</span
+          >
         </div>
         <div class="sr-option">
-          <select v-model="colorThemeId" @change="updateTheme()" class="grade-select">
-            <option v-for="theme in allThemes" :key="theme.id" :value="theme.id" class="grade-select-item">{{theme.name}}</option>
+          <select
+            v-model="colorThemeId"
+            @change="updateTheme()"
+            class="grade-select"
+          >
+            <option
+              v-for="theme in allThemes"
+              :key="theme.id"
+              :value="theme.id"
+              class="grade-select-item"
+            >
+              {{theme.name}}
+            </option>
           </select>
+        </div>
+        <div class="settings-rows" v-if="showColorOptions">
+          <!-- hidden section-->
+          <div class="settings-row">
+            <div class="sr-head">
+              <b class="sr-title">Gradient/ Background Colors</b>
+              <span class="sr-desc"
+                >These are the gradient colors of the background. You can add
+                more by clicking the plus and remove them by clicking the trash
+                icon.</span
+              >
+            </div>
+            <div class="sr-option">
+              <div class="gradient-colors" id="gradientColors">
+                <span
+                  class="material-icons material-icons-outlined add-button"
+                  id="add-button"
+                  @click="addColorRandom(); updateColor()"
+                  >add_circle</span
+                >
+                <div class="color-box">
+                  <input class="color-selector" type="color" id="col1">
+                </div>
+                <div class="color-box">
+                  <input class="color-selector" type="color" id="col2">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="settings-row">
+            <div class="sr-head">
+              <b class="sr-title">Large Button Color</b>
+              <span class="sr-desc"
+                >Change the color of the large buttons.</span
+              >
+            </div>
+            <div class="sr-option">
+              <input class="color-selector" id="buttonColor" type="color" />
+            </div>
+          </div>
+          <div class="settings-row">
+            <div class="sr-head">
+              <b class="sr-title">Small Button Color</b>
+              <span class="sr-desc"
+                >Change the color of the small buttons.</span
+              >
+            </div>
+            <div class="sr-option">
+              <input class="color-selector" id="subButtonColor" type="color" />
+            </div>
+          </div>
+          <div class="settings-row">
+            <div class="sr-head">
+              <b class="sr-title">Button Hover Color</b>
+              <span class="sr-desc"
+                >Change the color of the buttons hover color.</span
+              >
+            </div>
+            <div class="sr-option">
+              <input class="color-selector" id="buttonHoverColor" type="color" />
+            </div>
+          </div>
+          <div class="settings-row" style="padding-left:20px">
+            <div id="nav">
+              <router-link to="/home">Now</router-link>
+              <!-- <router-link to="/today">Today</router-link> -->
+              <router-link to="/about">About</router-link>
+            </div>
+            <div class="sub-nav">
+              <router-link class="sub-nav-item" to="/home" exact>  Now  </router-link>
+              <router-link class="sub-nav-item" to="/home/schedule">Bell Schedule</router-link>
+              <router-link class="sub-nav-item" to="/home/settings">Settings</router-link>
+            </div>
+          </div>
         </div>
       </div>
       <div class="settings-row">
         <div class="sr-head">
           <b class="sr-title">App Version</b>
-          <span class="sr-desc">Please include the full version in bug reports</span>
+          <span class="sr-desc"
+            >Please include the full version in bug reports</span
+          >
         </div>
-        <div class="sr-option" style="cursor: text;">{{appVersion}}</div>
+        <div class="sr-option" style="cursor: text">{{appVersion}}</div>
       </div>
     </div>
-    
-    <h5>This web app was produced by iTeam, a technology service club at LCHS.</h5>
+
+    <h5>
+      This web app was produced by iTeam, a technology service club at LCHS.
+    </h5>
   </div>
 </template>
 
@@ -211,6 +457,8 @@ export default class Home extends Vue {
   grade = allGrades[2];
   allGrades = allGrades;
   allThemes: any[] = [];
+  showColorOptions = this.$store.state.settings.colorTheme === 'theme17';
+  colorsPopulated = false;
   show = false;
   seeorhide = 'See';
   startorend = 'both';
@@ -255,6 +503,8 @@ export default class Home extends Vue {
     }
   }
 
+
+
   showOff() {
     this.show = false;
   }
@@ -270,8 +520,33 @@ export default class Home extends Vue {
     this.$store.commit('UPDATE_SETTING', { name, value });
   }
 
+  updateColor = function() {
+	  var elements = document.getElementById("gradientColors").children;
+	  elements = Array.from(elements).slice(1, elements.length);
+	  var colors = [];
+ 	  colors.push(document.getElementById("buttonColor").value);
+ 	  colors.push(document.getElementById("subButtonColor").value);
+	  colors.push(document.getElementById("buttonHoverColor").value);
+	  elements.forEach( function (element) {
+		if (element.children[0].tagName == "INPUT") {
+	      colors.push(element.children[0].value);
+	    } else if (element.children[1].tagName == "INPUT") {
+	      colors.push(element.children[1].value);
+	    } else {
+	      colors.push(element.children[2].value);
+	    }
+	  });
+	  this.updateOptionBL('customColors', colors);
+  }
+
   updateTheme() {
     this.updateOptionBL('colorTheme', this.colorThemeId);
+    this.showColorOptions = this.$store.state.settings.colorTheme === 'theme17';
+
+    if (this.showColorOptions && !this.colorsPopulated) {
+      let self = this;
+      setTimeout(function(){ self.populateColors(); }, 50);
+    }
   }
 
   updateGrade() {
@@ -345,7 +620,45 @@ export default class Home extends Vue {
     this.$store.state.settings.numberOfClicks = this.$store.state.settings.numberOfClicks + 1;
   }
 
+  addColorRandom() {
+    this.addColor(Math.floor(Math.random()*16777215).toString(16));
+  }
+
+  addColor(color:string) {
+    let colors = document.getElementById("gradientColors");
+  	let div = document.createElement("div");
+
+  	div.className = "color-box";
+  	div.innerHTML = "<input class=\"color-selector\" type=\"color\" value=\"" + color + "\"><span class=\"material-icons material-icons-outlined\">delete_outline</span>";
+
+  	colors.appendChild(div);
+  }
+
+  populateColors() {
+    console.log("populating");
+    var col1 = document.getElementById("col1");
+    var col2 = document.getElementById("col2");
+    col1.value = this.$store.state.settings.customColors[3];
+    col2.value = this.$store.state.settings.customColors[4];
+
+    let colors = this.$store.state.settings.customColors.slice(5, this.$store.state.settings.customColors.length);
+    for(let i = 0; i < colors.length; i++) {
+      this.addColor(colors[i]);
+    }
+
+    var largB = document.getElementById("buttonColor");
+    var smolB = document.getElementById("subButtonColor");
+    var hovrB = document.getElementById("buttonHoverColor");
+    largB.value = this.$store.state.settings.customColors[0];
+    smolB.value = this.$store.state.settings.customColors[1];
+    hovrB.value = this.$store.state.settings.customColors[2];
+
+    this.colorsPopulated = true;
+  }
+
   mounted() {
+	  let self = this;
+
     // this part is to prevent invalid grade values
     this.grade = this.$store.state.settings.grade;
     this.endTimeAmount = this.$store.state.settings.endTime;
@@ -361,7 +674,27 @@ export default class Home extends Vue {
     this.updateStats();
 
     this.allThemes = Themes;
+
+    document.addEventListener('click', function(event) {
+        if (event.target && event.target.innerHTML == 'delete_outline') {
+        var colors = document.getElementById("gradientColors");
+          if (colors.children.length > 1) {
+            event.target.parentElement.remove();
+            self.updateColor();
+          }
+        }
+      }
+    );
+	  document.addEventListener('input', function(event) {
+      if (event.target && event.target.className == 'color-selector') {
+        self.updateColor();
+      }
+    });
+    if (this.showColorOptions && !this.colorsPopulated) {
+      this.populateColors();
+    }
   }
+
 }
 </script>
 
@@ -375,9 +708,9 @@ export default class Home extends Vue {
   border-radius: 4px;
   margin: 5px 0;
   cursor: default;
-  
+
   &:hover {
-    background-color: rgba(0, 0, 0, .04);
+    background-color: rgba(0, 0, 0, 0.04);
   }
 
   .sr-head {
@@ -394,7 +727,7 @@ export default class Home extends Vue {
   }
 
   .sr-badge-new {
-    background-color: rgba(18, 15, 43, .3);
+    background-color: rgba(18, 15, 43, 0.3);
     color: rgba(255, 255, 255, 0.8);
     border-radius: 2px;
     display: inline-block;
@@ -416,7 +749,7 @@ export default class Home extends Vue {
 }
 
 .ex-selector {
-  background: rgba(0, 0, 0, .08);
+  background: rgba(0, 0, 0, 0.08);
   display: inline-block;
   padding: 4px 4px;
   border-radius: 2px;
@@ -435,10 +768,10 @@ export default class Home extends Vue {
     box-sizing: border-box;
 
     &:hover {
-      background: rgba(0, 0, 0, .05);
+      background: rgba(0, 0, 0, 0.05);
     }
     &.selected {
-      background: rgba(0, 0, 0, .2);
+      background: rgba(0, 0, 0, 0.2);
       cursor: default;
       color: rgba(255, 255, 255, 1);
     }
@@ -447,28 +780,27 @@ export default class Home extends Vue {
 
 select.grade-select {
   color: #ffffff;
-  background: rgba(0,0,0,.2);
+  background: rgba(0, 0, 0, 0.2);
   padding: 5px;
   text-decoration-color: white;
   font-weight: 600;
-  font-family: Niramit,Avenir,sans-serif;
-  border-color:rgba(0,0,0,0);
+  font-family: Niramit, Avenir, sans-serif;
+  border-color: rgba(0, 0, 0, 0);
   border-width: 1px;
   border-radius: 3px;
-} 
+}
 
-option.grade-select-item  {
-color: rgba(255, 255, 255, 0.6);
+option.grade-select-item {
+  color: rgba(255, 255, 255, 0.6);
 
   background: var(--button-menu-color, #42b983);
   padding: 5px;
   text-decoration-color: white;
   font-weight: 600;
-  font-family: Niramit,Avenir,sans-serif;
-  border-color:rgba(0,0,0,0);
+  font-family: Niramit, Avenir, sans-serif;
+  border-color: rgba(0, 0, 0, 0);
   border-width: 1px;
   border-radius: 3px;
-
 }
 
 .sub-nav-item {
@@ -485,13 +817,44 @@ color: rgba(255, 255, 255, 0.6);
   transition: 150ms ease;
 
   &:hover {
-    background-color: var(--button-hover-color, rgba(#2f9768, .4));
+    background-color: var(--button-hover-color, rgba(#2f9768, 0.4));
   }
 
   &.router-link-exact-active {
     background-color: var(--button-submenu-color, #2f9768);
-    box-shadow: 0 0 8px 4px rgba(100, 100, 100, .1);
+    box-shadow: 0 0 8px 4px rgba(100, 100, 100, 0.1);
   }
 }
 
+.gradient-colors {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  user-select: none;
+}
+
+.color-box {
+  padding: 5px;
+  background-color: rgba(0, 0, 0, 0.04);
+  border-radius: 3px;
+  display: flex;
+  align-items: center;
+  flex-wrap: nowrap;
+  user-select: none;
+}
+
+.add-button {
+  position: absolute;
+  top: 0%;
+  right: 0%;
+  user-select: none;
+}
+
+.color-selector {
+  border-color: rgba(0, 0, 0, 0);
+  border-radius: 3px;
+  background-color: rgba(0, 0, 0, 0.1);
+  width: 37px;
+  height: 40px;
+}
 </style>

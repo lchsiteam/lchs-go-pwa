@@ -24,6 +24,8 @@ export class LCHSGoTheme {
 }
 
 export const Themes = [
+  // [Array of Background], #MainButtonColor, #SubButtonColor, #ButtonHoverColor-Semi-Transparent
+
   new LCHSGoTheme(
     'theme8', 'Violet Delight', '(none)',
     ['#62f1de', '#4100ffa6'], '#0d3ad275', '#6c64ffa6', 'rgba(131, 111, 183, 0.43)',
@@ -87,5 +89,9 @@ export const Themes = [
   new LCHSGoTheme(
     'theme16', 'Pink', '(none)',
     ['#ff69b4', '#ff69b4'], '#ff69b4', '#ff69b4', 'rgba(255, 105, 180, 0.43)',
+  ),
+  new LCHSGoTheme(
+    'theme17', 'Custom', '(none)',
+    ['#ffffff', '#ff0000'], '#00ff00', '#0000ff', 'rgba(255, 0, 255, 1)',
   ),
 ];
