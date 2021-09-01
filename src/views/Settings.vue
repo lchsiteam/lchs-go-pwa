@@ -150,10 +150,11 @@
           <span class="sr-desc">Toggle fancy blinking animations</span>
         </div>
         <div class="sr-option">
-          <div class="ex-selector-option" @click="updateOptionBL('enableAnimations', true)"
-            :class="{selected: this.$store.state.settings.enableAnimations}">Enable</div>
-          <div class="ex-selector-option" @click="updateOptionBL('enableAnimations', false)"
-            :class="{selected: !this.$store.state.settings.enableAnimations}">Disable</div>
+          <div class="ex-selector">
+            <div class="ex-selector-option" @click="updateOptionBL('enableAnimations', true)"
+              :class="{selected: this.$store.state.settings.enableAnimations}">Enable</div>
+            <div class="ex-selector-option" @click="updateOptionBL('enableAnimations', false)"
+              :class="{selected: !this.$store.state.settings.enableAnimations}">Disable</div>
           </div>
         </div>
       </div>
