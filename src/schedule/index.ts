@@ -339,7 +339,7 @@ export function getFullSchedule(schedule: Schedule, grade: number): any {
             break;
         }
       }else if (highSchooler === 2) {
-        return RegularSchedule78;
+        return RegularSchedule;
       }else if (highSchooler === 3) {
         return RegularSchedule;
       }else {
@@ -360,7 +360,7 @@ export function getFullSchedule(schedule: Schedule, grade: number): any {
       if (highSchooler === 1) {
         return ElementaryRegularSchedule;
       }else if (highSchooler === 2) {
-        return BlockOddSchedule78;
+        return BlockOddSchedule;
       }else if (highSchooler === 3) {
         return BlockOddSchedule;
       }else {
