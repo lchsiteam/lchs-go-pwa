@@ -32,7 +32,11 @@
       </div>
       <div class="blsch-period-container" v-for="period of getFullSchedule()" :key="period.period">
         <div class="blsch-period" :class="{ selected: selected(period) }">
-          <div class="blsch-period-title">{{getPeriodName(period.period)}}</div>
+          <div class="blsch-period-title">
+            <span class="material-icons material-icons-outline blsch-icon" @click="editClassName($event, period)">edit</span>
+            <span class="material-icons material-icons-outlined blsch-icon flip" @click="resetClassName($event, period)">cached</span>
+            <input class="class-input" :id="period.period" :value="getPeriodName(period.period)" style="pointer-events: none;" @change="changeClassName($event)">
+          </div>
           <div class="blsch-period-start">{{getCertainTime(period.start)}}</div>
           <div class="blsch-period-end">{{getCertainTime(period.end)}}</div>
         </div>
@@ -57,6 +61,30 @@ div.bell-schedule {
     .blsch-period-start { min-width: 40px; width: 25%; }
     .blsch-period-end { min-width: 40px; width: 25%; }
     transition: 150ms ease;
+  }
+
+  .class-input {
+    font-family: inherit;
+    font-display: inherit;
+    font-size: inherit;
+    color: inherit;
+    background-color: rgba($color: #000000, $alpha: 0);
+    outline: none;
+    border: none;
+  }
+
+  .blsch-icon {
+    position: relative;
+    top: 5px;
+    right: 5px;
+    cursor: pointer;
+    font-size: 20px;
+    user-select: none;
+    &.flip:hover {
+      transform: rotateZ(-180deg);
+      transition: ease-in-out;
+      transition-duration: 200ms;
+    }
   }
 
   div.blsch-period-hd {
@@ -132,6 +160,7 @@ input[name="intexts"] {
   font-size: 15px;
   display: inline;
   padding: 5px;
+  user-select: none;
 }
 select.grade-select {
   color: #ffffff;
@@ -196,6 +225,7 @@ export default class Home extends Vue {
   private daysShifted = 0;
   private arrowsUsed = true;
   private filter = periodsFilter;
+  private customNames = new Map();
 
   public updateStats() {
     // console.log(plusDays);
@@ -272,6 +302,11 @@ export default class Home extends Vue {
   }
 
   getPeriodName(period: Period): string {
+    if (this.customNames != null) {
+      if (this.customNames.has(period.toString())) {
+        return this.customNames.get(period.toString());
+      }
+    }
     return getPeriodName(period);
   }
 
@@ -279,6 +314,23 @@ export default class Home extends Vue {
     return getPeriodName(this.currentPeriod.period);
   }
 
+  editClassName($event:Event, period:Period) {
+    const input = document.getElementById(period.period.toString())!;
+    input.select();
+  }
+
+ changeClassName(item:HTMLElement) {
+    this.customNames.set(item.target.id.toString(), item.target.value);
+    this.updateOptionBL("customClassNames", JSON.stringify(Array.from(this.customNames.entries())));
+  }
+
+  resetClassName($event:any, period:any) {
+    const input = document.getElementById(period.period.toString())!;
+    this.customNames.delete(period.period.toString());
+    input.value = getPeriodName(period.period);
+    this.updateOptionBL("customClassNames", JSON.stringify(Array.from(this.customNames.entries())));
+  }
+  
   getFormattedTimeUntilNext() {
     return this.getTimeUntilNext() >= 120 ? Math.ceil(this.getTimeUntilNext() / 60) : this.getTimeUntilNext();
   }
@@ -384,6 +436,7 @@ export default class Home extends Vue {
 
     setInterval(this.updateStats, 5000);
     this.updateStats();
+    this.customNames = new Map(Object.create(JSON.parse(this.$store.state.settings.customClassNames)));
   }
 }
 </script>

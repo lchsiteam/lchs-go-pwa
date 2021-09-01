@@ -13,7 +13,7 @@
         <span class="material-icons material-icons-outlined grid-fmr-icon" @click="resetClassName()">cached</span>
       </div>
       <div class="grid-fmr-value">
-        <input id="className" class="grid-fmr-input disabled" @change="changeClassName($event)" :value="getCurrentPeriodName()">
+        <input id="className" class="grid-fmr-input" @change="changeClassName($event)" :value="getCurrentPeriodName()">
         <div class="cd-txt-h">
           <b>{{getCertainTime(currentPeriod.start)}} - {{getCertainTime(currentPeriod.end)}}</b>
         </div>
@@ -412,6 +412,8 @@ export default class Now extends Vue {
 .grid-fmr-icon {
   font-size: 16px;
   font-weight: 700;
+  position: relative;
+  top: 2px;
   cursor: pointer;
   user-select: none;
 }
@@ -445,12 +447,10 @@ export default class Now extends Vue {
   color: #fff;
   background: none;
   border: 0px none transparent;
+  pointer-events: none;
   &:focus {
     outline: none;
   }
-}
-.disabled {
-  pointer-events: none;
 }
 
 @keyframes blinking {

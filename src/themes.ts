@@ -91,7 +91,7 @@ export const Themes = [
     ['#ff69b4', '#ff69b4'], '#ff69b4', '#ff69b4', 'rgba(255, 105, 180, 0.43)',
   ),
   new LCHSGoTheme(
-    'theme17', 'Custom', '(none)',
+    'theme17', 'Custom Colors', 'Add Custom Colors',
     ['#ffffff', '#ff0000'], '#00ff00', '#0000ff', 'rgba(255, 0, 255, 1)',
   ),
 ];

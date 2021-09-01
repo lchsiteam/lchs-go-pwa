@@ -32,8 +32,8 @@
           <div class="ex-selector">
             <div
               class="ex-selector-option"
-              @click="notifyMe();"
-              :class="{selected: this.$store.state.settings.notificationsOn}"
+              @click="notifyMe()"
+              :class="{ selected: this.$store.state.settings.notificationsOn }"
             >
               Enable
             </div>
@@ -363,17 +363,13 @@
             </div>
             <div class="sr-option">
               <div class="gradient-colors" id="gradientColors">
-                <span
-                  class="material-icons material-icons-outlined add-button"
-                  id="add-button"
-                  @click="addColorRandom(); updateColor()"
-                  >add_circle</span
-                >
+                <!-- <span class="material-icons material-icons-outlined qr-button">qr_code</span> -->
+                <span class="material-icons material-icons-outlined add-button" id="add-button" @click=" addColorRandom(); updateColor();">add_circle</span>
                 <div class="color-box">
-                  <input class="color-selector" type="color" id="col1">
+                  <input class="color-selector" type="color" id="col1" />
                 </div>
                 <div class="color-box">
-                  <input class="color-selector" type="color" id="col2">
+                  <input class="color-selector" type="color" id="col2" />
                 </div>
               </div>
             </div>
@@ -463,23 +459,24 @@ export default class Home extends Vue {
   seeorhide = 'See';
   startorend = 'both';
   allTimes = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+  // qrCode = new QRCode(document.getElementById("qrcode"), "http://jindo.dev.naver.com/collie");
 
   strGrade(grade: any){
-  if (grade < 13 && grade > 3) {
-    grade = String(grade);
+    if (grade < 13 && grade > 3) {
+      grade = String(grade);
     grade = grade.concat('th Grade');
-  } else if (grade === 0) {
+    } else if (grade === 0) {
     grade = 'K/Pre K';
-  } else if (grade === 1) {
+    } else if (grade === 1) {
     grade = '1st Grade';
-  } else if (grade === 2) {
+    } else if (grade === 2) {
     grade = '2nd Grade';
-  } else if (grade === 3) {
+    } else if (grade === 3) {
     grade = '3rd Grade';
-  } else if (grade === 13) {
+    } else if (grade === 13) {
     grade = 'Event';
-  }
-  return grade;
+    }
+    return grade;
   }
 
   strTime(time: any) {
@@ -503,8 +500,6 @@ export default class Home extends Vue {
     }
   }
 
-
-
   showOff() {
     this.show = false;
   }
@@ -521,21 +516,21 @@ export default class Home extends Vue {
   }
 
   updateColor = function() {
-	  var elements = document.getElementById("gradientColors").children;
-	  elements = Array.from(elements).slice(1, elements.length);
-	  var colors = [];
- 	  colors.push(document.getElementById("buttonColor").value);
- 	  colors.push(document.getElementById("subButtonColor").value);
-	  colors.push(document.getElementById("buttonHoverColor").value);
-	  elements.forEach( function (element) {
-		if (element.children[0].tagName == "INPUT") {
-	      colors.push(element.children[0].value);
-	    } else if (element.children[1].tagName == "INPUT") {
-	      colors.push(element.children[1].value);
-	    } else {
-	      colors.push(element.children[2].value);
-	    }
-	  });
+    var tempElements = document.getElementById("gradientColors")!.children;
+    var elements = Array.from(tempElements).slice(1, tempElements.length);
+    var colors = [];
+    colors.push(document.getElementById("buttonColor")!.value);
+    colors.push(document.getElementById("subButtonColor")!.value);
+    colors.push(document.getElementById("buttonHoverColor")!.value);
+    elements.forEach(function(element) {
+      if (element.children[0].tagName == "INPUT") {
+        colors.push(element.children[0].value);
+      } else if (element.children[1].tagName == "INPUT") {
+        colors.push(element.children[1].value);
+      } else {
+        colors.push(element.children[2].value);
+      }
+    });
 	  this.updateOptionBL('customColors', colors);
   }
 
@@ -611,8 +606,8 @@ export default class Home extends Vue {
         }
       });
 
-    // At last, if the user has denied notifications, and you
-    // want to be respectful there is no need to bother them any more.
+      // At last, if the user has denied notifications, and you
+      // want to be respectful there is no need to bother them any more.
     }
   }
 
@@ -621,21 +616,21 @@ export default class Home extends Vue {
   }
 
   addColorRandom() {
-    this.addColor(Math.floor(Math.random()*16777215).toString(16));
+    this.addColor(Math.floor(Math.random() * 16777215).toString(16));
   }
 
-  addColor(color:string) {
+  addColor(color: string) {
     let colors = document.getElementById("gradientColors");
-  	let div = document.createElement("div");
+    let div = document.createElement("div");
 
-  	div.className = "color-box";
+    div.className = "color-box";
   	div.innerHTML = "<input class=\"color-selector\" type=\"color\" value=\"" + color + "\"><span class=\"material-icons material-icons-outlined\">delete_outline</span>";
+    
 
-  	colors.appendChild(div);
+    colors.appendChild(div);
   }
 
   populateColors() {
-    console.log("populating");
     var col1 = document.getElementById("col1");
     var col2 = document.getElementById("col2");
     col1.value = this.$store.state.settings.customColors[3];
@@ -646,9 +641,9 @@ export default class Home extends Vue {
       this.addColor(colors[i]);
     }
 
-    var largB = document.getElementById("buttonColor");
-    var smolB = document.getElementById("subButtonColor");
-    var hovrB = document.getElementById("buttonHoverColor");
+    var largB = document.getElementById("buttonColor")!;
+    var smolB = document.getElementById("subButtonColor")!;
+    var hovrB = document.getElementById("buttonHoverColor")!;
     largB.value = this.$store.state.settings.customColors[0];
     smolB.value = this.$store.state.settings.customColors[1];
     hovrB.value = this.$store.state.settings.customColors[2];
@@ -657,7 +652,7 @@ export default class Home extends Vue {
   }
 
   mounted() {
-	  let self = this;
+    let self = this;
 
     // this part is to prevent invalid grade values
     this.grade = this.$store.state.settings.grade;
@@ -678,11 +673,11 @@ export default class Home extends Vue {
     document.addEventListener('click', function(event) {
         if (event.target && event.target.innerHTML == 'delete_outline') {
         var colors = document.getElementById("gradientColors");
-          if (colors.children.length > 1) {
-            event.target.parentElement.remove();
-            self.updateColor();
-          }
+        if (colors.children.length > 1) {
+          event.target.parentElement.remove();
+          self.updateColor();
         }
+      }
       }
     );
 	  document.addEventListener('input', function(event) {
@@ -694,7 +689,6 @@ export default class Home extends Vue {
       this.populateColors();
     }
   }
-
 }
 </script>
 
@@ -788,6 +782,7 @@ select.grade-select {
   border-color: rgba(0, 0, 0, 0);
   border-width: 1px;
   border-radius: 3px;
+  outline: none;
 }
 
 option.grade-select-item {
@@ -847,6 +842,13 @@ option.grade-select-item {
   position: absolute;
   top: 0%;
   right: 0%;
+  user-select: none;
+}
+
+.qr-button {
+  position: absolute;
+  top: 0%;
+  right: 25px;
   user-select: none;
 }
 
