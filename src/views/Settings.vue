@@ -538,14 +538,16 @@ export default class Home extends Vue {
       const urlParams = new URLSearchParams(queryString);
 
       const large = '#' + urlParams.get('largeButton');
-      const small = '#' + urlParams.get('smallButton');
-      const hover = '#' + urlParams.get('hoverButton');
+      if (urlParams.has('largeButton')) {
+        const small = '#' + urlParams.get('smallButton');
+        const hover = '#' + urlParams.get('hoverButton');
 
-      var colorArray = [large,small,hover];
-      const colors = ('#' + urlParams.get('colors')!.replaceAll(',', ',#')).split(',');
-      colorArray = colorArray.concat(colors);
-      
-      this.updateOptionBL('customColors', colorArray);
+        var colorArray = [large,small,hover];
+        const colors = ('#' + urlParams.get('colors')!.replaceAll(',', ',#')).split(',');
+        colorArray = colorArray.concat(colors);
+
+        this.updateOptionBL('customColors', colorArray);
+      }
       this.populateColors();
     }
   }
@@ -719,13 +721,13 @@ option.grade-select-item {
   top: 25px;
   right: 25px;
   padding: 15px;
-  background-color: rgba(255, 255, 255, 0.5);
+  background-color: rgba(0, 0, 0, 0.2);
   border-radius: 5px;
-  transition-duration: 200ms;
+  transition-duration: 2000ms;
   transition: ease-in-out;
+  transition-property: all;
+  opacity: 100%;
   &.hidden {
-    width: 0%;
-    height: 0%;
     opacity: 0%;
     // display: none;
   }
