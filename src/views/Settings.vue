@@ -191,9 +191,16 @@
                 You can add more by clicking the plus and remove them by clicking the trash icon.</span>
             </div>
             <div class="sr-option">
-              <div class="gradient-colors" id="gradientColors">
-                <!-- <span class="material-icons material-icons-outlined qr-button">qr_code</span> -->
+              <div class="gradient-colors" id="gradientColors" style="padding-top: 20px">
                 <span class="material-icons material-icons-outlined add-button" id="add-button" @click=" addColorRandom(); updateColor();">add_circle</span>
+                <div>
+                  <span class="material-icons material-icons-outlined qr-button" id="add-button" @click=" toggleQRCode();">qr_code</span>
+                  <div id="qr-container" class="qr-container hidden">
+                    <qrcode-vue :value="getQRValue()" size="200" level="H" />
+                    <input @click="qrTextSelect($event)" :value="getQRValue()" class="url-text">
+                  </div>
+                </div>
+                
                 <div class="color-box">
                   <input class="color-selector" type="color" id="col1" />
                 </div>
@@ -231,7 +238,7 @@
               <input class="color-selector" id="buttonHoverColor" type="color" />
             </div>
           </div>
-          <div class="settings-row" style="padding-left:20px">
+          <div class="settings-row" style="padding-left:20%">
             <div id="nav">
               <router-link to="/home">Now</router-link>
               <!-- <router-link to="/today">Today</router-link> -->
@@ -261,8 +268,13 @@
 import { Component, Vue } from 'vue-property-decorator';
 import { Themes } from '../themes';
 import { allGrades } from '@/schedule';
+import QrcodeVue from 'qrcode.vue'
 
-@Component({})
+@Component({
+  components: {
+    QrcodeVue
+  }
+})
 export default class Home extends Vue {
   public appVersion = `v${process.env.VUE_APP_VERSION} (b${process.env.VUE_APP_COMMIT_COUNT.trim()}#${process.env.VUE_APP_COMMIT_SHASH.trim()})`;
   colorThemeId = this.$store.state.settings.colorTheme;
@@ -336,19 +348,13 @@ export default class Home extends Vue {
 
   updateColor = function() {
     var tempElements = document.getElementById("gradientColors")!.children;
-    var elements = Array.from(tempElements).slice(1, tempElements.length);
+    var elements = Array.from(tempElements).slice(2, tempElements.length);
     var colors = [];
     colors.push(document.getElementById("buttonColor")!.value);
     colors.push(document.getElementById("subButtonColor")!.value);
     colors.push(document.getElementById("buttonHoverColor")!.value);
     elements.forEach(function(element) {
-      if (element.children[0].tagName == "INPUT") {
-        colors.push(element.children[0].value);
-      } else if (element.children[1].tagName == "INPUT") {
-        colors.push(element.children[1].value);
-      } else {
-        colors.push(element.children[2].value);
-      }
+      colors.push(element.querySelector("input").value);
     });
 	  this.updateOptionBL('customColors', colors);
   }
@@ -356,6 +362,7 @@ export default class Home extends Vue {
   updateTheme() {
     this.updateOptionBL('colorTheme', this.colorThemeId);
     this.showColorOptions = this.$store.state.settings.colorTheme === 'theme17';
+    this.colorsPopulated = false;
 
     if (this.showColorOptions && !this.colorsPopulated) {
       let self = this;
@@ -435,7 +442,7 @@ export default class Home extends Vue {
   }
 
   addColorRandom() {
-    this.addColor(Math.floor(Math.random() * 16777215).toString(16));
+    this.addColor('#' + Math.floor(Math.random() * 16777215).toString(16));
   }
 
   addColor(color: string) {
@@ -443,7 +450,7 @@ export default class Home extends Vue {
     let div = document.createElement("div");
 
     div.className = "color-box";
-  	div.innerHTML = "<input class=\"color-selector\" type=\"color\" value=\"" + color + "\"><span class=\"material-icons material-icons-outlined\">delete_outline</span>";
+  	div.innerHTML = "<input class=\"color-selector\" type=\"color\" value=\"" + color + "\"><span class=\"material-icons material-icons-outlined trash-button\">delete_outline</span>";
     
 
     colors.appendChild(div);
@@ -468,6 +475,28 @@ export default class Home extends Vue {
     hovrB.value = this.$store.state.settings.customColors[2];
 
     this.colorsPopulated = true;
+  }
+
+  getQRValue() {
+    const qrUrl = new URL("https://go.lciteam.club/home/settings");
+    var customColors = this.$store.state.settings.customColors;
+
+    qrUrl.searchParams.append("largeButton", customColors[0].replaceAll('#', ''));
+    qrUrl.searchParams.append("smallButton", customColors[1].replaceAll('#', ''));
+    qrUrl.searchParams.append("hoverButton", customColors[2].replaceAll('#', ''));
+    qrUrl.searchParams.append("colors", customColors.slice(2, customColors.legth).toString().replaceAll('#', ''));
+
+    return qrUrl.toString();
+  }
+
+  toggleQRCode() {
+    document.getElementById("qr-container").classList.toggle("hidden");
+  }
+
+  qrTextSelect(event:Event) {
+    console.log(event);
+    console.log(event.target);
+    event.target.select();
   }
 
   mounted() {
@@ -505,6 +534,18 @@ export default class Home extends Vue {
       }
     });
     if (this.showColorOptions && !this.colorsPopulated) {
+      const queryString = window.location.search;
+      const urlParams = new URLSearchParams(queryString);
+
+      const large = '#' + urlParams.get('largeButton');
+      const small = '#' + urlParams.get('smallButton');
+      const hover = '#' + urlParams.get('hoverButton');
+
+      var colorArray = [large,small,hover];
+      const colors = ('#' + urlParams.get('colors')!.replaceAll(',', ',#')).split(',');
+      colorArray = colorArray.concat(colors);
+      
+      this.updateOptionBL('customColors', colorArray);
       this.populateColors();
     }
   }
@@ -662,6 +703,7 @@ option.grade-select-item {
   top: 0%;
   right: 0%;
   user-select: none;
+  cursor: pointer;
 }
 
 .qr-button {
@@ -669,6 +711,42 @@ option.grade-select-item {
   top: 0%;
   right: 25px;
   user-select: none;
+  cursor: pointer;
+}
+
+.qr-container {
+  position: absolute;
+  top: 25px;
+  right: 25px;
+  padding: 15px;
+  background-color: rgba(255, 255, 255, 0.5);
+  border-radius: 5px;
+  transition-duration: 200ms;
+  transition: ease-in-out;
+  &.hidden {
+    width: 0%;
+    height: 0%;
+    opacity: 0%;
+    // display: none;
+  }
+  &>.url-text {
+    box-sizing: border-box;
+    width: 200px;
+    overflow-x: scroll;
+    white-space:nowrap;
+    font: inherit;
+    font-size: inherit;
+    color: inherit;
+    outline: none;
+    border: none;
+    background: none;
+    user-select: none;
+  }
+}
+
+.trash-button {
+  user-select: none;
+  cursor: pointer;
 }
 
 .color-selector {
