@@ -47,9 +47,9 @@
     <div class="line"></div>
     <div style="display: inline-flex; align-items: flex-start">
     <a class="link" href="https://github.com/lchsiteam/lchs-go-pwa" target="_blank">
-      <code><</code>
+      <code>&lt;</code>
       <span>Source Code</span>
-      <code>></code>
+      <code>&gt;</code>
     </a>
     </div>
   </div>
