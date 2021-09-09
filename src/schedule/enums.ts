@@ -11,6 +11,8 @@ enum Schedule {
   COHORT_A_EVEN,
   COHORT_B_ODD,
   COHORT_B_EVEN,
+  IN_PERSON_ODD,
+  IN_PERSON_EVEN,
   // Normal Schedules
   REGULAR,
   BLOCK_ODD,
@@ -43,6 +45,8 @@ enum Schedule {
   SMALL_GROUPS_56,
   BLOCK_GROUPS_0_CLUBS,
   BLOCK_GROUPS_WELLNESS_CLUBS,
+  // Events
+  REGISTRATION,
 }
 
 enum Day {
@@ -58,7 +62,7 @@ enum Day {
 // Passing break is defined here as the
 // short break after a certain period/block
 enum Period {
-  // Hybrid and Virtual - O is online, A is Cohort A, B is Cohort B
+  // Hybrid and Virtual - O is online, A is Cohort A, B is Cohort B, I is In Person (both cohorts combined)
   PERIOD_0_O,
   PERIOD_1_O,
   PERIOD_2_O,
@@ -78,9 +82,16 @@ enum Period {
   PERIOD_4_B,
   PERIOD_5_B,
   PERIOD_6_B,
+  PERIOD_1_I,
+  PERIOD_2_I,
+  PERIOD_3_I,
+  PERIOD_4_I,
+  PERIOD_5_I,
+  PERIOD_6_I,
   G_G_LUNCH,
   PERIOD_OFFICE_HOURS_A,
   PERIOD_OFFICE_HOURS_B,
+  PERIOD_OFFICE_HOURS_I,
   // Normal Schedules
   PERIOD_0,
   PERIOD_0_PASSING,
@@ -133,6 +144,9 @@ enum Period {
   RECESS_PE,
   PREP,
   DONE,
+  // Events
+  ORIENTATION,
+  REGISTRATION,
 }
 
 export function getPeriodName(period: Period) {
@@ -144,21 +158,28 @@ export function getPeriodName(period: Period) {
   else if (period === Period.PERIOD_4_O) { return 'Period 4 Online'; }
   else if (period === Period.PERIOD_5_O) { return 'Period 5 Online'; }
   else if (period === Period.PERIOD_6_O) { return 'Period 6 Online'; }
-  else if (period === Period.PERIOD_1_A) { return 'Period 1 In Person'; }
-  else if (period === Period.PERIOD_2_A) { return 'Period 2 In Person'; }
-  else if (period === Period.PERIOD_3_A) { return 'Period 3 In Person'; }
-  else if (period === Period.PERIOD_4_A) { return 'Period 4 In Person'; }
-  else if (period === Period.PERIOD_5_A) { return 'Period 5 In Person'; }
-  else if (period === Period.PERIOD_6_A) { return 'Period 6 In Person'; }
-  else if (period === Period.PERIOD_1_B) { return 'Period 1 In Person'; }
-  else if (period === Period.PERIOD_2_B) { return 'Period 2 In Person'; }
-  else if (period === Period.PERIOD_3_B) { return 'Period 3 In Person'; }
-  else if (period === Period.PERIOD_4_B) { return 'Period 4 In Person'; }
-  else if (period === Period.PERIOD_5_B) { return 'Period 5 In Person'; }
-  else if (period === Period.PERIOD_6_B) { return 'Period 6 In Person'; }
+  else if (period === Period.PERIOD_1_A) { return 'Period 1 Cohort A In Person'; }
+  else if (period === Period.PERIOD_2_A) { return 'Period 2 Cohort A In Person'; }
+  else if (period === Period.PERIOD_3_A) { return 'Period 3 Cohort A In Person'; }
+  else if (period === Period.PERIOD_4_A) { return 'Period 4 Cohort A In Person'; }
+  else if (period === Period.PERIOD_5_A) { return 'Period 5 Cohort A In Person'; }
+  else if (period === Period.PERIOD_6_A) { return 'Period 6 Cohort A In Person'; }
+  else if (period === Period.PERIOD_1_B) { return 'Period 1 Cohort B In Person'; }
+  else if (period === Period.PERIOD_2_B) { return 'Period 2 Cohort B In Person'; }
+  else if (period === Period.PERIOD_3_B) { return 'Period 3 Cohort B In Person'; }
+  else if (period === Period.PERIOD_4_B) { return 'Period 4 Cohort B In Person'; }
+  else if (period === Period.PERIOD_5_B) { return 'Period 5 Cohort B In Person'; }
+  else if (period === Period.PERIOD_6_B) { return 'Period 6 Cohort B In Person'; }
+  else if (period === Period.PERIOD_1_I) { return 'Period 1 In Person'; }
+  else if (period === Period.PERIOD_2_I) { return 'Period 2 In Person'; }
+  else if (period === Period.PERIOD_3_I) { return 'Period 3 In Person'; }
+  else if (period === Period.PERIOD_4_I) { return 'Period 4 In Person'; }
+  else if (period === Period.PERIOD_5_I) { return 'Period 5 In Person'; }
+  else if (period === Period.PERIOD_6_I) { return 'Period 6 In Person'; }
   else if (period === Period.G_G_LUNCH) { return 'Grab & Go Lunch'; }
   else if (period === Period.PERIOD_OFFICE_HOURS_A) { return 'Office Hours / Period 0 Cohort A'; }
   else if (period === Period.PERIOD_OFFICE_HOURS_B) { return 'Office Hours / Period 0 Cohort B'; }
+  else if (period === Period.PERIOD_OFFICE_HOURS_I) { return 'Office Hours / Period 0 In Person'; }
   // Normal Schedules
   else if (period === Period.PERIOD_0) { return 'Period 0'; }
   else if (period === Period.PERIOD_0_PASSING) { return 'Passing After Period 0'; }
@@ -212,6 +233,10 @@ export function getPeriodName(period: Period) {
 
   else if (period === Period.NONE) { return 'No School'; }
   else if (period === Period.DONE) { return 'No School'; }
+
+   // Events
+  else if (period === Period.ORIENTATION) { return 'Welcome to High School Orientation (in LCHS Auditorium)'; }
+  else if (period === Period.REGISTRATION) { return 'Ninth Grade Registration'; }
   else { return '????'; }
 }
 
@@ -222,16 +247,22 @@ export function getScheduleName(schedule: Schedule) {
       return 'Normal Virtual Day';
       break;
     case Schedule.COHORT_A_ODD:
-      return 'Block Odd (Cohort A in person)';
+      return 'Block ODD (Cohort A in person)';
       break;
     case Schedule.COHORT_A_EVEN:
       return 'Block EVEN (Cohort A in person)';
       break;
     case Schedule.COHORT_B_ODD:
-      return 'Block Odd (Cohort B in person)';
+      return 'Block ODD (Cohort B in person)';
       break;
     case Schedule.COHORT_B_EVEN:
       return 'Block EVEN (Cohort B in person)';
+      break;
+    case Schedule.IN_PERSON_ODD:
+      return 'Block ODD (In Person)';
+      break;
+    case Schedule.IN_PERSON_EVEN:
+      return 'Block EVEN (In Person)';
       break;
       // Normal Schedules
     case Schedule.REGULAR:
@@ -322,6 +353,8 @@ export function getScheduleName(schedule: Schedule) {
       return 'High School Back to School Night';
     case Schedule.WEIRD_ASSEMBLY:
       return 'Assembly Schedule';
+    case Schedule.REGISTRATION:
+      return 'Ninth Grade Registration Schedule'
     default:
       return 'error';
       break;
