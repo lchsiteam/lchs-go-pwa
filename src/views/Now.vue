@@ -362,7 +362,7 @@ export default class Now extends Vue {
     right: 0;
     padding: 6px 12px;
     border-radius: 10px 15px 10px 10px;
-    background-color: rgba(0, 0, 0, .1);
+    background-color: rgba(0, 0, 0, .07);
     color: rgba(255, 255, 255, 0.7);
     font-size: 12px;
     font-weight: 700;
@@ -370,7 +370,7 @@ export default class Now extends Vue {
   }
   &:hover > .grid-fmr-absmode {
     background-color: rgba(0, 0, 0, .15);
-    color: rgba(255, 255, 255, 0.1);
+    color: rgba(255, 255, 255, 0.8);
   }
 }
 .grid-fmr-helper {
