@@ -33,10 +33,10 @@
       </div>
     </div>
     <div class="grid-fmr">
-      <div class="grid-fmr-helper">CURRENT TIME / LAST UPDATED</div>
+      <div class="grid-fmr-helper">CURRENT TIME</div>
       <div class="grid-fmr-value">
         <div>{{getCurrentTimeParts().hr}}<span class="cd-blink" :class="{disabled: !this.$store.state.settings.enableAnimations}">:</span>{{getCurrentTimeParts().min}}</div>
-        <div class="cd-txt-h">(This page updates time automatically)</div>
+        <div class="cd-txt-h">(This page updates automatically)</div>
       </div>
     </div>
     <div class='grid-fmr grid-fmr-mini-click' v-if="shouldShowUpdateLog()" @click='goToChangelog()'>
@@ -394,15 +394,6 @@ export default class Now extends Vue {
   font-size: 36px;
   font-weight: bold;
   text-align: center;
-}
-@keyframes blinking {
-  0% { opacity: 1; }
-  50% { opacity: 0; }
-  100% { opacity: 1; }
-}
-.cd-blink {
-  animation: blinking 1s ease-in-out infinite;
-  &.disabled { animation: none; }
 }
 a {
   color: rgb(168, 230, 255);
