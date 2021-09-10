@@ -41,6 +41,8 @@ const hybrid: [MDYDate, MDYDate] = [new MDYDate(4, 12, 2021), new MDYDate(5, 1, 
 const combined: [MDYDate, MDYDate] = [new MDYDate(5, 3, 2021), new MDYDate(6, 2, 2021)];
 
 export const schoolSpecialDates: any = {
+  // month - day - year: schedule (something from the Schedule enum)
+
   '8 - 19 - 2020': Schedule.REGULAR,
   '8 - 20 - 2020': Schedule.REGULAR,
   '8 - 26 - 2020': Schedule.REGULAR,
@@ -58,8 +60,6 @@ export const schoolSpecialDates: any = {
   '8 - 19 - 2021': Schedule.REGULAR,
   '8 - 25 - 2021': Schedule.REGULAR,
   '8 - 26 - 2021': Schedule.REGULAR,
-
-  // month - day - year: schedule (something from the Schedule enum)
 };
 
 export const msSpecialDates: any = {
@@ -78,6 +78,7 @@ export const hsSpecialDates: any = {
   '12 - 18 - 2020': Schedule.FINALS_34,
   '3 - 31 - 2021': Schedule.REGULAR,
   '4 - 1 - 2021': Schedule.REGULAR,
+  '9 - 10 - 2021': Schedule.ASSEMBLY,
 };
 
 export const gradeSpecialDates: any = {
@@ -339,7 +340,7 @@ export function getFullSchedule(schedule: Schedule, grade: number): any {
             break;
         }
       }else if (highSchooler === 2) {
-        return RegularSchedule;
+        return RegularSchedule78;
       }else if (highSchooler === 3) {
         return RegularSchedule;
       }else {
@@ -360,7 +361,7 @@ export function getFullSchedule(schedule: Schedule, grade: number): any {
       if (highSchooler === 1) {
         return ElementaryRegularSchedule;
       }else if (highSchooler === 2) {
-        return BlockOddSchedule;
+        return BlockOddSchedule78;
       }else if (highSchooler === 3) {
         return BlockOddSchedule;
       }else {
@@ -371,7 +372,7 @@ export function getFullSchedule(schedule: Schedule, grade: number): any {
       if (highSchooler === 1) {
         return ElementaryRegularSchedule;
       }else if (highSchooler === 2) {
-        return BlockEvenSchedule;
+        return BlockEvenSchedule78;
       }else if (highSchooler === 3) {
         return BlockEvenSchedule;
       }else {
@@ -449,6 +450,7 @@ export function getFullSchedule(schedule: Schedule, grade: number): any {
         case 5:
         case 6:
           return ElementaryRegularSchedule;
+          break;
         case 7:
           return AssemblySchedule7;
           break;
@@ -468,26 +470,14 @@ export function getFullSchedule(schedule: Schedule, grade: number): any {
      case Schedule.WEIRD_ASSEMBLY:
       if (highSchooler === 1) {
         return ElementaryRegularSchedule;
-      }else if (highSchooler === 2) {
+      } else if (highSchooler === 2) {
         return WeirdAssemblySchedule78;
-      }else if (highSchooler === 3) {
+      } else if (highSchooler === 3) {
         return WeirdAssemblySchedule;
-      }else {
+      } else {
         return NoSchoolSchedule;
       }
       break;
-
-      /*
-      if(grade == '9-12') {
-        return AssemblySchedule;
-      } else if(grade == '8') {
-        return AssemblySchedule8;
-      } else {
-        return AssemblySchedule7;
-      }
-
-      break;
-      */
 
     case Schedule.FINAL_ASSEMBLY:
       if (grade === 12) {
