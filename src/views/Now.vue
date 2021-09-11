@@ -8,14 +8,18 @@
     <p class="gradeMessage">schedule.</p>
     <div class="grid-fmr">
       <div class="grid-fmr-helper">CURRENT PERIOD</div>
+      <div class="grid-fmr-absmode">
+        <span class="material-icons material-icons-outlined grid-fmr-icon" @click="editClassName($event)" style="margin-right: 14px">edit</span>
+        <span class="material-icons material-icons-outlined grid-fmr-icon" @click="resetClassName()">cached</span>
+      </div>
       <div class="grid-fmr-value">
-        <div>{{getCurrentPeriodName()}}</div>
+        <input id="className" class="grid-fmr-input" @change="changeClassName($event)" :value="getCurrentPeriodName()">
         <div class="cd-txt-h">
           <b>{{getCertainTime(currentPeriod.start)}} - {{getCertainTime(currentPeriod.end)}}</b>
         </div>
       </div>
     </div>
-    <div class="grid-fmr" @click="untilNext = !untilNext" style="cursor: pointer;">
+    <div class="grid-fmr">
       <div class="grid-fmr-helper">REMAINING TIME</div>
       <div class="grid-fmr-value">
         <div>
@@ -27,7 +31,7 @@
         </div>
         <div class="cd-txt-h">({{Math.round(getCurrentPercentage() * 100)}}% completed)</div>
       </div>
-      <div class="grid-fmr-absmode">
+      <div class="grid-fmr-absmode" @click="untilNext = !untilNext" style="cursor: pointer;">
         <span v-if="untilNext">UNTIL NEXT</span>
         <span v-else>PERIOD END</span>
       </div>
@@ -52,7 +56,8 @@ import { DateTime, Duration } from 'luxon';
 import { printTime, getScheduleFromDay, getPeriod, getUpcomingPeriod, allGrades, plusDays, plusMins } from '@/schedule';
 import { Day, Schedule, Period, getPeriodName, getScheduleName } from '@/schedule/enums';
 import { RegularSchedule, BlockEvenSchedule, BlockOddSchedule } from '@/schedule/schedules';
-import { Changelog } from '../changelog';
+import { Changelog } from '../changelog'
+
 @Component({})
 export default class Now extends Vue {
   public untilNext = false;
@@ -63,6 +68,7 @@ export default class Now extends Vue {
   private grade = allGrades[2];
   private currentPeriod = { start: 0, end: 1440, period: Period.NONE };
   private allLogs: any[] = [];
+  private customNames = new Map();
   // private notificationsStatus = this.$store.state.settings.notificationsOn;
 
   updateStats() {
@@ -152,8 +158,30 @@ export default class Now extends Vue {
   printTime(time: number) {
     return printTime(time);
   }
-  getCurrentPeriodName() {
+  getCurrentPeriodName() { 
+    if (document.getElementById("className") !== document.activeElement) {
+      if (this.customNames != null) {
+        if (this.customNames.has(this.currentPeriod.period.toString())) {
+         return this.customNames.get(this.currentPeriod.period.toString());
+        }
+      }
+    }
     return getPeriodName(this.currentPeriod.period);
+  }
+
+  changeClassName(item:HTMLElement) {
+    this.customNames.set(this.currentPeriod.period.toString(), item.target.value);
+    this.updateOptionBL("customClassNames", JSON.stringify(Array.from(this.customNames.entries())));
+  }
+
+  editClassName(item:HTMLElement) {
+    document.getElementById("className").select();
+  }
+
+  resetClassName() {
+    this.customNames.delete(this.currentPeriod.period.toString());
+    document.getElementById("className").value = getPeriodName(this.currentPeriod.period);
+    this.updateOptionBL("customClassNames", JSON.stringify(Array.from(this.customNames.entries())));
   }
   getFormattedTimeUntilNext() {
     return [Math.floor(this.getTimeUntilNext() / 60), this.getTimeUntilNext() % 60];
@@ -329,6 +357,8 @@ export default class Now extends Vue {
       this.allLogs = this.allLogs.concat(version.entries);
     });
     this.allLogs = this.allLogs.filter((log) => log.isPublic);
+
+    this.customNames = new Map(Object.create(JSON.parse(this.$store.state.settings.customClassNames)));
   }
 }
 </script>
@@ -364,19 +394,28 @@ export default class Now extends Vue {
     border-radius: 10px 15px 10px 10px;
     background-color: rgba(0, 0, 0, .07);
     color: rgba(255, 255, 255, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0);
     font-size: 12px;
     font-weight: 700;
     transition: 150ms ease;
   }
-  &:hover > .grid-fmr-absmode {
-    background-color: rgba(0, 0, 0, .15);
-    color: rgba(255, 255, 255, 0.8);
+  .grid-fmr-absmode:hover {
+    background-color: rgba(255, 255, 255, 0);
+    border-color: rgba(255, 255, 255, .4);
   }
 }
 .grid-fmr-helper {
   font-size: 12px;
   font-weight: 600;
   opacity: 0.6;
+}
+.grid-fmr-icon {
+  font-size: 16px;
+  font-weight: 700;
+  position: relative;
+  top: 2px;
+  cursor: pointer;
+  user-select: none;
 }
 .grid-fmr-mini-click {
   background-color: rgba(0, 0, 0, .3);
@@ -394,6 +433,34 @@ export default class Now extends Vue {
   font-size: 36px;
   font-weight: bold;
   text-align: center;
+}
+.grid-fmr-input {
+  width: 100%;
+  flex-grow: 1;
+  flex-shrink: 0;
+  font-size: 36px;
+  font-weight: bold;
+  font-family: 'Niramit', Avenir, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #fff;
+  background: none;
+  border: 0px none transparent;
+  pointer-events: none;
+  &:focus {
+    outline: none;
+  }
+}
+
+@keyframes blinking {
+  0% { opacity: 1; }
+  50% { opacity: 0; }
+  100% { opacity: 1; }
+}
+.cd-blink {
+  animation: blinking 1s ease-in-out infinite;
+  &.disabled { animation: none; }
 }
 a {
   color: rgb(168, 230, 255);
