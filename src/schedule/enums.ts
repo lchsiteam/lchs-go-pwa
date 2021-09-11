@@ -247,116 +247,116 @@ export function getScheduleName(schedule: Schedule) {
       return 'Normal Virtual Day';
       break;
     case Schedule.COHORT_A_ODD:
-      return 'Block ODD (Cohort A in person)';
+      return 'Block Odd (Cohort A In Person)';
       break;
     case Schedule.COHORT_A_EVEN:
-      return 'Block EVEN (Cohort A in person)';
+      return 'Block Even (Cohort A In Person)';
       break;
     case Schedule.COHORT_B_ODD:
-      return 'Block ODD (Cohort B in person)';
+      return 'Block Odd (Cohort B In Person)';
       break;
     case Schedule.COHORT_B_EVEN:
-      return 'Block EVEN (Cohort B in person)';
+      return 'Block Even (Cohort B In Person)';
       break;
     case Schedule.IN_PERSON_ODD:
-      return 'Block ODD (In Person)';
+      return 'Block Odd (In Person)';
       break;
     case Schedule.IN_PERSON_EVEN:
-      return 'Block EVEN (In Person)';
+      return 'Block Even (In Person)';
       break;
       // Normal Schedules
     case Schedule.REGULAR:
-      return 'regular schedule';
+      return 'Regular Schedule';
       break;
     case Schedule.SMALL_GROUPS_12:
-      return 'regular schedule (1, 2)';
+      return 'Regular Schedule (1, 2)';
       break;
     case Schedule.SMALL_GROUPS_34:
-      return 'regular schedule (3, 4)';
+      return 'Regular Schedule (3, 4)';
       break;
     case Schedule.SMALL_GROUPS_56:
-      return 'regular schedule (5, 6)';
+      return 'Regular Schedule (5, 6)';
       break;
     case Schedule.BLOCK_GROUPS_0_CLUBS:
-      return 'block schedule (2, 4, 6, 0, Clubs)';
+      return 'Block Schedule (2, 4, 6, 0, Clubs)';
       break;
     case Schedule.BLOCK_GROUPS_WELLNESS_CLUBS:
-      return 'block schedule (1, 3, 5, Wellness Wednesday, Clubs)';
+      return 'Block Schedule (1, 3, 5, Wellness Wednesday, Clubs)';
       break;
     case Schedule.BLOCK_ODD:
-      return 'block schedule (1, 3, 5)';
+      return 'Block Schedule (1, 3, 5)';
       break;
     case Schedule.BLOCK_EVEN:
-      return 'block schedule (2, 4, 6)';
+      return 'Block Schedule (2, 4, 6)';
       break;
     case Schedule.REVERSE_BLOCK_ODD:
-      return 'block schedule (5, 3, 1)';
+      return 'Block Schedule (5, 3, 1)';
       break;
     case Schedule.MINIMUM_REVERSE_BLOCK_ODD_78:
-      return 'reverse minimum block schedule (5, 3)';
+      return 'Reverse Minimum Block Schedule (5, 3)';
       break;
     case Schedule.SBAC_BLOCK_ODD:
-      return 'SBAC block schedule (1, 3, 5)';
+      return 'Sbac Block Schedule (1, 3, 5)';
       break;
     case Schedule.SBAC_BLOCK_EVEN:
-      return 'SBAC block schedule (2, 4, 6)';
+      return 'Sbac Block Schedule (2, 4, 6)';
       break;
     case Schedule.SBAC_SPECIAL_BLOCK_ODD:
-      return 'SBAC block schedule (3, 1, 5)';
+      return 'Sbac Block Schedule (3, 1, 5)';
       break;
     case Schedule.SBAC_SPECIAL_BLOCK_EVEN:
-      return 'SBAC block schedule (4, 2, 6)';
+      return 'Sbac Block Schedule (4, 2, 6)';
       break;
     case Schedule.PRE_FINALS_3264:
-      return 'pre-finals schedule (3, 2, 6, 4)';
+      return 'Pre-Finals Schedule (3, 2, 6, 4)';
       break;
     case Schedule.PRE_FINALS_2156:
-      return 'pre-finals schedule (2, 1, 5, 6)';
+      return 'Pre-Finals Schedule (2, 1, 5, 6)';
       break;
     case Schedule.PRE_FINALS_1345:
-      return 'pre-finals schedule (1, 3, 4, 5)';
+      return 'Pre-Finals Schedule (1, 3, 4, 5)';
       break;
     case Schedule.FINAL_ASSEMBLY:
-      return 'final assembly schedule';
+      return 'Final Assembly Schedule';
       break;
     case Schedule.FINALS_34:
-      return 'finals schedule (3, 4)';
+      return 'Finals Schedule (3, 4)';
       break;
     case Schedule.FINALS_15:
-      return 'finals schedule (1, 5)';
+      return 'Finals Schedule (1, 5)';
       break;
     case Schedule.FINALS_26:
-      return 'finals schedule (2, 6)';
+      return 'Finals Schedule (2, 6)';
       break;
     case Schedule.ASSEMBLY:
-      return 'assembly schedule';
+      return 'Assembly Schedule';
       break;
     case Schedule.EARLY_RELEASE:
-      return 'early release schedule';
+      return 'Early Release Schedule';
       break;
     case Schedule.MINIMUM:
-      return 'minimum schedule';
+      return 'Minimum Schedule';
       break;
     case Schedule.FINALS_TBD:
-      return 'finals schedule (TBD)';
+      return 'Finals Schedule (Tbd)';
       break;
     case Schedule.NONE:
-      return 'free';
+      return 'Free';
       break;
     case Schedule.SUMMER_SCHOOL:
-      return 'summer school';
+      return 'Summer School';
       break;
     case Schedule.NOEVENT:
       return 'No Special Events';
       break;
     case Schedule.HSBACKTOSCHOOLNIGHT:
-      return 'High School Back to School Night';
+      return 'High School Back To School Night';
     case Schedule.WEIRD_ASSEMBLY:
       return 'Assembly Schedule';
     case Schedule.REGISTRATION:
       return 'Ninth Grade Registration Schedule';
     default:
-      return 'error';
+      return 'Error';
       break;
   }
 }

@@ -2,14 +2,14 @@
   <div class="settings">
     <h2>App Settings</h2>
     <div class="settings-rows">
-      <div class='settings-row'> 
+      <div class='settings-row'>
         <div class='sr-head'>
-          <b class='sr-title'>Grade Level</b> 
-          <span class='sr-desc'>Change which grade is used for calculating schedules</span> 
-        </div> 
+          <b class='sr-title'>Grade Level</b>
+          <span class='sr-desc'>Change which grade is used for calculating schedules</span>
+        </div>
         <div class='sr-option'>
           <select v-model="grade" @change="updateGrade()" class = "grade-select">
-            <option v-for="grade in allGrades" :key="grade" :value="grade" class = "grade-select-item">{{strGrade(grade)}}</option> 
+            <option v-for="grade in allGrades" :key="grade" :value="grade" class = "grade-select-item">{{strGrade(grade)}}</option>
           </select>
         </div>
       </div>
@@ -34,25 +34,25 @@
         </div>
         <div class="settings-rows" v-if='show'>
           <!-- hidden section-->
-          <div class='settings-row'> 
+          <div class='settings-row'>
             <div class='sr-head'>
-              <b class='sr-title'>Warning time before period START</b> 
-              <span class='sr-desc'>How many minutes before the start of a period should we notify you that the period is starting?</span> 
-            </div> 
+              <b class='sr-title'>Warning time before period START</b>
+              <span class='sr-desc'>How many minutes before the start of a period should we notify you that the period is starting?</span>
+            </div>
             <div class='sr-option'>
               <select v-model="startTimeAmount" @change="updateStartTime()" class = "grade-select">
                 <option v-for="time in allTimes" :key="time" :value="time" class = "grade-select-item">{{strTime(time)}}</option>
               </select>
             </div>
           </div>
-          <div class='settings-row'> 
+          <div class='settings-row'>
             <div class='sr-head'>
-              <b class='sr-title'>Warning time before period END</b> 
-              <span class='sr-desc'>How many minutes before the end of a period should we notify you that the period is ending?</span> 
-            </div> 
+              <b class='sr-title'>Warning time before period END</b>
+              <span class='sr-desc'>How many minutes before the end of a period should we notify you that the period is ending?</span>
+            </div>
             <div class='sr-option'>
               <select v-model="endTimeAmount" @change="updateEndTime()" class = "grade-select">
-                <option v-for="time in allTimes" :key="time" :value="time" class = "grade-select-item">{{strTime(time)}}</option> 
+                <option v-for="time in allTimes" :key="time" :value="time" class = "grade-select-item">{{strTime(time)}}</option>
               </select>
             </div>
           </div>

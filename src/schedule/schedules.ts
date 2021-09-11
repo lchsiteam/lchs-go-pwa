@@ -4,10 +4,12 @@ function toTime(hr: number, min: number) {
   return (hr * 60) + min;
 }
 
-// Note: the script will only consider
-// the `end` paramater for now. (when each period ends).
-// When the program reads this fake ".csv", it will
-// give precedence to the period that is listed first
+/*
+Note: the script will only consider
+the `end` paramater for now. (when each period ends).
+When the program reads this fake ".csv", it will
+give precedence to the period that is listed first
+*/
 
 export const NoSchoolSchedule: any[] = [
   { start: toTime(0, 0), end: toTime(24, 0), period: Period.DONE },
@@ -88,15 +90,7 @@ export const RegularSchedule: any[] = [ // Has no small groups
   { start: toTime(15, 14), end: toTime(24, 0), period: Period.DONE },
 ];
 
-/**
- *
- *
- *
- * Hybrid Schedule
- *
- *
- *
- */
+// Hybrid Schedule
 
 // O is online, A is cohort A, B is cohort B
 export const HybridVirtualDay: any[] = [ // Has no small groups
@@ -326,15 +320,7 @@ export const SmallGroups0Clubs: any[] = [
   { start: toTime(15, 15), end: toTime(24, 0), period: Period.DONE },
 ];
 
-/**
- *
- *
- *
- * End Small Group Schedule
- *
- *
- *
- */
+// End Small Group Schedule
 
 export const BlockOddSchedule: any[] = [
   { start: toTime(0, 0), end: toTime(7, 28), period: Period.NONE },
@@ -398,6 +384,7 @@ export const BlockEvenSchedule: any[] = [
   { start: toTime(15, 15), end: toTime(24, 0), period: Period.DONE },
 ];
 */
+
 // reverse odd block schedules
 export const ReverseBlockOddSchedule: any[] = [
   { start: toTime(0, 0), end: toTime(7, 28), period: Period.NONE },
