@@ -54,6 +54,10 @@ export const schoolSpecialDates: any = {
   '4 - 12 - 2021': Schedule.NONE,
   '5 - 31 - 2021': Schedule.NONE,
   '6 - 3 - 2021': Schedule.ONLINE,
+  '8 - 18 - 2021': Schedule.REGULAR,
+  '8 - 19 - 2021': Schedule.REGULAR,
+  '8 - 25 - 2021': Schedule.REGULAR,
+  '8 - 26 - 2021': Schedule.REGULAR,
 
   // month - day - year: schedule (something from the Schedule enum)
 };
@@ -335,7 +339,7 @@ export function getFullSchedule(schedule: Schedule, grade: number): any {
             break;
         }
       }else if (highSchooler === 2) {
-        return RegularSchedule;
+        return RegularSchedule78;
       }else if (highSchooler === 3) {
         return RegularSchedule;
       }else {
@@ -356,7 +360,7 @@ export function getFullSchedule(schedule: Schedule, grade: number): any {
       if (highSchooler === 1) {
         return ElementaryRegularSchedule;
       }else if (highSchooler === 2) {
-        return BlockOddSchedule;
+        return BlockOddSchedule78;
       }else if (highSchooler === 3) {
         return BlockOddSchedule;
       }else {
@@ -367,7 +371,7 @@ export function getFullSchedule(schedule: Schedule, grade: number): any {
       if (highSchooler === 1) {
         return ElementaryRegularSchedule;
       }else if (highSchooler === 2) {
-        return BlockEvenSchedule;
+        return BlockEvenSchedule78;
       }else if (highSchooler === 3) {
         return BlockEvenSchedule;
       }else {
