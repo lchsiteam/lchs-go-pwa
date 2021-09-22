@@ -110,7 +110,7 @@ export const gradeSpecialDates: any = {
   12: {
   },
   13: {
-    '9 - 21 - 2021': Schedule.HSBACKTOSCHOOLNIGHT,
+    '9 - 22 - 2021': Schedule.HSBACKTOSCHOOLNIGHT,
   },
 };
 
