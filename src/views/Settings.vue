@@ -15,7 +15,6 @@
       </div>
       <div class="settings-row">
         <div class="sr-head">
-          <span class="sr-badge-new">NEW</span>
           <b class="sr-title">Desktop Notifications</b>
           <span class="sr-desc">Enable or disable desktop notifications</span>
         </div>
