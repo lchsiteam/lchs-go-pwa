@@ -16,7 +16,7 @@ const defaultConfig = {
     showExtraPeriods: false,
     sixthEnabled: true,
     zeroEnabled: true,
-    colorTheme: 'theme10',
+    colorTheme: 'theme17',
     startorend: 'both',
     grade: 9,
     startTime: 3,
