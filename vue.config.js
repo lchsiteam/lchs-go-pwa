@@ -5,6 +5,7 @@ process.env.VUE_APP_COMMIT_COUNT = childProcess.execSync("git rev-list HEAD --co
 process.env.VUE_APP_COMMIT_SHASH = childProcess.execSync("git rev-parse --short HEAD")
 
 module.exports = {
+    runtimeCompiler: true,
     devServer: {
         disableHostCheck: true
 }}
