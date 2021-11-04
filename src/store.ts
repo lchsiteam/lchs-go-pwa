@@ -23,7 +23,6 @@ const defaultConfig = {
     endTime: 2,
     idInput: '',
     gradeInput: [],
-    customClassNames: '[]',
   },
   changelog: {
     readUpdates: [],

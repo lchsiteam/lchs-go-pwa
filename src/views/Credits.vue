@@ -4,11 +4,8 @@
     <h4>Scan this QR code below with the Camera app:</h4>
     <img src="../assets/qrcode.png"/>
     <h4>Or head directly to:</h4>
-    <a class="link" href="https://go.lciteam.club" target="_blank">
-      <h2>go.lciteam.club</h2>
-    </a>
+    <h2>go.lciteam.club</h2>
     <h5>This web app was produced by iTeam, a technology service club at LCHS.</h5>
-    <div class="line"></div>
     <div>
       <div class="credit-item-container">
         <div class="credit-item">Kai Bredemann (kbredemann22)</div>
@@ -39,18 +36,6 @@
         <div class="credit-item">Eliza Jeffries (ejeffries22)</div>
         <div class="credit-item-role">Core Contributor</div>
       </div>
-      <div class="credit-item-container">
-        <div class="credit-item">Aidan Schmitigal (aschmitigal22)</div>
-        <div class="credit-item-role">Core Contributor</div>
-      </div>
-    </div>
-    <div class="line"></div>
-    <div style="display: inline-flex; align-items: flex-start">
-    <a class="link" href="https://github.com/lchsiteam/lchs-go-pwa" target="_blank">
-      <code>&lt;</code>
-      <span>Source Code</span>
-      <code>&gt;</code>
-    </a>
     </div>
   </div>
 </template>
@@ -65,31 +50,6 @@ export default class Home extends Vue {
 </script>
 
 <style lang="scss">
-.link {
-    display: block;
-    margin-block-start: 1.33em;
-    margin-block-end: 1.33em;
-    margin-inline-start: 0px;
-    margin-inline-end: 0px;
-    font-weight: bold;
-    color: white;
-    text-decoration: none;
-    font-size: 15px;
-  transition-duration: 200ms;
-}
-
-.link:hover {
-  background: rgba($color: #ffffff, $alpha: 0.1);
-  transition-duration: 200ms;
-}
-
-.line {
-  height: 2px;
-  width: 20vw;
-  background: white;
-  margin: 25px auto 25px;
-}
-
 .about {
   padding: 0 20px;
 }
