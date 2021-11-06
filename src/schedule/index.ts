@@ -28,7 +28,7 @@ export function getCurrentDate(): any {
   };
 }
 
-const tgBreak: MDYDate[] = [new MDYDate(11, 23, 2020), new MDYDate(11, 27, 2020)];
+const tgBreak: MDYDate[] = [new MDYDate(11, 22, 2021), new MDYDate(11, 26, 2021)];
 const winterBreak: MDYDate[] = [new MDYDate(12, 21, 2020), new MDYDate(1, 4, 2021)];
 const springBreak: MDYDate[] = [new MDYDate(4, 5, 2021), new MDYDate(4, 12, 2021)]; // Please don't ever delete this, just comment it out if you have to
 const summerBreak: MDYDate[] = [new MDYDate(6, 4, 2021), new MDYDate(8, 15, 2021)];
@@ -36,7 +36,7 @@ const summerBreak: MDYDate[] = [new MDYDate(6, 4, 2021), new MDYDate(8, 15, 2021
 const breaks: any[] = [tgBreak, winterBreak, springBreak, summerBreak];
 
 const summerSchool: [MDYDate, MDYDate] = [new MDYDate(6, 14, 2021), new MDYDate(7, 16, 2021)];
-const blockSwitch: [MDYDate, MDYDate] = [new MDYDate(11, 11, 2019), new MDYDate(2, 17, 2020)];
+const blockSwitch: [MDYDate, MDYDate] = [new MDYDate(11, 14, 2021), new MDYDate(2, 20, 2022)];
 const hybrid: [MDYDate, MDYDate] = [new MDYDate(4, 12, 2021), new MDYDate(5, 1, 2021)];
 const combined: [MDYDate, MDYDate] = [new MDYDate(5, 3, 2021), new MDYDate(6, 2, 2021)];
 
@@ -60,6 +60,8 @@ export const schoolSpecialDates: any = {
   '8 - 19 - 2021': Schedule.REGULAR,
   '8 - 25 - 2021': Schedule.REGULAR,
   '8 - 26 - 2021': Schedule.REGULAR,
+  '11 - 9 - 2021': Schedule.BLOCK_EVEN,
+  '11 - 11 - 2021': Schedule.NONE,
 };
 
 export const msSpecialDates: any = {
@@ -340,7 +342,7 @@ export function getFullSchedule(schedule: Schedule, grade: number): any {
             break;
         }
       }else if (highSchooler === 2) {
-        return RegularSchedule;
+        return RegularSchedule78;
       }else if (highSchooler === 3) {
         return RegularSchedule;
       }else {
@@ -361,7 +363,7 @@ export function getFullSchedule(schedule: Schedule, grade: number): any {
       if (highSchooler === 1) {
         return ElementaryRegularSchedule;
       }else if (highSchooler === 2) {
-        return BlockOddSchedule;
+        return BlockOddSchedule78;
       }else if (highSchooler === 3) {
         return BlockOddSchedule;
       }else {
