@@ -90,6 +90,6 @@ export const Themes = [
   ),
   new LCHSGoTheme(
     'theme17', 'Glossy Blue', 'A dark theme that resembles blue eyes',
-    ['#466272', '#466272'], 'rgba(89, 136, 163, 45)', 'rgba(26, 66, 88, 65)', 'rgba(122, 154, 173, 65)'
+    ['#466272', '#466272'], 'rgba(89, 136, 163, 45)', 'rgba(26, 66, 88, 65)', 'rgba(122, 154, 173, 65)',
   ),
 ];
