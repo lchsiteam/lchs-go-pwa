@@ -4,7 +4,7 @@
     <h3>Schedule: {{getCurrentScheduleName()}}</h3>
     <p class="gradeMessage">You are viewing the</p>
     <select v-model="grade" @change="changeGrade()" class = "grade-select">
-      <option v-for="grade in allGrades" :key="grade" :value="grade" class = "grade-select-item">{{strGrade(grade)}}</option> 
+      <option v-for="grade in allGrades" :key="grade" :value="grade" class = "grade-select-item">{{strGrade(grade)}}</option>
     </select>
     <p class="gradeMessage">schedule.</p>
     <!-- Please replace this! -->
@@ -15,17 +15,15 @@
           class='date-picker'
           v-model="date"
           value="null"
-          color="red"
-          is-dark
           :min-date='minDate'
           :max-date='maxDate'
           :show-day-popover=true>
-          <input type="text" name="intexts" :value="'Viewing '+ getCurrentShiftMsg()" disabled></input>
+          <input type="text" name="intexts" :value="'Viewing '+ getCurrentShiftMsg()" disabled>
         </vc-date-picker>
       </div>
       <div v-if='canUseRight()' class="blsch-dp-right" @click="updateShift(1)">&#8594;</div>
     </div>
-    
+
     <div class="bell-schedule" v-if="getCurrentScheduleName() != 'free'">
       <div class="blsch-period-hd">
         <div class="blsch-period-title">Period</div>
@@ -35,7 +33,7 @@
       <div class="blsch-period-container" v-for="period of getFullSchedule()" :key="period.period">
         <div class="blsch-period" :class="{ selected: selected(period) }">
           <div class="blsch-period-title">{{getPeriodName(period.period)}}</div>
-          <div class="blsch-period-start">{{getCertainTime(period.start)}}</div>  
+          <div class="blsch-period-start">{{getCertainTime(period.start)}}</div>
           <div class="blsch-period-end">{{getCertainTime(period.end)}}</div>
         </div>
       </div>
@@ -110,7 +108,7 @@ div.gradeMessage {
   }
 }
 
-.date-picker /deep/ input {
+input[name="intexts"] {
   display: block !important;
   width: 250px;
   color: rgba(255, 255, 255, 10) !important;
@@ -145,7 +143,7 @@ select.grade-select {
   border-color:rgba(0,0,0,0);
   border-width: 1px;
   border-radius: 3px;
-} 
+}
 option.grade-select-item  {
 color: rgba(255, 255, 255, 0.6);
 
@@ -170,7 +168,7 @@ import { Component, Vue } from 'vue-property-decorator';
 import { DateTime, Duration } from 'luxon';
 
 import { printTime, getScheduleFromDay, getPeriod, getFullSchedule, allGrades,
-plusDays, plusMins } from '@/schedule';
+plusDays, plusMins, periodsFilter, allFilter } from '@/schedule';
 import { Day, Schedule, Period, getPeriodName, getScheduleName } from '@/schedule/enums';
 import { RegularSchedule, BlockEvenSchedule, BlockOddSchedule } from '@/schedule/schedules';
 import { MDYDate } from '@/schedule/mdy_date';
@@ -189,7 +187,7 @@ Vue.use(VCalendar, {
 export default class Home extends Vue {
   private allGrades = allGrades;
   private minDate = new Date(2020, 7, 1);
-  private maxDate = new Date(2021, 4, 31);
+  private maxDate = new Date(2022, 6, 4);
   private minutes: number = 0;
   private schedule: Schedule = Schedule.NONE;
   private grade = allGrades[2];
@@ -197,6 +195,7 @@ export default class Home extends Vue {
   private date = new Date();
   private daysShifted = 0;
   private arrowsUsed = true;
+  private filter = periodsFilter;
 
   public updateStats() {
     // console.log(plusDays);
@@ -336,39 +335,7 @@ export default class Home extends Vue {
     return getFullSchedule(this.schedule, grade).filter(({period}: any) => {
       // Dirty solution for filtering schedule.
       // TODO: Move this elsewhere.
-      return [
-        Period.PERIOD_0,
-        Period.PERIOD_1,
-        Period.PERIOD_2,
-        Period.PERIOD_3,
-        Period.PERIOD_4,
-        Period.PERIOD_5,
-        Period.PERIOD_6,
-        Period.LUNCH,
-        Period.BREAK,
-        Period.STEP_ODD,
-        Period.STEP_EVEN,
-        Period.HOMEROOM,
-        Period.ASSEMBLY,
-        Period.TBD,
-        Period.OFFICE,
-        Period.SMALL_GROUP,
-        Period.ARRIVAL,
-        Period.ARRIVAL_A,
-        Period.ARRIVAL_B,
-        Period.RECESS,
-        Period.RECESS_PE,
-        Period.PREP,
-        Period.SMALL_GROUP_P0,
-        Period.SMALL_GROUP_P1,
-        Period.SMALL_GROUP_P2,
-        Period.SMALL_GROUP_P3,
-        Period.SMALL_GROUP_P4,
-        Period.SMALL_GROUP_P5,
-        Period.SMALL_GROUP_P6,
-        Period.SMALL_GROUP_CLUBS,
-        Period.SMALL_GROUP_WELLNESS,
-      ].indexOf(period) !== -1 || this.$store.state.settings.showExtraPeriods;
+      return this.filter.indexOf(period) !== -1 || this.$store.state.settings.showExtraPeriods;
     });
   }
 

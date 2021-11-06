@@ -3,7 +3,7 @@ export default {
   entries: [
     {
       id: 7,
-      isNew: true,
+      isNew: false,
       isPublic: true,
       title: 'New Radial Themes',
       author: 'Ryan King',

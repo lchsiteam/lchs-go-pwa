@@ -5,6 +5,15 @@
 // and each period
 
 enum Schedule {
+  // Hybrid and Virtual
+  ONLINE,
+  COHORT_A_ODD,
+  COHORT_A_EVEN,
+  COHORT_B_ODD,
+  COHORT_B_EVEN,
+  IN_PERSON_ODD,
+  IN_PERSON_EVEN,
+  // Normal Schedules
   REGULAR,
   BLOCK_ODD,
   BLOCK_EVEN,
@@ -36,6 +45,8 @@ enum Schedule {
   SMALL_GROUPS_56,
   BLOCK_GROUPS_0_CLUBS,
   BLOCK_GROUPS_WELLNESS_CLUBS,
+  // Events
+  REGISTRATION,
 }
 
 enum Day {
@@ -51,6 +62,37 @@ enum Day {
 // Passing break is defined here as the
 // short break after a certain period/block
 enum Period {
+  // Hybrid and Virtual - O is online, A is Cohort A, B is Cohort B, I is In Person (both cohorts combined)
+  PERIOD_0_O,
+  PERIOD_1_O,
+  PERIOD_2_O,
+  PERIOD_3_O,
+  PERIOD_4_O,
+  PERIOD_5_O,
+  PERIOD_6_O,
+  PERIOD_1_A,
+  PERIOD_2_A,
+  PERIOD_3_A,
+  PERIOD_4_A,
+  PERIOD_5_A,
+  PERIOD_6_A,
+  PERIOD_1_B,
+  PERIOD_2_B,
+  PERIOD_3_B,
+  PERIOD_4_B,
+  PERIOD_5_B,
+  PERIOD_6_B,
+  PERIOD_1_I,
+  PERIOD_2_I,
+  PERIOD_3_I,
+  PERIOD_4_I,
+  PERIOD_5_I,
+  PERIOD_6_I,
+  G_G_LUNCH,
+  PERIOD_OFFICE_HOURS_A,
+  PERIOD_OFFICE_HOURS_B,
+  PERIOD_OFFICE_HOURS_I,
+  // Normal Schedules
   PERIOD_0,
   PERIOD_0_PASSING,
   PERIOD_1,
@@ -59,6 +101,7 @@ enum Period {
   PERIOD_2_PASSING,
   BREAK,
   BREAK_PASSING,
+  STUDY,
   PERIOD_3,
   PERIOD_3_PASSING,
   LUNCH,
@@ -101,10 +144,44 @@ enum Period {
   RECESS_PE,
   PREP,
   DONE,
+  // Events
+  ORIENTATION,
+  REGISTRATION,
 }
 
 export function getPeriodName(period: Period) {
-  if (period === Period.PERIOD_0) { return 'Period 0'; }
+  // Hybrid and Virtuals
+  if (period === Period.PERIOD_0_O) { return 'Period 0 Online'; }
+  else if (period === Period.PERIOD_1_O) { return 'Period 1 Online'; }
+  else if (period === Period.PERIOD_2_O) { return 'Period 2 Online'; }
+  else if (period === Period.PERIOD_3_O) { return 'Period 3 Online'; }
+  else if (period === Period.PERIOD_4_O) { return 'Period 4 Online'; }
+  else if (period === Period.PERIOD_5_O) { return 'Period 5 Online'; }
+  else if (period === Period.PERIOD_6_O) { return 'Period 6 Online'; }
+  else if (period === Period.PERIOD_1_A) { return 'Period 1 Cohort A In Person'; }
+  else if (period === Period.PERIOD_2_A) { return 'Period 2 Cohort A In Person'; }
+  else if (period === Period.PERIOD_3_A) { return 'Period 3 Cohort A In Person'; }
+  else if (period === Period.PERIOD_4_A) { return 'Period 4 Cohort A In Person'; }
+  else if (period === Period.PERIOD_5_A) { return 'Period 5 Cohort A In Person'; }
+  else if (period === Period.PERIOD_6_A) { return 'Period 6 Cohort A In Person'; }
+  else if (period === Period.PERIOD_1_B) { return 'Period 1 Cohort B In Person'; }
+  else if (period === Period.PERIOD_2_B) { return 'Period 2 Cohort B In Person'; }
+  else if (period === Period.PERIOD_3_B) { return 'Period 3 Cohort B In Person'; }
+  else if (period === Period.PERIOD_4_B) { return 'Period 4 Cohort B In Person'; }
+  else if (period === Period.PERIOD_5_B) { return 'Period 5 Cohort B In Person'; }
+  else if (period === Period.PERIOD_6_B) { return 'Period 6 Cohort B In Person'; }
+  else if (period === Period.PERIOD_1_I) { return 'Period 1 In Person'; }
+  else if (period === Period.PERIOD_2_I) { return 'Period 2 In Person'; }
+  else if (period === Period.PERIOD_3_I) { return 'Period 3 In Person'; }
+  else if (period === Period.PERIOD_4_I) { return 'Period 4 In Person'; }
+  else if (period === Period.PERIOD_5_I) { return 'Period 5 In Person'; }
+  else if (period === Period.PERIOD_6_I) { return 'Period 6 In Person'; }
+  else if (period === Period.G_G_LUNCH) { return 'Grab & Go Lunch'; }
+  else if (period === Period.PERIOD_OFFICE_HOURS_A) { return 'Office Hours / Period 0 Cohort A'; }
+  else if (period === Period.PERIOD_OFFICE_HOURS_B) { return 'Office Hours / Period 0 Cohort B'; }
+  else if (period === Period.PERIOD_OFFICE_HOURS_I) { return 'Office Hours / Period 0 In Person'; }
+  // Normal Schedules
+  else if (period === Period.PERIOD_0) { return 'Period 0'; }
   else if (period === Period.PERIOD_0_PASSING) { return 'Passing After Period 0'; }
   else if (period === Period.PERIOD_1) { return 'Period 1'; }
   else if (period === Period.PERIOD_1_PASSING) { return 'Passing After Period 1'; }
@@ -112,6 +189,7 @@ export function getPeriodName(period: Period) {
   else if (period === Period.PERIOD_2_PASSING) { return 'Passing after Period 2'; }
   else if (period === Period.BREAK) { return 'Break'; }
   else if (period === Period.BREAK_PASSING) { return 'Passing After Break'; }
+  else if (period === Period.STUDY) {return 'Study Period'; }
   else if (period === Period.PERIOD_3) { return 'Period 3'; }
   else if (period === Period.PERIOD_3_PASSING) { return 'Passing After Period 3'; }
   else if (period === Period.LUNCH) { return 'Lunch'; }
@@ -155,101 +233,130 @@ export function getPeriodName(period: Period) {
 
   else if (period === Period.NONE) { return 'No School'; }
   else if (period === Period.DONE) { return 'No School'; }
+
+   // Events
+  else if (period === Period.ORIENTATION) { return 'Welcome to High School Orientation (in LCHS Auditorium)'; }
+  else if (period === Period.REGISTRATION) { return 'Ninth Grade Registration'; }
   else { return '????'; }
 }
 
 export function getScheduleName(schedule: Schedule) {
   switch (schedule) {
+      // Hybrid and Virtuals
+    case Schedule.ONLINE:
+      return 'Normal Virtual Day';
+      break;
+    case Schedule.COHORT_A_ODD:
+      return 'Block Odd (Cohort A In Person)';
+      break;
+    case Schedule.COHORT_A_EVEN:
+      return 'Block Even (Cohort A In Person)';
+      break;
+    case Schedule.COHORT_B_ODD:
+      return 'Block Odd (Cohort B In Person)';
+      break;
+    case Schedule.COHORT_B_EVEN:
+      return 'Block Even (Cohort B In Person)';
+      break;
+    case Schedule.IN_PERSON_ODD:
+      return 'Block Odd (In Person)';
+      break;
+    case Schedule.IN_PERSON_EVEN:
+      return 'Block Even (In Person)';
+      break;
+      // Normal Schedules
     case Schedule.REGULAR:
-      return 'regular schedule';
+      return 'Regular Schedule';
       break;
     case Schedule.SMALL_GROUPS_12:
-      return 'regular schedule (1, 2)';
+      return 'Regular Schedule (1, 2)';
       break;
     case Schedule.SMALL_GROUPS_34:
-      return 'regular schedule (3, 4)';
+      return 'Regular Schedule (3, 4)';
       break;
     case Schedule.SMALL_GROUPS_56:
-      return 'regular schedule (5, 6)';
+      return 'Regular Schedule (5, 6)';
       break;
     case Schedule.BLOCK_GROUPS_0_CLUBS:
-      return 'block schedule (2, 4, 6, 0, Clubs)';
+      return 'Block Schedule (2, 4, 6, 0, Clubs)';
       break;
     case Schedule.BLOCK_GROUPS_WELLNESS_CLUBS:
-      return 'block schedule (1, 3, 5, Wellness Wednesday, Clubs)';
+      return 'Block Schedule (1, 3, 5, Wellness Wednesday, Clubs)';
       break;
     case Schedule.BLOCK_ODD:
-      return 'block schedule (1, 3, 5)';
+      return 'Block Schedule (1, 3, 5)';
       break;
     case Schedule.BLOCK_EVEN:
-      return 'block schedule (2, 4, 6)';
+      return 'Block Schedule (2, 4, 6)';
       break;
     case Schedule.REVERSE_BLOCK_ODD:
-      return 'block schedule (5, 3, 1)';
+      return 'Block Schedule (5, 3, 1)';
       break;
     case Schedule.MINIMUM_REVERSE_BLOCK_ODD_78:
-      return 'reverse minimum block schedule (5, 3)';
+      return 'Reverse Minimum Block Schedule (5, 3)';
       break;
     case Schedule.SBAC_BLOCK_ODD:
-      return 'SBAC block schedule (1, 3, 5)';
+      return 'Sbac Block Schedule (1, 3, 5)';
       break;
     case Schedule.SBAC_BLOCK_EVEN:
-      return 'SBAC block schedule (2, 4, 6)';
+      return 'Sbac Block Schedule (2, 4, 6)';
       break;
     case Schedule.SBAC_SPECIAL_BLOCK_ODD:
-      return 'SBAC block schedule (3, 1, 5)';
+      return 'Sbac Block Schedule (3, 1, 5)';
       break;
     case Schedule.SBAC_SPECIAL_BLOCK_EVEN:
-      return 'SBAC block schedule (4, 2, 6)';
+      return 'Sbac Block Schedule (4, 2, 6)';
       break;
     case Schedule.PRE_FINALS_3264:
-      return 'pre-finals schedule (3, 2, 6, 4)';
+      return 'Pre-Finals Schedule (3, 2, 6, 4)';
       break;
     case Schedule.PRE_FINALS_2156:
-      return 'pre-finals schedule (2, 1, 5, 6)';
+      return 'Pre-Finals Schedule (2, 1, 5, 6)';
       break;
     case Schedule.PRE_FINALS_1345:
-      return 'pre-finals schedule (1, 3, 4, 5)';
+      return 'Pre-Finals Schedule (1, 3, 4, 5)';
       break;
     case Schedule.FINAL_ASSEMBLY:
-      return 'final assembly schedule';
+      return 'Final Assembly Schedule';
       break;
     case Schedule.FINALS_34:
-      return 'finals schedule (3, 4)';
+      return 'Finals Schedule (3, 4)';
       break;
     case Schedule.FINALS_15:
-      return 'finals schedule (1, 5)';
+      return 'Finals Schedule (1, 5)';
       break;
     case Schedule.FINALS_26:
-      return 'finals schedule (2, 6)';
+      return 'Finals Schedule (2, 6)';
       break;
     case Schedule.ASSEMBLY:
-      return 'assembly schedule';
+      return 'Assembly Schedule';
       break;
     case Schedule.EARLY_RELEASE:
-      return 'early release schedule';
+      return 'Early Release Schedule';
       break;
     case Schedule.MINIMUM:
-      return 'minimum schedule';
+      return 'Minimum Schedule';
       break;
     case Schedule.FINALS_TBD:
-      return 'finals schedule (TBD)';
+      return 'Finals Schedule (Tbd)';
       break;
     case Schedule.NONE:
-      return 'free';
+      return 'Free';
       break;
     case Schedule.SUMMER_SCHOOL:
-      return 'summer school';
+      return 'Summer School';
       break;
     case Schedule.NOEVENT:
       return 'No Special Events';
       break;
     case Schedule.HSBACKTOSCHOOLNIGHT:
-      return 'High School Back to School Night';
+      return 'High School Back To School Night';
     case Schedule.WEIRD_ASSEMBLY:
       return 'Assembly Schedule';
+    case Schedule.REGISTRATION:
+      return 'Ninth Grade Registration Schedule';
     default:
-      return 'error';
+      return 'Error';
       break;
   }
 }

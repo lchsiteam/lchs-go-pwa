@@ -4,13 +4,13 @@
 
 import { MDYDate } from './mdy_date';
 import { Day, Schedule, Period } from './enums';
-import { NoSchoolSchedule, NoEventSchedule, WeirdAssemblySchedule, WeirdAssemblySchedule78, RegularSchedule,  BlockOddSchedule, BlockEvenSchedule,
+import { HybridVirtualDay, CohortABlockOdd, CohortABlockEven, CohortBBlockOdd, CohortBBlockEven, InPersonBlockOdd, InPersonBlockEven, /* <--- hybrid and virtual days*/ NoSchoolSchedule, NoEventSchedule, WeirdAssemblySchedule, WeirdAssemblySchedule78, RegularSchedule,  BlockOddSchedule, BlockEvenSchedule,
         SmallGroups12, SmallGroups34, SmallGroups56, SmallGroupsWellnessClubs, SmallGroups0Clubs,
         ReverseBlockOddSchedule, MinimumReverseBlockOddSchedule78, SpecialBlockOddSchedule, SpecialBlockEvenSchedule, AssemblySchedule, RegularSchedule78,
         BlockOddSchedule78, BlockEvenSchedule78, HSBlockOddScheduleFor78, HSBlockEvenScheduleFor78, HSSpecialBlockOddScheduleFor78,
-        HSSpecialBlockEvenScheduleFor78, AssemblySchedule7, AssemblySchedule8, EarlyReleaseSchedule78, MinimumSchedule, PreFinals3264Schedule,
-        PreFinals2156Schedule, PreFinals1345Schedule, FinalAssemblySchedule78, FinalAssemblySchedule12, Finals34Schedule, Finals15Schedule,
-        Finals26Schedule, FinalsTBDSchedule, SummerSchoolSchedule, HSBackToSchoolNight, ElementaryRegularSchedule, ElementaryRegularSchedule0, ElementaryRegularSchedule12, ElementaryRegularSchedule34, ElementaryRegularSchedule56 } from './schedules';
+        HSSpecialBlockEvenScheduleFor78, AssemblySchedule7, AssemblySchedule8, EarlyReleaseSchedule78, MinimumSchedule, /*PreFinals3264Schedule,
+        PreFinals2156Schedule, PreFinals1345Schedule*/ FinalAssemblySchedule78, FinalAssemblySchedule12, Finals34Schedule, Finals15Schedule,
+        Finals26Schedule, /*FinalsTBDSchedule*/ SummerSchoolSchedule, HSBackToSchoolNight, ElementaryRegularSchedule, ElementaryRegularSchedule0, ElementaryRegularSchedule12, ElementaryRegularSchedule34, ElementaryRegularSchedule56, NinthRegistrationSchedule } from './schedules';
 
 export const plusDays = 0;
 export const plusMins = 0;
@@ -28,31 +28,57 @@ export function getCurrentDate(): any {
   };
 }
 
-const tgBreak: MDYDate[] = [new MDYDate(11, 25, 2019), new MDYDate(11, 29, 2019)];
-const winterBreak: MDYDate[] = [new MDYDate(12, 20, 2019), new MDYDate(1, 6, 2020)];
-const springBreak: MDYDate[] = [new MDYDate(4, 6, 2020), new MDYDate(4, 10, 2020)]; // Please don't ever delete this, just comment it out if you have to
-const summerBreak: MDYDate[] = [new MDYDate(7, 17, 2020), new MDYDate(8, 16, 2020)];
+const tgBreak: MDYDate[] = [new MDYDate(11, 23, 2020), new MDYDate(11, 27, 2020)];
+const winterBreak: MDYDate[] = [new MDYDate(12, 21, 2020), new MDYDate(1, 4, 2021)];
+const springBreak: MDYDate[] = [new MDYDate(4, 5, 2021), new MDYDate(4, 12, 2021)]; // Please don't ever delete this, just comment it out if you have to
+const summerBreak: MDYDate[] = [new MDYDate(6, 4, 2021), new MDYDate(8, 15, 2021)];
 
 const breaks: any[] = [tgBreak, winterBreak, springBreak, summerBreak];
 
-const summerSchool: [MDYDate, MDYDate] = [new MDYDate(6, 15, 2020), new MDYDate(7, 16, 2020)];
+const summerSchool: [MDYDate, MDYDate] = [new MDYDate(6, 14, 2021), new MDYDate(7, 16, 2021)];
 const blockSwitch: [MDYDate, MDYDate] = [new MDYDate(11, 11, 2019), new MDYDate(2, 17, 2020)];
-const noGroups: [MDYDate, MDYDate] = [new MDYDate(8, 17, 2020), new MDYDate(8, 17, 2021)];
+const hybrid: [MDYDate, MDYDate] = [new MDYDate(4, 12, 2021), new MDYDate(5, 1, 2021)];
+const combined: [MDYDate, MDYDate] = [new MDYDate(5, 3, 2021), new MDYDate(6, 2, 2021)];
 
 export const schoolSpecialDates: any = {
+  // month - day - year: schedule (something from the Schedule enum)
+
   '8 - 19 - 2020': Schedule.REGULAR,
   '8 - 20 - 2020': Schedule.REGULAR,
   '8 - 26 - 2020': Schedule.REGULAR,
   '8 - 27 - 2020': Schedule.REGULAR,
   '9 - 7 - 2020': Schedule.NONE,
-
-  // month - day - year: schedule (something from the Schedule enum)
+  '11 - 10 - 2020': Schedule.BLOCK_ODD,
+  '11 - 11 - 2020': Schedule.NONE,
+  '1 - 18 - 2021': Schedule.NONE,
+  '2 - 12 - 2021': Schedule.NONE,
+  '2 - 15 - 2021': Schedule.NONE,
+  '4 - 12 - 2021': Schedule.NONE,
+  '5 - 31 - 2021': Schedule.NONE,
+  '6 - 3 - 2021': Schedule.ONLINE,
+  '8 - 18 - 2021': Schedule.REGULAR,
+  '8 - 19 - 2021': Schedule.REGULAR,
+  '8 - 25 - 2021': Schedule.REGULAR,
+  '8 - 26 - 2021': Schedule.REGULAR,
 };
 
 export const msSpecialDates: any = {
+  '12 - 9 - 2020': Schedule.REGULAR,
+  '12 - 10 - 2020': Schedule.REGULAR,
+  '12 - 16 - 2020': Schedule.FINALS_26,
+  '12 - 17 - 2020': Schedule.FINALS_15,
+  '12 - 18 - 2020': Schedule.FINALS_34,
 };
 
 export const hsSpecialDates: any = {
+  '12 - 9 - 2020': Schedule.REGULAR,
+  '12 - 10 - 2020': Schedule.REGULAR,
+  '12 - 16 - 2020': Schedule.FINALS_26,
+  '12 - 17 - 2020': Schedule.FINALS_15,
+  '12 - 18 - 2020': Schedule.FINALS_34,
+  '3 - 31 - 2021': Schedule.REGULAR,
+  '4 - 1 - 2021': Schedule.REGULAR,
+  '9 - 10 - 2021': Schedule.ASSEMBLY,
 };
 
 export const gradeSpecialDates: any = {
@@ -75,6 +101,7 @@ export const gradeSpecialDates: any = {
   8: {
   },
   9: {
+     '8 - 10 - 2021': Schedule.REGISTRATION,
   },
   10: {
   },
@@ -83,7 +110,7 @@ export const gradeSpecialDates: any = {
   12: {
   },
   13: {
-    '9 - 9 - 2020': Schedule.HSBACKTOSCHOOLNIGHT,
+    '9 - 22 - 2021': Schedule.HSBACKTOSCHOOLNIGHT,
   },
 };
 
@@ -114,7 +141,8 @@ export function getScheduleFromDay(month: number, day: number, year: number, wee
     // check to see if this date falls in a multi-date exception
     const isSummerSchool = dateObj.between(...summerSchool);
     const isBlockSwitched = dateObj.between(...blockSwitch);
-    const isNotGroups = dateObj.between(...noGroups);
+    const isHybrid = dateObj.between(...hybrid);
+    const isCombined = dateObj.between(...combined);
 
     if (isSummerSchool) {
       switch (weekDay) {
@@ -127,7 +155,7 @@ export function getScheduleFromDay(month: number, day: number, year: number, wee
         case Day.WEDNESDAY:
         case Day.THURSDAY:
         case Day.FRIDAY:
-          shed = Schedule.SUMMER_SCHOOL;
+          shed = Schedule.REGULAR;
           break;
       }
     } else if (grade === 13) {
@@ -175,7 +203,47 @@ export function getScheduleFromDay(month: number, day: number, year: number, wee
             }
             break;
           }
-        } else if (isNotGroups) {
+        } else if (isHybrid && highSchooler === 3 || isHybrid && highSchooler === 2) {
+          switch (weekDay) {
+            case Day.SUNDAY:
+            case Day.SATURDAY:
+              shed = Schedule.NONE;
+              break;
+            case Day.MONDAY:
+              shed = Schedule.ONLINE;
+              break;
+            case Day.TUESDAY:
+              shed = Schedule.COHORT_A_ODD;
+              break;
+            case Day.WEDNESDAY:
+              shed = Schedule.COHORT_A_EVEN;
+              break;
+            case Day.THURSDAY:
+              shed = Schedule.COHORT_B_ODD;
+              break;
+            case Day.FRIDAY:
+              shed = Schedule.COHORT_B_EVEN;
+              break;
+          }
+        } else if (isCombined && highSchooler === 3 || isCombined && highSchooler === 2) {
+          switch (weekDay) {
+            case Day.SUNDAY:
+            case Day.SATURDAY:
+              shed = Schedule.NONE;
+              break;
+            case Day.MONDAY:
+              shed = Schedule.ONLINE;
+              break;
+            case Day.TUESDAY:
+            case Day.THURSDAY:
+              shed = Schedule.IN_PERSON_ODD;
+              break;
+            case Day.WEDNESDAY:
+            case Day.FRIDAY:
+              shed = Schedule.IN_PERSON_EVEN;
+              break;
+          }
+        } else {
           switch (weekDay) {
             case Day.SUNDAY:
             case Day.SATURDAY:
@@ -200,54 +268,11 @@ export function getScheduleFromDay(month: number, day: number, year: number, wee
                 shed = Schedule.BLOCK_EVEN;
               }
               break;
-          }
-        } else {
-          switch (weekDay) { // This switch is for small groups
-            case Day.SUNDAY:
-            case Day.SATURDAY:
-              shed = Schedule.NONE;
-              break;
-            case Day.MONDAY:
-              if (highSchooler === 1) {
-                shed = Schedule.REGULAR;
-              } else {
-                shed = Schedule.SMALL_GROUPS_12;
-              }
-              break;
-            case Day.TUESDAY:
-              if (highSchooler === 1) {
-                shed = Schedule.REGULAR;
-              } else {
-                shed = Schedule.SMALL_GROUPS_34;
-              }
-              break;
-            case Day.FRIDAY:
-              if (highSchooler === 1) {
-                shed = Schedule.REGULAR;
-              } else {
-                shed = Schedule.SMALL_GROUPS_56;
-              }
-              break;
-            case Day.WEDNESDAY:
-              if (highSchooler === 1) {
-                shed = Schedule.REGULAR;
-              } else {
-                shed = Schedule.BLOCK_GROUPS_WELLNESS_CLUBS;
-              }
-              break;
-            case Day.THURSDAY:
-              if (highSchooler === 1) {
-                shed = Schedule.REGULAR;
-              } else {
-                shed = Schedule.BLOCK_GROUPS_0_CLUBS;
-              }
-              break;
+            }
           }
         }
       }
     }
-  }
-
   return shed;
 }
 
@@ -267,7 +292,6 @@ export function getFullSchedule(schedule: Schedule, grade: number): any {
     highSchooler = 0;
   }
 
-  // TODO: Add more schedules
   switch (schedule) {
     case Schedule.NONE:
       return NoSchoolSchedule;
@@ -278,6 +302,24 @@ export function getFullSchedule(schedule: Schedule, grade: number): any {
     case Schedule.HSBACKTOSCHOOLNIGHT:
       return HSBackToSchoolNight;
       break;
+    // start hybrid and virtual
+
+    case Schedule.ONLINE:
+      return HybridVirtualDay;
+    case Schedule.COHORT_A_ODD:
+      return CohortABlockOdd;
+    case Schedule.COHORT_A_EVEN:
+      return CohortABlockEven;
+    case Schedule.COHORT_B_ODD:
+      return CohortBBlockOdd;
+    case Schedule.COHORT_B_EVEN:
+      return CohortBBlockEven;
+    case Schedule.IN_PERSON_ODD:
+      return InPersonBlockOdd;
+    case Schedule.IN_PERSON_EVEN:
+      return InPersonBlockEven;
+
+    // stop hybrid and virtual
     case Schedule.REGULAR:
       if (highSchooler === 1) {
         switch (grade) {
@@ -298,7 +340,7 @@ export function getFullSchedule(schedule: Schedule, grade: number): any {
             break;
         }
       }else if (highSchooler === 2) {
-        return RegularSchedule;
+        return RegularSchedule78;
       }else if (highSchooler === 3) {
         return RegularSchedule;
       }else {
@@ -319,7 +361,7 @@ export function getFullSchedule(schedule: Schedule, grade: number): any {
       if (highSchooler === 1) {
         return ElementaryRegularSchedule;
       }else if (highSchooler === 2) {
-        return BlockOddSchedule;
+        return BlockOddSchedule78;
       }else if (highSchooler === 3) {
         return BlockOddSchedule;
       }else {
@@ -330,7 +372,7 @@ export function getFullSchedule(schedule: Schedule, grade: number): any {
       if (highSchooler === 1) {
         return ElementaryRegularSchedule;
       }else if (highSchooler === 2) {
-        return BlockEvenSchedule;
+        return BlockEvenSchedule78;
       }else if (highSchooler === 3) {
         return BlockEvenSchedule;
       }else {
@@ -388,7 +430,7 @@ export function getFullSchedule(schedule: Schedule, grade: number): any {
       }
       break;
     // pre-finals schedules are the same across all grades, hence there are no switches/ternary operators
-    case Schedule.PRE_FINALS_3264:
+    /*case Schedule.PRE_FINALS_3264:
       return PreFinals3264Schedule;
       break;
     case Schedule.PRE_FINALS_2156:
@@ -397,6 +439,7 @@ export function getFullSchedule(schedule: Schedule, grade: number): any {
     case Schedule.PRE_FINALS_1345:
       return PreFinals1345Schedule;
       break;
+      */
     case Schedule.ASSEMBLY:
       switch (grade) {
         case 0:
@@ -407,6 +450,7 @@ export function getFullSchedule(schedule: Schedule, grade: number): any {
         case 5:
         case 6:
           return ElementaryRegularSchedule;
+          break;
         case 7:
           return AssemblySchedule7;
           break;
@@ -426,26 +470,14 @@ export function getFullSchedule(schedule: Schedule, grade: number): any {
      case Schedule.WEIRD_ASSEMBLY:
       if (highSchooler === 1) {
         return ElementaryRegularSchedule;
-      }else if (highSchooler === 2) {
+      } else if (highSchooler === 2) {
         return WeirdAssemblySchedule78;
-      }else if (highSchooler === 3) {
+      } else if (highSchooler === 3) {
         return WeirdAssemblySchedule;
-      }else {
+      } else {
         return NoSchoolSchedule;
       }
       break;
-
-      /*
-      if(grade == '9-12') {
-        return AssemblySchedule;
-      } else if(grade == '8') {
-        return AssemblySchedule8;
-      } else {
-        return AssemblySchedule7;
-      }
-
-      break;
-      */
 
     case Schedule.FINAL_ASSEMBLY:
       if (grade === 12) {
@@ -458,19 +490,38 @@ export function getFullSchedule(schedule: Schedule, grade: number): any {
       }
       break;
     case Schedule.FINALS_34:
-      return Finals34Schedule;
-      break;
-    case Schedule.FINALS_15:
-      return Finals15Schedule;
+      if (highSchooler === 1) {
+        return ElementaryRegularSchedule;
+      } else if (highSchooler === 2) {
+        return  Finals34Schedule;
+      } else if (highSchooler === 3) {
+        return Finals34Schedule;
+      } else {
+        return NoSchoolSchedule;
+      }
       break;
     case Schedule.FINALS_26:
-      return Finals26Schedule;
+      if (highSchooler === 1) {
+        return ElementaryRegularSchedule;
+      } else if (highSchooler === 2) {
+        return  Finals26Schedule;
+      } else if (highSchooler === 3) {
+        return Finals26Schedule;
+      } else {
+        return NoSchoolSchedule;
+      }
       break;
-    case Schedule.FINALS_TBD:
-      return FinalsTBDSchedule;
+    case Schedule.FINALS_15:
+      if (highSchooler === 1) {
+        return ElementaryRegularSchedule;
+      } else if (highSchooler === 2) {
+        return  Finals15Schedule;
+      } else if (highSchooler === 3) {
+        return Finals15Schedule;
+      } else {
+        return NoSchoolSchedule;
+      }
       break;
-    // Hypothetically, this would also be used to convey a 9-12 early release day. However, 9-12
-    // doesn't seem to have any.
     case Schedule.EARLY_RELEASE:
       return EarlyReleaseSchedule78;
       break;
@@ -479,6 +530,9 @@ export function getFullSchedule(schedule: Schedule, grade: number): any {
       break;
     case Schedule.SUMMER_SCHOOL:
       return SummerSchoolSchedule;
+      break;
+    case Schedule.REGISTRATION:
+      return NinthRegistrationSchedule;
       break;
     default:
       return NoSchoolSchedule;
@@ -491,7 +545,6 @@ export function getPeriod(time: number, schedule: Schedule, grade: number, pAllo
   return fullSchedule.find((p: any) => (p.start <= time && p.end > time) && pAllow.indexOf(p.period) !== -1);
 }
 
-
 export const periodsFilter = [
   Period.PERIOD_0,
   Period.PERIOD_1,
@@ -500,6 +553,7 @@ export const periodsFilter = [
   Period.PERIOD_4,
   Period.PERIOD_5,
   Period.PERIOD_6,
+  Period.STUDY,
   Period.LUNCH,
   Period.BREAK,
   Period.STEP_ODD,
@@ -524,11 +578,44 @@ export const periodsFilter = [
   Period.SMALL_GROUP_P6,
   Period.SMALL_GROUP_CLUBS,
   Period.SMALL_GROUP_WELLNESS,
+  Period.PERIOD_0_O,
+  Period.PERIOD_1_O,
+  Period.PERIOD_2_O,
+  Period.PERIOD_3_O,
+  Period.PERIOD_4_O,
+  Period.PERIOD_5_O,
+  Period.PERIOD_6_O,
+  Period.PERIOD_1_A,
+  Period.PERIOD_2_A,
+  Period.PERIOD_3_A,
+  Period.PERIOD_4_A,
+  Period.PERIOD_5_A,
+  Period.PERIOD_6_A,
+  Period.PERIOD_1_B,
+  Period.PERIOD_2_B,
+  Period.PERIOD_3_B,
+  Period.PERIOD_4_B,
+  Period.PERIOD_5_B,
+  Period.PERIOD_6_B,
+  Period.PERIOD_1_I,
+  Period.PERIOD_2_I,
+  Period.PERIOD_3_I,
+  Period.PERIOD_4_I,
+  Period.PERIOD_5_I,
+  Period.PERIOD_6_I,
+  Period.G_G_LUNCH,
+  Period.PERIOD_OFFICE_HOURS_A,
+  Period.PERIOD_OFFICE_HOURS_B,
+  Period.PERIOD_OFFICE_HOURS_I,
+  // Event (Delete if after 8/10/21)
+  Period.ORIENTATION,
+  Period.REGISTRATION,
 ];
 
 export const excludeZero = [
   Period.OFFICE,
   Period.SMALL_GROUP,
+  Period.STUDY, // for finals week
   Period.PERIOD_1,
   Period.PERIOD_2,
   Period.PERIOD_3,
@@ -537,6 +624,7 @@ export const excludeZero = [
   Period.PERIOD_6,
   Period.LUNCH,
   Period.BREAK,
+  Period.STUDY,
   Period.STEP_ODD,
   Period.STEP_EVEN,
   Period.HOMEROOM,
@@ -548,11 +636,43 @@ export const excludeZero = [
   Period.RECESS_PE,
   Period.PREP,
   Period.GROUP_B,
+  Period.PERIOD_1_O,
+  Period.PERIOD_2_O,
+  Period.PERIOD_3_O,
+  Period.PERIOD_4_O,
+  Period.PERIOD_5_O,
+  Period.PERIOD_6_O,
+  Period.PERIOD_1_A,
+  Period.PERIOD_2_A,
+  Period.PERIOD_3_A,
+  Period.PERIOD_4_A,
+  Period.PERIOD_5_A,
+  Period.PERIOD_6_A,
+  Period.PERIOD_1_B,
+  Period.PERIOD_2_B,
+  Period.PERIOD_3_B,
+  Period.PERIOD_4_B,
+  Period.PERIOD_5_B,
+  Period.PERIOD_6_B,
+  Period.PERIOD_1_I,
+  Period.PERIOD_2_I,
+  Period.PERIOD_3_I,
+  Period.PERIOD_4_I,
+  Period.PERIOD_5_I,
+  Period.PERIOD_6_I,
+  Period.G_G_LUNCH,
+  Period.PERIOD_OFFICE_HOURS_A,
+  Period.PERIOD_OFFICE_HOURS_B,
+  Period.PERIOD_OFFICE_HOURS_I,
+  // Event (Delete if after 8/10/21)
+  Period.ORIENTATION,
+  Period.REGISTRATION,
 ];
 
 export const excludeSix = [
   Period.OFFICE,
   Period.SMALL_GROUP,
+  Period.STUDY, // for finals week
   Period.PERIOD_0,
   Period.PERIOD_1,
   Period.PERIOD_2,
@@ -561,6 +681,7 @@ export const excludeSix = [
   Period.PERIOD_5,
   Period.LUNCH,
   Period.BREAK,
+  Period.STUDY,
   Period.STEP_ODD,
   Period.STEP_EVEN,
   Period.HOMEROOM,
@@ -572,11 +693,39 @@ export const excludeSix = [
   Period.RECESS_PE,
   Period.PREP,
   Period.GROUP_B,
+  Period.PERIOD_1_O,
+  Period.PERIOD_2_O,
+  Period.PERIOD_3_O,
+  Period.PERIOD_4_O,
+  Period.PERIOD_5_O,
+  Period.PERIOD_1_A,
+  Period.PERIOD_2_A,
+  Period.PERIOD_3_A,
+  Period.PERIOD_4_A,
+  Period.PERIOD_5_A,
+  Period.PERIOD_1_B,
+  Period.PERIOD_2_B,
+  Period.PERIOD_3_B,
+  Period.PERIOD_4_B,
+  Period.PERIOD_5_B,
+  Period.PERIOD_1_I,
+  Period.PERIOD_2_I,
+  Period.PERIOD_3_I,
+  Period.PERIOD_4_I,
+  Period.PERIOD_5_I,
+  Period.G_G_LUNCH,
+  Period.PERIOD_OFFICE_HOURS_A,
+  Period.PERIOD_OFFICE_HOURS_B,
+  Period.PERIOD_OFFICE_HOURS_I,
+  // Event (Delete if after 8/10/21)
+  Period.ORIENTATION,
+  Period.REGISTRATION,
 ];
 
 export const excludeZeroAndSix = [
   Period.OFFICE,
   Period.SMALL_GROUP,
+  Period.STUDY, // for finals week
   Period.PERIOD_1,
   Period.PERIOD_2,
   Period.PERIOD_3,
@@ -584,6 +733,7 @@ export const excludeZeroAndSix = [
   Period.PERIOD_5,
   Period.LUNCH,
   Period.BREAK,
+  Period.STUDY,
   Period.STEP_ODD,
   Period.STEP_EVEN,
   Period.HOMEROOM,
@@ -595,6 +745,34 @@ export const excludeZeroAndSix = [
   Period.RECESS_PE,
   Period.PREP,
   Period.GROUP_B,
+  Period.PERIOD_1_O,
+  Period.PERIOD_2_O,
+  Period.PERIOD_3_O,
+  Period.PERIOD_4_O,
+  Period.PERIOD_5_O,
+  Period.PERIOD_6_O,
+  Period.PERIOD_1_A,
+  Period.PERIOD_2_A,
+  Period.PERIOD_3_A,
+  Period.PERIOD_4_A,
+  Period.PERIOD_5_A,
+  Period.PERIOD_1_B,
+  Period.PERIOD_2_B,
+  Period.PERIOD_3_B,
+  Period.PERIOD_4_B,
+  Period.PERIOD_5_B,
+  Period.PERIOD_1_I,
+  Period.PERIOD_2_I,
+  Period.PERIOD_3_I,
+  Period.PERIOD_4_I,
+  Period.PERIOD_5_I,
+  Period.G_G_LUNCH,
+  Period.PERIOD_OFFICE_HOURS_A,
+  Period.PERIOD_OFFICE_HOURS_B,
+  Period.PERIOD_OFFICE_HOURS_I,
+  // Event (Delete if after 8/10/21)
+  Period.ORIENTATION,
+  Period.REGISTRATION,
 ];
 
 export const allFilter = [
@@ -606,6 +784,7 @@ export const allFilter = [
   Period.PERIOD_2_PASSING,
   Period.BREAK,
   Period.BREAK_PASSING,
+  Period.STUDY,
   Period.PERIOD_3,
   Period.PERIOD_3_PASSING,
   Period.LUNCH,
@@ -636,9 +815,41 @@ export const allFilter = [
   Period.GROUP_B,
   Period.RECESS,
   Period.RECESS_PE,
+  Period.PERIOD_0_O,
+  Period.PERIOD_1_O,
+  Period.PERIOD_2_O,
+  Period.PERIOD_3_O,
+  Period.PERIOD_4_O,
+  Period.PERIOD_5_O,
+  Period.PERIOD_6_O,
+  Period.PERIOD_1_A,
+  Period.PERIOD_2_A,
+  Period.PERIOD_3_A,
+  Period.PERIOD_4_A,
+  Period.PERIOD_5_A,
+  Period.PERIOD_6_A,
+  Period.PERIOD_1_B,
+  Period.PERIOD_2_B,
+  Period.PERIOD_3_B,
+  Period.PERIOD_4_B,
+  Period.PERIOD_5_B,
+  Period.PERIOD_6_B,
+  Period.PERIOD_1_I,
+  Period.PERIOD_2_I,
+  Period.PERIOD_3_I,
+  Period.PERIOD_4_I,
+  Period.PERIOD_5_I,
+  Period.PERIOD_6_I,
+  Period.G_G_LUNCH,
+  Period.PERIOD_OFFICE_HOURS_A,
+  Period.PERIOD_OFFICE_HOURS_B,
+  Period.PERIOD_OFFICE_HOURS_I,
   Period.PREP,
   Period.DONE,
-]
+  // Event (Delete if after 8/10/21)
+  Period.ORIENTATION,
+  Period.REGISTRATION,
+];
 
 export function getUpcomingPeriod(time: number, dateTime: any, schedule: Schedule, grade: number, pAllow = periodsFilter): any {
   const fullSchedule = getFullSchedule(schedule, grade);
@@ -668,7 +879,8 @@ export function getUpcomingPeriod(time: number, dateTime: any, schedule: Schedul
 export function getPreviousPeriod(time: number, dateTime: any, schedule: Schedule, grade: number, pAllow = periodsFilter): any {
   const fullSchedule = getFullSchedule(schedule, grade);
   let result = fullSchedule.find((p: any) => (p.end <= time && pAllow.indexOf(p.period) !== -1));
-  for (let index=0; index<fullSchedule.length; index++) {
+  // tslint:disable-next-line:prefer-for-of
+  for (let index = 0; index < fullSchedule.length; index++) {
     if ((fullSchedule[index].end > result.end) && (fullSchedule[index].end <= time) && (pAllow.indexOf(fullSchedule[index].period) !== -1)) {
       result = fullSchedule[index];
     }

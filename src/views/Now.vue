@@ -1,9 +1,9 @@
 <template>
   <div class="now">
-    <h3>{{getGreeting()}}. Today is {{getCurrentScheduleName()}}. </h3> 
+    <h3>{{getGreeting()}}. Today is {{getCurrentScheduleName()}}. </h3>
     <p class="gradeMessage">You are viewing the</p>
     <select v-model="grade" @change="changeGrade()" class = "grade-select">
-      <option v-for="grade in allGrades" :key="grade" :value="grade" class = "grade-select-item">{{strGrade(grade)}}</option> 
+      <option v-for="grade in allGrades" :key="grade" :value="grade" class = "grade-select-item">{{strGrade(grade)}}</option>
     </select>
     <p class="gradeMessage">schedule.</p>
     <div class="grid-fmr">
@@ -15,7 +15,7 @@
         </div>
       </div>
     </div>
-    <div class="grid-fmr" @click="useNextPeriodStartAsEnd = !useNextPeriodStartAsEnd" style="cursor: pointer;">
+    <div class="grid-fmr" @click="untilNext = !untilNext" style="cursor: pointer;">
       <div class="grid-fmr-helper">REMAINING TIME</div>
       <div class="grid-fmr-value">
         <div>
@@ -28,20 +28,20 @@
         <div class="cd-txt-h">({{Math.round(getCurrentPercentage() * 100)}}% completed)</div>
       </div>
       <div class="grid-fmr-absmode">
-        <span v-if="useNextPeriodStartAsEnd">UNTIL NEXT (BETA)</span>
+        <span v-if="untilNext">UNTIL NEXT</span>
         <span v-else>PERIOD END</span>
       </div>
     </div>
     <div class="grid-fmr">
-      <div class="grid-fmr-helper">CURRENT TIME / LAST UPDATED</div>
+      <div class="grid-fmr-helper">CURRENT TIME</div>
       <div class="grid-fmr-value">
         <div>{{getCurrentTimeParts().hr}}<span class="cd-blink" :class="{disabled: !this.$store.state.settings.enableAnimations}">:</span>{{getCurrentTimeParts().min}}</div>
-        <div class="cd-txt-h">(This page updates time automatically)</div>
+        <div class="cd-txt-h">(This page updates automatically)</div>
       </div>
     </div>
     <div class='grid-fmr grid-fmr-mini-click' v-if="shouldShowUpdateLog()" @click='goToChangelog()'>
-      <div class="grid-fmr-helper">UNREAD UPDATES</div> 
-      <div v-for='entry in getUnreadUpdates()' :key='entry.id'>○ {{entry.title}}</div> 
+      <div class="grid-fmr-helper">UNREAD UPDATES</div>
+      <div v-for='entry in getUnreadUpdates()' :key='entry.id'>○ {{entry.title}}</div>
     </div>
   </div>
 </template>
@@ -55,7 +55,7 @@ import { RegularSchedule, BlockEvenSchedule, BlockOddSchedule } from '@/schedule
 import { Changelog } from '../changelog';
 @Component({})
 export default class Now extends Vue {
-  public useNextPeriodStartAsEnd = false;    // TODO: Find a better variable name
+  public untilNext = false;
   private allGrades = allGrades;
   private minutes: number = 0;
   private currentDateTime: any;
@@ -72,6 +72,7 @@ export default class Now extends Vue {
     this.grade = this.$store.state.settings.grade;
     this.schedule = getScheduleFromDay(currentDate.month, currentDate.day, currentDate.year, currentDate.weekday, this.grade);
     this.currentPeriod = getPeriod(this.minutes, this.schedule, this.grade);
+    this.setTitle();
   }
   /*
   sendNotifications() {
@@ -111,6 +112,14 @@ export default class Now extends Vue {
   goToChangelog() {
     if (this.$store.state.isExtension) { window.open('/about/changelog', '_blank'); }
     else { this.$router.push('about/changelog'); }
+  }
+  setTitle() {
+    // Set the tab's title depending on hours
+    if (this.getFormattedTimeUntilNext()[0] !== 0) {
+      document.title = this.getFormattedTimeUntilNext()[0].toString() + 'hr. ' + this.getFormattedTimeUntilNext()[1].toString() + 'min. | LCHS Go';
+    } else {
+      document.title = this.getFormattedTimeUntilNext()[1].toString() + 'min. | LCHS Go';
+    }
   }
   shouldShowUpdateLog() {
     return this.getUnreadUpdates().length > 0;
@@ -156,7 +165,7 @@ export default class Now extends Vue {
     return getUpcomingPeriod(this.minutes, this.currentDateTime, this.schedule, this.grade);
   }
   getPeriodEnd() {
-    if (this.useNextPeriodStartAsEnd) {
+    if (this.untilNext) {
       return this.getUpcomingPeriod().start + ((this.getUpcomingPeriod().daysSince || 0) * 1440);
     } else { return this.currentPeriod.end; }
   }
@@ -167,7 +176,7 @@ export default class Now extends Vue {
     return this.getPeriodEnd() - this.minutes >= 120 ? 'hr.' : 'min.';
   }
   getUntilNextName() {
-    if (!this.useNextPeriodStartAsEnd) {
+    if (!this.untilNext) {
       return this.currentPeriod.period === Period.DONE ? 'today ends' : 'period ends';
     } else {
       const nextPeriod = this.getUpcomingPeriod();
@@ -342,16 +351,18 @@ export default class Now extends Vue {
 .grid-fmr {
   text-align: left;
   margin: 10px auto;
+  border-radius: 15px;
   padding: 6px 10px;
   background-color: rgba(0, 0, 0, .1);
-  border: 1px solid rgba(0, 0, 0, .3);
+  border: 1px solid rgba(255, 255, 255, 0.2);
   position: relative;
   .grid-fmr-absmode {
     position: absolute;
     top: 0;
     right: 0;
     padding: 6px 12px;
-    background-color: rgba(0, 0, 0, .1);
+    border-radius: 10px 15px 10px 10px;
+    background-color: rgba(0, 0, 0, .07);
     color: rgba(255, 255, 255, 0.7);
     font-size: 12px;
     font-weight: 700;
@@ -359,7 +370,7 @@ export default class Now extends Vue {
   }
   &:hover > .grid-fmr-absmode {
     background-color: rgba(0, 0, 0, .15);
-    color: rgba(255, 255, 255, 0.9);
+    color: rgba(255, 255, 255, 0.8);
   }
 }
 .grid-fmr-helper {
@@ -384,18 +395,9 @@ export default class Now extends Vue {
   font-weight: bold;
   text-align: center;
 }
-@keyframes blinking {
-  0% { opacity: 1; }
-  50% { opacity: 0; }
-  100% { opacity: 1; }
-}
-.cd-blink {
-  animation: blinking 1s ease-in-out infinite;
-  &.disabled { animation: none; }
-}
 a {
   color: rgb(168, 230, 255);
-} 
+}
 .gradeMessage {
   font-size: 15px;
   display: inline;
@@ -410,8 +412,8 @@ select.grade-select {
   font-family: Niramit,Avenir,sans-serif;
   border-color:rgba(0,0,0,0);
   border-width: 1px;
-  border-radius: 3px;
-} 
+  border-radius: 7px;
+}
 option.grade-select-item  {
 color: rgba(255, 255, 255, 0.6);
 
