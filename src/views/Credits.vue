@@ -6,6 +6,7 @@
     <h4>Or head directly to:</h4>
     <h2>go.lciteam.club</h2>
     <h5>This web app was produced by iTeam, a technology service club at LCHS.</h5>
+    <a class="link" href="https://github.com/lchsiteam/lchs-go-pwa" target="_blank">Source Code</a>
     <div>
       <div class="credit-item-container">
         <div class="credit-item">Kai Bredemann (kbredemann22)</div>
