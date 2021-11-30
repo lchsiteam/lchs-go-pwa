@@ -785,11 +785,12 @@ export const MinimumSchedule: any[] = [
   { start: toTime(13, 3), end: toTime(24, 0), period: Period.DONE },
 ];
 
-// finals for 2020 - 2021
+// finals for 2021 - 2022
 export const Finals26Schedule: any[] = [
   { start: toTime(0, 0), end: toTime(8, 30), period: Period.NONE },
   { start: toTime(8, 30), end: toTime(10, 35), period: Period.PERIOD_2 },
   { start: toTime(10, 35), end: toTime(10, 54), period: Period.BREAK },
+  { start: toTime(10, 54), end: toTime(11, 0), period: Period.BREAK_PASSING },
   { start: toTime(11, 0), end: toTime(13, 5), period: Period.PERIOD_6 },
   { start: toTime(13, 5), end: toTime(13, 35), period: Period.LUNCH },
   { start: toTime(13, 35), end: toTime(15, 14), period: Period.STUDY },
@@ -800,6 +801,7 @@ export const Finals15Schedule: any[] = [
   { start: toTime(0, 0), end: toTime(8, 30), period: Period.NONE },
   { start: toTime(8, 30), end: toTime(10, 35), period: Period.PERIOD_1 },
   { start: toTime(10, 35), end: toTime(10, 54), period: Period.BREAK },
+  { start: toTime(10, 54), end: toTime(11, 0), period: Period.BREAK_PASSING },
   { start: toTime(11, 0), end: toTime(13, 5), period: Period.PERIOD_5 },
   { start: toTime(13, 5), end: toTime(13, 35), period: Period.LUNCH },
   { start: toTime(13, 35), end: toTime(15, 14), period: Period.STUDY },
@@ -810,13 +812,14 @@ export const Finals34Schedule: any[] = [
   { start: toTime(0, 0), end: toTime(8, 30), period: Period.NONE },
   { start: toTime(8, 30), end: toTime(10, 35), period: Period.PERIOD_3 },
   { start: toTime(10, 35), end: toTime(10, 54), period: Period.BREAK },
+  { start: toTime(10, 54), end: toTime(11, 0), period: Period.BREAK_PASSING },
   { start: toTime(11, 0), end: toTime(13, 5), period: Period.PERIOD_4 },
   { start: toTime(13, 5), end: toTime(13, 35), period: Period.LUNCH },
   { start: toTime(13, 35), end: toTime(15, 14), period: Period.STUDY },
   { start: toTime(15, 14), end: toTime(24, 0), period: Period.NONE },
 ];
 
-// end of finals 2020 - 2021
+// end of finals 2021 - 2022
 
 export const SummerSchoolSchedule: any[] = [
   { start: toTime(0, 0), end: toTime(7, 39), period: Period.NONE },
