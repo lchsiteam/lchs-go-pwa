@@ -29,7 +29,7 @@ export function getCurrentDate(): any {
 }
 
 const tgBreak: MDYDate[] = [new MDYDate(11, 22, 2021), new MDYDate(11, 26, 2021)];
-const winterBreak: MDYDate[] = [new MDYDate(12, 21, 2020), new MDYDate(1, 4, 2021)];
+const winterBreak: MDYDate[] = [new MDYDate(12, 18, 2021), new MDYDate(1, 4, 2022)];
 const springBreak: MDYDate[] = [new MDYDate(4, 5, 2021), new MDYDate(4, 12, 2021)]; // Please don't ever delete this, just comment it out if you have to
 const summerBreak: MDYDate[] = [new MDYDate(6, 4, 2021), new MDYDate(8, 15, 2021)];
 
@@ -43,13 +43,6 @@ const combined: [MDYDate, MDYDate] = [new MDYDate(5, 3, 2021), new MDYDate(6, 2,
 export const schoolSpecialDates: any = {
   // month - day - year: schedule (something from the Schedule enum)
 
-  '8 - 19 - 2020': Schedule.REGULAR,
-  '8 - 20 - 2020': Schedule.REGULAR,
-  '8 - 26 - 2020': Schedule.REGULAR,
-  '8 - 27 - 2020': Schedule.REGULAR,
-  '9 - 7 - 2020': Schedule.NONE,
-  '11 - 10 - 2020': Schedule.BLOCK_ODD,
-  '11 - 11 - 2020': Schedule.NONE,
   '1 - 18 - 2021': Schedule.NONE,
   '2 - 12 - 2021': Schedule.NONE,
   '2 - 15 - 2021': Schedule.NONE,
@@ -62,6 +55,8 @@ export const schoolSpecialDates: any = {
   '8 - 26 - 2021': Schedule.REGULAR,
   '11 - 9 - 2021': Schedule.BLOCK_EVEN,
   '11 - 11 - 2021': Schedule.NONE,
+  '1 - 5 - 2022': Schedule.REGULAR,
+  '1 - 6 - 2022': Schedule.REGULAR,
 
   // Pre-finals week
   '12 - 8 - 2021': Schedule.REGULAR,
