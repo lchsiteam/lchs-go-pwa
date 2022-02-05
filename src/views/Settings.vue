@@ -118,7 +118,7 @@
       <div class="settings-row">
         <div class="sr-head">
           <b class="sr-title">Enable Theme Animations</b>
-          <span class="sr-desc">Toggle fancy color fading</span>
+          <span class="sr-desc">Toggle fancy background fade</span>
         </div>
         <div class="sr-option">
           <div class="ex-selector">
@@ -146,7 +146,7 @@
       <div class="settings-row">
         <div class="sr-head">
           <b class="sr-title">Enable Blinking</b>
-          <span class="sr-desc">Toggle fancy blinking animations</span>
+          <span class="sr-desc">Toggle the animated colon in time display</span>
         </div>
         <div class="sr-option">
           <div class="ex-selector">
