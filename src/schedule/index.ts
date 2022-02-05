@@ -110,7 +110,7 @@ export const gradeSpecialDates: any = {
   8: {
   },
   9: {
-     '8 - 10 - 2021': Schedule.REGISTRATION,
+    '8 - 10 - 2021': Schedule.REGISTRATION,
   },
   10: {
   },
