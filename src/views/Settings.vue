@@ -36,7 +36,7 @@
           <div class='settings-row'>
             <div class='sr-head'>
               <b class='sr-title'>Warning time before period START</b>
-              <span class='sr-desc'>How many minutes before the start of a period should we notify you that the period is starting?</span>
+              <span class='sr-desc'>How many minutes before the start of a period should we notify you?</span>
             </div>
             <div class='sr-option'>
               <select v-model="startTimeAmount" @change="updateStartTime()" class = "grade-select">
@@ -47,7 +47,7 @@
           <div class='settings-row'>
             <div class='sr-head'>
               <b class='sr-title'>Warning time before period END</b>
-              <span class='sr-desc'>How many minutes before the end of a period should we notify you that the period is ending?</span>
+              <span class='sr-desc'>How many minutes before the end of a period should we notify you?</span>
             </div>
             <div class='sr-option'>
               <select v-model="endTimeAmount" @change="updateEndTime()" class = "grade-select">
