@@ -13,7 +13,7 @@
         <div class="credit-item-role">Original Script, Chrome Extension</div>
       </div>
       <div class="credit-item-container">
-        <div class="credit-item">Kevin Mo (kmo19)</div>
+        <div class="credit-item">Kevin Mo (Class of 2019)</div>
         <div class="credit-item-role">Advisor, Web App, Refactor</div>
       </div>
       <div class="credit-item-container">
@@ -25,12 +25,12 @@
         <div class="credit-item-role">Core Contributor, Theme Artist</div>
       </div>
       <div class="credit-item-container">
-        <div class="credit-item">Ryan King (rking21)</div>
+        <div class="credit-item">Ryan King (Class of 2021)</div>
 	      <div class="credit-item-role">Core Contributor, Theme Animator</div>
       </div>
       <div id='game'></div>
       <div class="credit-item-container">
-        <div class="credit-item">Bryan Wang (bwang21)</div>
+        <div class="credit-item">Bryan Wang (Class of 2021)</div>
         <div class="credit-item-role">Core Contributor</div>
       </div>
       <div class="credit-item-container">
