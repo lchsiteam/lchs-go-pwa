@@ -55,8 +55,6 @@ export const schoolSpecialDates: any = {
   '8 - 26 - 2021': Schedule.REGULAR,
   '11 - 9 - 2021': Schedule.BLOCK_EVEN,
   '11 - 11 - 2021': Schedule.NONE,
-  '1 - 5 - 2022': Schedule.REGULAR,
-  '1 - 6 - 2022': Schedule.REGULAR,
 
   // Pre-finals week
   '12 - 8 - 2021': Schedule.REGULAR,
@@ -66,11 +64,20 @@ export const schoolSpecialDates: any = {
   '12 - 15 - 2021': Schedule.FINALS_26,
   '12 - 16 - 2021': Schedule.FINALS_15,
   '12 - 17 - 2021': Schedule.FINALS_34,
+
+  '1 - 5 - 2022': Schedule.REGULAR,
+  '1 - 6 - 2022': Schedule.REGULAR,
+
+  // Presidents' Day weekend
+  '2 - 18 - 2022': Schedule.NONE,
+  '2 - 21 - 2022': Schedule.NONE,
 };
 
 export const msSpecialDates: any = {
   '12 - 9 - 2020': Schedule.REGULAR,
   '12 - 10 - 2020': Schedule.REGULAR,
+
+  '2 - 17 - 2022': Schedule.MINIMUM,
 };
 
 export const hsSpecialDates: any = {
@@ -80,6 +87,7 @@ export const hsSpecialDates: any = {
   '4 - 1 - 2021': Schedule.REGULAR,
   '9 - 10 - 2021': Schedule.ASSEMBLY,
 
+  '2 - 11 - 2022': Schedule.ASSEMBLY,
 };
 
 export const gradeSpecialDates: any = {
@@ -102,7 +110,7 @@ export const gradeSpecialDates: any = {
   8: {
   },
   9: {
-     '8 - 10 - 2021': Schedule.REGISTRATION,
+    '8 - 10 - 2021': Schedule.REGISTRATION,
   },
   10: {
   },
