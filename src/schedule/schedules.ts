@@ -767,8 +767,8 @@ export const FinalAssemblySchedule12: any[] = [
 ];
 
 export const MinimumSchedule: any[] = [
-  { start: toTime(0, 0), end: toTime(7, 45), period: Period.NONE },
-  { start: toTime(7, 45), end: toTime(8, 23), period: Period.PERIOD_0 },
+  { start: toTime(0, 0), end: toTime(7, 28), period: Period.NONE },
+  { start: toTime(7, 28), end: toTime(8, 23), period: Period.PERIOD_0 },
   { start: toTime(8, 23), end: toTime(8, 30), period: Period.PERIOD_0_PASSING },
   { start: toTime(8, 30), end: toTime(9, 8), period: Period.PERIOD_1 },
   { start: toTime(9, 8), end: toTime(9, 15), period: Period.PERIOD_1_PASSING },
