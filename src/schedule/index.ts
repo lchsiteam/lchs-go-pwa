@@ -71,6 +71,8 @@ export const schoolSpecialDates: any = {
   // Presidents' Day weekend
   '2 - 18 - 2022': Schedule.NONE,
   '2 - 21 - 2022': Schedule.NONE,
+
+  '4 - 15 - 2022': Schedule.MINIMUM,
 };
 
 export const msSpecialDates: any = {
