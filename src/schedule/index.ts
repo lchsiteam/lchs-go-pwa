@@ -92,6 +92,7 @@ export const hsSpecialDates: any = {
   '9 - 10 - 2021': Schedule.ASSEMBLY,
 
   '2 - 11 - 2022': Schedule.ASSEMBLY,
+  '4 - 22 - 2022': Schedule.ASSEMBLY,
 };
 
 export const gradeSpecialDates: any = {
