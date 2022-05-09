@@ -29,8 +29,8 @@ enum Schedule {
   PRE_FINALS_1345,
   FINAL_ASSEMBLY,
   FINALS_34,
-  FINALS_15,
-  FINALS_26,
+  FINALS_25,
+  FINALS_16,
   FINALS_TBD,
   ASSEMBLY,
   MINIMUM,
@@ -39,6 +39,10 @@ enum Schedule {
   NOEVENT,
   HSBACKTOSCHOOLNIGHT,
   WEIRD_ASSEMBLY,
+  // Senior end of the year
+  SENIOR_CELIBRATION_SCHED,
+  GRAD_REHERSAL_SCHED,
+  GRADUATION_SCHED,
   // Small Group Schedules
   SMALL_GROUPS_12,
   SMALL_GROUPS_34,
@@ -134,6 +138,10 @@ enum Period {
   SMALL_GROUP_P6,
   SMALL_GROUP_CLUBS,
   SMALL_GROUP_WELLNESS,
+  // Senior end of the year
+  SENIOR_CELIBRATION,
+  GRAD_REHERSAL,
+  GRADUATION,
   // Elementary Periods
   ARRIVAL,
   ARRIVAL_A,
@@ -220,6 +228,11 @@ export function getPeriodName(period: Period) {
   else if (period === Period.SMALL_GROUP_WELLNESS) { return 'Small Group Wellness Wendsday'; }
   else if (period === Period.SMALL_GROUP_CLUBS) { return 'Small Groups and Clubs'; }
   else if (period === Period.SMALL_GROUP_PASSING) { return 'Passing Between Small Groups'; }
+  // Senior End of the Year
+
+  else if (period === Period.GRADUATION) { return 'Graduation!'; }
+  else if (period === Period.GRAD_REHERSAL) { return 'Graduation Rehersal'; }
+  else if (period === Period.SENIOR_CELIBRATION) { return 'Senior Celibration'; }
 
   // Elementary School Periods
   else if (period === Period.ARRIVAL) { return 'Arrival'; }
@@ -322,11 +335,11 @@ export function getScheduleName(schedule: Schedule) {
     case Schedule.FINALS_34:
       return 'Finals Schedule (3, 4)';
       break;
-    case Schedule.FINALS_15:
-      return 'Finals Schedule (1, 5)';
+    case Schedule.FINALS_25:
+      return 'Finals Schedule (2, 5)';
       break;
-    case Schedule.FINALS_26:
-      return 'Finals Schedule (2, 6)';
+    case Schedule.FINALS_16:
+      return 'Finals Schedule (1, 6)';
       break;
     case Schedule.ASSEMBLY:
       return 'Assembly Schedule';
@@ -345,6 +358,15 @@ export function getScheduleName(schedule: Schedule) {
       break;
     case Schedule.SUMMER_SCHOOL:
       return 'Summer School';
+      break;
+    case Schedule.SENIOR_CELIBRATION_SCHED:
+        return 'Senior Celibration';
+      break;
+    case Schedule.GRAD_REHERSAL_SCHED:
+        return 'Graduation Rehersal';
+      break;
+    case Schedule.GRADUATION_SCHED:
+        return 'Graduation!';
       break;
     case Schedule.NOEVENT:
       return 'No Special Events';

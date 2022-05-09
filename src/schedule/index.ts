@@ -9,8 +9,8 @@ import { HybridVirtualDay, CohortABlockOdd, CohortABlockEven, CohortBBlockOdd, C
         ReverseBlockOddSchedule, MinimumReverseBlockOddSchedule78, SpecialBlockOddSchedule, SpecialBlockEvenSchedule, AssemblySchedule, RegularSchedule78,
         BlockOddSchedule78, BlockEvenSchedule78, HSBlockOddScheduleFor78, HSBlockEvenScheduleFor78, HSSpecialBlockOddScheduleFor78,
         HSSpecialBlockEvenScheduleFor78, AssemblySchedule7, AssemblySchedule8, EarlyReleaseSchedule78, MinimumSchedule, /*PreFinals3264Schedule,
-        PreFinals2156Schedule, PreFinals1345Schedule*/ FinalAssemblySchedule78, FinalAssemblySchedule12, Finals34Schedule, Finals15Schedule,
-        Finals26Schedule, /*FinalsTBDSchedule*/ SummerSchoolSchedule, HSBackToSchoolNight, ElementaryRegularSchedule, ElementaryRegularSchedule0, ElementaryRegularSchedule12, ElementaryRegularSchedule34, ElementaryRegularSchedule56, NinthRegistrationSchedule } from './schedules';
+        PreFinals2156Schedule, PreFinals1345Schedule*/ FinalAssemblySchedule78, FinalAssemblySchedule12, Finals34Schedule, Finals25Schedule,
+        Finals16Schedule, SeniorCelebration, GradRehersal, Graduation, /*FinalsTBDSchedule*/ SummerSchoolSchedule, HSBackToSchoolNight, ElementaryRegularSchedule, ElementaryRegularSchedule0, ElementaryRegularSchedule12, ElementaryRegularSchedule34, ElementaryRegularSchedule56, NinthRegistrationSchedule } from './schedules';
 
 export const plusDays = 0;
 export const plusMins = 0;
@@ -43,28 +43,6 @@ const combined: [MDYDate, MDYDate] = [new MDYDate(5, 3, 2021), new MDYDate(6, 2,
 export const schoolSpecialDates: any = {
   // month - day - year: schedule (something from the Schedule enum)
 
-  '1 - 18 - 2021': Schedule.NONE,
-  '2 - 12 - 2021': Schedule.NONE,
-  '2 - 15 - 2021': Schedule.NONE,
-  '4 - 12 - 2021': Schedule.NONE,
-  '5 - 31 - 2021': Schedule.NONE,
-  '6 - 3 - 2021': Schedule.ONLINE,
-  '8 - 18 - 2021': Schedule.REGULAR,
-  '8 - 19 - 2021': Schedule.REGULAR,
-  '8 - 25 - 2021': Schedule.REGULAR,
-  '8 - 26 - 2021': Schedule.REGULAR,
-  '11 - 9 - 2021': Schedule.BLOCK_EVEN,
-  '11 - 11 - 2021': Schedule.NONE,
-
-  // Pre-finals week
-  '12 - 8 - 2021': Schedule.REGULAR,
-  '12 - 9 - 2021': Schedule.REGULAR,
-
-  // Finals week
-  '12 - 15 - 2021': Schedule.FINALS_26,
-  '12 - 16 - 2021': Schedule.FINALS_15,
-  '12 - 17 - 2021': Schedule.FINALS_34,
-
   '1 - 5 - 2022': Schedule.REGULAR,
   '1 - 6 - 2022': Schedule.REGULAR,
 
@@ -75,6 +53,11 @@ export const schoolSpecialDates: any = {
   '4 - 15 - 2022': Schedule.MINIMUM,
   '4 - 18 - 2022': Schedule.BLOCK_ODD,
   '4 - 19 - 2022': Schedule.BLOCK_EVEN,
+
+  // Finals week
+  '5 - 31 - 2022': Schedule.FINALS_34,
+  '6 - 1 - 2022': Schedule.FINALS_16,
+  '6 - 2 - 2022': Schedule.FINALS_25,
 };
 
 export const msSpecialDates: any = {
@@ -122,6 +105,9 @@ export const gradeSpecialDates: any = {
   11: {
   },
   12: {
+    '5 - 31 - 2022': Schedule.SENIOR_CELIBRATION_SCHED,
+    '6 - 1 - 2022': Schedule.GRAD_REHERSAL_SCHED,
+    '6 - 2 - 2022': Schedule.GRADUATION_SCHED,
   },
   13: {
     '9 - 22 - 2021': Schedule.HSBACKTOSCHOOLNIGHT,
@@ -514,28 +500,34 @@ export function getFullSchedule(schedule: Schedule, grade: number): any {
         return NoSchoolSchedule;
       }
       break;
-    case Schedule.FINALS_26:
+    case Schedule.FINALS_16:
       if (highSchooler === 1) {
         return ElementaryRegularSchedule;
       } else if (highSchooler === 2) {
-        return  Finals26Schedule;
+        return  Finals16Schedule;
       } else if (highSchooler === 3) {
-        return Finals26Schedule;
+        return Finals16Schedule;
       } else {
         return NoSchoolSchedule;
       }
       break;
-    case Schedule.FINALS_15:
+    case Schedule.FINALS_25:
       if (highSchooler === 1) {
         return ElementaryRegularSchedule;
       } else if (highSchooler === 2) {
-        return  Finals15Schedule;
+        return  Finals25Schedule;
       } else if (highSchooler === 3) {
-        return Finals15Schedule;
+        return Finals25Schedule;
       } else {
         return NoSchoolSchedule;
       }
       break;
+    case Schedule.SENIOR_CELIBRATION_SCHED:
+      return SeniorCelebration;
+    case Schedule.GRAD_REHERSAL_SCHED:
+      return GradRehersal;
+    case Schedule.GRADUATION_SCHED:
+      return Graduation;
     case Schedule.EARLY_RELEASE:
       return EarlyReleaseSchedule78;
       break;
@@ -621,6 +613,9 @@ export const periodsFilter = [
   Period.PERIOD_OFFICE_HOURS_A,
   Period.PERIOD_OFFICE_HOURS_B,
   Period.PERIOD_OFFICE_HOURS_I,
+  Period.SENIOR_CELIBRATION,
+  Period.GRADUATION,
+  Period.GRAD_REHERSAL,
   // Event (Delete if after 8/10/21)
   Period.ORIENTATION,
   Period.REGISTRATION,
@@ -678,6 +673,9 @@ export const excludeZero = [
   Period.PERIOD_OFFICE_HOURS_A,
   Period.PERIOD_OFFICE_HOURS_B,
   Period.PERIOD_OFFICE_HOURS_I,
+  Period.SENIOR_CELIBRATION,
+  Period.GRADUATION,
+  Period.GRAD_REHERSAL,
   // Event (Delete if after 8/10/21)
   Period.ORIENTATION,
   Period.REGISTRATION,
@@ -731,6 +729,9 @@ export const excludeSix = [
   Period.PERIOD_OFFICE_HOURS_A,
   Period.PERIOD_OFFICE_HOURS_B,
   Period.PERIOD_OFFICE_HOURS_I,
+  Period.SENIOR_CELIBRATION,
+  Period.GRADUATION,
+  Period.GRAD_REHERSAL,
   // Event (Delete if after 8/10/21)
   Period.ORIENTATION,
   Period.REGISTRATION,
@@ -784,6 +785,9 @@ export const excludeZeroAndSix = [
   Period.PERIOD_OFFICE_HOURS_A,
   Period.PERIOD_OFFICE_HOURS_B,
   Period.PERIOD_OFFICE_HOURS_I,
+  Period.SENIOR_CELIBRATION,
+  Period.GRADUATION,
+  Period.GRAD_REHERSAL,
   // Event (Delete if after 8/10/21)
   Period.ORIENTATION,
   Period.REGISTRATION,
@@ -858,6 +862,9 @@ export const allFilter = [
   Period.PERIOD_OFFICE_HOURS_A,
   Period.PERIOD_OFFICE_HOURS_B,
   Period.PERIOD_OFFICE_HOURS_I,
+  Period.SENIOR_CELIBRATION,
+  Period.GRADUATION,
+  Period.GRAD_REHERSAL,
   Period.PREP,
   Period.DONE,
   // Event (Delete if after 8/10/21)
