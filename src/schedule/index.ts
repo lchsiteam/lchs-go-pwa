@@ -55,6 +55,7 @@ export const schoolSpecialDates: any = {
   '4 - 19 - 2022': Schedule.BLOCK_EVEN,
 
   // Finals week
+  '5 - 27 - 2022': Schedule.ASSEMBLY,
   '5 - 31 - 2022': Schedule.FINALS_34,
   '6 - 1 - 2022': Schedule.FINALS_16,
   '6 - 2 - 2022': Schedule.FINALS_25,
