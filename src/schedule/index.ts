@@ -53,6 +53,9 @@ export const schoolSpecialDates: any = {
   '4 - 15 - 2022': Schedule.MINIMUM,
   '4 - 18 - 2022': Schedule.BLOCK_ODD,
   '4 - 19 - 2022': Schedule.BLOCK_EVEN,
+  
+  '5 - 18 - 2022': Schedule.REGULAR,
+  '5 - 19 - 2022': Schedule.REGULAR,
 
   // Finals week
   '5 - 27 - 2022': Schedule.ASSEMBLY,
