@@ -457,10 +457,10 @@ export const AssemblySchedule: any[] = [
   { start: toTime(11, 0), end: toTime(11, 9), period: Period.BREAK },
   { start: toTime(11, 9), end: toTime(11, 15), period: Period.BREAK_PASSING },
   { start: toTime(11, 15), end: toTime(12, 3), period: Period.PERIOD_3 },
-  { start: toTime(12, 3), end: toTime(12, 9), period: Period.PERIOD_3_PASSING },
-  { start: toTime(12, 9), end: toTime(12, 57), period: Period.PERIOD_4 },
-  { start: toTime(12, 57), end: toTime(13, 27), period: Period.LUNCH },
-  { start: toTime(13, 27), end: toTime(13, 33), period: Period.LUNCH_PASSING },
+  { start: toTime(12, 3), end: toTime(12, 33), period: Period.LUNCH },
+  { start: toTime(12, 33), end: toTime(12, 39), period: Period.LUNCH_PASSING },
+  { start: toTime(12, 39), end: toTime(13, 27), period: Period.PERIOD_4 },
+  { start: toTime(13, 27), end: toTime(13, 33), period: Period.PERIOD_4_PASSING },
   { start: toTime(13, 33), end: toTime(14, 21), period: Period.PERIOD_5 },
   { start: toTime(14, 21), end: toTime(14, 27), period: Period.PERIOD_5_PASSING },
   { start: toTime(14, 27), end: toTime(15, 15), period: Period.PERIOD_6 },
@@ -622,8 +622,8 @@ export const SpecialBlockEvenSchedule78: any[] = [
 */
 
 export const AssemblySchedule7: any[] = [
-  { start: toTime(0, 0), end: toTime(7, 27), period: Period.NONE },
-  { start: toTime(7, 27), end: toTime(8, 15), period: Period.PERIOD_0 },
+  { start: toTime(0, 0), end: toTime(7, 28), period: Period.NONE },
+  { start: toTime(7, 28), end: toTime(8, 15), period: Period.PERIOD_0 },
   { start: toTime(8, 15), end: toTime(8, 30), period: Period.PERIOD_0_PASSING },
   { start: toTime(8, 30), end: toTime(9, 18), period: Period.PERIOD_1 },
   { start: toTime(9, 18), end: toTime(9, 24), period: Period.PERIOD_1_PASSING },
@@ -632,10 +632,10 @@ export const AssemblySchedule7: any[] = [
   { start: toTime(11, 0), end: toTime(11, 9), period: Period.BREAK },
   { start: toTime(11, 9), end: toTime(11, 15), period: Period.BREAK_PASSING },
   { start: toTime(11, 15), end: toTime(12, 3), period: Period.PERIOD_3 },
-  { start: toTime(12, 3), end: toTime(12, 33), period: Period.LUNCH },
-  { start: toTime(12, 33), end: toTime(12, 39), period: Period.LUNCH_PASSING },
-  { start: toTime(12, 39), end: toTime(13, 27), period: Period.PERIOD_4 },
-  { start: toTime(13, 27), end: toTime(13, 33), period: Period.PERIOD_4_PASSING },
+  { start: toTime(12, 3), end: toTime(12, 9), period: Period.PERIOD_3_PASSING },
+  { start: toTime(12, 9), end: toTime(12, 57), period: Period.PERIOD_4 },
+  { start: toTime(12, 57), end: toTime(13, 27), period: Period.LUNCH },
+  { start: toTime(13, 27), end: toTime(13, 33), period: Period.LUNCH_PASSING },
   { start: toTime(13, 33), end: toTime(14, 21), period: Period.PERIOD_5 },
   { start: toTime(14, 21), end: toTime(14, 27), period: Period.PERIOD_5_PASSING },
   { start: toTime(14, 27), end: toTime(15, 15), period: Period.PERIOD_6 },
@@ -643,20 +643,20 @@ export const AssemblySchedule7: any[] = [
 ];
 
 export const AssemblySchedule8: any[] = [
-  { start: toTime(0, 0), end: toTime(7, 27), period: Period.NONE },
-  { start: toTime(7, 27), end: toTime(8, 15), period: Period.PERIOD_0 },
+  { start: toTime(0, 0), end: toTime(7, 28), period: Period.NONE },
+  { start: toTime(7, 28), end: toTime(8, 15), period: Period.PERIOD_0 },
   { start: toTime(8, 15), end: toTime(8, 30), period: Period.PERIOD_0_PASSING },
   { start: toTime(8, 30), end: toTime(9, 18), period: Period.PERIOD_1 },
   { start: toTime(9, 18), end: toTime(9, 24), period: Period.PERIOD_1_PASSING },
-  { start: toTime(9, 24), end: toTime(10, 12), period: Period.ASSEMBLY },
-  { start: toTime(10, 12), end: toTime(11, 0), period: Period.PERIOD_2 },
+  { start: toTime(9, 24), end: toTime(10, 12), period: Period.PERIOD_2 },
+  { start: toTime(10, 12), end: toTime(11, 0), period: Period.ASSEMBLY },
   { start: toTime(11, 0), end: toTime(11, 9), period: Period.BREAK },
   { start: toTime(11, 9), end: toTime(11, 15), period: Period.BREAK_PASSING },
   { start: toTime(11, 15), end: toTime(12, 3), period: Period.PERIOD_3 },
-  { start: toTime(12, 3), end: toTime(12, 33), period: Period.LUNCH },
-  { start: toTime(12, 33), end: toTime(12, 39), period: Period.LUNCH_PASSING },
-  { start: toTime(12, 39), end: toTime(13, 27), period: Period.PERIOD_4 },
-  { start: toTime(13, 27), end: toTime(13, 33), period: Period.PERIOD_4_PASSING },
+  { start: toTime(12, 3), end: toTime(12, 9), period: Period.PERIOD_3_PASSING },
+  { start: toTime(12, 9), end: toTime(12, 57), period: Period.PERIOD_4 },
+  { start: toTime(12, 57), end: toTime(13, 27), period: Period.LUNCH },
+  { start: toTime(13, 27), end: toTime(13, 33), period: Period.LUNCH_PASSING },
   { start: toTime(13, 33), end: toTime(14, 21), period: Period.PERIOD_5 },
   { start: toTime(14, 21), end: toTime(14, 27), period: Period.PERIOD_5_PASSING },
   { start: toTime(14, 27), end: toTime(15, 15), period: Period.PERIOD_6 },
@@ -785,41 +785,57 @@ export const MinimumSchedule: any[] = [
   { start: toTime(13, 3), end: toTime(24, 0), period: Period.DONE },
 ];
 
-// finals for 2021 - 2022
-export const Finals26Schedule: any[] = [
+// finals for Spring 2022
+export const Finals25Schedule: any[] = [
   { start: toTime(0, 0), end: toTime(8, 30), period: Period.NONE },
-  { start: toTime(8, 30), end: toTime(10, 35), period: Period.PERIOD_2 },
-  { start: toTime(10, 35), end: toTime(10, 54), period: Period.BREAK },
-  { start: toTime(10, 54), end: toTime(11, 0), period: Period.BREAK_PASSING },
-  { start: toTime(11, 0), end: toTime(13, 5), period: Period.PERIOD_6 },
-  { start: toTime(13, 5), end: toTime(13, 35), period: Period.LUNCH },
-  { start: toTime(13, 35), end: toTime(15, 14), period: Period.STUDY },
-  { start: toTime(15, 14), end: toTime(24, 0), period: Period.NONE },
+  { start: toTime(8, 30), end: toTime(10, 50), period: Period.PERIOD_2 },
+  { start: toTime(10, 50), end: toTime(11, 15), period: Period.BREAK },
+  { start: toTime(11, 15), end: toTime(11,20), period: Period.BREAK_PASSING },
+  { start: toTime(11, 20), end: toTime(13, 40), period: Period.PERIOD_5 },
+  { start: toTime(13, 40), end: toTime(24, 0), period: Period.NONE },
 ];
 
-export const Finals15Schedule: any[] = [
+export const Finals16Schedule: any[] = [
   { start: toTime(0, 0), end: toTime(8, 30), period: Period.NONE },
-  { start: toTime(8, 30), end: toTime(10, 35), period: Period.PERIOD_1 },
-  { start: toTime(10, 35), end: toTime(10, 54), period: Period.BREAK },
-  { start: toTime(10, 54), end: toTime(11, 0), period: Period.BREAK_PASSING },
-  { start: toTime(11, 0), end: toTime(13, 5), period: Period.PERIOD_5 },
-  { start: toTime(13, 5), end: toTime(13, 35), period: Period.LUNCH },
-  { start: toTime(13, 35), end: toTime(15, 14), period: Period.STUDY },
-  { start: toTime(15, 14), end: toTime(24, 0), period: Period.NONE },
+  { start: toTime(8, 30), end: toTime(10, 50), period: Period.PERIOD_1 },
+  { start: toTime(10, 50), end: toTime(11, 15), period: Period.BREAK },
+  { start: toTime(11, 15), end: toTime(11,20), period: Period.BREAK_PASSING },
+  { start: toTime(11, 20), end: toTime(13, 40), period: Period.PERIOD_6 },
+  { start: toTime(13, 40), end: toTime(24, 0), period: Period.NONE },
 ];
 
 export const Finals34Schedule: any[] = [
   { start: toTime(0, 0), end: toTime(8, 30), period: Period.NONE },
-  { start: toTime(8, 30), end: toTime(10, 35), period: Period.PERIOD_3 },
-  { start: toTime(10, 35), end: toTime(10, 54), period: Period.BREAK },
-  { start: toTime(10, 54), end: toTime(11, 0), period: Period.BREAK_PASSING },
-  { start: toTime(11, 0), end: toTime(13, 5), period: Period.PERIOD_4 },
-  { start: toTime(13, 5), end: toTime(13, 35), period: Period.LUNCH },
-  { start: toTime(13, 35), end: toTime(15, 14), period: Period.STUDY },
-  { start: toTime(15, 14), end: toTime(24, 0), period: Period.NONE },
+  { start: toTime(8, 30), end: toTime(10, 50), period: Period.PERIOD_3 },
+  { start: toTime(10, 50), end: toTime(11, 15), period: Period.BREAK },
+  { start: toTime(11, 15), end: toTime(11,20), period: Period.BREAK_PASSING },
+  { start: toTime(11, 20), end: toTime(13, 40), period: Period.PERIOD_4 },
+  { start: toTime(13, 40), end: toTime(24, 0), period: Period.NONE },
 ];
 
-// end of finals 2021 - 2022
+// end of finals spring 2022
+
+/**
+ * Senior End of the Year
+ */
+
+ export const SeniorCelebration: any[] = [
+  { start: toTime(0, 0), end: toTime(9, 0), period: Period.NONE },
+  { start: toTime(9, 0), end: toTime(13, 0), period: Period.SENIOR_CELIBRATION },
+  { start: toTime(13, 0), end: toTime(24, 0), period: Period.NONE },
+ ];
+
+ export const GradRehersal: any[] = [
+  { start: toTime(0, 0), end: toTime(9, 0), period: Period.NONE },
+  { start: toTime(9, 0), end: toTime(13, 0), period: Period.GRAD_REHERSAL },
+  { start: toTime(13, 0), end: toTime(24, 0), period: Period.NONE },
+ ];
+
+ export const Graduation: any[] = [
+  { start: toTime(0, 0), end: toTime(9, 0), period: Period.NONE },
+  { start: toTime(9, 0), end: toTime(13, 0), period: Period.GRADUATION },
+  { start: toTime(13, 0), end: toTime(24, 0), period: Period.NONE },
+ ];
 
 export const SummerSchoolSchedule: any[] = [
   { start: toTime(0, 0), end: toTime(7, 39), period: Period.NONE },
@@ -850,6 +866,9 @@ export const HSBackToSchoolNight: any[] = [
   { start: toTime(20, 30), end: toTime(20, 40), period: Period.PERIOD_0 },
   { start: toTime(20, 25), end: toTime(24, 0), period: Period.EVENTNOPE },
 ];
+
+
+
 
 /**
  *
