@@ -31,7 +31,7 @@ export function getCurrentDate(): any {
 const tgBreak: MDYDate[] = [new MDYDate(11, 22, 2021), new MDYDate(11, 26, 2021)];
 const winterBreak: MDYDate[] = [new MDYDate(12, 18, 2021), new MDYDate(1, 4, 2022)];
 const springBreak: MDYDate[] = [new MDYDate(4, 5, 2021), new MDYDate(4, 12, 2021)]; // Please don't ever delete this, just comment it out if you have to
-const summerBreak: MDYDate[] = [new MDYDate(6, 4, 2021), new MDYDate(8, 15, 2021)];
+const summerBreak: MDYDate[] = [new MDYDate(6, 3, 2022), new MDYDate(8, 15, 2022)];
 
 const breaks: any[] = [tgBreak, winterBreak, springBreak, summerBreak];
 
@@ -59,6 +59,7 @@ export const schoolSpecialDates: any = {
 
   // Finals week
   '5 - 27 - 2022': Schedule.ASSEMBLY,
+  '5 - 30 - 2022': Schedule.NONE,
   '5 - 31 - 2022': Schedule.FINALS_34,
   '6 - 1 - 2022': Schedule.FINALS_16,
   '6 - 2 - 2022': Schedule.FINALS_25,
