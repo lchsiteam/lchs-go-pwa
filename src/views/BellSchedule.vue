@@ -186,8 +186,8 @@ Vue.use(VCalendar, {
 @Component({})
 export default class Home extends Vue {
   private allGrades = allGrades;
-  private minDate = new Date(2020, 7, 1);
-  private maxDate = new Date(2022, 6, 4);
+  private minDate = new Date(2022, 7, 1);
+  private maxDate = new Date(2023, 5, 3);
   private minutes: number = 0;
   private schedule: Schedule = Schedule.NONE;
   private grade = allGrades[2];
