@@ -42,6 +42,12 @@ const combined: [MDYDate, MDYDate] = [new MDYDate(5, 3, 2021), new MDYDate(6, 2,
 
 export const schoolSpecialDates: any = {
   // month - day - year: schedule (something from the Schedule enum)
+  
+  // beginning of the year no block override
+  '8 - 17 - 2022': Schedule.REGULAR,
+  '8 - 18 - 2022': Schedule.REGULAR,
+  '8 - 24 - 2022': Schedule.REGULAR,
+  '8 - 25 - 2022': Schedule.REGULAR,
 
   '1 - 5 - 2022': Schedule.REGULAR,
   '1 - 6 - 2022': Schedule.REGULAR,
