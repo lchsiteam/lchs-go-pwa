@@ -28,15 +28,15 @@ export function getCurrentDate(): any {
   };
 }
 
-const tgBreak: MDYDate[] = [new MDYDate(11, 22, 2021), new MDYDate(11, 26, 2021)];
-const winterBreak: MDYDate[] = [new MDYDate(12, 18, 2021), new MDYDate(1, 4, 2022)];
-const springBreak: MDYDate[] = [new MDYDate(4, 5, 2021), new MDYDate(4, 12, 2021)]; // Please don't ever delete this, just comment it out if you have to
-const summerBreak: MDYDate[] = [new MDYDate(6, 3, 2022), new MDYDate(8, 15, 2022)];
+const tgBreak: MDYDate[] = [new MDYDate(11, 21, 2022), new MDYDate(11, 25, 2022)];
+const winterBreak: MDYDate[] = [new MDYDate(12, 19, 2022), new MDYDate(1, 3, 2023)];
+const springBreak: MDYDate[] = [new MDYDate(4, 3, 2023), new MDYDate(4, 7, 2023)]; // Please don't ever delete this, just comment it out if you have to
+const summerBreak: MDYDate[] = [new MDYDate(6, 3, 2022), new MDYDate(8, 14, 2022)];
 
 const breaks: any[] = [tgBreak, winterBreak, springBreak, summerBreak];
 
 const summerSchool: [MDYDate, MDYDate] = [new MDYDate(6, 14, 2021), new MDYDate(7, 16, 2021)];
-const blockSwitch: [MDYDate, MDYDate] = [new MDYDate(11, 14, 2021), new MDYDate(2, 20, 2022)];
+const blockSwitch: [MDYDate, MDYDate] = [new MDYDate(11, 13, 2022), new MDYDate(2, 18, 2023)];
 const hybrid: [MDYDate, MDYDate] = [new MDYDate(4, 12, 2021), new MDYDate(5, 1, 2021)];
 const combined: [MDYDate, MDYDate] = [new MDYDate(5, 3, 2021), new MDYDate(6, 2, 2021)];
 
