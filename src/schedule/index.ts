@@ -51,6 +51,9 @@ export const schoolSpecialDates: any = {
 
   '1 - 5 - 2022': Schedule.REGULAR,
   '1 - 6 - 2022': Schedule.REGULAR,
+  
+  // Labor Day
+  '9 - 5 - 2022': Schedule.NONE,
 
   // Presidents' Day weekend
   '2 - 18 - 2022': Schedule.NONE,
