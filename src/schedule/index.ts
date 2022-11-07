@@ -69,6 +69,7 @@ export const schoolSpecialDates: any = {
   // More assemblies
   '8 - 26 - 2022': Schedule.ASSEMBLY,
   '10 - 14 - 2022': Schedule.ASSEMBLY,
+  '10 - 28 - 2022': Schedule.ASSEMBLY,
 };
 
 export const msSpecialDates: any = {
