@@ -48,9 +48,6 @@ export const schoolSpecialDates: any = {
   '8 - 18 - 2022': Schedule.REGULAR,
   '8 - 24 - 2022': Schedule.REGULAR,
   '8 - 25 - 2022': Schedule.REGULAR,
-
-  '1 - 5 - 2022': Schedule.REGULAR,
-  '1 - 6 - 2022': Schedule.REGULAR,
   
   // Labor Day
   '9 - 5 - 2022': Schedule.NONE,
@@ -58,13 +55,9 @@ export const schoolSpecialDates: any = {
   // Presidents' Day weekend
   '2 - 18 - 2022': Schedule.NONE,
   '2 - 21 - 2022': Schedule.NONE,
-
-  '4 - 15 - 2022': Schedule.MINIMUM,
-  '4 - 18 - 2022': Schedule.BLOCK_ODD,
-  '4 - 19 - 2022': Schedule.BLOCK_EVEN,
   
-  '5 - 18 - 2022': Schedule.REGULAR,
-  '5 - 19 - 2022': Schedule.REGULAR,
+  // Veteran's Day
+  '11 - 11 - 2022': Schedule.NONE,
 
   // Finals week
   '5 - 27 - 2022': Schedule.ASSEMBLY,
@@ -72,6 +65,11 @@ export const schoolSpecialDates: any = {
   '5 - 31 - 2022': Schedule.FINALS_34,
   '6 - 1 - 2022': Schedule.FINALS_16,
   '6 - 2 - 2022': Schedule.FINALS_25,
+  
+  // More assemblies
+  '8 - 26 - 2022': Schedule.ASSEMBLY,
+  '10 - 14 - 2022': Schedule.ASSEMBLY,
+  '10 - 28 - 2022': Schedule.ASSEMBLY,
 };
 
 export const msSpecialDates: any = {
@@ -90,10 +88,6 @@ export const hsSpecialDates: any = {
 
   '2 - 11 - 2022': Schedule.ASSEMBLY,
   '4 - 22 - 2022': Schedule.ASSEMBLY,
-  
-  '8 - 26 - 2022': Schedule.ASSEMBLY,
-  '10 - 14 - 2022': Schedule.ASSEMBLY,
-  '10 - 28 - 2022': Schedule.ASSEMBLY,
 };
 
 export const gradeSpecialDates: any = {
