@@ -534,6 +534,28 @@ export function getFullSchedule(schedule: Schedule, grade: number): any {
         return NoSchoolSchedule;
       }
       break;
+    case Schedule.FINALS_26:
+      if (highSchooler === 1) {
+        return ElementaryRegularSchedule;
+      } else if (highSchooler === 2) {
+        return  Finals26Schedule;
+      } else if (highSchooler === 3) {
+        return Finals26Schedule;
+      } else {
+        return NoSchoolSchedule;
+      }
+      break;
+    case Schedule.FINALS_15:
+      if (highSchooler === 1) {
+        return ElementaryRegularSchedule;
+      } else if (highSchooler === 2) {
+        return  Finals15Schedule;
+      } else if (highSchooler === 3) {
+        return Finals15Schedule;
+      } else {
+        return NoSchoolSchedule;
+      }
+      break;
     case Schedule.SENIOR_CELIBRATION_SCHED:
       return SeniorCelebration;
     case Schedule.GRAD_REHERSAL_SCHED:
