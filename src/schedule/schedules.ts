@@ -788,29 +788,47 @@ export const MinimumSchedule: any[] = [
 // finals for Spring 2022
 export const Finals25Schedule: any[] = [
   { start: toTime(0, 0), end: toTime(8, 30), period: Period.NONE },
-  { start: toTime(8, 30), end: toTime(10, 50), period: Period.PERIOD_2 },
-  { start: toTime(10, 50), end: toTime(11, 15), period: Period.BREAK },
-  { start: toTime(11, 15), end: toTime(11,20), period: Period.BREAK_PASSING },
-  { start: toTime(11, 20), end: toTime(13, 40), period: Period.PERIOD_5 },
-  { start: toTime(13, 40), end: toTime(24, 0), period: Period.NONE },
+  { start: toTime(8, 30), end: toTime(10, 35), period: Period.PERIOD_2 },
+  { start: toTime(10, 35), end: toTime(10, 54), period: Period.BREAK },
+  { start: toTime(10, 54), end: toTime(11, 0), period: Period.BREAK_PASSING },
+  { start: toTime(11, 0), end: toTime(13, 5), period: Period.PERIOD_5 },
+  { start: toTime(13, 5), end: toTime(24, 0), period: Period.NONE },
 ];
 
 export const Finals16Schedule: any[] = [
   { start: toTime(0, 0), end: toTime(8, 30), period: Period.NONE },
-  { start: toTime(8, 30), end: toTime(10, 50), period: Period.PERIOD_1 },
-  { start: toTime(10, 50), end: toTime(11, 15), period: Period.BREAK },
-  { start: toTime(11, 15), end: toTime(11,20), period: Period.BREAK_PASSING },
-  { start: toTime(11, 20), end: toTime(13, 40), period: Period.PERIOD_6 },
-  { start: toTime(13, 40), end: toTime(24, 0), period: Period.NONE },
+  { start: toTime(8, 30), end: toTime(10, 35), period: Period.PERIOD_1 },
+  { start: toTime(10, 35), end: toTime(10, 54), period: Period.BREAK },
+  { start: toTime(10, 54), end: toTime(11, 0), period: Period.BREAK_PASSING },
+  { start: toTime(11, 0), end: toTime(13, 5), period: Period.PERIOD_6 },
+  { start: toTime(13, 5), end: toTime(24, 0), period: Period.NONE },
+];
+
+export const Finals26Schedule: any[] = [
+  { start: toTime(0, 0), end: toTime(8, 30), period: Period.NONE },
+  { start: toTime(8, 30), end: toTime(10, 35), period: Period.PERIOD_2 },
+  { start: toTime(10, 35), end: toTime(10, 54), period: Period.BREAK },
+  { start: toTime(10, 54), end: toTime(11, 0), period: Period.BREAK_PASSING },
+  { start: toTime(11, 0), end: toTime(13, 5), period: Period.PERIOD_6 },
+  { start: toTime(13, 5), end: toTime(24, 0), period: Period.NONE },
+];
+
+export const Finals15Schedule: any[] = [
+  { start: toTime(0, 0), end: toTime(8, 30), period: Period.NONE },
+  { start: toTime(8, 30), end: toTime(10, 35), period: Period.PERIOD_1 },
+  { start: toTime(10, 35), end: toTime(10, 54), period: Period.BREAK },
+  { start: toTime(10, 54), end: toTime(11, 0), period: Period.BREAK_PASSING },
+  { start: toTime(11, 0), end: toTime(13, 5), period: Period.PERIOD_5 },
+  { start: toTime(13, 5), end: toTime(24, 0), period: Period.NONE },
 ];
 
 export const Finals34Schedule: any[] = [
   { start: toTime(0, 0), end: toTime(8, 30), period: Period.NONE },
-  { start: toTime(8, 30), end: toTime(10, 50), period: Period.PERIOD_3 },
-  { start: toTime(10, 50), end: toTime(11, 15), period: Period.BREAK },
-  { start: toTime(11, 15), end: toTime(11,20), period: Period.BREAK_PASSING },
-  { start: toTime(11, 20), end: toTime(13, 40), period: Period.PERIOD_4 },
-  { start: toTime(13, 40), end: toTime(24, 0), period: Period.NONE },
+  { start: toTime(8, 30), end: toTime(10, 35), period: Period.PERIOD_3 },
+  { start: toTime(10, 35), end: toTime(10, 54), period: Period.BREAK },
+  { start: toTime(10, 54), end: toTime(11, 0), period: Period.BREAK_PASSING },
+  { start: toTime(11, 0), end: toTime(13, 5), period: Period.PERIOD_4 },
+  { start: toTime(13, 5), end: toTime(24, 0), period: Period.NONE },
 ];
 
 // end of finals spring 2022
