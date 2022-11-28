@@ -10,7 +10,7 @@ import { HybridVirtualDay, CohortABlockOdd, CohortABlockEven, CohortBBlockOdd, C
         BlockOddSchedule78, BlockEvenSchedule78, HSBlockOddScheduleFor78, HSBlockEvenScheduleFor78, HSSpecialBlockOddScheduleFor78,
         HSSpecialBlockEvenScheduleFor78, AssemblySchedule7, AssemblySchedule8, EarlyReleaseSchedule78, MinimumSchedule, /*PreFinals3264Schedule,
         PreFinals2156Schedule, PreFinals1345Schedule*/ FinalAssemblySchedule78, FinalAssemblySchedule12, Finals34Schedule, Finals25Schedule,
-        Finals16Schedule, SeniorCelebration, GradRehersal, Graduation, /*FinalsTBDSchedule*/ SummerSchoolSchedule, HSBackToSchoolNight, ElementaryRegularSchedule, ElementaryRegularSchedule0, ElementaryRegularSchedule12, ElementaryRegularSchedule34, ElementaryRegularSchedule56, NinthRegistrationSchedule } from './schedules';
+        Finals16Schedule, Finals26Schedule, Finals15Schedule, SeniorCelebration, GradRehersal, Graduation, /*FinalsTBDSchedule*/ SummerSchoolSchedule, HSBackToSchoolNight, ElementaryRegularSchedule, ElementaryRegularSchedule0, ElementaryRegularSchedule12, ElementaryRegularSchedule34, ElementaryRegularSchedule56, NinthRegistrationSchedule } from './schedules';
 
 export const plusDays = 0;
 export const plusMins = 0;
@@ -530,6 +530,28 @@ export function getFullSchedule(schedule: Schedule, grade: number): any {
         return  Finals25Schedule;
       } else if (highSchooler === 3) {
         return Finals25Schedule;
+      } else {
+        return NoSchoolSchedule;
+      }
+      break;
+    case Schedule.FINALS_26:
+      if (highSchooler === 1) {
+        return ElementaryRegularSchedule;
+      } else if (highSchooler === 2) {
+        return  Finals26Schedule;
+      } else if (highSchooler === 3) {
+        return Finals26Schedule;
+      } else {
+        return NoSchoolSchedule;
+      }
+      break;
+    case Schedule.FINALS_15:
+      if (highSchooler === 1) {
+        return ElementaryRegularSchedule;
+      } else if (highSchooler === 2) {
+        return  Finals15Schedule;
+      } else if (highSchooler === 3) {
+        return Finals15Schedule;
       } else {
         return NoSchoolSchedule;
       }
