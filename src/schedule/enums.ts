@@ -31,6 +31,8 @@ enum Schedule {
   FINALS_34,
   FINALS_25,
   FINALS_16,
+  FINALS_26,
+  FINALS_15,
   FINALS_TBD,
   ASSEMBLY,
   MINIMUM,
@@ -340,6 +342,12 @@ export function getScheduleName(schedule: Schedule) {
       break;
     case Schedule.FINALS_16:
       return 'Finals Schedule (1, 6)';
+      break;
+    case Schedule.FINALS_26:
+      return 'Finals Schedule (2, 6)';
+      break;
+    case Schedule.FINALS_15:
+      return 'Finals Schedule (1, 5)';
       break;
     case Schedule.ASSEMBLY:
       return 'Assembly Schedule';
