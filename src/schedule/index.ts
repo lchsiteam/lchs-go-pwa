@@ -60,11 +60,11 @@ export const schoolSpecialDates: any = {
   '11 - 11 - 2022': Schedule.NONE,
 
   // Finals week
-  '5 - 27 - 2022': Schedule.ASSEMBLY,
-  '5 - 30 - 2022': Schedule.NONE,
-  '5 - 31 - 2022': Schedule.FINALS_34,
-  '6 - 1 - 2022': Schedule.FINALS_16,
-  '6 - 2 - 2022': Schedule.FINALS_25,
+  '12 - 7 - 2022': Schedule.REGULAR,
+  '12 - 8 - 2022': Schedule.REGULAR,
+  '12 - 14 - 2022': Schedule.FINALS_26,
+  '12 - 15 - 2022': Schedule.FINALS_15,
+  '12 - 16 - 2022': Schedule.FINALS_34,
   
   // More assemblies
   '8 - 26 - 2022': Schedule.ASSEMBLY,
