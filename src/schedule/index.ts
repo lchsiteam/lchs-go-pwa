@@ -61,6 +61,13 @@ export const schoolSpecialDates: any = {
   
   // Veteran's Day
   '11 - 11 - 2022': Schedule.NONE,
+  
+  // MLK Day
+  '1 - 16 - 2023': Schedule.NONE,
+  
+  // President's Day
+  '2 - 17 - 2023': Schedule.NONE,
+  '2 - 20 - 2023': Schedule.NONE,
 
   // Finals week
   '12 - 7 - 2022': Schedule.REGULAR,
