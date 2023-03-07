@@ -9,7 +9,7 @@
     "deploy": "yarn build && firebase deploy"
   },
   "dependencies": {
-    "@firebase/firestore": "^2.3.0",
+    "@firebase/firestore": "^3.8.4",
     "@types/lodash.debounce": "^4.0.6",
     "@types/luxon": "^1.26.5",
     "core-js": "^3.19.1",
