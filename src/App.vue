@@ -17,8 +17,9 @@
 import { Component, Vue } from 'vue-property-decorator';
 import { Themes } from './themes';
 import { DateTime, Duration } from 'luxon';
-import firebase from 'firebase';
-import firebaseui from 'firebaseui';
+import firebase from 'firebase/compat/app';
+import * as firebaseui from 'firebaseui'
+import 'firebaseui/dist/firebaseui.css'
 import { printTime, getScheduleFromDay, getPeriod, getUpcomingPeriod, getPreviousPeriod, allGrades, plusDays, periodsFilter, allFilter, excludeZeroAndSix, excludeZero, excludeSix } from '@/schedule';
 import { Day, Schedule, Period, getPeriodName, getScheduleName } from '@/schedule/enums';
 
