@@ -26,8 +26,9 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
 import { allGrades } from '@/schedule';
-import firebase from 'firebase';
-import firebaseui from 'firebaseui';
+import firebase from 'firebase/compat/app';
+import * as firebaseui from 'firebaseui'
+import 'firebaseui/dist/firebaseui.css'
 
 @Component({})
 export default class Welcome extends Vue {
