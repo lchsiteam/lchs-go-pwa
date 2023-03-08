@@ -96,7 +96,7 @@ const uiConfig = {
     (document.getElementById('loader') as any).style.display = 'none';
   },
 },
-  credentialHelper: firebaseui.auth.CredentialHelper.ACCOUNT_CHOOSER_COM,
+  credentialHelper: firebaseui.auth.CredentialHelper.NONE,
   // Query parameter name for mode.
   queryParameterForWidgetMode: 'mode',
   // Query parameter name for sign in success url.
