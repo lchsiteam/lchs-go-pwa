@@ -3,5 +3,6 @@
 
 import Update013 from './v0.1.3';
 import Update020 from './v0.2.0';
+import Update030 from './v0.3.0';
 
-export const Changelog = [ Update020, Update013 ];
+export const Changelog = [ Update030, Update020, Update013 ];
