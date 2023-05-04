@@ -69,12 +69,21 @@ export const schoolSpecialDates: any = {
   '2 - 17 - 2023': Schedule.NONE,
   '2 - 20 - 2023': Schedule.NONE,
 
-  // Finals week
+  // Finals week winter
   '12 - 7 - 2022': Schedule.REGULAR,
   '12 - 8 - 2022': Schedule.REGULAR,
   '12 - 14 - 2022': Schedule.FINALS_26,
   '12 - 15 - 2022': Schedule.FINALS_15,
   '12 - 16 - 2022': Schedule.FINALS_34,
+  
+  // End of the school year
+  '5 - 17 - 2023': Schedule.REGULAR,
+  '5 - 18 - 2023': Schedule.REGULAR,
+  '5 - 29 - 2023': Schedule.NONE,
+  '5 - 31 - 2023': Schedule.FINALS_34,
+  '6 - 1 - 2023': Schedule.FINALS_16,
+  '6 - 2 - 2023': Schedule.FINALS_25,
+  
   
   // More assemblies
   '8 - 26 - 2022': Schedule.ASSEMBLY,
