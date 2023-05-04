@@ -91,6 +91,7 @@ export const schoolSpecialDates: any = {
   '10 - 28 - 2022': Schedule.ASSEMBLY,
   '1 - 20 - 2023': Schedule.ASSEMBLY,
   '3 - 10 - 2023': Schedule.ASSEMBLY,
+  '5 - 26 - 2023': Schedule.ASSEMBLY,
 };
 
 export const msSpecialDates: any = {
