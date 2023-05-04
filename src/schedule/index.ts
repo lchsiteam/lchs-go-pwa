@@ -78,12 +78,21 @@ export const schoolSpecialDates: any = {
   '4 - 19 - 2023': Schedule.SBAC_SPECIAL_BLOCK_ODD,
   '4 - 20 - 2023': Schedule.SBAC_SPECIAL_BLOCK_EVEN,
 
-  // Finals week
+  // Finals week winter
   '12 - 7 - 2022': Schedule.REGULAR,
   '12 - 8 - 2022': Schedule.REGULAR,
   '12 - 14 - 2022': Schedule.FINALS_26,
   '12 - 15 - 2022': Schedule.FINALS_15,
   '12 - 16 - 2022': Schedule.FINALS_34,
+  
+  // End of the school year
+  '5 - 17 - 2023': Schedule.REGULAR,
+  '5 - 18 - 2023': Schedule.REGULAR,
+  '5 - 29 - 2023': Schedule.NONE,
+  '5 - 31 - 2023': Schedule.FINALS_34,
+  '6 - 1 - 2023': Schedule.FINALS_16,
+  '6 - 2 - 2023': Schedule.FINALS_25,
+  
   
   // More assemblies
   '8 - 26 - 2022': Schedule.ASSEMBLY,
@@ -91,6 +100,7 @@ export const schoolSpecialDates: any = {
   '10 - 28 - 2022': Schedule.ASSEMBLY,
   '1 - 20 - 2023': Schedule.ASSEMBLY,
   '3 - 10 - 2023': Schedule.ASSEMBLY,
+  '5 - 26 - 2023': Schedule.ASSEMBLY,
 };
 
 export const msSpecialDates: any = {
