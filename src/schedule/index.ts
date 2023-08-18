@@ -68,6 +68,15 @@ export const schoolSpecialDates: any = {
   // President's Day
   '2 - 17 - 2023': Schedule.NONE,
   '2 - 20 - 2023': Schedule.NONE,
+  
+  // Open House
+  '4 - 14 - 2023': Schedule.MINIMUM,
+  
+  // SBAC Testing Week
+  '4 - 17 - 2023': Schedule.SBAC_BLOCK_ODD,
+  '4 - 18 - 2023': Schedule.SBAC_BLOCK_EVEN,
+  '4 - 19 - 2023': Schedule.SBAC_SPECIAL_BLOCK_ODD,
+  '4 - 20 - 2023': Schedule.SBAC_SPECIAL_BLOCK_EVEN,
 
   // Finals week winter
   '12 - 7 - 2022': Schedule.REGULAR,
