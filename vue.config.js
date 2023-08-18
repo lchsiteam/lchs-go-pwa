@@ -6,5 +6,5 @@ process.env.VUE_APP_COMMIT_SHASH = childProcess.execSync("git rev-parse --short 
 
 module.exports = {
     devServer: {
-        disableHostCheck: true
+        allowedHosts: 'all'
 }}
