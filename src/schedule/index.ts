@@ -51,6 +51,11 @@ export const schoolSpecialDates: any = {
   
   '1 - 4 - 2023': Schedule.REGULAR,
   '1 - 5 - 2023': Schedule.REGULAR,
+
+  '8 - 16 - 2023': Schedule.REGULAR,
+  '8 - 17 - 2023': Schedule.REGULAR,
+  '8 - 23 - 2023': Schedule.REGULAR,
+  '8 - 24 - 2023': Schedule.REGULAR,
   
   // Labor Day
   '9 - 5 - 2022': Schedule.NONE,
