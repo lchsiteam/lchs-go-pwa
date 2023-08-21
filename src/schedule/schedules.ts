@@ -1,5 +1,7 @@
 import { Period } from './enums';
 
+type PeriodSchedule = Array<{ start: number, end: number, period: Period }>
+
 function toTime(hr: number, min: number) {
   return (hr * 60) + min;
 }
@@ -11,22 +13,81 @@ When the program reads this fake ".csv", it will
 give precedence to the period that is listed first
 */
 
-export const NoSchoolSchedule: any[] = [
+export const NoSchoolSchedule: PeriodSchedule = [
   { start: toTime(0, 0), end: toTime(24, 0), period: Period.DONE },
 ];
 
-export const NoEventSchedule: any[] = [
+export const NoEventSchedule: PeriodSchedule = [
   { start: toTime(0, 0), end: toTime(24, 0), period: Period.EVENTNOPE },
 ];
 
-export const NinthRegistrationSchedule: any[] = [
+export const RegularSchedule: PeriodSchedule = [ // Has no small groups
+  { start: toTime(0, 0), end: toTime(7, 28), period: Period.NONE },
+  { start: toTime(7, 28), end: toTime(8, 24), period: Period.PERIOD_0 },
+  { start: toTime(8, 24), end: toTime(8, 30), period: Period.PERIOD_0_PASSING },
+  { start: toTime(8, 30), end: toTime(9, 26), period: Period.PERIOD_1 },
+  { start: toTime(9, 26), end: toTime(9, 32), period: Period.PERIOD_1_PASSING },
+  { start: toTime(9, 32), end: toTime(10, 28), period: Period.PERIOD_2 },
+  { start: toTime(10, 28), end: toTime(10, 38), period: Period.BREAK },
+  { start: toTime(10, 38), end: toTime(10, 43), period: Period.BREAK_PASSING },
+  { start: toTime(10, 43), end: toTime(11, 39), period: Period.PERIOD_3 },
+  { start: toTime(11, 39), end: toTime(12, 9), period: Period.LUNCH },
+  { start: toTime(12, 9), end: toTime(12, 14), period: Period.LUNCH_PASSING },
+  { start: toTime(12, 14), end: toTime(13, 10), period: Period.PERIOD_4 },
+  { start: toTime(13, 10), end: toTime(13, 16), period: Period.PERIOD_4_PASSING },
+  { start: toTime(13, 16), end: toTime(14, 12), period: Period.PERIOD_5 },
+  { start: toTime(14, 12), end: toTime(14, 18), period: Period.PERIOD_5_PASSING },
+  { start: toTime(14, 18), end: toTime(15, 14), period: Period.PERIOD_6 },
+  { start: toTime(15, 14), end: toTime(24, 0), period: Period.DONE },
+];
+
+export const RegularSchedule78: PeriodSchedule = [
+  { start: toTime(0, 0), end: toTime(7, 28), period: Period.NONE },
+  { start: toTime(7, 28), end: toTime(8, 24), period: Period.PERIOD_0 },
+  { start: toTime(8, 24), end: toTime(8, 30), period: Period.PERIOD_0_PASSING },
+  { start: toTime(8, 30), end: toTime(9, 26), period: Period.PERIOD_1 },
+  { start: toTime(9, 26), end: toTime(9, 32), period: Period.PERIOD_1_PASSING },
+  { start: toTime(9, 32), end: toTime(10, 28), period: Period.PERIOD_2 },
+  { start: toTime(10, 28), end: toTime(10, 38), period: Period.BREAK },
+  { start: toTime(10, 38), end: toTime(10, 43), period: Period.BREAK_PASSING },
+  { start: toTime(10, 43), end: toTime(11, 39), period: Period.PERIOD_3 },
+  { start: toTime(11, 39), end: toTime(11, 45), period: Period.PERIOD_3_PASSING },
+  { start: toTime(11, 45), end: toTime(12, 41), period: Period.PERIOD_4 },
+  { start: toTime(12, 41), end: toTime(13, 11), period: Period.LUNCH },
+  { start: toTime(13, 11), end: toTime(13, 16), period: Period.LUNCH_PASSING },
+  { start: toTime(13, 16), end: toTime(14, 12), period: Period.PERIOD_5 },
+  { start: toTime(14, 12), end: toTime(14, 18), period: Period.PERIOD_5_PASSING },
+  { start: toTime(14, 18), end: toTime(15, 14), period: Period.PERIOD_6 },
+  { start: toTime(15, 14), end: toTime(24, 0), period: Period.DONE },
+];
+
+// assumng that the schedule hasn't changed
+export const PilotRegularSchedule: PeriodSchedule = [
+  { start: toTime(0, 0), end: toTime(7, 30), period: Period.NONE },
+  { start: toTime(7, 30), end: toTime(8, 24), period: Period.PERIOD_0 },
+  { start: toTime(8, 24), end: toTime(8, 30), period: Period.PERIOD_0_PASSING },
+  { start: toTime(8, 30), end: toTime(9, 24), period: Period.PERIOD_1 },
+  { start: toTime(9, 24), end: toTime(9, 34), period: Period.PERIOD_1_PASSING },
+  { start: toTime(9, 34), end: toTime(10, 28), period: Period.PERIOD_2 },
+  { start: toTime(10, 28), end: toTime(10, 38), period: Period.PERIOD_2_PASSING },
+  { start: toTime(10, 38), end: toTime(11, 32), period: Period.PERIOD_3 },
+  { start: toTime(11, 32), end: toTime(11, 42), period: Period.PERIOD_3_PASSING },
+  { start: toTime(11, 42), end: toTime(12, 36), period: Period.PERIOD_4 },
+  { start: toTime(12, 36), end: toTime(1, 11), period: Period.LUNCH },
+  { start: toTime(1, 11), end: toTime(1, 16), period: Period.LUNCH_PASSING },
+  { start: toTime(1, 16), end: toTime(2, 10), period: Period.PERIOD_5 },
+  { start: toTime(2, 10), end: toTime(2, 20), period: Period.PERIOD_5_PASSING },
+  { start: toTime(2, 20), end: toTime(3, 14), period: Period.PERIOD_6 },
+]
+
+export const NinthRegistrationSchedule: PeriodSchedule = [
   { start: toTime(0, 0), end: toTime(8, 0), period: Period.NONE },
   { start: toTime(8, 0), end: toTime(9, 0), period: Period.ORIENTATION },
   { start: toTime(9, 0), end: toTime(11, 0), period: Period.REGISTRATION },
   { start: toTime(11, 0), end: toTime(24, 0), period: Period.DONE },
 ];
 
-export const WeirdAssemblySchedule: any[] = [
+export const WeirdAssemblySchedule: PeriodSchedule = [
   { start: toTime(0, 0), end: toTime(7, 28), period: Period.NONE },
   { start: toTime(7, 28), end: toTime(8, 15), period: Period.PERIOD_0 },
   { start: toTime(8, 15), end: toTime(8, 30), period: Period.PERIOD_0_PASSING },
@@ -48,7 +109,7 @@ export const WeirdAssemblySchedule: any[] = [
   { start: toTime(15, 15), end: toTime(24, 0), period: Period.DONE },
 ];
 
-export const WeirdAssemblySchedule78: any[] = [
+export const WeirdAssemblySchedule78: PeriodSchedule = [
   { start: toTime(0, 0), end: toTime(7, 28), period: Period.NONE },
   { start: toTime(7, 28), end: toTime(8, 15), period: Period.PERIOD_0 },
   { start: toTime(8, 15), end: toTime(8, 30), period: Period.PERIOD_0_PASSING },
@@ -70,30 +131,10 @@ export const WeirdAssemblySchedule78: any[] = [
   { start: toTime(15, 15), end: toTime(24, 0), period: Period.DONE },
 ];
 
-export const RegularSchedule: any[] = [ // Has no small groups
-  { start: toTime(0, 0), end: toTime(7, 28), period: Period.NONE },
-  { start: toTime(7, 28), end: toTime(8, 24), period: Period.PERIOD_0 },
-  { start: toTime(8, 24), end: toTime(8, 30), period: Period.PERIOD_0_PASSING },
-  { start: toTime(8, 30), end: toTime(9, 26), period: Period.PERIOD_1 },
-  { start: toTime(9, 26), end: toTime(9, 32), period: Period.PERIOD_1_PASSING },
-  { start: toTime(9, 32), end: toTime(10, 28), period: Period.PERIOD_2 },
-  { start: toTime(10, 28), end: toTime(10, 38), period: Period.BREAK },
-  { start: toTime(10, 38), end: toTime(10, 43), period: Period.BREAK_PASSING },
-  { start: toTime(10, 43), end: toTime(11, 39), period: Period.PERIOD_3 },
-  { start: toTime(11, 39), end: toTime(12, 9), period: Period.LUNCH },
-  { start: toTime(12, 9), end: toTime(12, 14), period: Period.LUNCH_PASSING },
-  { start: toTime(12, 14), end: toTime(13, 10), period: Period.PERIOD_4 },
-  { start: toTime(13, 10), end: toTime(13, 16), period: Period.PERIOD_4_PASSING },
-  { start: toTime(13, 16), end: toTime(14, 12), period: Period.PERIOD_5 },
-  { start: toTime(14, 12), end: toTime(14, 18), period: Period.PERIOD_5_PASSING },
-  { start: toTime(14, 18), end: toTime(15, 14), period: Period.PERIOD_6 },
-  { start: toTime(15, 14), end: toTime(24, 0), period: Period.DONE },
-];
-
 // Hybrid Schedule
 
 // O is online, A is cohort A, B is cohort B
-export const HybridVirtualDay: any[] = [ // Has no small groups
+export const HybridVirtualDay: PeriodSchedule = [ // Has no small groups
   { start: toTime(0, 0), end: toTime(7, 40), period: Period.NONE },
   { start: toTime(7, 40), end: toTime(8, 20), period: Period.PERIOD_0_O },
   { start: toTime(8, 20), end: toTime(8, 25), period: Period.PERIOD_0_PASSING },
@@ -113,7 +154,7 @@ export const HybridVirtualDay: any[] = [ // Has no small groups
   { start: toTime(14, 45), end: toTime(15, 15), period: Period.PREP },
   { start: toTime(15, 15), end: toTime(24, 0), period: Period.DONE },
 ];
-export const CohortABlockOdd: any[] = [ // Has no small groups
+export const CohortABlockOdd: PeriodSchedule = [ // Has no small groups
   { start: toTime(0, 0), end: toTime(7, 40), period: Period.NONE },
   { start: toTime(7, 40), end: toTime(8, 20), period: Period.PERIOD_0_O },
   { start: toTime(8, 20), end: toTime(8, 30), period: Period.PERIOD_0_PASSING },
@@ -130,7 +171,7 @@ export const CohortABlockOdd: any[] = [ // Has no small groups
   { start: toTime(14, 40), end: toTime(15, 20), period: Period.PREP },
   { start: toTime(15, 20), end: toTime(24, 0), period: Period.DONE },
 ];
-export const CohortABlockEven: any[] = [ // Has no small groups
+export const CohortABlockEven: PeriodSchedule = [ // Has no small groups
   { start: toTime(0, 0), end: toTime(7, 40), period: Period.NONE },
   { start: toTime(7, 40), end: toTime(8, 20), period: Period.PERIOD_0_O },
   { start: toTime(8, 20), end: toTime(8, 30), period: Period.PERIOD_0_PASSING },
@@ -147,7 +188,7 @@ export const CohortABlockEven: any[] = [ // Has no small groups
   { start: toTime(14, 40), end: toTime(15, 20), period: Period.PREP },
   { start: toTime(15, 20), end: toTime(24, 0), period: Period.DONE },
 ];
-export const CohortBBlockOdd: any[] = [ // Has no small groups
+export const CohortBBlockOdd: PeriodSchedule = [ // Has no small groups
   { start: toTime(0, 0), end: toTime(7, 40), period: Period.NONE },
   { start: toTime(7, 40), end: toTime(8, 20), period: Period.PERIOD_0_O },
   { start: toTime(8, 20), end: toTime(8, 30), period: Period.PERIOD_0_PASSING },
@@ -164,7 +205,7 @@ export const CohortBBlockOdd: any[] = [ // Has no small groups
   { start: toTime(14, 40), end: toTime(15, 20), period: Period.PREP },
   { start: toTime(15, 20), end: toTime(24, 0), period: Period.DONE },
 ];
-export const CohortBBlockEven: any[] = [ // Has no small groups
+export const CohortBBlockEven: PeriodSchedule = [ // Has no small groups
   { start: toTime(0, 0), end: toTime(7, 40), period: Period.NONE },
   { start: toTime(7, 40), end: toTime(8, 20), period: Period.PERIOD_0_O },
   { start: toTime(8, 20), end: toTime(8, 30), period: Period.PERIOD_0_PASSING },
@@ -181,7 +222,7 @@ export const CohortBBlockEven: any[] = [ // Has no small groups
   { start: toTime(14, 40), end: toTime(15, 20), period: Period.PREP },
   { start: toTime(15, 20), end: toTime(24, 0), period: Period.DONE },
 ];
-export const InPersonBlockOdd: any[] = [ // Has no small groups
+export const InPersonBlockOdd: PeriodSchedule = [ // Has no small groups
   { start: toTime(0, 0), end: toTime(7, 40), period: Period.NONE },
   { start: toTime(7, 40), end: toTime(8, 20), period: Period.PERIOD_0_O },
   { start: toTime(8, 20), end: toTime(8, 30), period: Period.PERIOD_0_PASSING },
@@ -198,7 +239,7 @@ export const InPersonBlockOdd: any[] = [ // Has no small groups
   { start: toTime(14, 40), end: toTime(15, 20), period: Period.PREP },
   { start: toTime(15, 20), end: toTime(24, 0), period: Period.DONE },
 ];
-export const InPersonBlockEven: any[] = [ // Has no small groups
+export const InPersonBlockEven: PeriodSchedule = [ // Has no small groups
   { start: toTime(0, 0), end: toTime(7, 40), period: Period.NONE },
   { start: toTime(7, 40), end: toTime(8, 20), period: Period.PERIOD_0_O },
   { start: toTime(8, 20), end: toTime(8, 30), period: Period.PERIOD_0_PASSING },
@@ -226,7 +267,7 @@ export const InPersonBlockEven: any[] = [ // Has no small groups
  *
  */
 
-export const SmallGroups12: any[] = [
+export const SmallGroups12: PeriodSchedule = [
   { start: toTime(0, 0), end: toTime(7, 40), period: Period.NONE },
   { start: toTime(7, 40), end: toTime(8, 20), period: Period.PERIOD_0 },
   { start: toTime(8, 20), end: toTime(8, 25), period: Period.PERIOD_0_PASSING },
@@ -247,7 +288,7 @@ export const SmallGroups12: any[] = [
   { start: toTime(14, 45), end: toTime(15, 15), period: Period.SMALL_GROUP_P2 },
   { start: toTime(15, 15), end: toTime(24, 0), period: Period.DONE },
 ];
-export const SmallGroups34: any[] = [
+export const SmallGroups34: PeriodSchedule = [
   { start: toTime(0, 0), end: toTime(7, 40), period: Period.NONE },
   { start: toTime(7, 40), end: toTime(8, 20), period: Period.PERIOD_0 },
   { start: toTime(8, 20), end: toTime(8, 25), period: Period.PERIOD_0_PASSING },
@@ -268,7 +309,7 @@ export const SmallGroups34: any[] = [
   { start: toTime(14, 45), end: toTime(15, 15), period: Period.SMALL_GROUP_P4 },
   { start: toTime(15, 15), end: toTime(24, 0), period: Period.DONE },
 ];
-export const SmallGroups56: any[] = [
+export const SmallGroups56: PeriodSchedule = [
   { start: toTime(0, 0), end: toTime(7, 40), period: Period.NONE },
   { start: toTime(7, 40), end: toTime(8, 20), period: Period.PERIOD_0 },
   { start: toTime(8, 20), end: toTime(8, 25), period: Period.PERIOD_0_PASSING },
@@ -289,7 +330,7 @@ export const SmallGroups56: any[] = [
   { start: toTime(14, 45), end: toTime(15, 15), period: Period.SMALL_GROUP_P6 },
   { start: toTime(15, 15), end: toTime(24, 0), period: Period.DONE },
 ];
-export const SmallGroupsWellnessClubs: any[] = [
+export const SmallGroupsWellnessClubs: PeriodSchedule = [
   { start: toTime(0, 0), end: toTime(7, 40), period: Period.NONE },
   { start: toTime(7, 40), end: toTime(8, 20), period: Period.PERIOD_0 },
   { start: toTime(8, 20), end: toTime(8, 30), period: Period.PERIOD_0_PASSING },
@@ -304,7 +345,7 @@ export const SmallGroupsWellnessClubs: any[] = [
   { start: toTime(14, 35), end: toTime(15, 15), period: Period.SMALL_GROUP_CLUBS },
   { start: toTime(15, 15), end: toTime(24, 0), period: Period.DONE },
 ];
-export const SmallGroups0Clubs: any[] = [
+export const SmallGroups0Clubs: PeriodSchedule = [
   { start: toTime(0, 0), end: toTime(7, 40), period: Period.NONE },
   { start: toTime(7, 40), end: toTime(8, 20), period: Period.PERIOD_0 },
   { start: toTime(8, 20), end: toTime(8, 30), period: Period.PERIOD_0_PASSING },
@@ -322,7 +363,7 @@ export const SmallGroups0Clubs: any[] = [
 
 // End Small Group Schedule
 
-export const BlockOddSchedule: any[] = [
+export const BlockOddSchedule: PeriodSchedule = [
   { start: toTime(0, 0), end: toTime(7, 28), period: Period.NONE },
   { start: toTime(7, 28), end: toTime(8, 24), period: Period.PERIOD_0 },
   { start: toTime(8, 24), end: toTime(8, 30), period: Period.PERIOD_0_PASSING },
@@ -338,7 +379,7 @@ export const BlockOddSchedule: any[] = [
   { start: toTime(15, 13), end: toTime(24, 0), period: Period.DONE },
 ];
 
-export const BlockEvenSchedule: any[] = [
+export const BlockEvenSchedule: PeriodSchedule = [
   { start: toTime(0, 0), end: toTime(7, 28), period: Period.NONE },
   { start: toTime(7, 28), end: toTime(8, 24), period: Period.PERIOD_0 },
   { start: toTime(8, 24), end: toTime(8, 30), period: Period.PERIOD_0_PASSING },
@@ -355,7 +396,7 @@ export const BlockEvenSchedule: any[] = [
 ];
 
 /*
-export const BlockOddSchedule: any[] = [
+export const BlockOddSchedule: PeriodSchedule = [
   { start: toTime(0, 0), end: toTime(7, 45), period: Period.NONE },
   { start: toTime(7, 45), end: toTime(8, 25), period: Period.PERIOD_0 },
   { start: toTime(8, 20), end: toTime(8, 30), period: Period.PERIOD_0_PASSING },
@@ -369,7 +410,7 @@ export const BlockOddSchedule: any[] = [
   { start: toTime(14, 25), end: toTime(15, 15), period: Period.PREP },
   { start: toTime(15, 15), end: toTime(24, 0), period: Period.DONE },
 ];
-export const BlockEvenSchedule: any[] = [
+export const BlockEvenSchedule: PeriodSchedule = [
   { start: toTime(0, 0), end: toTime(7, 45), period: Period.NONE },
   { start: toTime(7, 45), end: toTime(8, 25), period: Period.PERIOD_0 },
   { start: toTime(8, 20), end: toTime(8, 30), period: Period.PERIOD_0_PASSING },
@@ -386,7 +427,7 @@ export const BlockEvenSchedule: any[] = [
 */
 
 // reverse odd block schedules
-export const ReverseBlockOddSchedule: any[] = [
+export const ReverseBlockOddSchedule: PeriodSchedule = [
   { start: toTime(0, 0), end: toTime(7, 28), period: Period.NONE },
   { start: toTime(7, 28), end: toTime(8, 24), period: Period.PERIOD_0 },
   { start: toTime(8, 24), end: toTime(8, 30), period: Period.PERIOD_0_PASSING },
@@ -401,7 +442,7 @@ export const ReverseBlockOddSchedule: any[] = [
   { start: toTime(13, 29), end: toTime(15, 13), period: Period.PERIOD_1 },
   { start: toTime(15, 13), end: toTime(24, 0), period: Period.DONE },
 ];
-export const MinimumReverseBlockOddSchedule78: any[] = [
+export const MinimumReverseBlockOddSchedule78: PeriodSchedule = [
   { start: toTime(0, 0), end: toTime(7, 28), period: Period.NONE },
   { start: toTime(7, 28), end: toTime(8, 24), period: Period.PERIOD_0 },
   { start: toTime(8, 24), end: toTime(8, 30), period: Period.PERIOD_0_PASSING },
@@ -413,7 +454,7 @@ export const MinimumReverseBlockOddSchedule78: any[] = [
 ];
 
 // special sbac 3, 1, 5 block
-export const SpecialBlockOddSchedule: any[] = [
+export const SpecialBlockOddSchedule: PeriodSchedule = [
   { start: toTime(0, 0), end: toTime(7, 28), period: Period.NONE },
   { start: toTime(7, 28), end: toTime(8, 24), period: Period.PERIOD_0 },
   { start: toTime(8, 24), end: toTime(8, 30), period: Period.PERIOD_0_PASSING },
@@ -430,7 +471,7 @@ export const SpecialBlockOddSchedule: any[] = [
 ];
 
 // special sbac 4, 2, 6 block
-export const SpecialBlockEvenSchedule: any[] = [
+export const SpecialBlockEvenSchedule: PeriodSchedule = [
   { start: toTime(0, 0), end: toTime(7, 28), period: Period.NONE },
   { start: toTime(7, 28), end: toTime(8, 24), period: Period.PERIOD_0 },
   { start: toTime(8, 24), end: toTime(8, 30), period: Period.PERIOD_0_PASSING },
@@ -446,7 +487,7 @@ export const SpecialBlockEvenSchedule: any[] = [
   { start: toTime(15, 13), end: toTime(24, 0), period: Period.DONE },
 ];
 
-export const AssemblySchedule: any[] = [
+export const AssemblySchedule: PeriodSchedule = [
   { start: toTime(0, 0), end: toTime(7, 28), period: Period.NONE },
   { start: toTime(7, 28), end: toTime(8, 15), period: Period.PERIOD_0 },
   { start: toTime(8, 15), end: toTime(8, 30), period: Period.PERIOD_0_PASSING },
@@ -467,27 +508,7 @@ export const AssemblySchedule: any[] = [
   { start: toTime(15, 15), end: toTime(24, 0), period: Period.DONE },
 ];
 
-export const RegularSchedule78: any[] = [
-  { start: toTime(0, 0), end: toTime(7, 28), period: Period.NONE },
-  { start: toTime(7, 28), end: toTime(8, 24), period: Period.PERIOD_0 },
-  { start: toTime(8, 24), end: toTime(8, 30), period: Period.PERIOD_0_PASSING },
-  { start: toTime(8, 30), end: toTime(9, 26), period: Period.PERIOD_1 },
-  { start: toTime(9, 26), end: toTime(9, 32), period: Period.PERIOD_1_PASSING },
-  { start: toTime(9, 32), end: toTime(10, 28), period: Period.PERIOD_2 },
-  { start: toTime(10, 28), end: toTime(10, 38), period: Period.BREAK },
-  { start: toTime(10, 38), end: toTime(10, 43), period: Period.BREAK_PASSING },
-  { start: toTime(10, 43), end: toTime(11, 39), period: Period.PERIOD_3 },
-  { start: toTime(11, 39), end: toTime(11, 45), period: Period.PERIOD_3_PASSING },
-  { start: toTime(11, 45), end: toTime(12, 41), period: Period.PERIOD_4 },
-  { start: toTime(12, 41), end: toTime(13, 11), period: Period.LUNCH },
-  { start: toTime(13, 11), end: toTime(13, 16), period: Period.LUNCH_PASSING },
-  { start: toTime(13, 16), end: toTime(14, 12), period: Period.PERIOD_5 },
-  { start: toTime(14, 12), end: toTime(14, 18), period: Period.PERIOD_5_PASSING },
-  { start: toTime(14, 18), end: toTime(15, 14), period: Period.PERIOD_6 },
-  { start: toTime(15, 14), end: toTime(24, 0), period: Period.DONE },
-];
-
-export const BlockOddSchedule78: any[] = [
+export const BlockOddSchedule78: PeriodSchedule = [
   { start: toTime(0, 0), end: toTime(7, 28), period: Period.NONE },
   { start: toTime(7, 28), end: toTime(8, 24), period: Period.PERIOD_0 },
   { start: toTime(8, 24), end: toTime(8, 30), period: Period.PERIOD_0_PASSING },
@@ -503,7 +524,7 @@ export const BlockOddSchedule78: any[] = [
   { start: toTime(15, 13), end: toTime(24, 0), period: Period.DONE },
 ];
 
-export const BlockEvenSchedule78: any[] = [
+export const BlockEvenSchedule78: PeriodSchedule = [
   { start: toTime(0, 0), end: toTime(7, 28), period: Period.NONE },
   { start: toTime(7, 28), end: toTime(8, 24), period: Period.PERIOD_0 },
   { start: toTime(8, 24), end: toTime(8, 30), period: Period.PERIOD_0_PASSING },
@@ -519,7 +540,7 @@ export const BlockEvenSchedule78: any[] = [
   { start: toTime(15, 13), end: toTime(24, 0), period: Period.DONE },
 ];
 
-export const HSBlockOddScheduleFor78: any[] = [
+export const HSBlockOddScheduleFor78: PeriodSchedule = [
   { start: toTime(0, 0), end: toTime(7, 28), period: Period.NONE },
   { start: toTime(7, 28), end: toTime(8, 24), period: Period.PERIOD_0 },
   { start: toTime(8, 24), end: toTime(8, 30), period: Period.PERIOD_0_PASSING },
@@ -535,7 +556,7 @@ export const HSBlockOddScheduleFor78: any[] = [
   { start: toTime(15, 13), end: toTime(24, 0), period: Period.DONE },
 ];
 
-export const HSBlockEvenScheduleFor78: any[] = [
+export const HSBlockEvenScheduleFor78: PeriodSchedule = [
   { start: toTime(0, 0), end: toTime(7, 28), period: Period.NONE },
   { start: toTime(7, 28), end: toTime(8, 24), period: Period.PERIOD_0 },
   { start: toTime(8, 24), end: toTime(8, 30), period: Period.PERIOD_0_PASSING },
@@ -552,7 +573,7 @@ export const HSBlockEvenScheduleFor78: any[] = [
 ];
 
 // special sbac 3, 1, 5 block for 7/8
-export const HSSpecialBlockOddScheduleFor78: any[] = [
+export const HSSpecialBlockOddScheduleFor78: PeriodSchedule = [
   { start: toTime(0, 0), end: toTime(7, 28), period: Period.NONE },
   { start: toTime(7, 28), end: toTime(8, 24), period: Period.PERIOD_0 },
   { start: toTime(8, 24), end: toTime(8, 30), period: Period.PERIOD_0_PASSING },
@@ -569,7 +590,7 @@ export const HSSpecialBlockOddScheduleFor78: any[] = [
 ];
 
 // special sbac 4, 2, 6 block for 7/8
-export const HSSpecialBlockEvenScheduleFor78: any[] = [
+export const HSSpecialBlockEvenScheduleFor78: PeriodSchedule = [
   { start: toTime(0, 0), end: toTime(7, 28), period: Period.NONE },
   { start: toTime(7, 28), end: toTime(8, 24), period: Period.PERIOD_0 },
   { start: toTime(8, 24), end: toTime(8, 30), period: Period.PERIOD_0_PASSING },
@@ -587,7 +608,7 @@ export const HSSpecialBlockEvenScheduleFor78: any[] = [
 
 /*
 //special sbac 3, 1, 5, block for 7/8
-export const SpecialBlockOddSchedule78: any[] = [
+export const SpecialBlockOddSchedule78: PeriodSchedule = [
   { start: toTime(0, 0), end: toTime(7, 28), period: Period.NONE },
   { start: toTime(7, 28), end: toTime(8, 24), period: Period.PERIOD_0 },
   { start: toTime(8, 24), end: toTime(8, 30), period: Period.PERIOD_0_PASSING },
@@ -604,7 +625,7 @@ export const SpecialBlockOddSchedule78: any[] = [
 ];
 
 //special sbac 4, 2, 6 block for 7/8
-export const SpecialBlockEvenSchedule78: any[] = [
+export const SpecialBlockEvenSchedule78: PeriodSchedule = [
   { start: toTime(0, 0), end: toTime(7, 28), period: Period.NONE },
   { start: toTime(7, 28), end: toTime(8, 24), period: Period.PERIOD_0 },
   { start: toTime(8, 24), end: toTime(8, 30), period: Period.PERIOD_0_PASSING },
@@ -621,7 +642,7 @@ export const SpecialBlockEvenSchedule78: any[] = [
 ];
 */
 
-export const AssemblySchedule7: any[] = [
+export const AssemblySchedule7: PeriodSchedule = [
   { start: toTime(0, 0), end: toTime(7, 28), period: Period.NONE },
   { start: toTime(7, 28), end: toTime(8, 15), period: Period.PERIOD_0 },
   { start: toTime(8, 15), end: toTime(8, 30), period: Period.PERIOD_0_PASSING },
@@ -642,7 +663,7 @@ export const AssemblySchedule7: any[] = [
   { start: toTime(15, 15), end: toTime(24, 0), period: Period.DONE },
 ];
 
-export const AssemblySchedule8: any[] = [
+export const AssemblySchedule8: PeriodSchedule = [
   { start: toTime(0, 0), end: toTime(7, 28), period: Period.NONE },
   { start: toTime(7, 28), end: toTime(8, 15), period: Period.PERIOD_0 },
   { start: toTime(8, 15), end: toTime(8, 30), period: Period.PERIOD_0_PASSING },
@@ -663,7 +684,7 @@ export const AssemblySchedule8: any[] = [
   { start: toTime(15, 15), end: toTime(24, 0), period: Period.DONE },
 ];
 
-export const EarlyReleaseSchedule78: any[] = [
+export const EarlyReleaseSchedule78: PeriodSchedule = [
   { start: toTime(0, 0), end: toTime(7, 28), period: Period.NONE },
   { start: toTime(7, 28), end: toTime(8, 24), period: Period.PERIOD_0 },
   { start: toTime(8, 24), end: toTime(8, 30), period: Period.PERIOD_0_PASSING },
@@ -686,7 +707,7 @@ export const EarlyReleaseSchedule78: any[] = [
 
 /*
 
-export const PreFinals3264Schedule: any[] = [
+export const PreFinals3264Schedule: PeriodSchedule = [
   { start: toTime(0, 0), end: toTime(8, 30), period: Period.NONE },
   { start: toTime(8, 30), end: toTime(10, 35), period: Period.PERIOD_3 },
   { start: toTime(10, 35), end: toTime(10, 45), period: Period.BREAK },
@@ -700,7 +721,7 @@ export const PreFinals3264Schedule: any[] = [
   { start: toTime(15, 13), end: toTime(24, 0), period: Period.DONE },
 ];
 
-export const PreFinals2156Schedule: any[] = [
+export const PreFinals2156Schedule: PeriodSchedule = [
   { start: toTime(0, 0), end: toTime(8, 30), period: Period.NONE },
   { start: toTime(8, 30), end: toTime(10, 35), period: Period.PERIOD_2 },
   { start: toTime(10, 35), end: toTime(10, 45), period: Period.BREAK },
@@ -714,7 +735,7 @@ export const PreFinals2156Schedule: any[] = [
   { start: toTime(15, 13), end: toTime(24, 0), period: Period.DONE },
 ];
 
-export const PreFinals1345Schedule: any[] = [
+export const PreFinals1345Schedule: PeriodSchedule = [
   { start: toTime(0, 0), end: toTime(8, 30), period: Period.NONE },
   { start: toTime(8, 30), end: toTime(10, 35), period: Period.PERIOD_1 },
   { start: toTime(10, 35), end: toTime(10, 45), period: Period.BREAK },
@@ -730,7 +751,7 @@ export const PreFinals1345Schedule: any[] = [
 
 */
 
-export const FinalAssemblySchedule78: any[] = [
+export const FinalAssemblySchedule78: PeriodSchedule = [
   { start: toTime(0, 0), end: toTime(7, 28), period: Period.NONE },
   { start: toTime(7, 28), end: toTime(8, 15), period: Period.PERIOD_0 },
   { start: toTime(8, 15), end: toTime(8, 30), period: Period.PERIOD_0_PASSING },
@@ -751,7 +772,7 @@ export const FinalAssemblySchedule78: any[] = [
   { start: toTime(15, 15), end: toTime(24, 0), period: Period.DONE },
 ];
 
-export const FinalAssemblySchedule12: any[] = [
+export const FinalAssemblySchedule12: PeriodSchedule = [
   { start: toTime(0, 0), end: toTime(7, 28), period: Period.NONE },
   { start: toTime(7, 28), end: toTime(8, 15), period: Period.PERIOD_0 },
   { start: toTime(8, 15), end: toTime(8, 30), period: Period.PERIOD_0_PASSING },
@@ -766,7 +787,7 @@ export const FinalAssemblySchedule12: any[] = [
   { start: toTime(12, 33), end: toTime(24, 0), period: Period.DONE },
 ];
 
-export const MinimumSchedule: any[] = [
+export const MinimumSchedule: PeriodSchedule = [
   { start: toTime(0, 0), end: toTime(7, 28), period: Period.NONE },
   { start: toTime(7, 28), end: toTime(8, 23), period: Period.PERIOD_0 },
   { start: toTime(8, 23), end: toTime(8, 30), period: Period.PERIOD_0_PASSING },
@@ -786,7 +807,7 @@ export const MinimumSchedule: any[] = [
 ];
 
 // finals for Spring 2022
-export const Finals25Schedule: any[] = [
+export const Finals25Schedule: PeriodSchedule = [
   { start: toTime(0, 0), end: toTime(8, 30), period: Period.NONE },
   { start: toTime(8, 30), end: toTime(10, 35), period: Period.PERIOD_2 },
   { start: toTime(10, 35), end: toTime(10, 54), period: Period.BREAK },
@@ -795,7 +816,7 @@ export const Finals25Schedule: any[] = [
   { start: toTime(13, 5), end: toTime(24, 0), period: Period.NONE },
 ];
 
-export const Finals16Schedule: any[] = [
+export const Finals16Schedule: PeriodSchedule = [
   { start: toTime(0, 0), end: toTime(8, 30), period: Period.NONE },
   { start: toTime(8, 30), end: toTime(10, 35), period: Period.PERIOD_1 },
   { start: toTime(10, 35), end: toTime(10, 54), period: Period.BREAK },
@@ -804,7 +825,7 @@ export const Finals16Schedule: any[] = [
   { start: toTime(13, 5), end: toTime(24, 0), period: Period.NONE },
 ];
 
-export const Finals26Schedule: any[] = [
+export const Finals26Schedule: PeriodSchedule = [
   { start: toTime(0, 0), end: toTime(8, 30), period: Period.NONE },
   { start: toTime(8, 30), end: toTime(10, 35), period: Period.PERIOD_2 },
   { start: toTime(10, 35), end: toTime(10, 54), period: Period.BREAK },
@@ -813,7 +834,7 @@ export const Finals26Schedule: any[] = [
   { start: toTime(13, 5), end: toTime(24, 0), period: Period.NONE },
 ];
 
-export const Finals15Schedule: any[] = [
+export const Finals15Schedule: PeriodSchedule = [
   { start: toTime(0, 0), end: toTime(8, 30), period: Period.NONE },
   { start: toTime(8, 30), end: toTime(10, 35), period: Period.PERIOD_1 },
   { start: toTime(10, 35), end: toTime(10, 54), period: Period.BREAK },
@@ -822,7 +843,7 @@ export const Finals15Schedule: any[] = [
   { start: toTime(13, 5), end: toTime(24, 0), period: Period.NONE },
 ];
 
-export const Finals34Schedule: any[] = [
+export const Finals34Schedule: PeriodSchedule = [
   { start: toTime(0, 0), end: toTime(8, 30), period: Period.NONE },
   { start: toTime(8, 30), end: toTime(10, 35), period: Period.PERIOD_3 },
   { start: toTime(10, 35), end: toTime(10, 54), period: Period.BREAK },
@@ -837,25 +858,25 @@ export const Finals34Schedule: any[] = [
  * Senior End of the Year
  */
 
- export const SeniorCelebration: any[] = [
+ export const SeniorCelebration: PeriodSchedule = [
   { start: toTime(0, 0), end: toTime(9, 0), period: Period.NONE },
   { start: toTime(9, 0), end: toTime(13, 0), period: Period.SENIOR_CELIBRATION },
   { start: toTime(13, 0), end: toTime(24, 0), period: Period.NONE },
  ];
 
- export const GradRehersal: any[] = [
+ export const GradRehersal: PeriodSchedule = [
   { start: toTime(0, 0), end: toTime(9, 0), period: Period.NONE },
   { start: toTime(9, 0), end: toTime(13, 0), period: Period.GRAD_REHERSAL },
   { start: toTime(13, 0), end: toTime(24, 0), period: Period.NONE },
  ];
 
- export const Graduation: any[] = [
+ export const Graduation: PeriodSchedule = [
   { start: toTime(0, 0), end: toTime(9, 0), period: Period.NONE },
   { start: toTime(9, 0), end: toTime(13, 0), period: Period.GRADUATION },
   { start: toTime(13, 0), end: toTime(24, 0), period: Period.NONE },
  ];
 
-export const SummerSchoolSchedule: any[] = [
+export const SummerSchoolSchedule: PeriodSchedule = [
   { start: toTime(0, 0), end: toTime(7, 39), period: Period.NONE },
   { start: toTime(7, 39), end: toTime(7, 45), period: Period.PERIOD_0_PASSING },
   { start: toTime(7, 45), end: toTime(10, 0), period: Period.PERIOD_1 },
@@ -865,7 +886,7 @@ export const SummerSchoolSchedule: any[] = [
   { start: toTime(13, 0), end: toTime(24, 0), period: Period.DONE },
 ];
 
-export const HSBackToSchoolNight: any[] = [
+export const HSBackToSchoolNight: PeriodSchedule = [
   { start: toTime(0, 0), end: toTime(18, 0), period: Period.EVENTNOPE },
   { start: toTime(18, 0), end: toTime(18, 45), period: Period.ASSEMBLY },
   { start: toTime(18, 45), end: toTime(18, 55), period: Period.ASSEMBLY_PASSING },
@@ -897,7 +918,7 @@ export const HSBackToSchoolNight: any[] = [
  *
  *
  */
-export const ElementaryRegularSchedule: any[] = [  // Default Schedule (No Recess)
+export const ElementaryRegularSchedule: PeriodSchedule = [  // Default Schedule (No Recess)
   { start: toTime(0, 0), end: toTime(8, 0), period: Period.NONE },
   { start: toTime(8, 0), end: toTime(8, 10), period: Period.ARRIVAL_A },
   { start: toTime(8, 10), end: toTime(11, 5), period: Period.GROUP_A },
@@ -906,7 +927,7 @@ export const ElementaryRegularSchedule: any[] = [  // Default Schedule (No Reces
   { start: toTime(12, 5), end: toTime(15, 0), period: Period.GROUP_B },
   { start: toTime(15, 0), end: toTime(24, 0), period: Period.DONE },
 ];
-export const ElementaryRegularSchedule0: any[] = [  // Kindergarden and TK
+export const ElementaryRegularSchedule0: PeriodSchedule = [  // Kindergarden and TK
   { start: toTime(0, 0), end: toTime(8, 0), period: Period.NONE },
   { start: toTime(8, 0), end: toTime(8, 10), period: Period.ARRIVAL_A },
   { start: toTime(8, 10), end: toTime(9, 10), period: Period.GROUP_A },
@@ -919,7 +940,7 @@ export const ElementaryRegularSchedule0: any[] = [  // Kindergarden and TK
   { start: toTime(13, 35), end: toTime(15, 0), period: Period.GROUP_B },
   { start: toTime(15, 0), end: toTime(24, 0), period: Period.DONE },
 ];
-export const ElementaryRegularSchedule12: any[] = [
+export const ElementaryRegularSchedule12: PeriodSchedule = [
   { start: toTime(0, 0), end: toTime(8, 0), period: Period.NONE },
   { start: toTime(8, 0), end: toTime(8, 10), period: Period.ARRIVAL_A },
   { start: toTime(8, 10), end: toTime(9, 0), period: Period.GROUP_A },
@@ -932,7 +953,7 @@ export const ElementaryRegularSchedule12: any[] = [
   { start: toTime(13, 20), end: toTime(15, 0), period: Period.GROUP_B },
   { start: toTime(15, 0), end: toTime(24, 0), period: Period.DONE },
 ];
-export const ElementaryRegularSchedule34: any[] = [
+export const ElementaryRegularSchedule34: PeriodSchedule = [
   { start: toTime(0, 0), end: toTime(8, 0), period: Period.NONE },
   { start: toTime(8, 0), end: toTime(8, 10), period: Period.ARRIVAL_A },
   { start: toTime(8, 10), end: toTime(9, 25), period: Period.GROUP_A },
@@ -945,7 +966,7 @@ export const ElementaryRegularSchedule34: any[] = [
   { start: toTime(13, 45), end: toTime(15, 0), period: Period.GROUP_B },
   { start: toTime(15, 0), end: toTime(24, 0), period: Period.DONE },
 ];
-export const ElementaryRegularSchedule56: any[] = [
+export const ElementaryRegularSchedule56: PeriodSchedule = [
   { start: toTime(0, 0), end: toTime(8, 0), period: Period.NONE },
   { start: toTime(8, 0), end: toTime(8, 10), period: Period.ARRIVAL_A },
   { start: toTime(8, 10), end: toTime(9, 50), period: Period.GROUP_A },

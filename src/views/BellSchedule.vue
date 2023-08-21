@@ -198,17 +198,13 @@ export default class Home extends Vue {
   private filter = periodsFilter;
 
   public updateStats() {
-    // console.log(plusDays);
-
     const currentDate = DateTime.local().setZone('America/Los_Angeles').plus(Duration.fromMillis((this.daysShifted + plusDays) * 86400000 + plusMins * 60 * 1000));
     this.minutes = currentDate.minute + (currentDate.hour * 60);
 
     this.grade = this.$store.state.settings.grade;
     this.schedule = getScheduleFromDay(currentDate.month, currentDate.day, currentDate.year, currentDate.weekday, this.grade);
     this.currentPeriod = getPeriod(this.minutes, this.schedule, this.grade);
-    if (this.arrowsUsed) {
-      this.date = new Date(new Date().valueOf() + this.daysShifted * 86400000);
-    }
+    if (this.arrowsUsed) this.date = new Date(new Date().valueOf() + this.daysShifted * 86400000);
     this.arrowsUsed = false;
     this.daysShifted = Math.ceil((this.date.valueOf() - new Date().valueOf()) / 86400000);
   }
@@ -218,11 +214,11 @@ export default class Home extends Vue {
   }
 
   getGreeting() {
-    if (this.minutes <= 330) { return 'Good late evening.'; }
-    else if (this.minutes <= 720) { return 'Good morning.'; }
-    else if (this.minutes <= 1050) { return 'Good afternoon.'; }
-    else if (this.minutes <= 1440) { return 'Good evening.'; }
-    else { return 'Hello, student.'; }
+    if (this.minutes <= 330) return 'Good late evening.'
+    else if (this.minutes <= 720) return 'Good morning.'
+    else if (this.minutes <= 1050) return 'Good afternoon.'
+    else if (this.minutes <= 1440) return 'Good evening.'
+    else return 'Hello, student.'
   }
 
   getCurrentShiftMsg() {
@@ -231,13 +227,13 @@ export default class Home extends Vue {
     const today = DateTime.local().setZone('America/Los_Angeles');
     const shifted = today.plus(Duration.fromMillis(this.daysShifted * 86400000));
 
-    if (this.daysShifted === 0) { return `Today (${shifted.month}/${shifted.day})`; }
-    else if (this.daysShifted === 1) { return `Tomorrow (${shifted.month}/${shifted.day})`; }
-    else if (this.daysShifted === -1) { return `Yesterday (${shifted.month}/${shifted.day})`; }
-    else if (today.weekNumber - 1 === shifted.weekNumber) { return `last ${shifted.weekdayLong} (${shifted.month}/${shifted.day})`; }
-    else if (today.weekNumber === shifted.weekNumber) { return `this ${shifted.weekdayLong} (${shifted.month}/${shifted.day})`; }
-    else if (today.weekNumber + 1 === shifted.weekNumber) { return `next ${shifted.weekdayLong} (${shifted.month}/${shifted.day})`; }
-    else { return `${shifted.monthShort} ${shifted.day}`; }
+    if (this.daysShifted === 0) return `Today (${shifted.month}/${shifted.day})`
+    else if (this.daysShifted === 1) return `Tomorrow (${shifted.month}/${shifted.day})`
+    else if (this.daysShifted === -1) return `Yesterday (${shifted.month}/${shifted.day})`
+    else if (today.weekNumber - 1 === shifted.weekNumber) return `last ${shifted.weekdayLong} (${shifted.month}/${shifted.day})`
+    else if (today.weekNumber === shifted.weekNumber) return `this ${shifted.weekdayLong} (${shifted.month}/${shifted.day})`
+    else if (today.weekNumber + 1 === shifted.weekNumber) return `next ${shifted.weekdayLong} (${shifted.month}/${shifted.day})`
+    else return `${shifted.monthShort} ${shifted.day}`
   }
 
   compareDates(first: Date, second: Date) {
@@ -261,7 +257,7 @@ export default class Home extends Vue {
     };
   }
 
-  updateShift(shiftBy: number) {
+  updateShift(shiftBy: number): void {
     this.daysShifted += shiftBy;
     this.arrowsUsed = true;
     this.updateStats();
