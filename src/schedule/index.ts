@@ -28,12 +28,12 @@ export function getCurrentDate(): any {
   };
 }
 
-const tgBreak: MDYDate[] = [new MDYDate(11, 21, 2022), new MDYDate(11, 25, 2022)];
-const winterBreak: MDYDate[] = [new MDYDate(12, 19, 2022), new MDYDate(1, 3, 2023)];
-const springBreak: MDYDate[] = [new MDYDate(4, 3, 2023), new MDYDate(4, 7, 2023)]; // Please don't ever delete this, just comment it out if you have to
-const summerBreak: MDYDate[] = [new MDYDate(6, 3, 2022), new MDYDate(8, 14, 2022)];
+const tgBreak: MDYDate[] = [new MDYDate(11, 20, 2023), new MDYDate(11, 24, 2023)];
+const winterBreak: MDYDate[] = [new MDYDate(12, 21, 2023), new MDYDate(1, 5, 2024)];
+const springBreak: MDYDate[] = [new MDYDate(4, 1, 2024), new MDYDate(4, 5, 2024)]; // Please don't ever delete this, just comment it out if you have to
+const summerBreak: MDYDate[] = [new MDYDate(6, 7, 2024), new MDYDate(8, 14, 2024)];
 
-const breaks: any[] = [tgBreak, winterBreak, springBreak, summerBreak];
+const breaks: Array<MDYDate[]> = [tgBreak, winterBreak, springBreak, summerBreak];
 
 const summerSchool: [MDYDate, MDYDate] = [new MDYDate(6, 14, 2021), new MDYDate(7, 16, 2021)];
 const blockSwitch: [MDYDate, MDYDate] = [new MDYDate(11, 13, 2022), new MDYDate(2, 18, 2023)];
