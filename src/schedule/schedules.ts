@@ -109,7 +109,7 @@ export const PilotBlockScheduleWednesday: PeriodSchedule = [
   { start: toTime(11, 19), end: toTime(12, 31), period: Period.PERIOD_4 },
   { start: toTime(12, 31), end: toTime(1, 6), period: Period.LUNCH },
   { start: toTime(1, 6), end: toTime(1, 16), period: Period.LUNCH_PASSING },
-  { start: toTime(1, 16), end: toTime(1, 51), period: Period.STEP_EVEN }, 
+  { start: toTime(1, 16), end: toTime(1, 51), period: Period.STEP_EVEN },
   { start: toTime(1, 51), end: toTime(2, 1), period: Period.STEP_PASSING },
   { start: toTime(2, 1), end: toTime(3, 13), period: Period.PERIOD_6 },
 ]
@@ -126,7 +126,7 @@ export const PilotBlockScheduleThursday: PeriodSchedule = [
   { start: toTime(11, 19), end: toTime(12, 31), period: Period.PERIOD_5 },
   { start: toTime(12, 31), end: toTime(1, 6), period: Period.LUNCH },
   { start: toTime(1, 6), end: toTime(1, 16), period: Period.LUNCH_PASSING },
-  { start: toTime(1, 16), end: toTime(1, 51), period: Period.STEP_EVEN }, 
+  { start: toTime(1, 16), end: toTime(1, 51), period: Period.STEP_EVEN },
   { start: toTime(1, 51), end: toTime(2, 1), period: Period.STEP_PASSING },
   { start: toTime(2, 1), end: toTime(3, 13), period: Period.PERIOD_6 },
 ]
@@ -720,8 +720,8 @@ export const AssemblySchedule8: PeriodSchedule = [
   { start: toTime(8, 15), end: toTime(8, 30), period: Period.PERIOD_0_PASSING },
   { start: toTime(8, 30), end: toTime(9, 18), period: Period.PERIOD_1 },
   { start: toTime(9, 18), end: toTime(9, 24), period: Period.PERIOD_1_PASSING },
-  { start: toTime(9, 24), end: toTime(10, 12), period: Period.PERIOD_2 },
-  { start: toTime(10, 12), end: toTime(11, 0), period: Period.ASSEMBLY },
+  { start: toTime(9, 24), end: toTime(10, 12), period: Period.ASSEMBLY },
+  { start: toTime(10, 12), end: toTime(11, 0), period: Period.PERIOD_2 },
   { start: toTime(11, 0), end: toTime(11, 9), period: Period.BREAK },
   { start: toTime(11, 9), end: toTime(11, 15), period: Period.BREAK_PASSING },
   { start: toTime(11, 15), end: toTime(12, 3), period: Period.PERIOD_3 },
