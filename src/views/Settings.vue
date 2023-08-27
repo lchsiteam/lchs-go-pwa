@@ -8,8 +8,9 @@
           <span class='sr-desc'>Change which grade is used for calculating schedules</span>
         </div>
         <div class='sr-option'>
-          <select v-model="grade" @change="updateGrade()" class = "grade-select">
-            <option v-for="grade in allGrades" :key="grade" :value="grade" class = "grade-select-item">{{strGrade(grade)}}</option>
+          <select v-model="grade" @change="updateGrade()" class="grade-select">
+            <option v-for="grade in allGrades" :key="grade" :value="grade" class="grade-select-item">{{ strGrade(grade) }}
+            </option>
           </select>
         </div>
       </div>
@@ -21,9 +22,9 @@
         <div class="sr-option">
           <div class="ex-selector">
             <div class="ex-selector-option" @click="notifyMe();"
-              :class="{selected: this.$store.state.settings.notificationsOn}">Enable</div>
+              :class="{ selected: this.$store.state.settings.notificationsOn }">Enable</div>
             <div class="ex-selector-option" @click="updateOptionBL('notificationsOn', false); showOff()"
-              :class="{selected: !(this.$store.state.settings.notificationsOn)}">Disable</div>
+              :class="{ selected: !(this.$store.state.settings.notificationsOn) }">Disable</div>
           </div>
         </div>
         <div class="sr-option" v-if='this.$store.state.settings.notificationsOn'>
@@ -39,8 +40,9 @@
               <span class='sr-desc'>How many minutes before the start of a period should we notify you?</span>
             </div>
             <div class='sr-option'>
-              <select v-model="startTimeAmount" @change="updateStartTime()" class = "grade-select">
-                <option v-for="time in allTimes" :key="time" :value="time" class = "grade-select-item">{{strTime(time)}}</option>
+              <select v-model="startTimeAmount" @change="updateStartTime()" class="grade-select">
+                <option v-for="time in allTimes" :key="time" :value="time" class="grade-select-item">{{ strTime(time) }}
+                </option>
               </select>
             </div>
           </div>
@@ -50,52 +52,57 @@
               <span class='sr-desc'>How many minutes before the end of a period should we notify you?</span>
             </div>
             <div class='sr-option'>
-              <select v-model="endTimeAmount" @change="updateEndTime()" class = "grade-select">
-                <option v-for="time in allTimes" :key="time" :value="time" class = "grade-select-item">{{strTime(time)}}</option>
+              <select v-model="endTimeAmount" @change="updateEndTime()" class="grade-select">
+                <option v-for="time in allTimes" :key="time" :value="time" class="grade-select-item">{{ strTime(time) }}
+                </option>
               </select>
             </div>
           </div>
           <div class="settings-row">
             <div class="sr-head">
               <b class="sr-title">Display Zero Period</b>
-              <span class="sr-desc">Enable or disable notifications for zero period. (Disable this if you don't have a zero period)</span>
+              <span class="sr-desc">Enable or disable notifications for zero period. (Disable this if you don't have a
+                zero period)</span>
             </div>
             <div class="sr-option">
               <div class="ex-selector">
                 <div class="ex-selector-option" @click="updateOptionBL('zeroEnabled', true)"
-                  :class="{selected: this.$store.state.settings.zeroEnabled}">Notify for zero period</div>
+                  :class="{ selected: this.$store.state.settings.zeroEnabled }">Notify for zero period</div>
                 <div class="ex-selector-option" @click="updateOptionBL('zeroEnabled', false)"
-                  :class="{selected: !this.$store.state.settings.zeroEnabled}">Do not notify for zero period</div>
+                  :class="{ selected: !this.$store.state.settings.zeroEnabled }">Do not notify for zero period</div>
               </div>
             </div>
           </div>
           <div class="settings-row">
             <div class="sr-head">
               <b class="sr-title">Display 6th Period</b>
-              <span class="sr-desc">Enable or disable notifications for 6th period. (Disable this if you don't have a 6th period)</span>
+              <span class="sr-desc">Enable or disable notifications for 6th period. (Disable this if you don't have a 6th
+                period)</span>
             </div>
             <div class="sr-option">
               <div class="ex-selector">
                 <div class="ex-selector-option" @click="updateOptionBL('sixthEnabled', true)"
-                  :class="{selected: this.$store.state.settings.sixthEnabled}">Notify for 6th period</div>
+                  :class="{ selected: this.$store.state.settings.sixthEnabled }">Notify for 6th period</div>
                 <div class="ex-selector-option" @click="updateOptionBL('sixthEnabled', false)"
-                  :class="{selected: !this.$store.state.settings.sixthEnabled}">Do not notify for 6th period</div>
+                  :class="{ selected: !this.$store.state.settings.sixthEnabled }">Do not notify for 6th period</div>
               </div>
             </div>
           </div>
           <div class="settings-row">
             <div class="sr-head">
               <b class="sr-title">Enable Notifications For Start OR End of Period</b>
-              <span class="sr-desc">Choose if you want notifications for both the start and end of a period, or just one of them. (If you don't want notifications at all, you can disable them above)</span>
+              <span class="sr-desc">Choose if you want notifications for both the start and end of a period, or just one
+                of them. (If you don't want notifications at all, you can disable them above)</span>
             </div>
             <div class="sr-option">
               <div class="ex-selector">
                 <div class="ex-selector-option" @click="updateOptionBL('startorend', 'both')"
-                  :class="{selected: (this.$store.state.settings.startorend=='both')}">Both</div>
+                  :class="{ selected: (this.$store.state.settings.startorend == 'both') }">Both</div>
                 <div class="ex-selector-option" @click="updateOptionBL('startorend', 'start')"
-                  :class="{selected: (this.$store.state.settings.startorend=='start')}">Notify at start of period</div>
+                  :class="{ selected: (this.$store.state.settings.startorend == 'start') }">Notify at start of period
+                </div>
                 <div class="ex-selector-option" @click="updateOptionBL('startorend', 'end')"
-                  :class="{selected: (this.$store.state.settings.startorend=='end')}">Notify at end of period</div>
+                  :class="{ selected: (this.$store.state.settings.startorend == 'end') }">Notify at end of period</div>
               </div>
             </div>
           </div>
@@ -109,9 +116,9 @@
         <div class="sr-option">
           <div class="ex-selector">
             <div class="ex-selector-option" @click="updateOptionBL('useMilitaryTime', false)"
-              :class="{selected: !this.$store.state.settings.useMilitaryTime}">12h</div>
+              :class="{ selected: !this.$store.state.settings.useMilitaryTime }">12h</div>
             <div class="ex-selector-option" @click="updateOptionBL('useMilitaryTime', true)"
-              :class="{selected: this.$store.state.settings.useMilitaryTime}">24h</div>
+              :class="{ selected: this.$store.state.settings.useMilitaryTime }">24h</div>
           </div>
         </div>
       </div>
@@ -123,9 +130,9 @@
         <div class="sr-option">
           <div class="ex-selector">
             <div class="ex-selector-option" @click="updateOptionBL('enableThemeAnimations', true)"
-              :class="{selected: this.$store.state.settings.enableThemeAnimations}">Enable</div>
+              :class="{ selected: this.$store.state.settings.enableThemeAnimations }">Enable</div>
             <div class="ex-selector-option" @click="updateOptionBL('enableThemeAnimations', false)"
-              :class="{selected: !this.$store.state.settings.enableThemeAnimations}">Disable</div>
+              :class="{ selected: !this.$store.state.settings.enableThemeAnimations }">Disable</div>
           </div>
         </div>
       </div>
@@ -137,9 +144,9 @@
         <div class="sr-option">
           <div class="ex-selector">
             <div class="ex-selector-option" @click="updateOptionBL('enableRadialGradient', true)"
-              :class="{selected: this.$store.state.settings.enableRadialGradient}">Linear</div>
+              :class="{ selected: this.$store.state.settings.enableRadialGradient }">Linear</div>
             <div class="ex-selector-option" @click="updateOptionBL('enableRadialGradient', false)"
-              :class="{selected: !this.$store.state.settings.enableRadialGradient}">Radial</div>
+              :class="{ selected: !this.$store.state.settings.enableRadialGradient }">Radial</div>
           </div>
         </div>
       </div>
@@ -151,9 +158,9 @@
         <div class="sr-option">
           <div class="ex-selector">
             <div class="ex-selector-option" @click="updateOptionBL('enableAnimations', true)"
-              :class="{selected: this.$store.state.settings.enableAnimations}">Enable</div>
+              :class="{ selected: this.$store.state.settings.enableAnimations }">Enable</div>
             <div class="ex-selector-option" @click="updateOptionBL('enableAnimations', false)"
-              :class="{selected: !this.$store.state.settings.enableAnimations}">Disable</div>
+              :class="{ selected: !this.$store.state.settings.enableAnimations }">Disable</div>
           </div>
         </div>
       </div>
@@ -165,9 +172,9 @@
         <div class="sr-option">
           <div class="ex-selector">
             <div class="ex-selector-option" @click="updateOptionBL('showExtraPeriods', true)"
-              :class="{selected: this.$store.state.settings.showExtraPeriods}">Show</div>
+              :class="{ selected: this.$store.state.settings.showExtraPeriods }">Show</div>
             <div class="ex-selector-option" @click="updateOptionBL('showExtraPeriods', false)"
-              :class="{selected: !this.$store.state.settings.showExtraPeriods}">Hide</div>
+              :class="{ selected: !this.$store.state.settings.showExtraPeriods }">Hide</div>
           </div>
         </div>
       </div>
@@ -178,7 +185,9 @@
         </div>
         <div class="sr-option">
           <select v-model="colorThemeId" @change="updateTheme()" class="grade-select">
-            <option v-for="theme in allThemes" :key="theme.id" :value="theme.id" class="grade-select-item">{{theme.name}}</option>
+            <option v-for="theme in allThemes" :key="theme.id" :value="theme.id" class="grade-select-item">{{ theme.name
+            }}
+            </option>
           </select>
         </div>
       </div>
@@ -187,7 +196,7 @@
           <b class="sr-title">App Version</b>
           <span class="sr-desc">Please include the full version in bug reports</span>
         </div>
-        <div class="sr-option" style="cursor: text;">{{appVersion}}</div>
+        <div class="sr-option" style="cursor: text;">{{ appVersion }}</div>
       </div>
     </div>
   </div>
@@ -198,8 +207,47 @@ import { Component, Vue } from 'vue-property-decorator';
 import { Themes } from '../themes';
 import { allGrades } from '@/schedule';
 
+type StoreSettings = {
+  numberOfClicks: number,
+  notificationsOn: boolean,
+  notificationSent: boolean,
+  useMilitaryTime: boolean,
+  enableAnimations: boolean,
+  enableThemeAnimations: boolean,
+  enableRadialGradient: boolean,
+  showExtraPeriods: boolean,
+  sixthEnabled: boolean,
+  zeroEnabled: boolean,
+  colorTheme: string,
+  startorend: string,
+  grade: number,
+  startTime: number,
+  endTime: number,
+  idInput: string,
+  gradeInput: [],
+}
+
+type NewGoSettings = {
+  setting: string,
+  showExtraPeriods: boolean,
+  sixthEnabled: boolean,
+  zeroEnabled: boolean,
+  twentyFourHour: boolean,
+  showAMPM: boolean,
+  inlinePeriodDetails: boolean,
+  colorTheme: number,
+  themeAnimation: boolean,
+  themeAnimationIntensity: number,
+  grade: string,
+  language: string,
+  notificationToggle: boolean,
+  notificationStart: string,
+  notificationEnd: string
+}
+
 @Component({})
 export default class Home extends Vue {
+  [x: string]: any;
   public appVersion = `v${process.env.VUE_APP_VERSION} (b${process.env.VUE_APP_COMMIT_COUNT.trim()}#${process.env.VUE_APP_COMMIT_SHASH.trim()})`;
   colorThemeId = this.$store.state.settings.colorTheme;
   startTimeAmount = this.$store.state.settings.startTime;
@@ -212,23 +260,25 @@ export default class Home extends Vue {
   seeorhide = 'See';
   startorend = 'both';
   allTimes = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+  storeSettings: StoreSettings = this.$store.state.settings.colorTheme as StoreSettings
+  newGoSettingsLink: string = ""
 
-  strGrade(grade: any){
-  if (grade < 13 && grade > 3) {
-    grade = String(grade);
-    grade = grade.concat('th Grade');
-  } else if (grade === 0) {
-    grade = 'K/Pre K';
-  } else if (grade === 1) {
-    grade = '1st Grade';
-  } else if (grade === 2) {
-    grade = '2nd Grade';
-  } else if (grade === 3) {
-    grade = '3rd Grade';
-  } else if (grade === 13) {
-    grade = 'Event';
-  }
-  return grade;
+  strGrade(grade: any) {
+    if (grade < 13 && grade > 3) {
+      grade = String(grade);
+      grade = grade.concat('th Grade');
+    } else if (grade === 0) {
+      grade = 'K/Pre K';
+    } else if (grade === 1) {
+      grade = '1st Grade';
+    } else if (grade === 2) {
+      grade = '2nd Grade';
+    } else if (grade === 3) {
+      grade = '3rd Grade';
+    } else if (grade === 13) {
+      grade = 'Event';
+    }
+    return grade;
   }
 
   strTime(time: any) {
@@ -333,8 +383,8 @@ export default class Home extends Vue {
         }
       });
 
-    // At last, if the user has denied notifications, and you
-    // want to be respectful there is no need to bother them any more.
+      // At last, if the user has denied notifications, and you
+      // want to be respectful there is no need to bother them any more.
     }
   }
 
@@ -358,6 +408,102 @@ export default class Home extends Vue {
     this.updateStats();
 
     this.allThemes = Themes;
+    this.getNewGoSettings();
+    console.log(this.newGoSettingsLink)
+  }
+
+  getNewGoSettings() {
+    type GradeAssignable = "GRADE_7" | "GRADE_8" | "GRADE_9" | "GRADE_10" | "GRADE_11" | "GRADE_12"
+    type NotificationAssignable = "0_MIN" | "1_MIN" | "2_MIN" | "3_MIN" | "4_MIN" | "5_MIN" | "6_MIN" | "7_MIN" | "8_MIN" | "9_MIN" | "10_MIN"
+    let link = new URL("https://betago.lciteam.club")
+
+    const ahhhhhh = (storeSettingTimeAssignable: typeof this.storeSettings.startTime | typeof this.storeSettings.endTime): NotificationAssignable => {
+      let assignable: NotificationAssignable = "3_MIN"
+      
+      switch (storeSettingTimeAssignable) {
+        case 0:
+          assignable = "0_MIN"
+          break;
+        case 1:
+          assignable = "1_MIN"
+          break;
+        case 2:
+          assignable = "2_MIN"
+          break;
+        case 3:
+          assignable = "3_MIN"
+          break;
+        case 4:
+          assignable = "4_MIN"
+          break;
+        case 5:
+          assignable = "5_MIN"
+          break;
+        case 6:
+          assignable = "6_MIN"
+          break;
+        case 7:
+          assignable = "7_MIN"
+          break;
+        case 8:
+          assignable = "8_MIN"
+          break;
+        case 9:
+          assignable = "9_MIN"
+          break;
+        case 10:
+          assignable = "9_MIN"
+          break;
+      }
+      return assignable
+    }
+    const ahhhhhhNotAnotherSwitchCase = (storeSettingGradeAssignable: typeof this.storeSettings.grade): GradeAssignable => {
+      let assignable: GradeAssignable = "GRADE_9"
+      
+      switch (storeSettingGradeAssignable) {
+        case 7:
+          assignable = "GRADE_7"
+          break;
+        case 8:
+          assignable = "GRADE_8"
+          break;
+        case 9:
+          assignable = "GRADE_9"
+          break;
+        case 10:
+          assignable = "GRADE_10"
+          break;
+        case 11:
+          assignable = "GRADE_11"
+          break;
+        case 12:
+          assignable = "GRADE_12"
+          break;
+      }
+
+      return assignable
+    } 
+
+    let transferableSettings: NewGoSettings = {
+      setting: "settings",
+      language: "ENGLISH",
+      themeAnimationIntensity: 15,
+      colorTheme: 3,
+      showAMPM: false,
+      inlinePeriodDetails: true,
+      grade: ahhhhhhNotAnotherSwitchCase(this.storeSettings.grade),
+      notificationToggle: this.storeSettings.notificationsOn,
+      twentyFourHour: this.storeSettings.useMilitaryTime,
+      themeAnimation: this.storeSettings.enableAnimations,
+      sixthEnabled: this.storeSettings.sixthEnabled,
+      zeroEnabled: this.storeSettings.zeroEnabled,
+      showExtraPeriods: this.storeSettings.showExtraPeriods,
+      notificationStart: ahhhhhh(this.storeSettings.startTime),
+      notificationEnd: ahhhhhh(this.storeSettings.endTime)
+    } as const
+
+    link.searchParams.set("setSettings", JSON.stringify(transferableSettings))
+    this.newGoSettingsLink = link.href + "&settings"
   }
 }
 </script>
@@ -434,6 +580,7 @@ export default class Home extends Vue {
     &:hover {
       background: rgba(0, 0, 0, .05);
     }
+
     &.selected {
       background: rgba(0, 0, 0, .2);
       cursor: default;
@@ -444,25 +591,25 @@ export default class Home extends Vue {
 
 select.grade-select {
   color: #ffffff;
-  background: rgba(0,0,0,.2);
+  background: rgba(0, 0, 0, .2);
   padding: 5px;
   text-decoration-color: white;
   font-weight: 600;
-  font-family: Niramit,Avenir,sans-serif;
-  border-color:rgba(0,0,0,0);
+  font-family: Niramit, Avenir, sans-serif;
+  border-color: rgba(0, 0, 0, 0);
   border-width: 1px;
   border-radius: 3px;
 }
 
-option.grade-select-item  {
-color: rgba(255, 255, 255, 0.6);
+option.grade-select-item {
+  color: rgba(255, 255, 255, 0.6);
 
   background: var(--button-menu-color, #42b983);
   padding: 5px;
   text-decoration-color: white;
   font-weight: 600;
-  font-family: Niramit,Avenir,sans-serif;
-  border-color:rgba(0,0,0,0);
+  font-family: Niramit, Avenir, sans-serif;
+  border-color: rgba(0, 0, 0, 0);
   border-width: 1px;
   border-radius: 3px;
 
@@ -490,5 +637,4 @@ color: rgba(255, 255, 255, 0.6);
     box-shadow: 0 0 8px 4px rgba(100, 100, 100, .1);
   }
 }
-
 </style>
