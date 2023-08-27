@@ -193,6 +193,17 @@
       </div>
       <div class="settings-row">
         <div class="sr-head">
+          <b class="sr-title">Export Settings</b>
+          <span class="sr-desc">Export your settings to the new LCHS Go. Copy the link and open it in a new tab to get started.</span>
+          <div class="ex-selector">
+            <div class="ex-selector-option" @click="getNewGoSettings(); updateHasLoadedNewGoSettings()"
+              :class="{ selected: this.hasLoadedNewGoSettings }">Get Link</div>
+          </div>
+          <span class="new-go-settings-link">{{ this.newGoSettingsLink }}</span>
+        </div>
+      </div>
+      <div class="settings-row">
+        <div class="sr-head">
           <b class="sr-title">App Version</b>
           <span class="sr-desc">Please include the full version in bug reports</span>
         </div>
@@ -262,6 +273,12 @@ export default class Home extends Vue {
   allTimes = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
   storeSettings: StoreSettings = this.$store.state.settings.colorTheme as StoreSettings
   newGoSettingsLink: string = ""
+  // dont use the store here bc the user should be able to rerun the function on page reload
+  hasLoadedNewGoSettings: boolean = false
+
+  updateHasLoadedNewGoSettings() {
+    this.hasLoadedNewGoSettings = true
+  }
 
   strGrade(grade: any) {
     if (grade < 13 && grade > 3) {
@@ -408,8 +425,6 @@ export default class Home extends Vue {
     this.updateStats();
 
     this.allThemes = Themes;
-    this.getNewGoSettings();
-    console.log(this.newGoSettingsLink)
   }
 
   getNewGoSettings() {
@@ -636,5 +651,9 @@ option.grade-select-item {
     background-color: var(--button-submenu-color, #2f9768);
     box-shadow: 0 0 8px 4px rgba(100, 100, 100, .1);
   }
+}
+
+span.new-go-settings-link {
+  overflow-x: scroll;
 }
 </style>
