@@ -1,6 +1,6 @@
 import { Period } from './enums';
 
-type PeriodSchedule = Array<{ start: number, end: number, period: Period }>
+export type PeriodSchedule = Array<{ start: number, end: number, period: Period }>
 
 function toTime(hr: number, min: number) {
   return (hr * 60) + min;

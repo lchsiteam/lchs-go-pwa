@@ -1,13 +1,14 @@
 <template>
-  <div id="app-container" :style="getCSSColorScheme()" :class="{ toggleRadial: !this.$store.state.settings.enableRadialGradient, toggleOff: !this.$store.state.settings.enableThemeAnimations }">
-  <div id="app">
+  <div id="app-container" :style="getCSSColorScheme()"
+    :class="{ toggleRadial: !this.$store.state.settings.enableRadialGradient, toggleOff: !this.$store.state.settings.enableThemeAnimations }">
+    <div id="app">
       <div id="nav">
         <router-link to="/home">Now</router-link>
         <!-- <router-link to="/today">Today</router-link> -->
         <router-link to="/about">About</router-link>
       </div>
       <keep-alive>
-        <router-view/>
+        <router-view />
       </keep-alive>
     </div>
   </div>
@@ -22,6 +23,7 @@ import * as firebaseui from 'firebaseui'
 import 'firebaseui/dist/firebaseui.css'
 import { printTime, getScheduleFromDay, getPeriod, getUpcomingPeriod, getPreviousPeriod, allGrades, plusDays, periodsFilter, allFilter, excludeZeroAndSix, excludeZero, excludeSix } from '@/schedule';
 import { Day, Schedule, Period, getPeriodName, getScheduleName } from '@/schedule/enums';
+import type { PeriodSchedule } from '@/schedule/schedules';
 
 @Component({})
 export default class App extends Vue {
@@ -33,7 +35,7 @@ export default class App extends Vue {
   private currentDateTime: any;
   private uniqueMinute: number = 0;
   private nextPeriod = { start: 0, end: 1440, period: Period.NONE };
-  private previousPeriod = { start: 0, end: 1440, period: Period.NONE };
+  public previousPeriod = { start: 0, end: 1440, period: Period.NONE };
   private filter = periodsFilter;
 
   getCurrentColorScheme() {
@@ -116,7 +118,7 @@ export default class App extends Vue {
       this.createNotification(getPeriodName(this.nextPeriod.period) + ' is starting in ' + this.$store.state.settings.startTime + this.pluralMinutes(this.$store.state.settings.endTime), this.nextPeriod);
       this.$store.state.settings.notificationSent = true;
     }
-    else if ((this.minutes === this.currentPeriod.end - this.$store.state.settings.endTime) && (!this.$store.state.settings.notificationSent) && (this.$store.state.settings.startorend !== 'start')){
+    else if ((this.minutes === this.currentPeriod.end - this.$store.state.settings.endTime) && (!this.$store.state.settings.notificationSent) && (this.$store.state.settings.startorend !== 'start')) {
       this.createNotification(getPeriodName(this.currentPeriod.period) + ' is ending in ' + this.$store.state.settings.endTime + this.pluralMinutes(this.$store.state.settings.endTime), this.currentPeriod);
       this.$store.state.settings.notificationSent = true;
     }
@@ -206,46 +208,64 @@ export default class App extends Vue {
 
 }
 
-  // Your web app's Firebase configuration
+// Your web app's Firebase configuration
 let firebaseConfig = {
-    apiKey: 'AIzaSyDWaQp0SxDc4t_aaUIxdDI_Zb0rf8YWASc',
-    authDomain: 'helloyeet-c3c84.firebaseapp.com',
-    databaseURL: 'https://helloyeet-c3c84.firebaseio.com',
-    projectId: 'helloyeet-c3c84',
-    storageBucket: 'helloyeet-c3c84.appspot.com',
-    messagingSenderId: '969131500601',
-    appId: '1:969131500601:web:f47d01d3ff7c4eef',
-  };
-  // Initialize Firebase
+  apiKey: 'AIzaSyDWaQp0SxDc4t_aaUIxdDI_Zb0rf8YWASc',
+  authDomain: 'helloyeet-c3c84.firebaseapp.com',
+  databaseURL: 'https://helloyeet-c3c84.firebaseio.com',
+  projectId: 'helloyeet-c3c84',
+  storageBucket: 'helloyeet-c3c84.appspot.com',
+  messagingSenderId: '969131500601',
+  appId: '1:969131500601:web:f47d01d3ff7c4eef',
+};
+// Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 </script>
 
 
 <style lang="scss">
-
 @keyframes AnimatedTheme {
-  0% { background-position: 50% 0%; }
-  50% { background-position: 51% 100%; }
-  100% { background-position: 50% 0%; }
+  0% {
+    background-position: 50% 0%;
+  }
+
+  50% {
+    background-position: 51% 100%;
+  }
+
+  100% {
+    background-position: 50% 0%;
+  }
 }
 
 @keyframes AnimatedRadial {
-  0% { background-size: 100% 100%; }
-  50% { background-size: 200% 200%; }
-  100% { background-size: 100% 100%; }
+  0% {
+    background-size: 100% 100%;
+  }
+
+  50% {
+    background-size: 200% 200%;
+  }
+
+  100% {
+    background-size: 100% 100%;
+  }
 }
 
-html, body, #app-container {
+html,
+body,
+#app-container {
   height: auto;
   min-height: 100vh;
   width: 100%;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
- -ms-overflow-style: none;
+  -ms-overflow-style: none;
   scrollbar-width: none;
-  }
-  body::-webkit-scrollbar {
+}
+
+body::-webkit-scrollbar {
   display: none;
 }
 
@@ -258,7 +278,7 @@ html, body, #app-container {
     background: radial-gradient(var(--gradient-colors, "#42b983, #2f9768"));
     background-size: 200%, 200%;
     background-position: center;
-    animation: AnimatedRadial 10s ease infinite;  
+    animation: AnimatedRadial 10s ease infinite;
   }
 
   &.toggleOff {
@@ -267,6 +287,7 @@ html, body, #app-container {
   }
 
 }
+
 #app {
   font-family: 'Niramit', Avenir, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -280,6 +301,7 @@ html, body, #app-container {
 
 #nav {
   padding: 30px;
+
   a {
     background-color: var(--button-menu-color, #2c3e50);
     display: inline-block;
@@ -309,7 +331,9 @@ html, body, #app-container {
     &.router-link-active {
       color: #fff;
 
-      &:before { background-color: #d5dee7; }
+      &:before {
+        background-color: #d5dee7;
+      }
     }
   }
 }
@@ -336,5 +360,4 @@ html, body, #app-container {
     background-color: var(--button-submenu-color, #2f9768);
     box-shadow: 0 0 8px 4px rgba(100, 100, 100, .1);
   }
-}
-</style>
+}</style>

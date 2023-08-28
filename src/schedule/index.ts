@@ -13,6 +13,8 @@ import {
         PreFinals2156Schedule, PreFinals1345Schedule*/ FinalAssemblySchedule78, FinalAssemblySchedule12, Finals34Schedule, Finals25Schedule,
   Finals16Schedule, Finals26Schedule, Finals15Schedule, SeniorCelebration, GradRehersal, Graduation, /*FinalsTBDSchedule*/ SummerSchoolSchedule, HSBackToSchoolNight, ElementaryRegularSchedule, ElementaryRegularSchedule0, ElementaryRegularSchedule12, ElementaryRegularSchedule34, ElementaryRegularSchedule56, NinthRegistrationSchedule
 } from './schedules';
+import type { PeriodSchedule } from "./schedules"
+import { NotUndefined } from 'vue';
 
 export const plusDays = 0;
 export const plusMins = 0;
@@ -330,7 +332,7 @@ export function toTime(hr: number, min: number) {
   return (hr * 60) + min;
 }
 
-export function getFullSchedule(schedule: Schedule, grade: number): any {
+export function getFullSchedule(schedule: Schedule, grade: number): PeriodSchedule {
   let highSchooler = 0;
   if (grade >= 0 && grade <= 6) {    // Defines highSchooler. 1 is elementary (K-6)  2 is Middle School (7-8)  3 is Highschool (9-12)  0 is everything else
     highSchooler = 1;
@@ -616,6 +618,7 @@ export function getFullSchedule(schedule: Schedule, grade: number): any {
       return NoSchoolSchedule;
       break;
   }
+  return NoSchoolSchedule
 }
 
 export function getPeriod(time: number, schedule: Schedule, grade: number, pAllow = allFilter): any {
@@ -970,9 +973,10 @@ export function getUpcomingPeriod(time: number, dateTime: any, schedule: Schedul
 }
 
 export function getPreviousPeriod(time: number, dateTime: any, schedule: Schedule, grade: number, pAllow = periodsFilter): any {
-  const fullSchedule = getFullSchedule(schedule, grade);
+  const fullSchedule: PeriodSchedule = getFullSchedule(schedule, grade);
   let result = fullSchedule.find((p: any) => (p.end <= time && pAllow.indexOf(p.period) !== -1));
   // tslint:disable-next-line:prefer-for-of
+  if (result === undefined) return
   for (let index = 0; index < fullSchedule.length; index++) {
     if ((fullSchedule[index].end > result.end) && (fullSchedule[index].end <= time) && (pAllow.indexOf(fullSchedule[index].period) !== -1)) {
       result = fullSchedule[index];
