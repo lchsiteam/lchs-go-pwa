@@ -506,19 +506,20 @@ export default class Home extends Vue {
       colorTheme: 3,
       showAMPM: false,
       inlinePeriodDetails: true,
-      grade: ahhhhhhNotAnotherSwitchCase(this.storeSettings.grade),
-      notificationToggle: this.storeSettings.notificationsOn,
-      twentyFourHour: this.storeSettings.useMilitaryTime,
-      themeAnimation: this.storeSettings.enableAnimations,
-      sixthEnabled: this.storeSettings.sixthEnabled,
-      zeroEnabled: this.storeSettings.zeroEnabled,
-      showExtraPeriods: this.storeSettings.showExtraPeriods,
-      notificationStart: ahhhhhh(this.storeSettings.startTime),
-      notificationEnd: ahhhhhh(this.storeSettings.endTime)
+      grade: ahhhhhhNotAnotherSwitchCase(this.$store.state.settings.grade),
+      notificationToggle: this.$store.state.settings.notificationsOn,
+      twentyFourHour: this.$store.state.settings.useMilitaryTime,
+      themeAnimation: this.$store.state.settings.enableAnimations,
+      sixthEnabled: this.$store.state.settings.sixthEnabled,
+      zeroEnabled: this.$store.state.settings.zeroEnabled,
+      showExtraPeriods: this.$store.state.settings.showExtraPeriods,
+      notificationStart: ahhhhhh(this.$store.state.settings.startTime),
+      notificationEnd: ahhhhhh(this.$store.state.settings.endTime)
     } as const
 
     link.searchParams.set("setSettings", JSON.stringify(transferableSettings))
     this.newGoSettingsLink = link.href + "&settings"
+    console.log(transferableSettings);
   }
 }
 </script>

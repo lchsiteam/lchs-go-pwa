@@ -109,27 +109,22 @@ export default class App extends Vue {
     if (((this.minutes === this.previousPeriod.end - this.$store.state.settings.endTime) && (!this.$store.state.settings.notificationSent) && (this.$store.state.settings.startorend !== 'start')) && (this.$store.state.settings.endTime === 0)) {
       this.createNotification(getPeriodName(this.previousPeriod.period) + ' is ending in ' + this.$store.state.settings.endTime + this.pluralMinutes(this.$store.state.settings.endTime), this.previousPeriod);
       this.$store.state.settings.notificationSent = true;
-    }
-    else if (((this.minutes === this.currentPeriod.start - this.$store.state.settings.startTime) && (!this.$store.state.settings.notificationSent) && (this.$store.state.settings.startorend !== 'end')) && (this.$store.state.settings.startTime === 0)) {
+    } else if (((this.minutes === this.currentPeriod.start - this.$store.state.settings.startTime) && (!this.$store.state.settings.notificationSent) && (this.$store.state.settings.startorend !== 'end')) && (this.$store.state.settings.startTime === 0)) {
       this.createNotification(getPeriodName(this.currentPeriod.period) + ' is starting in ' + this.$store.state.settings.startTime + this.pluralMinutes(this.$store.state.settings.endTime), this.currentPeriod);
       this.$store.state.settings.notificationSent = true;
-    }
-    else if ((this.minutes === this.nextPeriod.start - this.$store.state.settings.startTime) && (!this.$store.state.settings.notificationSent) && (this.$store.state.settings.startorend !== 'end')) {
+    } else if ((this.minutes === this.nextPeriod.start - this.$store.state.settings.startTime) && (!this.$store.state.settings.notificationSent) && (this.$store.state.settings.startorend !== 'end')) {
       this.createNotification(getPeriodName(this.nextPeriod.period) + ' is starting in ' + this.$store.state.settings.startTime + this.pluralMinutes(this.$store.state.settings.endTime), this.nextPeriod);
       this.$store.state.settings.notificationSent = true;
-    }
-    else if ((this.minutes === this.currentPeriod.end - this.$store.state.settings.endTime) && (!this.$store.state.settings.notificationSent) && (this.$store.state.settings.startorend !== 'start')) {
+    } else if ((this.minutes === this.currentPeriod.end - this.$store.state.settings.endTime) && (!this.$store.state.settings.notificationSent) && (this.$store.state.settings.startorend !== 'start')) {
       this.createNotification(getPeriodName(this.currentPeriod.period) + ' is ending in ' + this.$store.state.settings.endTime + this.pluralMinutes(this.$store.state.settings.endTime), this.currentPeriod);
       this.$store.state.settings.notificationSent = true;
-    }
-    else if ((this.minutes !== this.nextPeriod.start - this.$store.state.settings.startTime) && (this.minutes !== this.currentPeriod.end - this.$store.state.settings.endTime) && (this.minutes !== this.previousPeriod.end - this.$store.state.settings.endTime) && (this.minutes !== this.currentPeriod.start - this.$store.state.settings.startTime)) {
+    } else if ((this.minutes !== this.nextPeriod.start - this.$store.state.settings.startTime) && (this.minutes !== this.currentPeriod.end - this.$store.state.settings.endTime) && (this.minutes !== this.previousPeriod.end - this.$store.state.settings.endTime) && (this.minutes !== this.currentPeriod.start - this.$store.state.settings.startTime)) {
       this.$store.state.settings.notificationSent = false;
     }
 
     if (Notification.permission === 'denied') {
       this.$store.state.settings.notificationsOn = false;
-    }
-    else if (Notification.permission !== 'granted' && this.$store.state.settings.notificationsOn) {
+    } else if (Notification.permission !== 'granted' && this.$store.state.settings.notificationsOn) {
       this.notifyMe();
     }
   }
@@ -360,4 +355,5 @@ body::-webkit-scrollbar {
     background-color: var(--button-submenu-color, #2f9768);
     box-shadow: 0 0 8px 4px rgba(100, 100, 100, .1);
   }
-}</style>
+}
+</style>
