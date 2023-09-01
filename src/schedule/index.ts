@@ -4,13 +4,17 @@
 
 import { MDYDate } from './mdy_date';
 import { Day, Schedule, Period } from './enums';
-import { HybridVirtualDay, CohortABlockOdd, CohortABlockEven, CohortBBlockOdd, CohortBBlockEven, InPersonBlockOdd, InPersonBlockEven, /* <--- hybrid and virtual days*/ NoSchoolSchedule, NoEventSchedule, WeirdAssemblySchedule, WeirdAssemblySchedule78, RegularSchedule,  BlockOddSchedule, BlockEvenSchedule,
-        SmallGroups12, SmallGroups34, SmallGroups56, SmallGroupsWellnessClubs, SmallGroups0Clubs,
-        ReverseBlockOddSchedule, MinimumReverseBlockOddSchedule78, SpecialBlockOddSchedule, SpecialBlockEvenSchedule, AssemblySchedule, RegularSchedule78,
-        BlockOddSchedule78, BlockEvenSchedule78, HSBlockOddScheduleFor78, HSBlockEvenScheduleFor78, HSSpecialBlockOddScheduleFor78,
-        HSSpecialBlockEvenScheduleFor78, AssemblySchedule7, AssemblySchedule8, EarlyReleaseSchedule78, MinimumSchedule, /*PreFinals3264Schedule,
+import {
+  HybridVirtualDay, CohortABlockOdd, CohortABlockEven, CohortBBlockOdd, CohortBBlockEven, InPersonBlockOdd, InPersonBlockEven, /* <--- hybrid and virtual days*/ NoSchoolSchedule, NoEventSchedule, WeirdAssemblySchedule, WeirdAssemblySchedule78, RegularSchedule, BlockOddSchedule, BlockEvenSchedule,
+  SmallGroups12, SmallGroups34, SmallGroups56, SmallGroupsWellnessClubs, SmallGroups0Clubs,
+  ReverseBlockOddSchedule, MinimumReverseBlockOddSchedule78, SpecialBlockOddSchedule, SpecialBlockEvenSchedule, AssemblySchedule, RegularSchedule78,
+  BlockOddSchedule78, BlockEvenSchedule78, HSBlockOddScheduleFor78, HSBlockEvenScheduleFor78, HSSpecialBlockOddScheduleFor78,
+  HSSpecialBlockEvenScheduleFor78, AssemblySchedule7, AssemblySchedule8, EarlyReleaseSchedule78, MinimumSchedule, /*PreFinals3264Schedule,
         PreFinals2156Schedule, PreFinals1345Schedule*/ FinalAssemblySchedule78, FinalAssemblySchedule12, Finals34Schedule, Finals25Schedule,
-        Finals16Schedule, Finals26Schedule, Finals15Schedule, SeniorCelebration, GradRehersal, Graduation, /*FinalsTBDSchedule*/ SummerSchoolSchedule, HSBackToSchoolNight, ElementaryRegularSchedule, ElementaryRegularSchedule0, ElementaryRegularSchedule12, ElementaryRegularSchedule34, ElementaryRegularSchedule56, NinthRegistrationSchedule } from './schedules';
+  Finals16Schedule, Finals26Schedule, Finals15Schedule, SeniorCelebration, GradRehersal, Graduation, /*FinalsTBDSchedule*/ SummerSchoolSchedule, HSBackToSchoolNight, ElementaryRegularSchedule, ElementaryRegularSchedule0, ElementaryRegularSchedule12, ElementaryRegularSchedule34, ElementaryRegularSchedule56, NinthRegistrationSchedule
+} from './schedules';
+import type { PeriodSchedule } from "./schedules"
+import { NotUndefined } from 'vue';
 
 export const plusDays = 0;
 export const plusMins = 0;
@@ -42,13 +46,13 @@ const combined: [MDYDate, MDYDate] = [new MDYDate(5, 3, 2021), new MDYDate(6, 2,
 
 export const schoolSpecialDates: any = {
   // month - day - year: schedule (something from the Schedule enum)
-  
+
   // beginning of the year no block override
   '8 - 17 - 2022': Schedule.REGULAR,
   '8 - 18 - 2022': Schedule.REGULAR,
   '8 - 24 - 2022': Schedule.REGULAR,
   '8 - 25 - 2022': Schedule.REGULAR,
-  
+
   '1 - 4 - 2023': Schedule.REGULAR,
   '1 - 5 - 2023': Schedule.REGULAR,
 
@@ -56,27 +60,27 @@ export const schoolSpecialDates: any = {
   '8 - 17 - 2023': Schedule.REGULAR,
   '8 - 23 - 2023': Schedule.REGULAR,
   '8 - 24 - 2023': Schedule.REGULAR,
-  
+
   // Labor Day
   '9 - 5 - 2022': Schedule.NONE,
 
   // Presidents' Day weekend
   '2 - 18 - 2022': Schedule.NONE,
   '2 - 21 - 2022': Schedule.NONE,
-  
+
   // Veteran's Day
   '11 - 11 - 2022': Schedule.NONE,
-  
+
   // MLK Day
   '1 - 16 - 2023': Schedule.NONE,
-  
+
   // President's Day
   '2 - 17 - 2023': Schedule.NONE,
   '2 - 20 - 2023': Schedule.NONE,
-  
+
   // Open House
   '4 - 14 - 2023': Schedule.MINIMUM,
-  
+
   // SBAC Testing Week
   '4 - 17 - 2023': Schedule.SBAC_BLOCK_ODD,
   '4 - 18 - 2023': Schedule.SBAC_BLOCK_EVEN,
@@ -89,7 +93,7 @@ export const schoolSpecialDates: any = {
   '12 - 14 - 2022': Schedule.FINALS_26,
   '12 - 15 - 2022': Schedule.FINALS_15,
   '12 - 16 - 2022': Schedule.FINALS_34,
-  
+
   // End of the school year
   '5 - 17 - 2023': Schedule.REGULAR,
   '5 - 18 - 2023': Schedule.REGULAR,
@@ -97,8 +101,8 @@ export const schoolSpecialDates: any = {
   '5 - 31 - 2023': Schedule.FINALS_34,
   '6 - 1 - 2023': Schedule.FINALS_16,
   '6 - 2 - 2023': Schedule.FINALS_25,
-  
-  
+
+
   // More assemblies
   '8 - 25 - 2023': Schedule.ASSEMBLY,
   '10 - 14 - 2022': Schedule.ASSEMBLY,
@@ -226,30 +230,30 @@ export function getScheduleFromDay(month: number, day: number, year: number, wee
 
       if (notBreak) {
         if (isBlockSwitched) {
-        switch (weekDay) {
-          case Day.SUNDAY:
-          case Day.SATURDAY:
-            shed = Schedule.NONE;
-            break;
-          case Day.MONDAY:
-          case Day.TUESDAY:
-          case Day.FRIDAY:
-            shed = Schedule.REGULAR;
-            break;
-          case Day.WEDNESDAY:
-            if (highSchooler === 1) {
+          switch (weekDay) {
+            case Day.SUNDAY:
+            case Day.SATURDAY:
+              shed = Schedule.NONE;
+              break;
+            case Day.MONDAY:
+            case Day.TUESDAY:
+            case Day.FRIDAY:
               shed = Schedule.REGULAR;
-            } else {
-              shed = Schedule.BLOCK_EVEN;
-            }
-            break;
-          case Day.THURSDAY:
-            if (highSchooler === 1) {
-              shed = Schedule.REGULAR;
-            } else {
-              shed = Schedule.BLOCK_ODD;
-            }
-            break;
+              break;
+            case Day.WEDNESDAY:
+              if (highSchooler === 1) {
+                shed = Schedule.REGULAR;
+              } else {
+                shed = Schedule.BLOCK_EVEN;
+              }
+              break;
+            case Day.THURSDAY:
+              if (highSchooler === 1) {
+                shed = Schedule.REGULAR;
+              } else {
+                shed = Schedule.BLOCK_ODD;
+              }
+              break;
           }
         } else if (isHybrid && highSchooler === 3 || isHybrid && highSchooler === 2) {
           switch (weekDay) {
@@ -316,11 +320,11 @@ export function getScheduleFromDay(month: number, day: number, year: number, wee
                 shed = Schedule.BLOCK_EVEN;
               }
               break;
-            }
           }
         }
       }
     }
+  }
   return shed;
 }
 
@@ -328,7 +332,7 @@ export function toTime(hr: number, min: number) {
   return (hr * 60) + min;
 }
 
-export function getFullSchedule(schedule: Schedule, grade: number): any {
+export function getFullSchedule(schedule: Schedule, grade: number): PeriodSchedule {
   let highSchooler = 0;
   if (grade >= 0 && grade <= 6) {    // Defines highSchooler. 1 is elementary (K-6)  2 is Middle School (7-8)  3 is Highschool (9-12)  0 is everything else
     highSchooler = 1;
@@ -387,11 +391,11 @@ export function getFullSchedule(schedule: Schedule, grade: number): any {
             return ElementaryRegularSchedule56;
             break;
         }
-      }else if (highSchooler === 2) {
+      } else if (highSchooler === 2) {
         return RegularSchedule78;
-      }else if (highSchooler === 3) {
+      } else if (highSchooler === 3) {
         return RegularSchedule;
-      }else {
+      } else {
         return NoSchoolSchedule;
       }
       break;
@@ -408,22 +412,22 @@ export function getFullSchedule(schedule: Schedule, grade: number): any {
     case Schedule.BLOCK_ODD:
       if (highSchooler === 1) {
         return ElementaryRegularSchedule;
-      }else if (highSchooler === 2) {
+      } else if (highSchooler === 2) {
         return BlockOddSchedule78;
-      }else if (highSchooler === 3) {
+      } else if (highSchooler === 3) {
         return BlockOddSchedule;
-      }else {
+      } else {
         return NoSchoolSchedule;
       }
       break;
     case Schedule.BLOCK_EVEN:
       if (highSchooler === 1) {
         return ElementaryRegularSchedule;
-      }else if (highSchooler === 2) {
+      } else if (highSchooler === 2) {
         return BlockEvenSchedule78;
-      }else if (highSchooler === 3) {
+      } else if (highSchooler === 3) {
         return BlockEvenSchedule;
-      }else {
+      } else {
         return NoSchoolSchedule;
       }
       break;
@@ -436,44 +440,44 @@ export function getFullSchedule(schedule: Schedule, grade: number): any {
     case Schedule.SBAC_BLOCK_ODD:
       if (highSchooler === 1) {
         return ElementaryRegularSchedule;
-      }else if (highSchooler === 2) {
+      } else if (highSchooler === 2) {
         return HSBlockOddScheduleFor78;
-      }else if (highSchooler === 3) {
+      } else if (highSchooler === 3) {
         return BlockOddSchedule;
-      }else {
+      } else {
         return NoSchoolSchedule;
       }
       break;
     case Schedule.SBAC_BLOCK_EVEN:
       if (highSchooler === 1) {
         return ElementaryRegularSchedule;
-      }else if (highSchooler === 2) {
+      } else if (highSchooler === 2) {
         return HSBlockEvenScheduleFor78;
-      }else if (highSchooler === 3) {
+      } else if (highSchooler === 3) {
         return BlockEvenSchedule;
-      }else {
+      } else {
         return NoSchoolSchedule;
       }
       break;
     case Schedule.SBAC_SPECIAL_BLOCK_ODD:
       if (highSchooler === 1) {
         return ElementaryRegularSchedule;
-      }else if (highSchooler === 2) {
+      } else if (highSchooler === 2) {
         return HSSpecialBlockOddScheduleFor78;
-      }else if (highSchooler === 3) {
+      } else if (highSchooler === 3) {
         return SpecialBlockOddSchedule;
-      }else {
+      } else {
         return NoSchoolSchedule;
       }
       break;
     case Schedule.SBAC_SPECIAL_BLOCK_EVEN:
       if (highSchooler === 1) {
         return ElementaryRegularSchedule;
-      }else if (highSchooler === 2) {
+      } else if (highSchooler === 2) {
         return HSSpecialBlockEvenScheduleFor78;
-      }else if (highSchooler === 3) {
+      } else if (highSchooler === 3) {
         return SpecialBlockEvenSchedule;
-      }else {
+      } else {
         return NoSchoolSchedule;
       }
       break;
@@ -515,7 +519,7 @@ export function getFullSchedule(schedule: Schedule, grade: number): any {
           return AssemblySchedule;
           break;
       }
-     case Schedule.WEIRD_ASSEMBLY:
+    case Schedule.WEIRD_ASSEMBLY:
       if (highSchooler === 1) {
         return ElementaryRegularSchedule;
       } else if (highSchooler === 2) {
@@ -541,7 +545,7 @@ export function getFullSchedule(schedule: Schedule, grade: number): any {
       if (highSchooler === 1) {
         return ElementaryRegularSchedule;
       } else if (highSchooler === 2) {
-        return  Finals34Schedule;
+        return Finals34Schedule;
       } else if (highSchooler === 3) {
         return Finals34Schedule;
       } else {
@@ -552,7 +556,7 @@ export function getFullSchedule(schedule: Schedule, grade: number): any {
       if (highSchooler === 1) {
         return ElementaryRegularSchedule;
       } else if (highSchooler === 2) {
-        return  Finals16Schedule;
+        return Finals16Schedule;
       } else if (highSchooler === 3) {
         return Finals16Schedule;
       } else {
@@ -563,7 +567,7 @@ export function getFullSchedule(schedule: Schedule, grade: number): any {
       if (highSchooler === 1) {
         return ElementaryRegularSchedule;
       } else if (highSchooler === 2) {
-        return  Finals25Schedule;
+        return Finals25Schedule;
       } else if (highSchooler === 3) {
         return Finals25Schedule;
       } else {
@@ -574,7 +578,7 @@ export function getFullSchedule(schedule: Schedule, grade: number): any {
       if (highSchooler === 1) {
         return ElementaryRegularSchedule;
       } else if (highSchooler === 2) {
-        return  Finals26Schedule;
+        return Finals26Schedule;
       } else if (highSchooler === 3) {
         return Finals26Schedule;
       } else {
@@ -585,7 +589,7 @@ export function getFullSchedule(schedule: Schedule, grade: number): any {
       if (highSchooler === 1) {
         return ElementaryRegularSchedule;
       } else if (highSchooler === 2) {
-        return  Finals15Schedule;
+        return Finals15Schedule;
       } else if (highSchooler === 3) {
         return Finals15Schedule;
       } else {
@@ -614,11 +618,12 @@ export function getFullSchedule(schedule: Schedule, grade: number): any {
       return NoSchoolSchedule;
       break;
   }
+  return NoSchoolSchedule
 }
 
 export function getPeriod(time: number, schedule: Schedule, grade: number, pAllow = allFilter): any {
   const fullSchedule = getFullSchedule(schedule, grade);
-  return fullSchedule.find((p: any) => (p.start <= time && p.end > time) && pAllow.indexOf(p.period) !== -1);
+  return fullSchedule.find((p: { start: number, end: number, period: number }) => (p.start <= time && p.end > time) && pAllow.indexOf(p.period) !== -1);
 }
 
 export const periodsFilter = [
@@ -958,7 +963,7 @@ export function getUpcomingPeriod(time: number, dateTime: any, schedule: Schedul
 
       const result = nextSchedule.find((p: any) => (p.start > 0 && pAllow.indexOf(p.period) !== -1));
 
-      if (result) { return {...result, daysSince }; }
+      if (result) { return { ...result, daysSince }; }
       else { daysSince += 1; }
     }
 
@@ -968,15 +973,16 @@ export function getUpcomingPeriod(time: number, dateTime: any, schedule: Schedul
 }
 
 export function getPreviousPeriod(time: number, dateTime: any, schedule: Schedule, grade: number, pAllow = periodsFilter): any {
-  const fullSchedule = getFullSchedule(schedule, grade);
+  const fullSchedule: PeriodSchedule = getFullSchedule(schedule, grade);
   let result = fullSchedule.find((p: any) => (p.end <= time && pAllow.indexOf(p.period) !== -1));
   // tslint:disable-next-line:prefer-for-of
+  if (result === undefined) return
   for (let index = 0; index < fullSchedule.length; index++) {
     if ((fullSchedule[index].end > result.end) && (fullSchedule[index].end <= time) && (pAllow.indexOf(fullSchedule[index].period) !== -1)) {
       result = fullSchedule[index];
     }
   }
-  if (result) { return result; }
+  if (result) return result;
 }
 
 // This works so far, not touching.
@@ -1020,7 +1026,7 @@ export function printTime(time: number) {
   return finalString;
 }
 
-export function strGrade(grade: any){
+export function strGrade(grade: any) {
   if (grade < 13 && grade > 3) {
     grade = String(grade);
     grade = grade.concat('th Grade');

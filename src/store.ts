@@ -4,7 +4,30 @@ import StoragePlugin from './localStorage';
 
 Vue.use(Vuex);
 
-const defaultConfig = {
+type DefaultConfig = {
+  settings: {
+    numberOfClicks: number,
+    notificationsOn: boolean,
+    notificationSent: boolean,
+    useMilitaryTime: boolean,
+    enableAnimations: boolean,
+    enableThemeAnimations: boolean,
+    enableRadialGradient: boolean,
+    showExtraPeriods: boolean,
+    sixthEnabled: boolean,
+    zeroEnabled: boolean,
+    colorTheme: string,
+    startorend: string,
+    grade: number,
+    startTime: number,
+    endTime: number,
+    idInput: string,
+    gradeInput: [],
+  },
+  changelog: any
+}
+
+const defaultConfig: DefaultConfig = {
   settings: {
     numberOfClicks: 0,
     notificationsOn: false,
