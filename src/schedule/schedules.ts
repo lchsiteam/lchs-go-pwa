@@ -61,7 +61,6 @@ export const RegularSchedule78: PeriodSchedule = [
   { start: toTime(15, 14), end: toTime(24, 0), period: Period.DONE },
 ];
 
-// assumng that the schedule hasn't changed
 export const PilotRegularSchedule: PeriodSchedule = [
   { start: toTime(0, 0), end: toTime(7, 30), period: Period.NONE },
   { start: toTime(7, 30), end: toTime(8, 24), period: Period.PERIOD_0 },
@@ -92,7 +91,7 @@ export const PilotBlockScheduleTuesday: PeriodSchedule = [
   { start: toTime(11, 19), end: toTime(12, 31), period: Period.PERIOD_3 },
   { start: toTime(12, 31), end: toTime(1, 6), period: Period.LUNCH },
   { start: toTime(1, 6), end: toTime(1, 16), period: Period.LUNCH_PASSING },
-  { start: toTime(1, 16), end: toTime(1, 51), period: Period.STEP_EVEN }, // set it to that for now until new enum
+  { start: toTime(1, 16), end: toTime(1, 51), period: Period.ADVISORY }, // set it to that for now until new enum
   { start: toTime(1, 51), end: toTime(2, 1), period: Period.STEP_PASSING },
   { start: toTime(2, 1), end: toTime(3, 13), period: Period.PERIOD_5 },
 ]
@@ -109,7 +108,7 @@ export const PilotBlockScheduleWednesday: PeriodSchedule = [
   { start: toTime(11, 19), end: toTime(12, 31), period: Period.PERIOD_4 },
   { start: toTime(12, 31), end: toTime(1, 6), period: Period.LUNCH },
   { start: toTime(1, 6), end: toTime(1, 16), period: Period.LUNCH_PASSING },
-  { start: toTime(1, 16), end: toTime(1, 51), period: Period.STEP_EVEN },
+  { start: toTime(1, 16), end: toTime(1, 51), period: Period.ADVISORY },
   { start: toTime(1, 51), end: toTime(2, 1), period: Period.STEP_PASSING },
   { start: toTime(2, 1), end: toTime(3, 13), period: Period.PERIOD_6 },
 ]
@@ -126,7 +125,7 @@ export const PilotBlockScheduleThursday: PeriodSchedule = [
   { start: toTime(11, 19), end: toTime(12, 31), period: Period.PERIOD_5 },
   { start: toTime(12, 31), end: toTime(1, 6), period: Period.LUNCH },
   { start: toTime(1, 6), end: toTime(1, 16), period: Period.LUNCH_PASSING },
-  { start: toTime(1, 16), end: toTime(1, 51), period: Period.STEP_EVEN },
+  { start: toTime(1, 16), end: toTime(1, 51), period: Period.ADVISORY },
   { start: toTime(1, 51), end: toTime(2, 1), period: Period.STEP_PASSING },
   { start: toTime(2, 1), end: toTime(3, 13), period: Period.PERIOD_6 },
 ]
