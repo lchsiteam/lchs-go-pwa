@@ -53,6 +53,11 @@ enum Schedule {
   BLOCK_GROUPS_WELLNESS_CLUBS,
   // Events
   REGISTRATION,
+  // pilot schedules
+  PILOTREGULARSCHEDULE,
+  PILOTBLOCKSCHEDULETUESDAY,
+  PILOTBLOCKSCHEDULEWEDNESDAY,
+  PILOTBLOCKSCHEDULETHURSDAY,
 }
 
 enum Day {
@@ -157,6 +162,7 @@ enum Period {
   // Events
   ORIENTATION,
   REGISTRATION,
+  ADVISORY,
 }
 
 export function getPeriodName(period: Period) {
@@ -230,8 +236,9 @@ export function getPeriodName(period: Period) {
   else if (period === Period.SMALL_GROUP_WELLNESS) { return 'Small Group Wellness Wendsday'; }
   else if (period === Period.SMALL_GROUP_CLUBS) { return 'Small Groups and Clubs'; }
   else if (period === Period.SMALL_GROUP_PASSING) { return 'Passing Between Small Groups'; }
-  // Senior End of the Year
+  else if (period === Period.ADVISORY) { return 'Advisory'; }
 
+  // Senior End of the Year
   else if (period === Period.GRADUATION) { return 'Graduation!'; }
   else if (period === Period.GRAD_REHERSAL) { return 'Graduation Rehersal'; }
   else if (period === Period.SENIOR_CELIBRATION) { return 'Senior Celibration'; }
@@ -368,13 +375,13 @@ export function getScheduleName(schedule: Schedule) {
       return 'Summer School';
       break;
     case Schedule.SENIOR_CELIBRATION_SCHED:
-        return 'Senior Celibration';
+      return 'Senior Celibration';
       break;
     case Schedule.GRAD_REHERSAL_SCHED:
-        return 'Graduation Rehersal';
+      return 'Graduation Rehersal';
       break;
     case Schedule.GRADUATION_SCHED:
-        return 'Graduation!';
+      return 'Graduation!';
       break;
     case Schedule.NOEVENT:
       return 'No Special Events';
@@ -385,6 +392,18 @@ export function getScheduleName(schedule: Schedule) {
       return 'Assembly Schedule';
     case Schedule.REGISTRATION:
       return 'Ninth Grade Registration Schedule';
+    case Schedule.PILOTREGULARSCHEDULE:
+      return 'Pilot Schedule';
+      break;
+    case Schedule.PILOTBLOCKSCHEDULETUESDAY:
+      return 'Pilot Block A'
+      break;
+    case Schedule.PILOTBLOCKSCHEDULEWEDNESDAY:
+      return 'Pilot Block B'
+      break;
+    case Schedule.PILOTBLOCKSCHEDULETHURSDAY:
+      return 'Pilot Block C'
+      break;
     default:
       return 'Error';
       break;
