@@ -1,5 +1,5 @@
 ---
-name: Feature request
+name: can i go to a ITTeam meeting? Please?
 about: Suggest a feature to add
 title: ''
 labels: ''
