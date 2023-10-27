@@ -1,6 +1,18 @@
 <template>
   <div id="app-container" :style="getCSSColorScheme()"
     :class="{ toggleRadial: !this.$store.state.settings.enableRadialGradient, toggleOff: !this.$store.state.settings.enableThemeAnimations }">
+    <div v-if="this.$store.state.settings.openDepAnnouncement % 5 === 0" class="deprecation-announcement">
+      <div class="msg">
+        <strong>Hi loyal LCHS Go users!</strong><br>
+        The LCHS iTeam has been hard at work developing an improved LCHS Go that provides many new useful features.
+        We're excited to announce that it is officially out of beta and ready for use, and as such, this extension will no
+        longer be updated. We strongly recommend that you <a
+          href="https://chromewebstore.google.com/detail/bddnpkadgjcbafnmbampfbaiijafealk?hl=en">download the new
+          version</a> for a better experience. Thank you for your support!<br><br>
+        <strong>- With ❤️, the iTeam</strong>
+      </div>
+    </div>
+
     <div id="app">
       <div id="nav">
         <router-link to="/home">Now</router-link>
@@ -37,6 +49,7 @@ export default class App extends Vue {
   private nextPeriod = { start: 0, end: 1440, period: Period.NONE };
   public previousPeriod = { start: 0, end: 1440, period: Period.NONE };
   private filter = periodsFilter;
+  public shouldShowDepAnnounce: boolean = true;
 
   getCurrentColorScheme() {
     return this.getColorSchemeFromId(this.$store.state.settings.colorTheme);
@@ -195,6 +208,7 @@ export default class App extends Vue {
   }
 
   mounted() {
+    this.$store.state.settings.openDepAnnouncement++;
     setInterval(this.updateStats, 5000);
     this.updateStats();
     setInterval(this.sendNotifications, 5000);
@@ -219,6 +233,32 @@ firebase.initializeApp(firebaseConfig);
 
 
 <style lang="scss">
+.deprecation-announcement {
+  overflow: auto;
+  position: fixed;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, .5);
+
+  .msg {
+    background-color: rgba(0, 0, 0, .3);
+    backdrop-filter: blur(10px);
+    margin: 15% auto;
+    padding: 20px;
+    width: 80%;
+    font-family: 'Niramit', Avenir, sans-serif;
+    color: white;
+    border-radius: 10px 15px 10px 10px;
+
+    a {
+      color: #3b8399;
+      text-decoration: none;
+      font-weight: bold;
+    }
+  }
+}
+
 @keyframes AnimatedTheme {
   0% {
     background-position: 50% 0%;
