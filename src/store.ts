@@ -6,7 +6,6 @@ Vue.use(Vuex);
 
 type DefaultConfig = {
   settings: {
-    openDepAnnouncement: number,
     numberOfClicks: number,
     notificationsOn: boolean,
     notificationSent: boolean,
@@ -30,7 +29,6 @@ type DefaultConfig = {
 
 const defaultConfig: DefaultConfig = {
   settings: {
-    openDepAnnouncement: -1,
     numberOfClicks: 0,
     notificationsOn: false,
     notificationSent: false,

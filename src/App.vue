@@ -1,7 +1,7 @@
 <template>
   <div id="app-container" :style="getCSSColorScheme()"
     :class="{ toggleRadial: !this.$store.state.settings.enableRadialGradient, toggleOff: !this.$store.state.settings.enableThemeAnimations }">
-    <div v-if="this.$store.state.settings.openDepAnnouncement % 5 === 0" class="deprecation-announcement">
+    <div v-if="this.shouldAnnounce % 5 === 0" class="deprecation-announcement">
       <div class="msg">
         <strong>Hi loyal LCHS Go users!</strong><br>
         The LCHS iTeam has been hard at work developing an improved LCHS Go that provides many new useful features.
@@ -49,7 +49,7 @@ export default class App extends Vue {
   private nextPeriod = { start: 0, end: 1440, period: Period.NONE };
   public previousPeriod = { start: 0, end: 1440, period: Period.NONE };
   private filter = periodsFilter;
-  public shouldShowDepAnnounce: boolean = true;
+  public shouldAnnounce: number = 0;
 
   getCurrentColorScheme() {
     return this.getColorSchemeFromId(this.$store.state.settings.colorTheme);
@@ -208,7 +208,9 @@ export default class App extends Vue {
   }
 
   mounted() {
-    this.$store.state.settings.openDepAnnouncement++;
+    if (localStorage.announce === undefined) localStorage.announce = 0
+    this.shouldAnnounce = localStorage.announce;
+    localStorage.announce++;
     setInterval(this.updateStats, 5000);
     this.updateStats();
     setInterval(this.sendNotifications, 5000);
