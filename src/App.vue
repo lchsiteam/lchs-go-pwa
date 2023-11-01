@@ -7,7 +7,7 @@
         The LCHS iTeam has been hard at work developing an improved LCHS Go that provides many new useful features.
         We're excited to announce that it is officially out of beta and ready for use, and as such, this extension will no
         longer be updated. We strongly recommend that you <a
-          href="https://chromewebstore.google.com/detail/bddnpkadgjcbafnmbampfbaiijafealk?hl=en">download the new
+          href="https://chromewebstore.google.com/detail/bddnpkadgjcbafnmbampfbaiijafealk?hl=en" target="_blank">download the new
           version</a> for a better experience. Thank you for your support!<br><br>
         <strong>- With ❤️, the iTeam</strong>
       </div>
