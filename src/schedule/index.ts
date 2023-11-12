@@ -11,7 +11,7 @@ import {
   BlockOddSchedule78, BlockEvenSchedule78, HSBlockOddScheduleFor78, HSBlockEvenScheduleFor78, HSSpecialBlockOddScheduleFor78,
   HSSpecialBlockEvenScheduleFor78, AssemblySchedule7, AssemblySchedule8, EarlyReleaseSchedule78, MinimumSchedule, /*PreFinals3264Schedule,
         PreFinals2156Schedule, PreFinals1345Schedule*/ FinalAssemblySchedule78, FinalAssemblySchedule12, Finals34Schedule, Finals25Schedule,
-  Finals16Schedule, Finals26Schedule, Finals15Schedule, SeniorCelebration, GradRehersal, Graduation, /*FinalsTBDSchedule*/ SummerSchoolSchedule, HSBackToSchoolNight, ElementaryRegularSchedule, ElementaryRegularSchedule0, ElementaryRegularSchedule12, ElementaryRegularSchedule34, ElementaryRegularSchedule56, NinthRegistrationSchedule
+  Finals16Schedule, Finals26Schedule, Finals15Schedule, SeniorCelebration, GradRehersal, Graduation, /*FinalsTBDSchedule*/ SummerSchoolSchedule, HSBackToSchoolNight, ElementaryRegularSchedule, ElementaryRegularSchedule0, ElementaryRegularSchedule12, ElementaryRegularSchedule34, ElementaryRegularSchedule56, NinthRegistrationSchedule,                                                                                                        PilotRegularSchedule, PilotBlockScheduleTuesday, PilotBlockScheduleWednesday, PilotBlockScheduleThursday
 } from './schedules';
 import type { PeriodSchedule } from "./schedules"
 import { NotUndefined } from 'vue';
@@ -46,6 +46,26 @@ const combined: [MDYDate, MDYDate] = [new MDYDate(5, 3, 2021), new MDYDate(6, 2,
 
 export const schoolSpecialDates: any = {
   // month - day - year: schedule (something from the Schedule enum)
+
+  // pilot schedule override
+  '9 - 25 - 2023': Schedule.PILOTREGULARSCHEDULE,
+  '9 - 26 - 2023': Schedule.PILOTBLOCKSCHEDULETUESDAY,
+  '9 - 27 - 2023': Schedule.PILOTBLOCKSCHEDULEWEDNESDAY,
+  '9 - 28 - 2023': Schedule.PILOTBLOCKSCHEDULETHURSDAY,
+  '9 - 29 - 2023': Schedule.PILOTREGULARSCHEDULE,
+
+  '10 - 2 - 2023': Schedule.PILOTREGULARSCHEDULE,
+  '10 - 3 - 2023': Schedule.PILOTBLOCKSCHEDULETUESDAY,
+  '10 - 4 - 2023': Schedule.PILOTBLOCKSCHEDULEWEDNESDAY,
+  '10 - 5 - 2023': Schedule.PILOTBLOCKSCHEDULETHURSDAY,
+  '10 - 6 - 2023': Schedule.PILOTREGULARSCHEDULE,
+
+  '10 - 9 - 2023': Schedule.PILOTREGULARSCHEDULE,
+  '10 - 10 - 2023': Schedule.PILOTBLOCKSCHEDULETUESDAY,
+  '10 - 11 - 2023': Schedule.PILOTBLOCKSCHEDULEWEDNESDAY,
+  '10 - 12 - 2023': Schedule.PILOTBLOCKSCHEDULETHURSDAY,
+  '10 - 13 - 2023': Schedule.PILOTREGULARSCHEDULE,
+
 
   // beginning of the year no block override
   '8 - 17 - 2022': Schedule.REGULAR,
@@ -595,6 +615,50 @@ export function getFullSchedule(schedule: Schedule, grade: number): PeriodSchedu
       } else {
         return NoSchoolSchedule;
       }
+      break
+    case Schedule.PILOTREGULARSCHEDULE:
+      if (highSchooler === 1) {
+        return ElementaryRegularSchedule;
+      } else if (highSchooler === 2) {
+        return PilotRegularSchedule;
+      } else if (highSchooler === 3) {
+        return PilotRegularSchedule
+      } else {
+        return NoSchoolSchedule;
+      }
+      break;
+    case Schedule.PILOTBLOCKSCHEDULETUESDAY:
+      if (highSchooler === 1) {
+        return ElementaryRegularSchedule;
+      } else if (highSchooler === 2) {
+        return PilotBlockScheduleTuesday;
+      } else if (highSchooler === 3) {
+        return PilotBlockScheduleTuesday;
+      } else {
+        return NoSchoolSchedule;
+      }
+      break;
+    case Schedule.PILOTBLOCKSCHEDULEWEDNESDAY:
+      if (highSchooler === 1) {
+        return ElementaryRegularSchedule;
+      } else if (highSchooler === 2) {
+        return PilotBlockScheduleWednesday;
+      } else if (highSchooler === 3) {
+        return PilotBlockScheduleWednesday;
+      } else {
+        return NoSchoolSchedule;
+      }
+      break;
+    case Schedule.PILOTBLOCKSCHEDULETHURSDAY:
+      if (highSchooler === 1) {
+        return ElementaryRegularSchedule;
+      } else if (highSchooler === 2) {
+        return PilotBlockScheduleThursday;
+      } else if (highSchooler === 3) {
+        return PilotBlockScheduleThursday;
+      } else {
+        return NoSchoolSchedule;
+      }
       break;
     case Schedule.SENIOR_CELIBRATION_SCHED:
       return SeniorCelebration;
@@ -694,6 +758,7 @@ export const periodsFilter = [
   // Event (Delete if after 8/10/21)
   Period.ORIENTATION,
   Period.REGISTRATION,
+  Period.ADVISORY,
 ];
 
 export const excludeZero = [
@@ -754,6 +819,7 @@ export const excludeZero = [
   // Event (Delete if after 8/10/21)
   Period.ORIENTATION,
   Period.REGISTRATION,
+  Period.ADVISORY,
 ];
 
 export const excludeSix = [
@@ -810,6 +876,7 @@ export const excludeSix = [
   // Event (Delete if after 8/10/21)
   Period.ORIENTATION,
   Period.REGISTRATION,
+  Period.ADVISORY,
 ];
 
 export const excludeZeroAndSix = [
@@ -866,6 +933,7 @@ export const excludeZeroAndSix = [
   // Event (Delete if after 8/10/21)
   Period.ORIENTATION,
   Period.REGISTRATION,
+  Period.ADVISORY,
 ];
 
 export const allFilter = [
@@ -945,6 +1013,7 @@ export const allFilter = [
   // Event (Delete if after 8/10/21)
   Period.ORIENTATION,
   Period.REGISTRATION,
+  Period.ADVISORY,
 ];
 
 export function getUpcomingPeriod(time: number, dateTime: any, schedule: Schedule, grade: number, pAllow = periodsFilter): any {
